@@ -1,0 +1,87 @@
+<template>
+  <div id="bel-annotation" data-ng-controller="BELAnnotationFormController" data-ng-init="init()">
+    <div class="col-sm-12">
+      <h3>Annotation</h3>
+    </div>
+    <!-- .col-sm-12 -->
+
+    <!-- SummaryText -->
+
+    <div class="col-sm-12">
+      <div class="form-group">
+        <label for="summaryText">BEL Summary Text</label>
+        <textarea class="form-control" id="summaryText" rows="3" placeholder="Extract from source text supporting this BEL Statement" data-ng-model="belSummaryText" data-ng-change="changeBelSummary()"></textarea>
+      </div>
+      <!-- .form-group -->
+    </div>
+    <!-- .col-sm-12 -->
+
+    <!-- End SummaryText -->
+
+    <!-- Structured Annotations -->
+    <div class="col-sm-12">
+      <h4>Structured Annotations</h4>
+    </div>
+    <!-- .col-sm-12 -->
+
+    <div data-ng-repeat="annotation in structuredAnnotations">
+      <div class="col-sm-3">
+        <div class="form-group">
+          <label for="structuredAnnotations-{{$index}}">Annotation Type</label>
+          <select name="structuredAnnotations-{{$index}}" class="form-control structuredAnnotations" data-ng-model="annotation.annotationType" data-ng-options="type.name as type.name for type in structuredAnnotationTypesList" data-ng-change="changeStructuredAnnotationType($index)" focus-index="{{$index}}" /></select>
+        </div>
+        <!-- .form-group -->
+      </div>
+      <!-- .col-sm-3 -->
+      <div class="col-sm-8">
+        <div class="form-group">
+          <label for="s-annotation-{{$index}}">Annotation</label>
+          <input name="s-annotation-{{$index}}" class="form-control s-annotation" type="text" data-ng-model="annotation.annotation" data-ng-change="searchAnnotation()" repeat-typeahead data-ng-blur="structuredAnnotationBlur(annotation.annotation)" />
+        </div>
+        <!-- .form-group -->
+      </div>
+      <!-- .col-sm-8 -->
+      <div class="col-sm-1" style="padding-top: 24px;">
+        <!-- <button class="btn btn-primary" data-ng-click="addStructuredAnnotation()">+</button> -->
+        <button class="btn btn-danger" data-ng-click="removeStructuredAnnotation($index)" data-ng-if="!$first">-</button>
+      </div>
+      <!-- .col-sm-1 -->
+    </div>
+
+    <!-- End Structured Annotations -->
+
+    <!-- Free Annotations -->
+    <div class="col-sm-12">
+      <h4>Free Annotations</h4>
+    </div>
+    <!-- .col-sm-12 -->
+    <div data-ng-repeat="annotation in freeAnnotations">
+      <div class="col-sm-3">
+        <div class="form-group">
+          <label for="">Annotation Type</label>
+          <input class="form-control" data-ng-model="annotation.annotationType" data-ng-change="changeFreeAnnotationType($index)" focus-index="{{$index}}"></input>
+        </div>
+        <!-- .form-group -->
+      </div>
+      <!-- .col-sm-3 -->
+      <div class="col-sm-8">
+        <div class="form-group">
+          <label for="">Annotation</label>
+          <input class="form-control" type="text" data-ng-model="annotation.annotation" data-ng-change="changeFreeAnnotation($index)" data-ng-blur="freeAnnotationBlur($index)" />
+        </div>
+        <!-- .form-group -->
+      </div>
+      <!-- .col-sm-8 -->
+      <div class="col-sm-1" style="padding-top: 24px;">
+        <!--<button class="btn btn-primary" data-ng-click="addFreeAnnotation()">+</button>-->
+        <button class="btn btn-danger" data-ng-click="removeFreeAnnotation($index)" data-ng-if="!$first">-</button>
+      </div>
+      <!-- .col-sm-1 -->
+    </div>
+
+    <!-- End Free Annotations -->
+
+  </div>
+  <!-- #bel-annotation -->
+
+</template>

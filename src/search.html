@@ -1,0 +1,61 @@
+<template>
+  <section class="au-animate">
+    <h2 class="au-animate">Search page</h2>
+  </section>
+
+  <div class="container nopadding">
+    <div class="row">
+      <div id="dportalsearchbar" class="col-xs-12 col-sm-4 col-md-3">
+        <form role="form" submit.delegate="search()">
+          <div class="form-group">
+            <div class="input-group col-xs-11 col-sm-12">
+              <input type="text" value.bind="keywords" class="form-control" id="searchToken" placeholder="search">
+                <span class="input-group-btn highlight">
+                  <button type="submit" class="btn transparent searchbtn">
+                    <i class="fa fa-search"></i>
+                  </button>
+                </span>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-3">
+        <div id="filtercolumn" if.bind="results.evidences">
+          <div class="col-xs-5 col-xs-offset-1 col-sm-12 filterbox"  repeat.for="facet_type of results.facets | keys">
+            <h4>${facet_type}</h4>
+            <!--<h4>${$parent.stringify($parent.results.facets[facet_type])}</h4>-->
+            <div class="filterboxcontent">
+              <div class="row nomargin" repeat.for="facet of $parent.results.facets[facet_type] | keys">
+                <h4>Facet: ${facet}</h4>
+                <input class="searchcheckbox" id="option" type="checkbox" name="field" value="option"
+                       model.bind="facet"
+                       checked.bind="facet"
+                       change.delegate="$parent.$parent.search()" class=" filterboxcheck col-xs-1">
+
+                <!-- class="col-xs-11 filterboxtext" -->
+                <label for="option" class="filterboxlabel"> ${facet} ()</label>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-9" id="resultscolumn">
+        <template if.bind="results.evidences">
+          <table class="table table-hover">
+            <tbody>
+            <tr repeat.for="evidence of results.evidences">
+              <td class="nametd nocenter col-xs-9"><a href.bind="evidence._links.self.href">${evidence.bel_statement}</a></td>
+            </tr>
+            </tbody>
+          </table>
+        </template>
+        <template if.bind="! results.evidences">
+          <p>No search results</p>
+        </template>
+      </div>
+    </div>
+  </div>
+</template>

@@ -1,0 +1,2377 @@
+{
+  "evidence": [
+    {
+      "bel_statement": "abundance(CHEBI:\"20-hydroxycholesterol\") increases transcriptionalActivity(proteinAbundance(MGI:Nr1h2))",
+      "citation": {
+        "type": "PubMed",
+        "name": "J Lipid Res 2002 Jan 43(1) 2-12",
+        "id": "11792716",
+        "date": "",
+        "authors": "",
+        "comment": ""
+      },
+      "summary_text": "many, but not all, non-steroidal nuclear receptors are thought to be pre-bound to the HRE in a complex with corepressor proteins entry of the ligand into the LBD initiates changes int he conformation of the receptor that results in loss of corepressor proteins, recruitment of coactivator proteins and increased transcription identified oxysterols, such as 24S,25-epoxycholesterol, 20S-,22R-,24S- and 27-hydroxycholesterol, as activators of of Lxr",
+      "experiment_context": [
+        {
+          "name": "Ncbi Taxonomy",
+          "value": "Mus musculus",
+          "uri": "http://localhost:9000/api/annotations/Ncbi Taxonomy/values/Mus musculus"
+        },
+        {
+          "name": "Uberon",
+          "value": "blood plasma",
+          "uri": "http://localhost:9000/api/annotations/Uberon/values/blood plasma"
+        }
+      ],
+      "metadata": {
+        "document_header": {
+          "Name": "BEL Framework Large Corpus Document",
+          "Description": "Approximately 61,000 statements.",
+          "Version": "20131211",
+          "Copyright": "Copyright (c) 2011-2012, Selventa. All rights reserved.",
+          "Authors": "Selventa"
+        },
+        "namespace_definitions": {
+          "CHEBI": "http://www.openbel.org/bel/namespace/chebi",
+          "EGID": "http://www.openbel.org/bel/namespace/entrez-gene",
+          "GOBP": "http://www.openbel.org/bel/namespace/go-biological-process",
+          "GOCCID": "http://www.openbel.org/bel/namespace/go-cellular-component",
+          "HGNC": "http://www.openbel.org/bel/namespace/hgnc-human-genes",
+          "MESHCS": "http://www.openbel.org/bel/namespace/mesh-cellular-structures",
+          "MESHD": "http://www.openbel.org/bel/namespace/mesh-diseases",
+          "MESHPP": "http://www.openbel.org/bel/namespace/mesh-processes",
+          "MGI": "http://www.openbel.org/bel/namespace/mgi-mouse-genes",
+          "RGD": "http://www.openbel.org/bel/namespace/rgd-rat-genes",
+          "SCHEM": "http://www.openbel.org/bel/namespace/selventa-legacy-chemicals",
+          "SCOMP": "http://www.openbel.org/bel/namespace/selventa-named-complexes",
+          "SDIS": "http://www.openbel.org/bel/namespace/selventa-legacy-diseases",
+          "SFAM": "http://www.openbel.org/bel/namespace/selventa-protein-families"
+        },
+        "annotation_definitions": {
+          "Anatomy": {
+            "type": "url",
+            "domain": "http://www.openbel.org/bel/namespace/uberon"
+          },
+          "Cell": {
+            "type": "url",
+            "domain": "http://www.openbel.org/bel/namespace/cell-ontology"
+          },
+          "CellLine": {
+            "type": "url",
+            "domain": "http://www.openbel.org/bel/namespace/cell-line-ontology"
+          },
+          "CellStructure": {
+            "type": "url",
+            "domain": "http://www.openbel.org/bel/namespace/mesh-cellular-structures"
+          },
+          "Disease": {
+            "type": "url",
+            "domain": "http://www.openbel.org/bel/namespace/disease-ontology"
+          },
+          "MeSHAnatomy": {
+            "type": "url",
+            "domain": "http://www.openbel.org/bel/namespace/mesh-anatomy"
+          },
+          "MeSHDisease": {
+            "type": "url",
+            "domain": "http://www.openbel.org/bel/namespace/mesh-diseases"
+          },
+          "Species": {
+            "type": "url",
+            "domain": "http://www.openbel.org/bel/namespace/ncbi-taxonomy"
+          },
+          "Status": {
+            "type": "list",
+            "domain": [
+              "Draft",
+              "Review",
+              "Approved",
+              "Rejected"
+            ]
+          }
+        },
+        "Status": "Approved"
+      },
+      "_links": {
+        "self": {
+          "type": "evidence",
+          "href": "http://next.belframework.org/api/evidence/5579df2838da0d5fbb003194"
+        },
+        "collection": {
+          "type": "evidence-collection",
+          "href": "http://next.belframework.org/api/evidence"
+        }
+      }
+    },
+    {
+      "bel_statement": "abundance(CHEBI:\"20-hydroxycholesterol\") increases transcriptionalActivity(proteinAbundance(MGI:Nr1h3))",
+      "citation": {
+        "type": "PubMed",
+        "name": "J Lipid Res 2002 Jan 43(1) 2-12",
+        "id": "11792716",
+        "date": "",
+        "authors": "",
+        "comment": ""
+      },
+      "summary_text": "many, but not all, non-steroidal nuclear receptors are thought to be pre-bound to the HRE in a complex with corepressor proteins entry of the ligand into the LBD initiates changes int he conformation of the receptor that results in loss of corepressor proteins, recruitment of coactivator proteins and increased transcription identified oxysterols, such as 24S,25-epoxycholesterol, 20S-,22R-,24S- and 27-hydroxycholesterol, as activators of of Lxr",
+      "experiment_context": [
+        {
+          "name": "Ncbi Taxonomy",
+          "value": "Mus musculus",
+          "uri": "http://localhost:9000/api/annotations/Ncbi Taxonomy/values/Mus musculus"
+        },
+        {
+          "name": "Uberon",
+          "value": "blood plasma",
+          "uri": "http://localhost:9000/api/annotations/Uberon/values/blood plasma"
+        }
+      ],
+      "metadata": {
+        "document_header": {
+          "Name": "BEL Framework Large Corpus Document",
+          "Description": "Approximately 61,000 statements.",
+          "Version": "20131211",
+          "Copyright": "Copyright (c) 2011-2012, Selventa. All rights reserved.",
+          "Authors": "Selventa"
+        },
+        "namespace_definitions": {
+          "CHEBI": "http://www.openbel.org/bel/namespace/chebi",
+          "EGID": "http://www.openbel.org/bel/namespace/entrez-gene",
+          "GOBP": "http://www.openbel.org/bel/namespace/go-biological-process",
+          "GOCCID": "http://www.openbel.org/bel/namespace/go-cellular-component",
+          "HGNC": "http://www.openbel.org/bel/namespace/hgnc-human-genes",
+          "MESHCS": "http://www.openbel.org/bel/namespace/mesh-cellular-structures",
+          "MESHD": "http://www.openbel.org/bel/namespace/mesh-diseases",
+          "MESHPP": "http://www.openbel.org/bel/namespace/mesh-processes",
+          "MGI": "http://www.openbel.org/bel/namespace/mgi-mouse-genes",
+          "RGD": "http://www.openbel.org/bel/namespace/rgd-rat-genes",
+          "SCHEM": "http://www.openbel.org/bel/namespace/selventa-legacy-chemicals",
+          "SCOMP": "http://www.openbel.org/bel/namespace/selventa-named-complexes",
+          "SDIS": "http://www.openbel.org/bel/namespace/selventa-legacy-diseases",
+          "SFAM": "http://www.openbel.org/bel/namespace/selventa-protein-families"
+        },
+        "annotation_definitions": {
+          "Anatomy": {
+            "type": "url",
+            "domain": "http://www.openbel.org/bel/namespace/uberon"
+          },
+          "Cell": {
+            "type": "url",
+            "domain": "http://www.openbel.org/bel/namespace/cell-ontology"
+          },
+          "CellLine": {
+            "type": "url",
+            "domain": "http://www.openbel.org/bel/namespace/cell-line-ontology"
+          },
+          "CellStructure": {
+            "type": "url",
+            "domain": "http://www.openbel.org/bel/namespace/mesh-cellular-structures"
+          },
+          "Disease": {
+            "type": "url",
+            "domain": "http://www.openbel.org/bel/namespace/disease-ontology"
+          },
+          "MeSHAnatomy": {
+            "type": "url",
+            "domain": "http://www.openbel.org/bel/namespace/mesh-anatomy"
+          },
+          "MeSHDisease": {
+            "type": "url",
+            "domain": "http://www.openbel.org/bel/namespace/mesh-diseases"
+          },
+          "Species": {
+            "type": "url",
+            "domain": "http://www.openbel.org/bel/namespace/ncbi-taxonomy"
+          },
+          "Status": {
+            "type": "list",
+            "domain": [
+              "Draft",
+              "Review",
+              "Approved",
+              "Rejected"
+            ]
+          }
+        },
+        "Status": "Approved"
+      },
+      "_links": {
+        "self": {
+          "type": "evidence",
+          "href": "http://next.belframework.org/api/evidence/5579df2838da0d5fbb003195"
+        },
+        "collection": {
+          "type": "evidence-collection",
+          "href": "http://next.belframework.org/api/evidence"
+        }
+      }
+    },
+    {
+      "bel_statement": "abundance(CHEBI:\"24-hydroxycholesterol\") increases transcriptionalActivity(proteinAbundance(MGI:Nr1h3))",
+      "citation": {
+        "type": "Book",
+        "name": "Biochemistry of Lipids, Lipoproteins and Membranes 2002 - Chapter 22",
+        "id": "Biochemistry of Lipids, Lipoproteins and Membranes 2002 - Chapter 22",
+        "date": "",
+        "authors": "",
+        "comment": ""
+      },
+      "summary_text": "page 584 - four oxysterols found in vivo, 24,25 EPOX, 24OH, 22OH, and 27OH, but not cholesterol, activate Lxra, Lxrb and Fxr",
+      "experiment_context": [
+        {
+          "name": "Cell Ontology",
+          "value": "monocyte",
+          "uri": "http://localhost:9000/api/annotations/Cell Ontology/values/monocyte"
+        },
+        {
+          "name": "Ncbi Taxonomy",
+          "value": "Mus musculus",
+          "uri": "http://localhost:9000/api/annotations/Ncbi Taxonomy/values/Mus musculus"
+        },
+        {
+          "name": "Uberon",
+          "value": "smooth muscle tissue",
+          "uri": "http://localhost:9000/api/annotations/Uberon/values/smooth muscle tissue"
+        },
+        {
+          "name": "Mesh Cellular Structures",
+          "value": "Cell Membrane",
+          "uri": "http://localhost:9000/api/annotations/Mesh Cellular Structures/values/Cell Membrane"
+        },
+        {
+          "name": "Disease Ontology",
+          "value": "atherosclerosis",
+          "uri": "http://localhost:9000/api/annotations/Disease Ontology/values/atherosclerosis"
+        }
+      ],
+      "metadata": {
+        "document_header": {
+          "Name": "BEL Framework Large Corpus Document",
+          "Description": "Approximately 61,000 statements.",
+          "Version": "20131211",
+          "Copyright": "Copyright (c) 2011-2012, Selventa. All rights reserved.",
+          "Authors": "Selventa"
+        },
+        "namespace_definitions": {
+          "CHEBI": "http://www.openbel.org/bel/namespace/chebi",
+          "EGID": "http://www.openbel.org/bel/namespace/entrez-gene",
+          "GOBP": "http://www.openbel.org/bel/namespace/go-biological-process",
+          "GOCCID": "http://www.openbel.org/bel/namespace/go-cellular-component",
+          "HGNC": "http://www.openbel.org/bel/namespace/hgnc-human-genes",
+          "MESHCS": "http://www.openbel.org/bel/namespace/mesh-cellular-structures",
+          "MESHD": "http://www.openbel.org/bel/namespace/mesh-diseases",
+          "MESHPP": "http://www.openbel.org/bel/namespace/mesh-processes",
+          "MGI": "http://www.openbel.org/bel/namespace/mgi-mouse-genes",
+          "RGD": "http://www.openbel.org/bel/namespace/rgd-rat-genes",
+          "SCHEM": "http://www.openbel.org/bel/namespace/selventa-legacy-chemicals",
+          "SCOMP": "http://www.openbel.org/bel/namespace/selventa-named-complexes",
+          "SDIS": "http://www.openbel.org/bel/namespace/selventa-legacy-diseases",
+          "SFAM": "http://www.openbel.org/bel/namespace/selventa-protein-families"
+        },
+        "annotation_definitions": {
+          "Anatomy": {
+            "type": "url",
+            "domain": "http://www.openbel.org/bel/namespace/uberon"
+          },
+          "Cell": {
+            "type": "url",
+            "domain": "http://www.openbel.org/bel/namespace/cell-ontology"
+          },
+          "CellLine": {
+            "type": "url",
+            "domain": "http://www.openbel.org/bel/namespace/cell-line-ontology"
+          },
+          "CellStructure": {
+            "type": "url",
+            "domain": "http://www.openbel.org/bel/namespace/mesh-cellular-structures"
+          },
+          "Disease": {
+            "type": "url",
+            "domain": "http://www.openbel.org/bel/namespace/disease-ontology"
+          },
+          "MeSHAnatomy": {
+            "type": "url",
+            "domain": "http://www.openbel.org/bel/namespace/mesh-anatomy"
+          },
+          "MeSHDisease": {
+            "type": "url",
+            "domain": "http://www.openbel.org/bel/namespace/mesh-diseases"
+          },
+          "Species": {
+            "type": "url",
+            "domain": "http://www.openbel.org/bel/namespace/ncbi-taxonomy"
+          },
+          "Status": {
+            "type": "list",
+            "domain": [
+              "Draft",
+              "Review",
+              "Approved",
+              "Rejected"
+            ]
+          }
+        },
+        "Status": "Approved"
+      },
+      "_links": {
+        "self": {
+          "type": "evidence",
+          "href": "http://next.belframework.org/api/evidence/5579d91138da0d5fbb000037"
+        },
+        "collection": {
+          "type": "evidence-collection",
+          "href": "http://next.belframework.org/api/evidence"
+        }
+      }
+    },
+    {
+      "bel_statement": "abundance(CHEBI:\"24-hydroxycholesterol\") increases transcriptionalActivity(proteinAbundance(MGI:Nr1h3))",
+      "citation": {
+        "type": "PubMed",
+        "name": "J Lipid Res 2002 Jan 43(1) 2-12",
+        "id": "11792716",
+        "date": "",
+        "authors": "",
+        "comment": ""
+      },
+      "summary_text": "many, but not all, non-steroidal nuclear receptors are thought to be pre-bound to the HRE in a complex with corepressor proteins entry of the ligand into the LBD initiates changes int he conformation of the receptor that results in loss of corepressor proteins, recruitment of coactivator proteins and increased transcription identified oxysterols, such as 24S,25-epoxycholesterol, 20S-,22R-,24S- and 27-hydroxycholesterol, as activators of of Lxr",
+      "experiment_context": [
+        {
+          "name": "Ncbi Taxonomy",
+          "value": "Mus musculus",
+          "uri": "http://localhost:9000/api/annotations/Ncbi Taxonomy/values/Mus musculus"
+        },
+        {
+          "name": "Uberon",
+          "value": "blood plasma",
+          "uri": "http://localhost:9000/api/annotations/Uberon/values/blood plasma"
+        }
+      ],
+      "metadata": {
+        "document_header": {
+          "Name": "BEL Framework Large Corpus Document",
+          "Description": "Approximately 61,000 statements.",
+          "Version": "20131211",
+          "Copyright": "Copyright (c) 2011-2012, Selventa. All rights reserved.",
+          "Authors": "Selventa"
+        },
+        "namespace_definitions": {
+          "CHEBI": "http://www.openbel.org/bel/namespace/chebi",
+          "EGID": "http://www.openbel.org/bel/namespace/entrez-gene",
+          "GOBP": "http://www.openbel.org/bel/namespace/go-biological-process",
+          "GOCCID": "http://www.openbel.org/bel/namespace/go-cellular-component",
+          "HGNC": "http://www.openbel.org/bel/namespace/hgnc-human-genes",
+          "MESHCS": "http://www.openbel.org/bel/namespace/mesh-cellular-structures",
+          "MESHD": "http://www.openbel.org/bel/namespace/mesh-diseases",
+          "MESHPP": "http://www.openbel.org/bel/namespace/mesh-processes",
+          "MGI": "http://www.openbel.org/bel/namespace/mgi-mouse-genes",
+          "RGD": "http://www.openbel.org/bel/namespace/rgd-rat-genes",
+          "SCHEM": "http://www.openbel.org/bel/namespace/selventa-legacy-chemicals",
+          "SCOMP": "http://www.openbel.org/bel/namespace/selventa-named-complexes",
+          "SDIS": "http://www.openbel.org/bel/namespace/selventa-legacy-diseases",
+          "SFAM": "http://www.openbel.org/bel/namespace/selventa-protein-families"
+        },
+        "annotation_definitions": {
+          "Anatomy": {
+            "type": "url",
+            "domain": "http://www.openbel.org/bel/namespace/uberon"
+          },
+          "Cell": {
+            "type": "url",
+            "domain": "http://www.openbel.org/bel/namespace/cell-ontology"
+          },
+          "CellLine": {
+            "type": "url",
+            "domain": "http://www.openbel.org/bel/namespace/cell-line-ontology"
+          },
+          "CellStructure": {
+            "type": "url",
+            "domain": "http://www.openbel.org/bel/namespace/mesh-cellular-structures"
+          },
+          "Disease": {
+            "type": "url",
+            "domain": "http://www.openbel.org/bel/namespace/disease-ontology"
+          },
+          "MeSHAnatomy": {
+            "type": "url",
+            "domain": "http://www.openbel.org/bel/namespace/mesh-anatomy"
+          },
+          "MeSHDisease": {
+            "type": "url",
+            "domain": "http://www.openbel.org/bel/namespace/mesh-diseases"
+          },
+          "Species": {
+            "type": "url",
+            "domain": "http://www.openbel.org/bel/namespace/ncbi-taxonomy"
+          },
+          "Status": {
+            "type": "list",
+            "domain": [
+              "Draft",
+              "Review",
+              "Approved",
+              "Rejected"
+            ]
+          }
+        },
+        "Status": "Approved"
+      },
+      "_links": {
+        "self": {
+          "type": "evidence",
+          "href": "http://next.belframework.org/api/evidence/5579df2838da0d5fbb003199"
+        },
+        "collection": {
+          "type": "evidence-collection",
+          "href": "http://next.belframework.org/api/evidence"
+        }
+      }
+    },
+    {
+      "bel_statement": "abundance(CHEBI:\"24-hydroxycholesterol\") increases transcriptionalActivity(proteinAbundance(MGI:Nr1h4))",
+      "citation": {
+        "type": "Book",
+        "name": "Biochemistry of Lipids, Lipoproteins and Membranes 2002 - Chapter 22",
+        "id": "Biochemistry of Lipids, Lipoproteins and Membranes 2002 - Chapter 22",
+        "date": "",
+        "authors": "",
+        "comment": ""
+      },
+      "summary_text": "page 584 - four oxysterols found in vivo, 24,25 EPOX, 24OH, 22OH, and 27OH, but not cholesterol, activate Lxra, Lxrb and Fxr",
+      "experiment_context": [
+        {
+          "name": "Cell Ontology",
+          "value": "monocyte",
+          "uri": "http://localhost:9000/api/annotations/Cell Ontology/values/monocyte"
+        },
+        {
+          "name": "Ncbi Taxonomy",
+          "value": "Mus musculus",
+          "uri": "http://localhost:9000/api/annotations/Ncbi Taxonomy/values/Mus musculus"
+        },
+        {
+          "name": "Uberon",
+          "value": "smooth muscle tissue",
+          "uri": "http://localhost:9000/api/annotations/Uberon/values/smooth muscle tissue"
+        },
+        {
+          "name": "Mesh Cellular Structures",
+          "value": "Cell Membrane",
+          "uri": "http://localhost:9000/api/annotations/Mesh Cellular Structures/values/Cell Membrane"
+        },
+        {
+          "name": "Disease Ontology",
+          "value": "atherosclerosis",
+          "uri": "http://localhost:9000/api/annotations/Disease Ontology/values/atherosclerosis"
+        }
+      ],
+      "metadata": {
+        "document_header": {
+          "Name": "BEL Framework Large Corpus Document",
+          "Description": "Approximately 61,000 statements.",
+          "Version": "20131211",
+          "Copyright": "Copyright (c) 2011-2012, Selventa. All rights reserved.",
+          "Authors": "Selventa"
+        },
+        "namespace_definitions": {
+          "CHEBI": "http://www.openbel.org/bel/namespace/chebi",
+          "EGID": "http://www.openbel.org/bel/namespace/entrez-gene",
+          "GOBP": "http://www.openbel.org/bel/namespace/go-biological-process",
+          "GOCCID": "http://www.openbel.org/bel/namespace/go-cellular-component",
+          "HGNC": "http://www.openbel.org/bel/namespace/hgnc-human-genes",
+          "MESHCS": "http://www.openbel.org/bel/namespace/mesh-cellular-structures",
+          "MESHD": "http://www.openbel.org/bel/namespace/mesh-diseases",
+          "MESHPP": "http://www.openbel.org/bel/namespace/mesh-processes",
+          "MGI": "http://www.openbel.org/bel/namespace/mgi-mouse-genes",
+          "RGD": "http://www.openbel.org/bel/namespace/rgd-rat-genes",
+          "SCHEM": "http://www.openbel.org/bel/namespace/selventa-legacy-chemicals",
+          "SCOMP": "http://www.openbel.org/bel/namespace/selventa-named-complexes",
+          "SDIS": "http://www.openbel.org/bel/namespace/selventa-legacy-diseases",
+          "SFAM": "http://www.openbel.org/bel/namespace/selventa-protein-families"
+        },
+        "annotation_definitions": {
+          "Anatomy": {
+            "type": "url",
+            "domain": "http://www.openbel.org/bel/namespace/uberon"
+          },
+          "Cell": {
+            "type": "url",
+            "domain": "http://www.openbel.org/bel/namespace/cell-ontology"
+          },
+          "CellLine": {
+            "type": "url",
+            "domain": "http://www.openbel.org/bel/namespace/cell-line-ontology"
+          },
+          "CellStructure": {
+            "type": "url",
+            "domain": "http://www.openbel.org/bel/namespace/mesh-cellular-structures"
+          },
+          "Disease": {
+            "type": "url",
+            "domain": "http://www.openbel.org/bel/namespace/disease-ontology"
+          },
+          "MeSHAnatomy": {
+            "type": "url",
+            "domain": "http://www.openbel.org/bel/namespace/mesh-anatomy"
+          },
+          "MeSHDisease": {
+            "type": "url",
+            "domain": "http://www.openbel.org/bel/namespace/mesh-diseases"
+          },
+          "Species": {
+            "type": "url",
+            "domain": "http://www.openbel.org/bel/namespace/ncbi-taxonomy"
+          },
+          "Status": {
+            "type": "list",
+            "domain": [
+              "Draft",
+              "Review",
+              "Approved",
+              "Rejected"
+            ]
+          }
+        },
+        "Status": "Approved"
+      },
+      "_links": {
+        "self": {
+          "type": "evidence",
+          "href": "http://next.belframework.org/api/evidence/5579d91138da0d5fbb000038"
+        },
+        "collection": {
+          "type": "evidence-collection",
+          "href": "http://next.belframework.org/api/evidence"
+        }
+      }
+    },
+    {
+      "bel_statement": "abundance(CHEBI:\"25-hydroxycholesterol\") decreases rnaAbundance(HGNC:SREBF2)",
+      "citation": {
+        "type": "PubMed",
+        "name": "J Lipid Res 2001 Oct 42(10) 1687-98",
+        "id": "11590226",
+        "date": "",
+        "authors": "",
+        "comment": ""
+      },
+      "summary_text": "Modified assertion",
+      "experiment_context": [
+        {
+          "name": "Ncbi Taxonomy",
+          "value": "Homo sapiens",
+          "uri": "http://localhost:9000/api/annotations/Ncbi Taxonomy/values/Homo sapiens"
+        }
+      ],
+      "metadata": {
+        "document_header": {
+          "Name": "BEL Framework Large Corpus Document",
+          "Description": "Approximately 61,000 statements.",
+          "Version": "20131211",
+          "Copyright": "Copyright (c) 2011-2012, Selventa. All rights reserved.",
+          "Authors": "Selventa"
+        },
+        "namespace_definitions": {
+          "CHEBI": "http://www.openbel.org/bel/namespace/chebi",
+          "EGID": "http://www.openbel.org/bel/namespace/entrez-gene",
+          "GOBP": "http://www.openbel.org/bel/namespace/go-biological-process",
+          "GOCCID": "http://www.openbel.org/bel/namespace/go-cellular-component",
+          "HGNC": "http://www.openbel.org/bel/namespace/hgnc-human-genes",
+          "MESHCS": "http://www.openbel.org/bel/namespace/mesh-cellular-structures",
+          "MESHD": "http://www.openbel.org/bel/namespace/mesh-diseases",
+          "MESHPP": "http://www.openbel.org/bel/namespace/mesh-processes",
+          "MGI": "http://www.openbel.org/bel/namespace/mgi-mouse-genes",
+          "RGD": "http://www.openbel.org/bel/namespace/rgd-rat-genes",
+          "SCHEM": "http://www.openbel.org/bel/namespace/selventa-legacy-chemicals",
+          "SCOMP": "http://www.openbel.org/bel/namespace/selventa-named-complexes",
+          "SDIS": "http://www.openbel.org/bel/namespace/selventa-legacy-diseases",
+          "SFAM": "http://www.openbel.org/bel/namespace/selventa-protein-families"
+        },
+        "annotation_definitions": {
+          "Anatomy": {
+            "type": "url",
+            "domain": "http://www.openbel.org/bel/namespace/uberon"
+          },
+          "Cell": {
+            "type": "url",
+            "domain": "http://www.openbel.org/bel/namespace/cell-ontology"
+          },
+          "CellLine": {
+            "type": "url",
+            "domain": "http://www.openbel.org/bel/namespace/cell-line-ontology"
+          },
+          "CellStructure": {
+            "type": "url",
+            "domain": "http://www.openbel.org/bel/namespace/mesh-cellular-structures"
+          },
+          "Disease": {
+            "type": "url",
+            "domain": "http://www.openbel.org/bel/namespace/disease-ontology"
+          },
+          "MeSHAnatomy": {
+            "type": "url",
+            "domain": "http://www.openbel.org/bel/namespace/mesh-anatomy"
+          },
+          "MeSHDisease": {
+            "type": "url",
+            "domain": "http://www.openbel.org/bel/namespace/mesh-diseases"
+          },
+          "Species": {
+            "type": "url",
+            "domain": "http://www.openbel.org/bel/namespace/ncbi-taxonomy"
+          },
+          "Status": {
+            "type": "list",
+            "domain": [
+              "Draft",
+              "Review",
+              "Approved",
+              "Rejected"
+            ]
+          }
+        },
+        "Status": "Approved"
+      },
+      "_links": {
+        "self": {
+          "type": "evidence",
+          "href": "http://next.belframework.org/api/evidence/5579de4538da0d5fbb002b2e"
+        },
+        "collection": {
+          "type": "evidence-collection",
+          "href": "http://next.belframework.org/api/evidence"
+        }
+      }
+    },
+    {
+      "bel_statement": "abundance(CHEBI:\"25-hydroxycholesterol\") decreases rnaAbundance(RGD:Dhcr7)",
+      "citation": {
+        "type": "PubMed",
+        "name": "J Biol Chem 2001 May 25 276(21) 18153-60",
+        "id": "11279217",
+        "date": "",
+        "authors": "",
+        "comment": ""
+      },
+      "summary_text": "In particular, 25-hydroxycholesterol effects seem dominant since induction of Dhcr7 promoter activity, mediated by sterol starvation condition, was abolished by this sterol regardless of the presence of cholesterol biosynthesis inhibitors",
+      "experiment_context": [
+        {
+          "name": "Ncbi Taxonomy",
+          "value": "Rattus norvegicus",
+          "uri": "http://localhost:9000/api/annotations/Ncbi Taxonomy/values/Rattus norvegicus"
+        }
+      ],
+      "metadata": {
+        "document_header": {
+          "Name": "BEL Framework Large Corpus Document",
+          "Description": "Approximately 61,000 statements.",
+          "Version": "20131211",
+          "Copyright": "Copyright (c) 2011-2012, Selventa. All rights reserved.",
+          "Authors": "Selventa"
+        },
+        "namespace_definitions": {
+          "CHEBI": "http://www.openbel.org/bel/namespace/chebi",
+          "EGID": "http://www.openbel.org/bel/namespace/entrez-gene",
+          "GOBP": "http://www.openbel.org/bel/namespace/go-biological-process",
+          "GOCCID": "http://www.openbel.org/bel/namespace/go-cellular-component",
+          "HGNC": "http://www.openbel.org/bel/namespace/hgnc-human-genes",
+          "MESHCS": "http://www.openbel.org/bel/namespace/mesh-cellular-structures",
+          "MESHD": "http://www.openbel.org/bel/namespace/mesh-diseases",
+          "MESHPP": "http://www.openbel.org/bel/namespace/mesh-processes",
+          "MGI": "http://www.openbel.org/bel/namespace/mgi-mouse-genes",
+          "RGD": "http://www.openbel.org/bel/namespace/rgd-rat-genes",
+          "SCHEM": "http://www.openbel.org/bel/namespace/selventa-legacy-chemicals",
+          "SCOMP": "http://www.openbel.org/bel/namespace/selventa-named-complexes",
+          "SDIS": "http://www.openbel.org/bel/namespace/selventa-legacy-diseases",
+          "SFAM": "http://www.openbel.org/bel/namespace/selventa-protein-families"
+        },
+        "annotation_definitions": {
+          "Anatomy": {
+            "type": "url",
+            "domain": "http://www.openbel.org/bel/namespace/uberon"
+          },
+          "Cell": {
+            "type": "url",
+            "domain": "http://www.openbel.org/bel/namespace/cell-ontology"
+          },
+          "CellLine": {
+            "type": "url",
+            "domain": "http://www.openbel.org/bel/namespace/cell-line-ontology"
+          },
+          "CellStructure": {
+            "type": "url",
+            "domain": "http://www.openbel.org/bel/namespace/mesh-cellular-structures"
+          },
+          "Disease": {
+            "type": "url",
+            "domain": "http://www.openbel.org/bel/namespace/disease-ontology"
+          },
+          "MeSHAnatomy": {
+            "type": "url",
+            "domain": "http://www.openbel.org/bel/namespace/mesh-anatomy"
+          },
+          "MeSHDisease": {
+            "type": "url",
+            "domain": "http://www.openbel.org/bel/namespace/mesh-diseases"
+          },
+          "Species": {
+            "type": "url",
+            "domain": "http://www.openbel.org/bel/namespace/ncbi-taxonomy"
+          },
+          "Status": {
+            "type": "list",
+            "domain": [
+              "Draft",
+              "Review",
+              "Approved",
+              "Rejected"
+            ]
+          }
+        },
+        "Status": "Approved"
+      },
+      "_links": {
+        "self": {
+          "type": "evidence",
+          "href": "http://next.belframework.org/api/evidence/5579dd0838da0d5fbb0021cf"
+        },
+        "collection": {
+          "type": "evidence-collection",
+          "href": "http://next.belframework.org/api/evidence"
+        }
+      }
+    },
+    {
+      "bel_statement": "abundance(CHEBI:\"25-hydroxycholesterol\") decreases transcriptionalActivity(proteinAbundance(MGI:Srebf1))",
+      "citation": {
+        "type": "Book",
+        "name": "Biochemistry of Lipids, Lipoproteins and Membranes 2002 - Chapter 22",
+        "id": "Biochemistry of Lipids, Lipoproteins and Membranes 2002 - Chapter 22",
+        "date": "",
+        "authors": "",
+        "comment": ""
+      },
+      "summary_text": "Both cholesterol and certain oxysterols, such as 25OH and 7K, suppress the proteolytic activation of sterol response element binding protein. This in turn leads to transcriptional down regulation of the LDL receptor and certain enzymes in the cholesterol biosynthetic and fatty acid synthesis and metabolic pathways.",
+      "experiment_context": [
+        {
+          "name": "Cell Ontology",
+          "value": "monocyte",
+          "uri": "http://localhost:9000/api/annotations/Cell Ontology/values/monocyte"
+        },
+        {
+          "name": "Ncbi Taxonomy",
+          "value": "Mus musculus",
+          "uri": "http://localhost:9000/api/annotations/Ncbi Taxonomy/values/Mus musculus"
+        },
+        {
+          "name": "Uberon",
+          "value": "smooth muscle tissue",
+          "uri": "http://localhost:9000/api/annotations/Uberon/values/smooth muscle tissue"
+        },
+        {
+          "name": "Mesh Cellular Structures",
+          "value": "Cell Membrane",
+          "uri": "http://localhost:9000/api/annotations/Mesh Cellular Structures/values/Cell Membrane"
+        },
+        {
+          "name": "Disease Ontology",
+          "value": "atherosclerosis",
+          "uri": "http://localhost:9000/api/annotations/Disease Ontology/values/atherosclerosis"
+        }
+      ],
+      "metadata": {
+        "document_header": {
+          "Name": "BEL Framework Large Corpus Document",
+          "Description": "Approximately 61,000 statements.",
+          "Version": "20131211",
+          "Copyright": "Copyright (c) 2011-2012, Selventa. All rights reserved.",
+          "Authors": "Selventa"
+        },
+        "namespace_definitions": {
+          "CHEBI": "http://www.openbel.org/bel/namespace/chebi",
+          "EGID": "http://www.openbel.org/bel/namespace/entrez-gene",
+          "GOBP": "http://www.openbel.org/bel/namespace/go-biological-process",
+          "GOCCID": "http://www.openbel.org/bel/namespace/go-cellular-component",
+          "HGNC": "http://www.openbel.org/bel/namespace/hgnc-human-genes",
+          "MESHCS": "http://www.openbel.org/bel/namespace/mesh-cellular-structures",
+          "MESHD": "http://www.openbel.org/bel/namespace/mesh-diseases",
+          "MESHPP": "http://www.openbel.org/bel/namespace/mesh-processes",
+          "MGI": "http://www.openbel.org/bel/namespace/mgi-mouse-genes",
+          "RGD": "http://www.openbel.org/bel/namespace/rgd-rat-genes",
+          "SCHEM": "http://www.openbel.org/bel/namespace/selventa-legacy-chemicals",
+          "SCOMP": "http://www.openbel.org/bel/namespace/selventa-named-complexes",
+          "SDIS": "http://www.openbel.org/bel/namespace/selventa-legacy-diseases",
+          "SFAM": "http://www.openbel.org/bel/namespace/selventa-protein-families"
+        },
+        "annotation_definitions": {
+          "Anatomy": {
+            "type": "url",
+            "domain": "http://www.openbel.org/bel/namespace/uberon"
+          },
+          "Cell": {
+            "type": "url",
+            "domain": "http://www.openbel.org/bel/namespace/cell-ontology"
+          },
+          "CellLine": {
+            "type": "url",
+            "domain": "http://www.openbel.org/bel/namespace/cell-line-ontology"
+          },
+          "CellStructure": {
+            "type": "url",
+            "domain": "http://www.openbel.org/bel/namespace/mesh-cellular-structures"
+          },
+          "Disease": {
+            "type": "url",
+            "domain": "http://www.openbel.org/bel/namespace/disease-ontology"
+          },
+          "MeSHAnatomy": {
+            "type": "url",
+            "domain": "http://www.openbel.org/bel/namespace/mesh-anatomy"
+          },
+          "MeSHDisease": {
+            "type": "url",
+            "domain": "http://www.openbel.org/bel/namespace/mesh-diseases"
+          },
+          "Species": {
+            "type": "url",
+            "domain": "http://www.openbel.org/bel/namespace/ncbi-taxonomy"
+          },
+          "Status": {
+            "type": "list",
+            "domain": [
+              "Draft",
+              "Review",
+              "Approved",
+              "Rejected"
+            ]
+          }
+        },
+        "Status": "Approved"
+      },
+      "_links": {
+        "self": {
+          "type": "evidence",
+          "href": "http://next.belframework.org/api/evidence/5579d90b38da0d5fbb00001e"
+        },
+        "collection": {
+          "type": "evidence-collection",
+          "href": "http://next.belframework.org/api/evidence"
+        }
+      }
+    },
+    {
+      "bel_statement": "abundance(CHEBI:\"25-hydroxycholesterol\") directlyIncreases transcriptionalActivity(proteinAbundance(RGD:Nr1h2))",
+      "citation": {
+        "type": "PubMed",
+        "name": "Biochem J 2003 Dec 1 376(Pt 2) 351-60",
+        "id": "12882648",
+        "date": "",
+        "authors": "",
+        "comment": ""
+      },
+      "summary_text": "We found that oxysterol ligands that bind to the LXR (liver X receptor), including 25-HC (25-hydroxycholesterol) and 22( R )-HC, cause the accumulation of sPLA(2) mRNA and an increased enzyme activity.",
+      "experiment_context": [
+        {
+          "name": "Cell Ontology",
+          "value": "smooth muscle cell",
+          "uri": "http://localhost:9000/api/annotations/Cell Ontology/values/smooth muscle cell"
+        },
+        {
+          "name": "Ncbi Taxonomy",
+          "value": "Rattus norvegicus",
+          "uri": "http://localhost:9000/api/annotations/Ncbi Taxonomy/values/Rattus norvegicus"
+        }
+      ],
+      "metadata": {
+        "document_header": {
+          "Name": "BEL Framework Large Corpus Document",
+          "Description": "Approximately 61,000 statements.",
+          "Version": "20131211",
+          "Copyright": "Copyright (c) 2011-2012, Selventa. All rights reserved.",
+          "Authors": "Selventa"
+        },
+        "namespace_definitions": {
+          "CHEBI": "http://www.openbel.org/bel/namespace/chebi",
+          "EGID": "http://www.openbel.org/bel/namespace/entrez-gene",
+          "GOBP": "http://www.openbel.org/bel/namespace/go-biological-process",
+          "GOCCID": "http://www.openbel.org/bel/namespace/go-cellular-component",
+          "HGNC": "http://www.openbel.org/bel/namespace/hgnc-human-genes",
+          "MESHCS": "http://www.openbel.org/bel/namespace/mesh-cellular-structures",
+          "MESHD": "http://www.openbel.org/bel/namespace/mesh-diseases",
+          "MESHPP": "http://www.openbel.org/bel/namespace/mesh-processes",
+          "MGI": "http://www.openbel.org/bel/namespace/mgi-mouse-genes",
+          "RGD": "http://www.openbel.org/bel/namespace/rgd-rat-genes",
+          "SCHEM": "http://www.openbel.org/bel/namespace/selventa-legacy-chemicals",
+          "SCOMP": "http://www.openbel.org/bel/namespace/selventa-named-complexes",
+          "SDIS": "http://www.openbel.org/bel/namespace/selventa-legacy-diseases",
+          "SFAM": "http://www.openbel.org/bel/namespace/selventa-protein-families"
+        },
+        "annotation_definitions": {
+          "Anatomy": {
+            "type": "url",
+            "domain": "http://www.openbel.org/bel/namespace/uberon"
+          },
+          "Cell": {
+            "type": "url",
+            "domain": "http://www.openbel.org/bel/namespace/cell-ontology"
+          },
+          "CellLine": {
+            "type": "url",
+            "domain": "http://www.openbel.org/bel/namespace/cell-line-ontology"
+          },
+          "CellStructure": {
+            "type": "url",
+            "domain": "http://www.openbel.org/bel/namespace/mesh-cellular-structures"
+          },
+          "Disease": {
+            "type": "url",
+            "domain": "http://www.openbel.org/bel/namespace/disease-ontology"
+          },
+          "MeSHAnatomy": {
+            "type": "url",
+            "domain": "http://www.openbel.org/bel/namespace/mesh-anatomy"
+          },
+          "MeSHDisease": {
+            "type": "url",
+            "domain": "http://www.openbel.org/bel/namespace/mesh-diseases"
+          },
+          "Species": {
+            "type": "url",
+            "domain": "http://www.openbel.org/bel/namespace/ncbi-taxonomy"
+          },
+          "Status": {
+            "type": "list",
+            "domain": [
+              "Draft",
+              "Review",
+              "Approved",
+              "Rejected"
+            ]
+          }
+        },
+        "Status": "Approved"
+      },
+      "_links": {
+        "self": {
+          "type": "evidence",
+          "href": "http://next.belframework.org/api/evidence/5579e73338da0d5fbb0064ca"
+        },
+        "collection": {
+          "type": "evidence-collection",
+          "href": "http://next.belframework.org/api/evidence"
+        }
+      }
+    },
+    {
+      "bel_statement": "abundance(CHEBI:\"25-hydroxycholesterol\") directlyIncreases transcriptionalActivity(proteinAbundance(RGD:Nr1h3))",
+      "citation": {
+        "type": "PubMed",
+        "name": "Biochem J 2003 Dec 1 376(Pt 2) 351-60",
+        "id": "12882648",
+        "date": "",
+        "authors": "",
+        "comment": ""
+      },
+      "summary_text": "We found that oxysterol ligands that bind to the LXR (liver X receptor), including 25-HC (25-hydroxycholesterol) and 22( R )-HC, cause the accumulation of sPLA(2) mRNA and an increased enzyme activity.",
+      "experiment_context": [
+        {
+          "name": "Cell Ontology",
+          "value": "smooth muscle cell",
+          "uri": "http://localhost:9000/api/annotations/Cell Ontology/values/smooth muscle cell"
+        },
+        {
+          "name": "Ncbi Taxonomy",
+          "value": "Rattus norvegicus",
+          "uri": "http://localhost:9000/api/annotations/Ncbi Taxonomy/values/Rattus norvegicus"
+        }
+      ],
+      "metadata": {
+        "document_header": {
+          "Name": "BEL Framework Large Corpus Document",
+          "Description": "Approximately 61,000 statements.",
+          "Version": "20131211",
+          "Copyright": "Copyright (c) 2011-2012, Selventa. All rights reserved.",
+          "Authors": "Selventa"
+        },
+        "namespace_definitions": {
+          "CHEBI": "http://www.openbel.org/bel/namespace/chebi",
+          "EGID": "http://www.openbel.org/bel/namespace/entrez-gene",
+          "GOBP": "http://www.openbel.org/bel/namespace/go-biological-process",
+          "GOCCID": "http://www.openbel.org/bel/namespace/go-cellular-component",
+          "HGNC": "http://www.openbel.org/bel/namespace/hgnc-human-genes",
+          "MESHCS": "http://www.openbel.org/bel/namespace/mesh-cellular-structures",
+          "MESHD": "http://www.openbel.org/bel/namespace/mesh-diseases",
+          "MESHPP": "http://www.openbel.org/bel/namespace/mesh-processes",
+          "MGI": "http://www.openbel.org/bel/namespace/mgi-mouse-genes",
+          "RGD": "http://www.openbel.org/bel/namespace/rgd-rat-genes",
+          "SCHEM": "http://www.openbel.org/bel/namespace/selventa-legacy-chemicals",
+          "SCOMP": "http://www.openbel.org/bel/namespace/selventa-named-complexes",
+          "SDIS": "http://www.openbel.org/bel/namespace/selventa-legacy-diseases",
+          "SFAM": "http://www.openbel.org/bel/namespace/selventa-protein-families"
+        },
+        "annotation_definitions": {
+          "Anatomy": {
+            "type": "url",
+            "domain": "http://www.openbel.org/bel/namespace/uberon"
+          },
+          "Cell": {
+            "type": "url",
+            "domain": "http://www.openbel.org/bel/namespace/cell-ontology"
+          },
+          "CellLine": {
+            "type": "url",
+            "domain": "http://www.openbel.org/bel/namespace/cell-line-ontology"
+          },
+          "CellStructure": {
+            "type": "url",
+            "domain": "http://www.openbel.org/bel/namespace/mesh-cellular-structures"
+          },
+          "Disease": {
+            "type": "url",
+            "domain": "http://www.openbel.org/bel/namespace/disease-ontology"
+          },
+          "MeSHAnatomy": {
+            "type": "url",
+            "domain": "http://www.openbel.org/bel/namespace/mesh-anatomy"
+          },
+          "MeSHDisease": {
+            "type": "url",
+            "domain": "http://www.openbel.org/bel/namespace/mesh-diseases"
+          },
+          "Species": {
+            "type": "url",
+            "domain": "http://www.openbel.org/bel/namespace/ncbi-taxonomy"
+          },
+          "Status": {
+            "type": "list",
+            "domain": [
+              "Draft",
+              "Review",
+              "Approved",
+              "Rejected"
+            ]
+          }
+        },
+        "Status": "Approved"
+      },
+      "_links": {
+        "self": {
+          "type": "evidence",
+          "href": "http://next.belframework.org/api/evidence/5579e73338da0d5fbb0064cb"
+        },
+        "collection": {
+          "type": "evidence-collection",
+          "href": "http://next.belframework.org/api/evidence"
+        }
+      }
+    }
+  ],
+  "facets": [
+    {
+      "category": "metadata",
+      "name": "namespace_definitions",
+      "value": [
+        "RGD",
+        "http://www.openbel.org/bel/namespace/rgd-rat-genes"
+      ],
+      "filter": "{\"category\":\"metadata\",\"name\":\"namespace_definitions\",\"value\":[\"RGD\",\"http://www.openbel.org/bel/namespace/rgd-rat-genes\"]}",
+      "count": 42056
+    },
+    {
+      "category": "metadata",
+      "name": "namespace_definitions",
+      "value": [
+        "CHEBI",
+        "http://www.openbel.org/bel/namespace/chebi"
+      ],
+      "filter": "{\"category\":\"metadata\",\"name\":\"namespace_definitions\",\"value\":[\"CHEBI\",\"http://www.openbel.org/bel/namespace/chebi\"]}",
+      "count": 42056
+    },
+    {
+      "category": "metadata",
+      "name": "annotation_definitions",
+      "value": [
+        "Species",
+        {
+          "type": "url",
+          "domain": "http://www.openbel.org/bel/namespace/ncbi-taxonomy"
+        }
+      ],
+      "filter": "{\"category\":\"metadata\",\"name\":\"annotation_definitions\",\"value\":[\"Species\",{\"type\":\"url\",\"domain\":\"http://www.openbel.org/bel/namespace/ncbi-taxonomy\"}]}",
+      "count": 42056
+    },
+    {
+      "category": "metadata",
+      "name": "document_header",
+      "value": [
+        "Name",
+        "BEL Framework Large Corpus Document"
+      ],
+      "filter": "{\"category\":\"metadata\",\"name\":\"document_header\",\"value\":[\"Name\",\"BEL Framework Large Corpus Document\"]}",
+      "count": 42056
+    },
+    {
+      "category": "metadata",
+      "name": "document_header",
+      "value": [
+        "Version",
+        "20131211"
+      ],
+      "filter": "{\"category\":\"metadata\",\"name\":\"document_header\",\"value\":[\"Version\",\"20131211\"]}",
+      "count": 42056
+    },
+    {
+      "category": "metadata",
+      "name": "namespace_definitions",
+      "value": [
+        "GOCCID",
+        "http://www.openbel.org/bel/namespace/go-cellular-component"
+      ],
+      "filter": "{\"category\":\"metadata\",\"name\":\"namespace_definitions\",\"value\":[\"GOCCID\",\"http://www.openbel.org/bel/namespace/go-cellular-component\"]}",
+      "count": 42056
+    },
+    {
+      "category": "metadata",
+      "name": "namespace_definitions",
+      "value": [
+        "SCHEM",
+        "http://www.openbel.org/bel/namespace/selventa-legacy-chemicals"
+      ],
+      "filter": "{\"category\":\"metadata\",\"name\":\"namespace_definitions\",\"value\":[\"SCHEM\",\"http://www.openbel.org/bel/namespace/selventa-legacy-chemicals\"]}",
+      "count": 42056
+    },
+    {
+      "category": "metadata",
+      "name": "annotation_definitions",
+      "value": [
+        "CellLine",
+        {
+          "type": "url",
+          "domain": "http://www.openbel.org/bel/namespace/cell-line-ontology"
+        }
+      ],
+      "filter": "{\"category\":\"metadata\",\"name\":\"annotation_definitions\",\"value\":[\"CellLine\",{\"type\":\"url\",\"domain\":\"http://www.openbel.org/bel/namespace/cell-line-ontology\"}]}",
+      "count": 42056
+    },
+    {
+      "category": "metadata",
+      "name": "namespace_definitions",
+      "value": [
+        "MESHCS",
+        "http://www.openbel.org/bel/namespace/mesh-cellular-structures"
+      ],
+      "filter": "{\"category\":\"metadata\",\"name\":\"namespace_definitions\",\"value\":[\"MESHCS\",\"http://www.openbel.org/bel/namespace/mesh-cellular-structures\"]}",
+      "count": 42056
+    },
+    {
+      "category": "metadata",
+      "name": "namespace_definitions",
+      "value": [
+        "MESHD",
+        "http://www.openbel.org/bel/namespace/mesh-diseases"
+      ],
+      "filter": "{\"category\":\"metadata\",\"name\":\"namespace_definitions\",\"value\":[\"MESHD\",\"http://www.openbel.org/bel/namespace/mesh-diseases\"]}",
+      "count": 42056
+    },
+    {
+      "category": "metadata",
+      "name": "annotation_definitions",
+      "value": [
+        "MeSHAnatomy",
+        {
+          "type": "url",
+          "domain": "http://www.openbel.org/bel/namespace/mesh-anatomy"
+        }
+      ],
+      "filter": "{\"category\":\"metadata\",\"name\":\"annotation_definitions\",\"value\":[\"MeSHAnatomy\",{\"type\":\"url\",\"domain\":\"http://www.openbel.org/bel/namespace/mesh-anatomy\"}]}",
+      "count": 42056
+    },
+    {
+      "category": "metadata",
+      "name": "namespace_definitions",
+      "value": [
+        "SDIS",
+        "http://www.openbel.org/bel/namespace/selventa-legacy-diseases"
+      ],
+      "filter": "{\"category\":\"metadata\",\"name\":\"namespace_definitions\",\"value\":[\"SDIS\",\"http://www.openbel.org/bel/namespace/selventa-legacy-diseases\"]}",
+      "count": 42056
+    },
+    {
+      "category": "metadata",
+      "name": "annotation_definitions",
+      "value": [
+        "Anatomy",
+        {
+          "type": "url",
+          "domain": "http://www.openbel.org/bel/namespace/uberon"
+        }
+      ],
+      "filter": "{\"category\":\"metadata\",\"name\":\"annotation_definitions\",\"value\":[\"Anatomy\",{\"type\":\"url\",\"domain\":\"http://www.openbel.org/bel/namespace/uberon\"}]}",
+      "count": 42056
+    },
+    {
+      "category": "metadata",
+      "name": "namespace_definitions",
+      "value": [
+        "MGI",
+        "http://www.openbel.org/bel/namespace/mgi-mouse-genes"
+      ],
+      "filter": "{\"category\":\"metadata\",\"name\":\"namespace_definitions\",\"value\":[\"MGI\",\"http://www.openbel.org/bel/namespace/mgi-mouse-genes\"]}",
+      "count": 42056
+    },
+    {
+      "category": "metadata",
+      "name": "annotation_definitions",
+      "value": [
+        "Status",
+        {
+          "type": "list",
+          "domain": [
+            "Draft",
+            "Review",
+            "Approved",
+            "Rejected"
+          ]
+        }
+      ],
+      "filter": "{\"category\":\"metadata\",\"name\":\"annotation_definitions\",\"value\":[\"Status\",{\"type\":\"list\",\"domain\":[\"Draft\",\"Review\",\"Approved\",\"Rejected\"]}]}",
+      "count": 42056
+    },
+    {
+      "category": "metadata",
+      "name": "annotation_definitions",
+      "value": [
+        "MeSHDisease",
+        {
+          "type": "url",
+          "domain": "http://www.openbel.org/bel/namespace/mesh-diseases"
+        }
+      ],
+      "filter": "{\"category\":\"metadata\",\"name\":\"annotation_definitions\",\"value\":[\"MeSHDisease\",{\"type\":\"url\",\"domain\":\"http://www.openbel.org/bel/namespace/mesh-diseases\"}]}",
+      "count": 42056
+    },
+    {
+      "category": "metadata",
+      "name": "annotation_definitions",
+      "value": [
+        "Disease",
+        {
+          "type": "url",
+          "domain": "http://www.openbel.org/bel/namespace/disease-ontology"
+        }
+      ],
+      "filter": "{\"category\":\"metadata\",\"name\":\"annotation_definitions\",\"value\":[\"Disease\",{\"type\":\"url\",\"domain\":\"http://www.openbel.org/bel/namespace/disease-ontology\"}]}",
+      "count": 42056
+    },
+    {
+      "category": "metadata",
+      "name": "namespace_definitions",
+      "value": [
+        "MESHPP",
+        "http://www.openbel.org/bel/namespace/mesh-processes"
+      ],
+      "filter": "{\"category\":\"metadata\",\"name\":\"namespace_definitions\",\"value\":[\"MESHPP\",\"http://www.openbel.org/bel/namespace/mesh-processes\"]}",
+      "count": 42056
+    },
+    {
+      "category": "metadata",
+      "name": "document_header",
+      "value": [
+        "Description",
+        "Approximately 61,000 statements."
+      ],
+      "filter": "{\"category\":\"metadata\",\"name\":\"document_header\",\"value\":[\"Description\",\"Approximately 61,000 statements.\"]}",
+      "count": 42056
+    },
+    {
+      "category": "metadata",
+      "name": "annotation_definitions",
+      "value": [
+        "CellStructure",
+        {
+          "type": "url",
+          "domain": "http://www.openbel.org/bel/namespace/mesh-cellular-structures"
+        }
+      ],
+      "filter": "{\"category\":\"metadata\",\"name\":\"annotation_definitions\",\"value\":[\"CellStructure\",{\"type\":\"url\",\"domain\":\"http://www.openbel.org/bel/namespace/mesh-cellular-structures\"}]}",
+      "count": 42056
+    },
+    {
+      "category": "metadata",
+      "name": "annotation_definitions",
+      "value": [
+        "Cell",
+        {
+          "type": "url",
+          "domain": "http://www.openbel.org/bel/namespace/cell-ontology"
+        }
+      ],
+      "filter": "{\"category\":\"metadata\",\"name\":\"annotation_definitions\",\"value\":[\"Cell\",{\"type\":\"url\",\"domain\":\"http://www.openbel.org/bel/namespace/cell-ontology\"}]}",
+      "count": 42056
+    },
+    {
+      "category": "metadata",
+      "name": "namespace_definitions",
+      "value": [
+        "HGNC",
+        "http://www.openbel.org/bel/namespace/hgnc-human-genes"
+      ],
+      "filter": "{\"category\":\"metadata\",\"name\":\"namespace_definitions\",\"value\":[\"HGNC\",\"http://www.openbel.org/bel/namespace/hgnc-human-genes\"]}",
+      "count": 42056
+    },
+    {
+      "category": "metadata",
+      "name": "namespace_definitions",
+      "value": [
+        "GOBP",
+        "http://www.openbel.org/bel/namespace/go-biological-process"
+      ],
+      "filter": "{\"category\":\"metadata\",\"name\":\"namespace_definitions\",\"value\":[\"GOBP\",\"http://www.openbel.org/bel/namespace/go-biological-process\"]}",
+      "count": 42056
+    },
+    {
+      "category": "metadata",
+      "name": "namespace_definitions",
+      "value": [
+        "EGID",
+        "http://www.openbel.org/bel/namespace/entrez-gene"
+      ],
+      "filter": "{\"category\":\"metadata\",\"name\":\"namespace_definitions\",\"value\":[\"EGID\",\"http://www.openbel.org/bel/namespace/entrez-gene\"]}",
+      "count": 42056
+    },
+    {
+      "category": "metadata",
+      "name": "namespace_definitions",
+      "value": [
+        "SFAM",
+        "http://www.openbel.org/bel/namespace/selventa-protein-families"
+      ],
+      "filter": "{\"category\":\"metadata\",\"name\":\"namespace_definitions\",\"value\":[\"SFAM\",\"http://www.openbel.org/bel/namespace/selventa-protein-families\"]}",
+      "count": 42056
+    },
+    {
+      "category": "metadata",
+      "name": "namespace_definitions",
+      "value": [
+        "SCOMP",
+        "http://www.openbel.org/bel/namespace/selventa-named-complexes"
+      ],
+      "filter": "{\"category\":\"metadata\",\"name\":\"namespace_definitions\",\"value\":[\"SCOMP\",\"http://www.openbel.org/bel/namespace/selventa-named-complexes\"]}",
+      "count": 42056
+    },
+    {
+      "category": "metadata",
+      "name": "document_header",
+      "value": [
+        "Copyright",
+        "Copyright (c) 2011-2012, Selventa. All rights reserved."
+      ],
+      "filter": "{\"category\":\"metadata\",\"name\":\"document_header\",\"value\":[\"Copyright\",\"Copyright (c) 2011-2012, Selventa. All rights reserved.\"]}",
+      "count": 42056
+    },
+    {
+      "category": "metadata",
+      "name": "Status",
+      "value": "Approved",
+      "filter": "{\"category\":\"metadata\",\"name\":\"Status\",\"value\":\"Approved\"}",
+      "count": 42056
+    },
+    {
+      "category": "metadata",
+      "name": "document_header",
+      "value": [
+        "Authors",
+        "Selventa"
+      ],
+      "filter": "{\"category\":\"metadata\",\"name\":\"document_header\",\"value\":[\"Authors\",\"Selventa\"]}",
+      "count": 42056
+    },
+    {
+      "category": "experiment_context",
+      "name": "Ncbi Taxonomy",
+      "value": "Homo sapiens",
+      "filter": "{\"category\":\"experiment_context\",\"name\":\"Ncbi Taxonomy\",\"value\":\"Homo sapiens\"}",
+      "count": 27070
+    },
+    {
+      "category": "experiment_context",
+      "name": "Ncbi Taxonomy",
+      "value": "Mus musculus",
+      "filter": "{\"category\":\"experiment_context\",\"name\":\"Ncbi Taxonomy\",\"value\":\"Mus musculus\"}",
+      "count": 10647
+    },
+    {
+      "category": "experiment_context",
+      "name": "Ncbi Taxonomy",
+      "value": "Rattus norvegicus",
+      "filter": "{\"category\":\"experiment_context\",\"name\":\"Ncbi Taxonomy\",\"value\":\"Rattus norvegicus\"}",
+      "count": 4337
+    },
+    {
+      "category": "experiment_context",
+      "name": "Uberon",
+      "value": "liver",
+      "filter": "{\"category\":\"experiment_context\",\"name\":\"Uberon\",\"value\":\"liver\"}",
+      "count": 1323
+    },
+    {
+      "category": "experiment_context",
+      "name": "Uberon",
+      "value": "skeletal muscle tissue",
+      "filter": "{\"category\":\"experiment_context\",\"name\":\"Uberon\",\"value\":\"skeletal muscle tissue\"}",
+      "count": 1049
+    },
+    {
+      "category": "experiment_context",
+      "name": "Cell Ontology",
+      "value": "fibroblast",
+      "filter": "{\"category\":\"experiment_context\",\"name\":\"Cell Ontology\",\"value\":\"fibroblast\"}",
+      "count": 777
+    },
+    {
+      "category": "experiment_context",
+      "name": "Cell Ontology",
+      "value": "endothelial cell",
+      "filter": "{\"category\":\"experiment_context\",\"name\":\"Cell Ontology\",\"value\":\"endothelial cell\"}",
+      "count": 743
+    },
+    {
+      "category": "experiment_context",
+      "name": "Uberon",
+      "value": "lung",
+      "filter": "{\"category\":\"experiment_context\",\"name\":\"Uberon\",\"value\":\"lung\"}",
+      "count": 715
+    },
+    {
+      "category": "experiment_context",
+      "name": "Cell Ontology",
+      "value": "fat cell",
+      "filter": "{\"category\":\"experiment_context\",\"name\":\"Cell Ontology\",\"value\":\"fat cell\"}",
+      "count": 700
+    },
+    {
+      "category": "experiment_context",
+      "name": "Uberon",
+      "value": "endothelium",
+      "filter": "{\"category\":\"experiment_context\",\"name\":\"Uberon\",\"value\":\"endothelium\"}",
+      "count": 684
+    },
+    {
+      "category": "experiment_context",
+      "name": "Cell Line Ontology",
+      "value": "HUVEC cell line",
+      "filter": "{\"category\":\"experiment_context\",\"name\":\"Cell Line Ontology\",\"value\":\"HUVEC cell line\"}",
+      "count": 683
+    },
+    {
+      "category": "experiment_context",
+      "name": "Cell Ontology",
+      "value": "macrophage",
+      "filter": "{\"category\":\"experiment_context\",\"name\":\"Cell Ontology\",\"value\":\"macrophage\"}",
+      "count": 611
+    },
+    {
+      "category": "experiment_context",
+      "name": "Uberon",
+      "value": "blood vessel smooth muscle",
+      "filter": "{\"category\":\"experiment_context\",\"name\":\"Uberon\",\"value\":\"blood vessel smooth muscle\"}",
+      "count": 583
+    },
+    {
+      "category": "citation",
+      "name": "id",
+      "value": "15212693",
+      "filter": "{\"category\":\"citation\",\"name\":\"id\",\"value\":\"15212693\"}",
+      "count": 549
+    },
+    {
+      "category": "experiment_context",
+      "name": "Cell Line Ontology",
+      "value": "COS-1 cell",
+      "filter": "{\"category\":\"experiment_context\",\"name\":\"Cell Line Ontology\",\"value\":\"COS-1 cell\"}",
+      "count": 530
+    },
+    {
+      "category": "experiment_context",
+      "name": "Cell Line Ontology",
+      "value": "MCF7 cell",
+      "filter": "{\"category\":\"experiment_context\",\"name\":\"Cell Line Ontology\",\"value\":\"MCF7 cell\"}",
+      "count": 502
+    },
+    {
+      "category": "experiment_context",
+      "name": "Cell Ontology",
+      "value": "monocyte",
+      "filter": "{\"category\":\"experiment_context\",\"name\":\"Cell Ontology\",\"value\":\"monocyte\"}",
+      "count": 460
+    },
+    {
+      "category": "experiment_context",
+      "name": "Uberon",
+      "value": "cardiovascular system endothelium",
+      "filter": "{\"category\":\"experiment_context\",\"name\":\"Uberon\",\"value\":\"cardiovascular system endothelium\"}",
+      "count": 444
+    },
+    {
+      "category": "experiment_context",
+      "name": "Uberon",
+      "value": "heart",
+      "filter": "{\"category\":\"experiment_context\",\"name\":\"Uberon\",\"value\":\"heart\"}",
+      "count": 439
+    },
+    {
+      "category": "experiment_context",
+      "name": "Cell Line Ontology",
+      "value": "Hep G2 cell",
+      "filter": "{\"category\":\"experiment_context\",\"name\":\"Cell Line Ontology\",\"value\":\"Hep G2 cell\"}",
+      "count": 438
+    },
+    {
+      "category": "experiment_context",
+      "name": "Uberon",
+      "value": "breast",
+      "filter": "{\"category\":\"experiment_context\",\"name\":\"Uberon\",\"value\":\"breast\"}",
+      "count": 387
+    },
+    {
+      "category": "experiment_context",
+      "name": "Cell Ontology",
+      "value": "hepatocyte",
+      "filter": "{\"category\":\"experiment_context\",\"name\":\"Cell Ontology\",\"value\":\"hepatocyte\"}",
+      "count": 385
+    },
+    {
+      "category": "experiment_context",
+      "name": "Cell Line Ontology",
+      "value": "3T3-L1 cell",
+      "filter": "{\"category\":\"experiment_context\",\"name\":\"Cell Line Ontology\",\"value\":\"3T3-L1 cell\"}",
+      "count": 378
+    },
+    {
+      "category": "experiment_context",
+      "name": "Uberon",
+      "value": "prostate gland",
+      "filter": "{\"category\":\"experiment_context\",\"name\":\"Uberon\",\"value\":\"prostate gland\"}",
+      "count": 345
+    },
+    {
+      "category": "experiment_context",
+      "name": "Cell Ontology",
+      "value": "cardiac muscle cell",
+      "filter": "{\"category\":\"experiment_context\",\"name\":\"Cell Ontology\",\"value\":\"cardiac muscle cell\"}",
+      "count": 340
+    },
+    {
+      "category": "experiment_context",
+      "name": "Cell Line Ontology",
+      "value": "HeLa cell",
+      "filter": "{\"category\":\"experiment_context\",\"name\":\"Cell Line Ontology\",\"value\":\"HeLa cell\"}",
+      "count": 339
+    },
+    {
+      "category": "experiment_context",
+      "name": "Mesh Cellular Structures",
+      "value": "Cytoplasm",
+      "filter": "{\"category\":\"experiment_context\",\"name\":\"Mesh Cellular Structures\",\"value\":\"Cytoplasm\"}",
+      "count": 338
+    },
+    {
+      "category": "experiment_context",
+      "name": "Disease Ontology",
+      "value": "leukemia",
+      "filter": "{\"category\":\"experiment_context\",\"name\":\"Disease Ontology\",\"value\":\"leukemia\"}",
+      "count": 320
+    },
+    {
+      "category": "experiment_context",
+      "name": "Uberon",
+      "value": "zone of skin",
+      "filter": "{\"category\":\"experiment_context\",\"name\":\"Uberon\",\"value\":\"zone of skin\"}",
+      "count": 318
+    },
+    {
+      "category": "experiment_context",
+      "name": "Uberon",
+      "value": "kidney",
+      "filter": "{\"category\":\"experiment_context\",\"name\":\"Uberon\",\"value\":\"kidney\"}",
+      "count": 316
+    },
+    {
+      "category": "experiment_context",
+      "name": "Uberon",
+      "value": "cardiovascular system",
+      "filter": "{\"category\":\"experiment_context\",\"name\":\"Uberon\",\"value\":\"cardiovascular system\"}",
+      "count": 313
+    },
+    {
+      "category": "experiment_context",
+      "name": "Cell Line Ontology",
+      "value": "NIH-3T3 cell",
+      "filter": "{\"category\":\"experiment_context\",\"name\":\"Cell Line Ontology\",\"value\":\"NIH-3T3 cell\"}",
+      "count": 310
+    },
+    {
+      "category": "experiment_context",
+      "name": "Cell Ontology",
+      "value": "neuron",
+      "filter": "{\"category\":\"experiment_context\",\"name\":\"Cell Ontology\",\"value\":\"neuron\"}",
+      "count": 304
+    },
+    {
+      "category": "experiment_context",
+      "name": "Uberon",
+      "value": "adipose tissue",
+      "filter": "{\"category\":\"experiment_context\",\"name\":\"Uberon\",\"value\":\"adipose tissue\"}",
+      "count": 290
+    },
+    {
+      "category": "experiment_context",
+      "name": "Cell Ontology",
+      "value": "keratinocyte",
+      "filter": "{\"category\":\"experiment_context\",\"name\":\"Cell Ontology\",\"value\":\"keratinocyte\"}",
+      "count": 288
+    },
+    {
+      "category": "experiment_context",
+      "name": "Cell Ontology",
+      "value": "B cell",
+      "filter": "{\"category\":\"experiment_context\",\"name\":\"Cell Ontology\",\"value\":\"B cell\"}",
+      "count": 287
+    },
+    {
+      "category": "experiment_context",
+      "name": "Cell Line Ontology",
+      "value": "293 cell",
+      "filter": "{\"category\":\"experiment_context\",\"name\":\"Cell Line Ontology\",\"value\":\"293 cell\"}",
+      "count": 280
+    },
+    {
+      "category": "experiment_context",
+      "name": "Cell Ontology",
+      "value": "type B pancreatic cell",
+      "filter": "{\"category\":\"experiment_context\",\"name\":\"Cell Ontology\",\"value\":\"type B pancreatic cell\"}",
+      "count": 274
+    },
+    {
+      "category": "experiment_context",
+      "name": "Cell Ontology",
+      "value": "T cell",
+      "filter": "{\"category\":\"experiment_context\",\"name\":\"Cell Ontology\",\"value\":\"T cell\"}",
+      "count": 268
+    },
+    {
+      "category": "experiment_context",
+      "name": "Uberon",
+      "value": "aorta",
+      "filter": "{\"category\":\"experiment_context\",\"name\":\"Uberon\",\"value\":\"aorta\"}",
+      "count": 255
+    },
+    {
+      "category": "experiment_context",
+      "name": "Cell Ontology",
+      "value": "mesangial cell",
+      "filter": "{\"category\":\"experiment_context\",\"name\":\"Cell Ontology\",\"value\":\"mesangial cell\"}",
+      "count": 248
+    },
+    {
+      "category": "experiment_context",
+      "name": "Uberon",
+      "value": "blood plasma",
+      "filter": "{\"category\":\"experiment_context\",\"name\":\"Uberon\",\"value\":\"blood plasma\"}",
+      "count": 247
+    },
+    {
+      "category": "experiment_context",
+      "name": "Uberon",
+      "value": "smooth muscle tissue",
+      "filter": "{\"category\":\"experiment_context\",\"name\":\"Uberon\",\"value\":\"smooth muscle tissue\"}",
+      "count": 243
+    },
+    {
+      "category": "experiment_context",
+      "name": "Uberon",
+      "value": "brain",
+      "filter": "{\"category\":\"experiment_context\",\"name\":\"Uberon\",\"value\":\"brain\"}",
+      "count": 236
+    },
+    {
+      "category": "citation",
+      "name": "id",
+      "value": "14604967",
+      "filter": "{\"category\":\"citation\",\"name\":\"id\",\"value\":\"14604967\"}",
+      "count": 235
+    },
+    {
+      "category": "experiment_context",
+      "name": "Cell Line Ontology",
+      "value": "U-937 cell",
+      "filter": "{\"category\":\"experiment_context\",\"name\":\"Cell Line Ontology\",\"value\":\"U-937 cell\"}",
+      "count": 233
+    },
+    {
+      "category": "experiment_context",
+      "name": "Disease Ontology",
+      "value": "atherosclerosis",
+      "filter": "{\"category\":\"experiment_context\",\"name\":\"Disease Ontology\",\"value\":\"atherosclerosis\"}",
+      "count": 232
+    },
+    {
+      "category": "experiment_context",
+      "name": "Cell Ontology",
+      "value": "neutrophil",
+      "filter": "{\"category\":\"experiment_context\",\"name\":\"Cell Ontology\",\"value\":\"neutrophil\"}",
+      "count": 232
+    },
+    {
+      "category": "experiment_context",
+      "name": "Uberon",
+      "value": "epithelium",
+      "filter": "{\"category\":\"experiment_context\",\"name\":\"Uberon\",\"value\":\"epithelium\"}",
+      "count": 231
+    },
+    {
+      "category": "experiment_context",
+      "name": "Cell Ontology",
+      "value": "smooth muscle cell",
+      "filter": "{\"category\":\"experiment_context\",\"name\":\"Cell Ontology\",\"value\":\"smooth muscle cell\"}",
+      "count": 221
+    },
+    {
+      "category": "experiment_context",
+      "name": "Uberon",
+      "value": "pancreas",
+      "filter": "{\"category\":\"experiment_context\",\"name\":\"Uberon\",\"value\":\"pancreas\"}",
+      "count": 211
+    },
+    {
+      "category": "experiment_context",
+      "name": "Uberon",
+      "value": "muscle tissue",
+      "filter": "{\"category\":\"experiment_context\",\"name\":\"Uberon\",\"value\":\"muscle tissue\"}",
+      "count": 210
+    },
+    {
+      "category": "experiment_context",
+      "name": "Cell Line Ontology",
+      "value": "PC-12 cell",
+      "filter": "{\"category\":\"experiment_context\",\"name\":\"Cell Line Ontology\",\"value\":\"PC-12 cell\"}",
+      "count": 205
+    },
+    {
+      "category": "experiment_context",
+      "name": "Cell Line Ontology",
+      "value": "JURKAT cell",
+      "filter": "{\"category\":\"experiment_context\",\"name\":\"Cell Line Ontology\",\"value\":\"JURKAT cell\"}",
+      "count": 203
+    },
+    {
+      "category": "citation",
+      "name": "id",
+      "value": "14704274",
+      "filter": "{\"category\":\"citation\",\"name\":\"id\",\"value\":\"14704274\"}",
+      "count": 201
+    },
+    {
+      "category": "experiment_context",
+      "name": "Mesh Cellular Structures",
+      "value": "Cell Membrane",
+      "filter": "{\"category\":\"experiment_context\",\"name\":\"Mesh Cellular Structures\",\"value\":\"Cell Membrane\"}",
+      "count": 194
+    },
+    {
+      "category": "citation",
+      "name": "id",
+      "value": "12958071",
+      "filter": "{\"category\":\"citation\",\"name\":\"id\",\"value\":\"12958071\"}",
+      "count": 186
+    },
+    {
+      "category": "citation",
+      "name": "id",
+      "value": "15525599",
+      "filter": "{\"category\":\"citation\",\"name\":\"id\",\"value\":\"15525599\"}",
+      "count": 183
+    },
+    {
+      "category": "citation",
+      "name": "id",
+      "value": "10699758",
+      "filter": "{\"category\":\"citation\",\"name\":\"id\",\"value\":\"10699758\"}",
+      "count": 182
+    },
+    {
+      "category": "citation",
+      "name": "id",
+      "value": "15039436",
+      "filter": "{\"category\":\"citation\",\"name\":\"id\",\"value\":\"15039436\"}",
+      "count": 170
+    },
+    {
+      "category": "experiment_context",
+      "name": "Cell Line Ontology",
+      "value": "LNCAP cell",
+      "filter": "{\"category\":\"experiment_context\",\"name\":\"Cell Line Ontology\",\"value\":\"LNCAP cell\"}",
+      "count": 163
+    },
+    {
+      "category": "experiment_context",
+      "name": "Cell Ontology",
+      "value": "neuronal stem cell",
+      "filter": "{\"category\":\"experiment_context\",\"name\":\"Cell Ontology\",\"value\":\"neuronal stem cell\"}",
+      "count": 162
+    },
+    {
+      "category": "experiment_context",
+      "name": "Cell Line Ontology",
+      "value": "immortal cell line cell",
+      "filter": "{\"category\":\"experiment_context\",\"name\":\"Cell Line Ontology\",\"value\":\"immortal cell line cell\"}",
+      "count": 158
+    },
+    {
+      "category": "citation",
+      "name": "id",
+      "value": "15308637",
+      "filter": "{\"category\":\"citation\",\"name\":\"id\",\"value\":\"15308637\"}",
+      "count": 155
+    },
+    {
+      "category": "citation",
+      "name": "id",
+      "value": "15229246",
+      "filter": "{\"category\":\"citation\",\"name\":\"id\",\"value\":\"15229246\"}",
+      "count": 154
+    },
+    {
+      "category": "experiment_context",
+      "name": "Mesh Cellular Structures",
+      "value": "Cell Nucleus",
+      "filter": "{\"category\":\"experiment_context\",\"name\":\"Mesh Cellular Structures\",\"value\":\"Cell Nucleus\"}",
+      "count": 153
+    },
+    {
+      "category": "experiment_context",
+      "name": "Cell Ontology",
+      "value": "epithelial cell",
+      "filter": "{\"category\":\"experiment_context\",\"name\":\"Cell Ontology\",\"value\":\"epithelial cell\"}",
+      "count": 153
+    },
+    {
+      "category": "experiment_context",
+      "name": "Cell Ontology",
+      "value": "muscle cell",
+      "filter": "{\"category\":\"experiment_context\",\"name\":\"Cell Ontology\",\"value\":\"muscle cell\"}",
+      "count": 148
+    },
+    {
+      "category": "citation",
+      "name": "id",
+      "value": "12851107",
+      "filter": "{\"category\":\"citation\",\"name\":\"id\",\"value\":\"12851107\"}",
+      "count": 145
+    },
+    {
+      "category": "experiment_context",
+      "name": "Disease Ontology",
+      "value": "lung cancer",
+      "filter": "{\"category\":\"experiment_context\",\"name\":\"Disease Ontology\",\"value\":\"lung cancer\"}",
+      "count": 143
+    },
+    {
+      "category": "citation",
+      "name": "id",
+      "value": "15374962",
+      "filter": "{\"category\":\"citation\",\"name\":\"id\",\"value\":\"15374962\"}",
+      "count": 142
+    },
+    {
+      "category": "experiment_context",
+      "name": "Cell Line Ontology",
+      "value": "THP-1 cell",
+      "filter": "{\"category\":\"experiment_context\",\"name\":\"Cell Line Ontology\",\"value\":\"THP-1 cell\"}",
+      "count": 142
+    },
+    {
+      "category": "citation",
+      "name": "id",
+      "value": "14610184",
+      "filter": "{\"category\":\"citation\",\"name\":\"id\",\"value\":\"14610184\"}",
+      "count": 139
+    },
+    {
+      "category": "citation",
+      "name": "id",
+      "value": "12464685",
+      "filter": "{\"category\":\"citation\",\"name\":\"id\",\"value\":\"12464685\"}",
+      "count": 136
+    },
+    {
+      "category": "citation",
+      "name": "id",
+      "value": "15026349",
+      "filter": "{\"category\":\"citation\",\"name\":\"id\",\"value\":\"15026349\"}",
+      "count": 131
+    },
+    {
+      "category": "experiment_context",
+      "name": "Cell Ontology",
+      "value": "skeletal muscle satellite cell",
+      "filter": "{\"category\":\"experiment_context\",\"name\":\"Cell Ontology\",\"value\":\"skeletal muscle satellite cell\"}",
+      "count": 125
+    },
+    {
+      "category": "experiment_context",
+      "name": "Cell Line Ontology",
+      "value": "T-47D cell",
+      "filter": "{\"category\":\"experiment_context\",\"name\":\"Cell Line Ontology\",\"value\":\"T-47D cell\"}",
+      "count": 125
+    },
+    {
+      "category": "experiment_context",
+      "name": "Cell Ontology",
+      "value": "platelet",
+      "filter": "{\"category\":\"experiment_context\",\"name\":\"Cell Ontology\",\"value\":\"platelet\"}",
+      "count": 124
+    },
+    {
+      "category": "citation",
+      "name": "id",
+      "value": "12923166",
+      "filter": "{\"category\":\"citation\",\"name\":\"id\",\"value\":\"12923166\"}",
+      "count": 123
+    },
+    {
+      "category": "citation",
+      "name": "id",
+      "value": "15358814",
+      "filter": "{\"category\":\"citation\",\"name\":\"id\",\"value\":\"15358814\"}",
+      "count": 120
+    },
+    {
+      "category": "citation",
+      "name": "id",
+      "value": "15319485",
+      "filter": "{\"category\":\"citation\",\"name\":\"id\",\"value\":\"15319485\"}",
+      "count": 119
+    },
+    {
+      "category": "citation",
+      "name": "id",
+      "value": "11742412",
+      "filter": "{\"category\":\"citation\",\"name\":\"id\",\"value\":\"11742412\"}",
+      "count": 119
+    },
+    {
+      "category": "citation",
+      "name": "id",
+      "value": "11902584",
+      "filter": "{\"category\":\"citation\",\"name\":\"id\",\"value\":\"11902584\"}",
+      "count": 117
+    },
+    {
+      "category": "citation",
+      "name": "id",
+      "value": "10508581",
+      "filter": "{\"category\":\"citation\",\"name\":\"id\",\"value\":\"10508581\"}",
+      "count": 113
+    },
+    {
+      "category": "experiment_context",
+      "name": "Cell Line Ontology",
+      "value": "A549 cell",
+      "filter": "{\"category\":\"experiment_context\",\"name\":\"Cell Line Ontology\",\"value\":\"A549 cell\"}",
+      "count": 99
+    },
+    {
+      "category": "experiment_context",
+      "name": "Disease Ontology",
+      "value": "multiple myeloma",
+      "filter": "{\"category\":\"experiment_context\",\"name\":\"Disease Ontology\",\"value\":\"multiple myeloma\"}",
+      "count": 94
+    },
+    {
+      "category": "experiment_context",
+      "name": "Disease Ontology",
+      "value": "hepatocellular carcinoma",
+      "filter": "{\"category\":\"experiment_context\",\"name\":\"Disease Ontology\",\"value\":\"hepatocellular carcinoma\"}",
+      "count": 91
+    },
+    {
+      "category": "experiment_context",
+      "name": "Cell Line Ontology",
+      "value": "MEF cell line",
+      "filter": "{\"category\":\"experiment_context\",\"name\":\"Cell Line Ontology\",\"value\":\"MEF cell line\"}",
+      "count": 88
+    },
+    {
+      "category": "experiment_context",
+      "name": "Cell Line Ontology",
+      "value": "A-431 cell",
+      "filter": "{\"category\":\"experiment_context\",\"name\":\"Cell Line Ontology\",\"value\":\"A-431 cell\"}",
+      "count": 86
+    },
+    {
+      "category": "experiment_context",
+      "name": "Mesh Anatomy",
+      "value": "tumor",
+      "filter": "{\"category\":\"experiment_context\",\"name\":\"Mesh Anatomy\",\"value\":\"tumor\"}",
+      "count": 86
+    },
+    {
+      "category": "experiment_context",
+      "name": "Mesh Anatomy",
+      "value": "bronchoalveolar lavage fluid",
+      "filter": "{\"category\":\"experiment_context\",\"name\":\"Mesh Anatomy\",\"value\":\"bronchoalveolar lavage fluid\"}",
+      "count": 83
+    },
+    {
+      "category": "experiment_context",
+      "name": "Cell Line Ontology",
+      "value": "C subscript(2) C subscript(12) cell",
+      "filter": "{\"category\":\"experiment_context\",\"name\":\"Cell Line Ontology\",\"value\":\"C subscript(2) C subscript(12) cell\"}",
+      "count": 73
+    },
+    {
+      "category": "experiment_context",
+      "name": "Cell Line Ontology",
+      "value": "786-O cell",
+      "filter": "{\"category\":\"experiment_context\",\"name\":\"Cell Line Ontology\",\"value\":\"786-O cell\"}",
+      "count": 72
+    },
+    {
+      "category": "experiment_context",
+      "name": "Mesh Cellular Structures",
+      "value": "peroxisome",
+      "filter": "{\"category\":\"experiment_context\",\"name\":\"Mesh Cellular Structures\",\"value\":\"peroxisome\"}",
+      "count": 53
+    },
+    {
+      "category": "experiment_context",
+      "name": "Mesh Cellular Structures",
+      "value": "focal adhesion",
+      "filter": "{\"category\":\"experiment_context\",\"name\":\"Mesh Cellular Structures\",\"value\":\"focal adhesion\"}",
+      "count": 52
+    },
+    {
+      "category": "experiment_context",
+      "name": "Disease Ontology",
+      "value": "squamous cell carcinoma",
+      "filter": "{\"category\":\"experiment_context\",\"name\":\"Disease Ontology\",\"value\":\"squamous cell carcinoma\"}",
+      "count": 52
+    },
+    {
+      "category": "experiment_context",
+      "name": "Mesh Anatomy",
+      "value": "Sputum",
+      "filter": "{\"category\":\"experiment_context\",\"name\":\"Mesh Anatomy\",\"value\":\"Sputum\"}",
+      "count": 49
+    },
+    {
+      "category": "experiment_context",
+      "name": "Disease Ontology",
+      "value": "neuroblastoma",
+      "filter": "{\"category\":\"experiment_context\",\"name\":\"Disease Ontology\",\"value\":\"neuroblastoma\"}",
+      "count": 48
+    },
+    {
+      "category": "experiment_context",
+      "name": "Mesh Cellular Structures",
+      "value": "mitochondrion",
+      "filter": "{\"category\":\"experiment_context\",\"name\":\"Mesh Cellular Structures\",\"value\":\"mitochondrion\"}",
+      "count": 47
+    },
+    {
+      "category": "experiment_context",
+      "name": "Disease Ontology",
+      "value": "breast cancer",
+      "filter": "{\"category\":\"experiment_context\",\"name\":\"Disease Ontology\",\"value\":\"breast cancer\"}",
+      "count": 44
+    },
+    {
+      "category": "experiment_context",
+      "name": "Mesh Cellular Structures",
+      "value": "glycogen granule",
+      "filter": "{\"category\":\"experiment_context\",\"name\":\"Mesh Cellular Structures\",\"value\":\"glycogen granule\"}",
+      "count": 42
+    },
+    {
+      "category": "experiment_context",
+      "name": "Disease Ontology",
+      "value": "melanoma",
+      "filter": "{\"category\":\"experiment_context\",\"name\":\"Disease Ontology\",\"value\":\"melanoma\"}",
+      "count": 37
+    },
+    {
+      "category": "experiment_context",
+      "name": "Mesh Cellular Structures",
+      "value": "Endoplasmic reticulum",
+      "filter": "{\"category\":\"experiment_context\",\"name\":\"Mesh Cellular Structures\",\"value\":\"Endoplasmic reticulum\"}",
+      "count": 36
+    },
+    {
+      "category": "experiment_context",
+      "name": "Disease Ontology",
+      "value": "astrocytoma",
+      "filter": "{\"category\":\"experiment_context\",\"name\":\"Disease Ontology\",\"value\":\"astrocytoma\"}",
+      "count": 31
+    },
+    {
+      "category": "experiment_context",
+      "name": "Mesh Cellular Structures",
+      "value": "Extracellular Matrix",
+      "filter": "{\"category\":\"experiment_context\",\"name\":\"Mesh Cellular Structures\",\"value\":\"Extracellular Matrix\"}",
+      "count": 31
+    },
+    {
+      "category": "experiment_context",
+      "name": "Disease Ontology",
+      "value": "cerebrovascular accident",
+      "filter": "{\"category\":\"experiment_context\",\"name\":\"Disease Ontology\",\"value\":\"cerebrovascular accident\"}",
+      "count": 29
+    },
+    {
+      "category": "experiment_context",
+      "name": "Disease Ontology",
+      "value": "teratocarcinoma",
+      "filter": "{\"category\":\"experiment_context\",\"name\":\"Disease Ontology\",\"value\":\"teratocarcinoma\"}",
+      "count": 25
+    },
+    {
+      "category": "experiment_context",
+      "name": "Mesh Anatomy",
+      "value": "infected tissue",
+      "filter": "{\"category\":\"experiment_context\",\"name\":\"Mesh Anatomy\",\"value\":\"infected tissue\"}",
+      "count": 25
+    },
+    {
+      "category": "experiment_context",
+      "name": "Disease Ontology",
+      "value": "Atherosclerotic lesion",
+      "filter": "{\"category\":\"experiment_context\",\"name\":\"Disease Ontology\",\"value\":\"Atherosclerotic lesion\"}",
+      "count": 19
+    },
+    {
+      "category": "experiment_context",
+      "name": "Mesh Cellular Structures",
+      "value": "intracellular",
+      "filter": "{\"category\":\"experiment_context\",\"name\":\"Mesh Cellular Structures\",\"value\":\"intracellular\"}",
+      "count": 15
+    },
+    {
+      "category": "experiment_context",
+      "name": "Mesh Diseases",
+      "value": "Head and Neck Neoplasms",
+      "filter": "{\"category\":\"experiment_context\",\"name\":\"Mesh Diseases\",\"value\":\"Head and Neck Neoplasms\"}",
+      "count": 13
+    },
+    {
+      "category": "experiment_context",
+      "name": "Disease Ontology",
+      "value": "skin cancer",
+      "filter": "{\"category\":\"experiment_context\",\"name\":\"Disease Ontology\",\"value\":\"skin cancer\"}",
+      "count": 13
+    },
+    {
+      "category": "experiment_context",
+      "name": "Disease Ontology",
+      "value": "prostate carcinoma in situ",
+      "filter": "{\"category\":\"experiment_context\",\"name\":\"Disease Ontology\",\"value\":\"prostate carcinoma in situ\"}",
+      "count": 13
+    },
+    {
+      "category": "experiment_context",
+      "name": "Disease Ontology",
+      "value": "esophageal carcinoma",
+      "filter": "{\"category\":\"experiment_context\",\"name\":\"Disease Ontology\",\"value\":\"esophageal carcinoma\"}",
+      "count": 13
+    },
+    {
+      "category": "experiment_context",
+      "name": "Disease Ontology",
+      "value": "colon cancer",
+      "filter": "{\"category\":\"experiment_context\",\"name\":\"Disease Ontology\",\"value\":\"colon cancer\"}",
+      "count": 13
+    },
+    {
+      "category": "experiment_context",
+      "name": "Mesh Cellular Structures",
+      "value": "extracellular matrix",
+      "filter": "{\"category\":\"experiment_context\",\"name\":\"Mesh Cellular Structures\",\"value\":\"extracellular matrix\"}",
+      "count": 12
+    },
+    {
+      "category": "experiment_context",
+      "name": "Disease Ontology",
+      "value": "osteosarcoma",
+      "filter": "{\"category\":\"experiment_context\",\"name\":\"Disease Ontology\",\"value\":\"osteosarcoma\"}",
+      "count": 11
+    },
+    {
+      "category": "experiment_context",
+      "name": "Mesh Cellular Structures",
+      "value": "mitochondrial membrane",
+      "filter": "{\"category\":\"experiment_context\",\"name\":\"Mesh Cellular Structures\",\"value\":\"mitochondrial membrane\"}",
+      "count": 10
+    },
+    {
+      "category": "experiment_context",
+      "name": "Disease Ontology",
+      "value": "endometrial cancer",
+      "filter": "{\"category\":\"experiment_context\",\"name\":\"Disease Ontology\",\"value\":\"endometrial cancer\"}",
+      "count": 9
+    },
+    {
+      "category": "experiment_context",
+      "name": "Disease Ontology",
+      "value": "carcinoma",
+      "filter": "{\"category\":\"experiment_context\",\"name\":\"Disease Ontology\",\"value\":\"carcinoma\"}",
+      "count": 9
+    },
+    {
+      "category": "experiment_context",
+      "name": "Mesh Diseases",
+      "value": "Hypercholesterolemia",
+      "filter": "{\"category\":\"experiment_context\",\"name\":\"Mesh Diseases\",\"value\":\"Hypercholesterolemia\"}",
+      "count": 5
+    },
+    {
+      "category": "experiment_context",
+      "name": "Mesh Cellular Structures",
+      "value": "Extracellular Space",
+      "filter": "{\"category\":\"experiment_context\",\"name\":\"Mesh Cellular Structures\",\"value\":\"Extracellular Space\"}",
+      "count": 5
+    },
+    {
+      "category": "experiment_context",
+      "name": "Mesh Cellular Structures",
+      "value": "extracellular space",
+      "filter": "{\"category\":\"experiment_context\",\"name\":\"Mesh Cellular Structures\",\"value\":\"extracellular space\"}",
+      "count": 4
+    },
+    {
+      "category": "experiment_context",
+      "name": "Mesh Cellular Structures",
+      "value": "lipid raft",
+      "filter": "{\"category\":\"experiment_context\",\"name\":\"Mesh Cellular Structures\",\"value\":\"lipid raft\"}",
+      "count": 4
+    },
+    {
+      "category": "experiment_context",
+      "name": "Mesh Anatomy",
+      "value": "lean muscle",
+      "filter": "{\"category\":\"experiment_context\",\"name\":\"Mesh Anatomy\",\"value\":\"lean muscle\"}",
+      "count": 3
+    },
+    {
+      "category": "experiment_context",
+      "name": "Mesh Cellular Structures",
+      "value": "endosome",
+      "filter": "{\"category\":\"experiment_context\",\"name\":\"Mesh Cellular Structures\",\"value\":\"endosome\"}",
+      "count": 3
+    },
+    {
+      "category": "experiment_context",
+      "name": "Mesh Cellular Structures",
+      "value": "mitochondrial inner membrane",
+      "filter": "{\"category\":\"experiment_context\",\"name\":\"Mesh Cellular Structures\",\"value\":\"mitochondrial inner membrane\"}",
+      "count": 3
+    },
+    {
+      "category": "experiment_context",
+      "name": "Mesh Cellular Structures",
+      "value": "proteasome complex (sensu Eukarya) Mm",
+      "filter": "{\"category\":\"experiment_context\",\"name\":\"Mesh Cellular Structures\",\"value\":\"proteasome complex (sensu Eukarya) Mm\"}",
+      "count": 3
+    },
+    {
+      "category": "experiment_context",
+      "name": "Mesh Cellular Structures",
+      "value": "Golgi Apparatus",
+      "filter": "{\"category\":\"experiment_context\",\"name\":\"Mesh Cellular Structures\",\"value\":\"Golgi Apparatus\"}",
+      "count": 3
+    },
+    {
+      "category": "experiment_context",
+      "name": "Mesh Anatomy",
+      "value": "breast stroma",
+      "filter": "{\"category\":\"experiment_context\",\"name\":\"Mesh Anatomy\",\"value\":\"breast stroma\"}",
+      "count": 2
+    },
+    {
+      "category": "experiment_context",
+      "name": "Mesh Cellular Structures",
+      "value": "Very Low Density Lipoprotein",
+      "filter": "{\"category\":\"experiment_context\",\"name\":\"Mesh Cellular Structures\",\"value\":\"Very Low Density Lipoprotein\"}",
+      "count": 2
+    },
+    {
+      "category": "experiment_context",
+      "name": "Ncbi Taxonomy",
+      "value": "[\"9606\", \"9606\"]",
+      "filter": "{\"category\":\"experiment_context\",\"name\":\"Ncbi Taxonomy\",\"value\":\"[\\\"9606\\\", \\\"9606\\\"]\"}",
+      "count": 2
+    },
+    {
+      "category": "metadata",
+      "name": "belEvidenceSource",
+      "value": "",
+      "filter": "{\"category\":\"metadata\",\"name\":\"belEvidenceSource\",\"value\":\"\"}",
+      "count": 1
+    },
+    {
+      "category": "metadata",
+      "name": "createdDate",
+      "value": "2015-06-17",
+      "filter": "{\"category\":\"metadata\",\"name\":\"createdDate\",\"value\":\"2015-06-17\"}",
+      "count": 1
+    },
+    {
+      "category": "metadata",
+      "name": "reviewer",
+      "value": "",
+      "filter": "{\"category\":\"metadata\",\"name\":\"reviewer\",\"value\":\"\"}",
+      "count": 1
+    },
+    {
+      "category": "metadata",
+      "name": "reviewedDate",
+      "value": "",
+      "filter": "{\"category\":\"metadata\",\"name\":\"reviewedDate\",\"value\":\"\"}",
+      "count": 1
+    },
+    {
+      "category": "metadata",
+      "name": "author",
+      "value": "",
+      "filter": "{\"category\":\"metadata\",\"name\":\"author\",\"value\":\"\"}",
+      "count": 1
+    },
+    {
+      "category": "metadata",
+      "name": "reviewStatus",
+      "value": "",
+      "filter": "{\"category\":\"metadata\",\"name\":\"reviewStatus\",\"value\":\"\"}",
+      "count": 1
+    },
+    {
+      "category": "experiment_context",
+      "name": "Mesh Anatomy",
+      "value": "palate shelves",
+      "filter": "{\"category\":\"experiment_context\",\"name\":\"Mesh Anatomy\",\"value\":\"palate shelves\"}",
+      "count": 1
+    }
+  ],
+  "_links": {
+    "self": {
+      "type": "evidence-collection",
+      "href": "http://next.belframework.org/api/evidence?start=1&size=10&"
+    },
+    "start": {
+      "type": "evidence-collection",
+      "href": "http://next.belframework.org/api/evidence?start=0&size=10&"
+    },
+    "next": {
+      "type": "evidence-collection",
+      "href": "http://next.belframework.org/api/evidence?start=11&size=10&"
+    }
+  }
+}
