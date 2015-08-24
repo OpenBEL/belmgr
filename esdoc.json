@@ -1,0 +1,17 @@
+{
+  "source": "./src",
+  "destination": "./esdoc",
+  "includes": ["\\.(js|es6)$"],
+  "excludes": ["\\.config\\.(js|es6)$"],
+  "access": ["public", "protected"],
+  "autoPrivate": true,
+  "unexportIdentifier": false,
+  "undocumentIdentifier": true,
+  "builtinExternal": true,
+  "index": "./README.md",
+  "package": "./package.json",
+  "coverage": true,
+  "plugins": [
+    {"name": "esdoc-es7-plugin"}
+  ]
+}
