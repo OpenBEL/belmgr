@@ -26,7 +26,7 @@
           <!-- Loop through facet types -->
           <div class="col-xs-5 col-xs-offset-1 col-sm-12 filterbox"  repeat.for="facet_type of results.facets | keys">
             <h4>${facet_type | stringify}</h4>
-            <h4>${$parent.stringify($parent.results.facets[facet_type])}</h4>
+            <h4>${$parent.results.facets[facet_type] | stringify}</h4>
             <div class="filterboxcontent">
               <!-- Loop through facet values -->
               <div class="row nomargin" repeat.for="facet of $parent.results.facets[facet_type] | keys">
