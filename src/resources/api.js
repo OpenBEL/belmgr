@@ -11,7 +11,9 @@ let parse = message => JSON.parse(message.response);
 
 // http://europepmc.org/RestfulWebService#search
 // http://www.ebi.ac.uk/europepmc/webservices/rest/search/resulttype=core&format=json&query=src:med ext_id:1945500
-let pubmedBaseUrl = 'http://www.ebi.ac.uk/europepmc/webservices/rest/search';
+// http://next.belframework.org/europepmc/webservices/rest/search/resulttype=core&format=json&query=src:med  // proxied to remove CORS issue
+// Using this technique to proxy http://oskarhane.com/avoid-cors-with-nginx-proxy_pass
+let pubmedBaseUrl = 'http://next.belframework.org/europepmc/webservices/rest/search';
 
 export class Api {
 
@@ -42,8 +44,8 @@ export class Api {
         });
     });
 
-//    this.pubmedClient = new HttpClient();
-//    this.pubmedClient.baseUrl = pubmedBaseUrl;
+    this.pubmedClient = new HttpClient();
+    this.pubmedClient.baseUrl = pubmedBaseUrl;
 
   }
 
@@ -64,13 +66,14 @@ export class Api {
       // logger.debug("Facet: ", facet);
       if (facet.category === 'experiment_context' || facet.name === 'Status') {
         // logger.debug("Status Facet: ", facet);
-        new_facets[facet.name] = {};
+        new_facets[facet.name] = [];
         for (let value of facet.values) {
           let name = value["value"];
-          new_facets[facet.name][name] = {
+          new_facets[facet.name].push({
+            'name': name,
             'count' : value.count,
             'filter' : value.filter
-          };
+          });
         }
       }
     }
@@ -87,9 +90,16 @@ export class Api {
    * @param {Integer} faceted - facet results if equals 1 (default = 1)
    * @return {Promise} data - processed search results ready to display on the search results web page
    * */
-  search(start = 0, size = 10, faceted = "yes") {
+  search(start = 0, size = 10, faceted = "yes", filters) {
     let max_values_per_facet = 20;
     let getstring = `/evidence?start=${start}&size=${size}&faceted=${faceted}&max_values_per_facet=${max_values_per_facet}`;
+    if (filters) {
+      for (let filter of filters) {
+        getstring += `&filter=${filter}`;
+      }
+    }
+    logger.debug('Filters2: ', filters);
+    logger.debug('Getstring: ', getstring);
 
     return this.apiClient.fetch(getstring)
       .then(response => response.json())
@@ -97,22 +107,26 @@ export class Api {
               let new_data = {};
               new_data['evidences'] = data.evidence;
               new_data['facets'] = this.process_facets(data.facets);
+              logger.debug('New Data: ', new_data);
               return new_data;
             })
       .catch(function (reason) {
-               console.log(`Search Error: ${reason}`)
+                         if (reason.status === 404) {
+                           return {"evidences": null, "facets": {}};
+                         }
+                         else {
+                           logger.error("Search API Error: ", reason);
+                         }
              });
   }
 
-//  getPubmed(id) {
-//    let getstring = `/resulttype=core&format=json&query=src:med ext_id:${id}`;
-//    let results = {};
-//    return this.pubmedClient.fetch(getstring)
-//      .then(response => response.json())
-//      .catch(function(reason) {console.log(`getPubmed Error: ${reason}`)});
-//  }
-//      this.api.getPubmed('1945500')
-//        .then(results => console.log(results))
-//        .catch(reason => console.log(`Pubmed Error: ${reason}`));
+  getPubmed(id) {
+    let getstring = `/resulttype=core&format=json&query=src:med ext_id:${id}`;
+    let results = {};
+    return this.pubmedClient.fetch(getstring)
+      .then(response => response.json())
+      .catch(function(reason) {console.log(`getPubmed Error: ${reason}`)});
+  }
+
 
 }

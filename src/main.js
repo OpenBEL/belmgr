@@ -3,6 +3,7 @@ import {CustomLogAppender} from './resources/custom-log-appender';
 
 LogManager.addAppender(new CustomLogAppender());
 LogManager.setLevel(LogManager.logLevel.debug);
+// LogManager.setLevel(LogManager.logLevel.info);
 
 export function configure(aurelia) {
 

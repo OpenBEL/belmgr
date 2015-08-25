@@ -9,7 +9,7 @@
         <form role="form" submit.delegate="search()">
           <div class="form-group">
             <div class="input-group col-xs-11 col-sm-12">
-              <input type="text" value.bind="keywords" class="form-control" id="searchToken" placeholder="search">
+              <input type="text" onblur.delegate="search()" value.bind="search_terms" class="form-control" id="searchToken" placeholder="search">
                 <span class="input-group-btn highlight">
                   <button type="submit" class="btn transparent searchbtn">
                     <i class="fa fa-search"></i>
@@ -21,28 +21,30 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-md-3">
-        <div id="filtercolumn" if.bind="results.evidences">
-          <!-- Loop through facet types -->
-          <div class="col-xs-5 col-xs-offset-1 col-sm-12 filterbox"  repeat.for="facet_type of results.facets | keys">
-            <h4>${facet_type | stringify}</h4>
-            <h4>${$parent.results.facets[facet_type] | stringify}</h4>
-            <div class="filterboxcontent">
-              <!-- Loop through facet values -->
-              <div class="row nomargin" repeat.for="facet of $parent.results.facets[facet_type] | keys">
-                <h4>Facet: ${facet | stringify}</h4>
-                <!--<input class="searchcheckbox" id="option" type="checkbox" name="field" value="option"-->
-                       <!--model.bind="facet"-->
-                       <!--checked.bind="facet"-->
-                       <!--change.delegate="$parent.$parent.search()" class=" filterboxcheck col-xs-1">-->
+      <template if.bind="results.facets">
+        <div class="col-md-3">
+          <div id="filtercolumn" if.bind="results.evidences">
+            <!-- Loop through facet types -->
+            <div class="col-xs-5 col-xs-offset-1 col-sm-12 filterbox"  repeat.for="facet_type of results.facets | keys">
+              <h4>${facet_type}</h4>
+              <!--<h4>${$parent.results.facets[facet_type] | stringify}</h4>-->
+              <div class="filterboxcontent">
+                <!-- Loop through facet values -->
+                <div class="row nomargin" repeat.for="facet of $parent.results.facets[facet_type]">
+                  <!--<h4>Facet: ${item | stringify}</h4>-->
+                  <input class="searchcheckbox" id="option" type="checkbox" name="field" value="option"
+                         value.bind="item.filter"
+                         checked.bind="$parent.$parent.selected_facets[item.filter]"
+                         change.delegate="$parent.$parent.search()" class=" filterboxcheck col-xs-1">
 
-                <!-- class="col-xs-11 filterboxtext" -->
-                <label for="option" class="filterboxlabel"> ${fv} ()</label>
+                  <!-- class="col-xs-11 filterboxtext" -->
+                  <label for="option" class="filterboxlabel"> ${item.name} (${item.count})</label>
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
+      </template>
 
       <div class="col-md-9" id="resultscolumn">
         <template if.bind="results.evidences">
@@ -58,6 +60,9 @@
           <p>No search results</p>
         </template>
       </div>
+      <!--<div class="col-md-9" id="resultscolumn">-->
+        <!--<pre>${selected_facets | stringify}</pre>-->
+      <!--</div>-->
     </div>
   </div>
 </template>

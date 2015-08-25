@@ -11,19 +11,55 @@ export class Search {
   constructor(api) {
     this.api = api;
     this.results = null;
-    this.facet_type = null;
+    this.selected_facets = {};
+    this.search_terms = null;
+    this.search_start = 0;
+    this.search_size = 10;
+    this.search_faceted = 1;
   }
+
 
   async activate() {
 
     // Get initial search results
     try {
-      this.results = await this.api.search();
-      console.log("Search results: %O", this.results.evidences);
-      console.log("Search facets: ", this.results.facets);
+      this.results = await this.api.search(this.search_start, this.search_size, this.search_faceted);
+      logger.debug("Search results: %O", this.results.evidences);
+      logger.debug("Search facets: ", this.results.facets);
     }
     catch (err) {
-      console.log(err);
+      logger.error('Search result error: ', err);
+    }
+
+    // Testing pubmed queries
+//    this.api.getPubmed('1945500')
+//      .then(results => logger.debug('Pubmed results: ', results))
+//      .catch(reason => logger.error(`Pubmed Error: ${reason}`));
+  }
+
+  async search() {
+//    logger.debug(JSON.stringify(this.selected_facets, null, 2));
+//    logger.debug('Search terms: ', this.search_terms);
+    let filters = []; // filters to send to api.search
+    if (this.selected_facets) {
+      let keys = Object.keys(this.selected_facets);
+      for (let key of keys) {
+          if (this.selected_facets[key]) {
+          filters.push(key);
+        }
+      }
+    }
+    if (this.search_terms) {
+      filters.push(`{"category": "fts", "name": "search", "value": "${this.search_terms}" }`);
+    }
+    logger.debug('Filters: ', filters);
+    try {
+      this.results = await this.api.search(this.search_start, this.search_size, this.search_faceted, filters);
+      logger.debug("Search results: %O", this.results.evidences);
+      logger.debug("Search facets: ", this.results.facets);
+    }
+    catch (err) {
+      logger.error('Search result error: ', err);
     }
   }
 //
@@ -40,10 +76,6 @@ export class Search {
 //    return facet_values;
 //  }
 
-  // Used for debugging
-  stringify(object) {
-    return JSON.stringify(object);
-  }
 }
 
 /**
@@ -72,25 +104,13 @@ export class KeysValueConverter {
    * @return {array} list of keys
    */
   toView(object){
-    logger.debug('Keys: ', Object.keys(object));
-    let arr = Object.keys(object);
-    return arr;
-  }
-}
-
-/**
- * Extract keys from object for use in repeat.for loop
- */
-export class ValuesValueConverter {
-
-  /**
-   * To View method
-   *
-   * @param {Object} object to extract keys from
-   * @return {array} list of keys
-   */
-  toView(object){
-    logger.debug('Keys: ', Object.values(object));
-    return Object.keys(object);
+    if (typeof object === 'object') {
+      logger.debug('Keys: ', Object.keys(object));
+      let arr = Object.keys(object);
+      return arr;
+    }
+    else {
+      return [];
+    }
   }
 }
