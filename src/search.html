@@ -51,7 +51,10 @@
           <table class="table table-hover">
             <tbody>
             <tr repeat.for="evidence of results.evidences">
-              <td class="nametd nocenter col-xs-9"><a href.bind="evidence._links.self.href">${evidence.bel_statement}</a></td>
+              <td class="nametd nocenter col-xs-9">
+                <!--<a href.bind="evidence._links.self.href">${evidence.bel_statement}</a>-->
+                <a route-href="route: edit; params.bind: { id: $parent.get_evidence_id(evidence._links.self.href)  }">${evidence.bel_statement}</a>
+              </td>
             </tr>
             </tbody>
           </table>

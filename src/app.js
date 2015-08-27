@@ -7,8 +7,8 @@ export class App {
     config.map([
       { route: ['','welcome'],  moduleId: './welcome',    name: 'home',     nav: true,  title:'Welcome' },
       { route: 'search',        moduleId: './search',     name: 'search',   nav: true,  title:'Search' },
-      { route: 'edit/:url',     moduleId: './edit',       name: 'edit',     nav: false,  title:'Edit BEL' },
-      { route: 'create',        moduleId: './edit',       name: 'create',   nav: false,  title:'Create BEL' },
+      { route: 'edit/:id',      moduleId: './edit',       name: 'edit',     nav: false,  title:'Edit BEL' },
+      { route: 'create',        moduleId: './edit',       name: 'create',   nav: true,  title:'New BEL' },
       { route: 'about',         moduleId: './about',      name: 'about',    nav: true,  title:'About' }
     ]);
 

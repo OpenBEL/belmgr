@@ -62,6 +62,16 @@ export class Search {
       logger.error('Search result error: ', err);
     }
   }
+
+  get_evidence_id(url) {
+    let matches = url.match(/\/(\w+?)$/);
+    logger.debug('Matches: ', matches[1]);
+    return matches[1];
+  }
+
+//  uri_encode(uri) {
+//    return encodeURIComponent(uri);
+//  }
 //
 //  get facet_values() {
 //    let facet_values = [];

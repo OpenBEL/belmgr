@@ -1,8 +1,256 @@
 <template>
-  <h2>${msg}</h2>
-  <div class="container">
+  <div class="col-sm-10 col-sm-offset-1">
+    <div class="col-md-3">
+      <h2>BEL Editor</h2>
+    </div>
 
-    <button class="btn btn-primary" click.delegate="save()"></button>
+    <form name="newBelForm">
+
+
+      <!-- BEL Statement -->
+      <section id="bel-statement">
+        <div class="col-sm-12">
+          <h3>BEL Statement</h3>
+        </div>
+        <!-- .col-sm-12 -->
+        <div class="row">
+          <div id="bel-source-div" class="col-sm-5">
+            <div class="form-group">
+              <label class="sr-only" for="belsubject">BEL Source</label>
+              <input name="belsubject" id="belsubject" type="text" class="form-control typeahead" placeholder="Subject"
+                     autocomplete="on" debounce></input>
+            </div>
+
+            <div id="source-searchbox" class="search-box" style="display: none;">
+              <h3>Entity Search</h3>
+            </div>
+          </div>
+
+          <div id="bel-relation-div" class="col-sm-2">
+            <label class="sr-only" for="belrelation">BEL Relation</label>
+            <select class="form-control" id="belrelation" style="margin-top: 4px;" model.bind="belRelation">
+              <option>--Relation--</option>
+              <option repeat.for="relation of relationsList" model.bind="relation.value">${relation.label}</option>
+            </select>
+          </div>
+
+          <div id="bel-target-div" class="col-sm-5">
+            <div class="form-group input-block-level">
+              <label class="sr-only" for="belobject">BEL Object</label>
+              <input name="belobject" id="belobject" type="text" class="form-control typeahead" placeholder="Object"
+                     autocomplete="on" debounce></input>
+            </div>
+          </div>
+        </div>
+
+        <div class="row container">
+          <p class="col-md-12">${evidence.bel_statement}</p>
+        </div>
+      </section>
+
+      <!-- BEL Citation -->
+      <section>
+        <div id="bel-citation">
+          <div class="col-sm-12">
+            <h3>Citation</h3>
+          </div>
+          <!-- .col-sm-12 -->
+          <div class="col-sm-2">
+            <div class="form-group">
+              <label for="citation_type">Citation Type</label>
+              <select class="form-control" id="citation_type" value.bind="evidence.citation.type">
+                <option value="PubMed">PubMed</option>
+                <option value="Journal">Journal</option>
+                <option value="Book">Book</option>
+                <option value="Online Resource">Online Resource</option>
+                <option value="Other">Other</option>
+              </select>
+            </div>
+            <!-- .form-group -->
+          </div>
+          <!-- .col-sm-2 -->
+          <div class="col-sm-7">
+            <div class="form-group">
+              <label for="citation_name">Name</label>
+              <input type="text" class="form-control" id="citation_ref" value.bind="evidence.citation.name"
+                     placeholder="Citation Name - e.g. journal reference or book name">
+            </div>
+            <!-- .form-group -->
+          </div>
+          <!-- .col-sm-8 -->
+          <div class="col-sm-3">
+            <div class="form-group">
+              <label for="citation_ref">PubDate</label>
+              <input type="date" class="form-control" id="citation_pubdate" value.bind="evidence.citation.date"
+                     placeholder="YYYY-MM-DD">
+            </div>
+            <!-- .form-group -->
+          </div>
+          <!-- col-sm-2 -->
+          <div class="col-sm-12">
+            <div class="form-group">
+              <label for="citation_ref">Reference</label>
+              <input type="text" class="form-control" id="citation_ref" value.bind="evidence.citation.id"
+                     placeholder="Citation Reference - e.g. PubmedID, ISBN, or URL">
+            </div>
+            <!-- .form-group -->
+          </div>
+          <!-- .col-sm-12 -->
+          <div class="col-sm-12">
+            <div class="form-group">
+              <label for="citation_ref">Authors</label>
+              <input type="text" class="form-control" id="citation_authors"
+                     value.bind="evidence.citation.authors | pipedelim"
+                     placeholder="separate authors with a semicolon ';'">
+            </div>
+            <!-- .form-group -->
+          </div>
+          <!-- .col-sm-12 -->
+          <div class="col-sm-12">
+            <div class="form-group">
+              <label for="citation_ref">Comments</label>
+              <input type="text" class="form-control" id="citation_comments"
+                     value.bind="evidence.citation.comment"></input>
+            </div>
+            <!-- .form-group -->
+          </div>
+          <!-- .col-sm-12 -->
+        </div>
+      </section>
+
+      <!-- BEL Annotations -->
+      <section>
+        <div id="bel-annotation">
+          <div class="col-sm-12">
+            <h3>Annotation</h3>
+          </div>
+          <!-- .col-sm-12 -->
+
+          <!-- SummaryText -->
+
+          <div class="col-sm-12">
+            <div class="form-group">
+              <label for="summaryText">BEL Summary Text</label>
+              <textarea class="form-control" value.bind="evidence.summary_text" id="summaryText" rows="3"
+                        placeholder="Extract from source text supporting this BEL Statement"></textarea>
+            </div>
+            <!-- .form-group -->
+          </div>
+          <!-- .col-sm-12 -->
+
+          <!-- End SummaryText -->
+
+          <!-- Structured Annotations -->
+          <div class="col-sm-12">
+            <h4>Structured Annotations</h4>
+          </div>
+          <!-- .col-sm-12 -->
+
+          <div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="structuredAnnotations-{{$index}}">Annotation Type</label>
+                <select name="structuredAnnotations-{{$index}}" class="form-control structuredAnnotations"></select>
+              </div>
+              <!-- .form-group -->
+            </div>
+            <!-- .col-sm-3 -->
+            <div class="col-sm-8">
+              <div class="form-group">
+                <label for="s-annotation-{{$index}}">Annotation</label>
+                <input name="s-annotation-{{$index}}" class="form-control s-annotation" type="text"></input>
+              </div>
+              <!-- .form-group -->
+            </div>
+            <!-- .col-sm-8 -->
+            <div class="col-sm-1" style="padding-top: 24px;">
+              <button class="btn btn-danger">-</button>
+            </div>
+            <!-- .col-sm-1 -->
+          </div>
+
+          <!-- End Structured Annotations -->
+
+        </div>
+      </section>
+
+      <!-- BEL Statement Metadata -->
+      <div id="bel-metadata" class="bottom30">
+        <div class="col-sm-12">
+          <h3>BEL Evidence Metadata</h3>
+        </div>
+
+        <!-- .col-sm12 -->
+        <div class="col-sm-3">
+          <div class="form-group">
+            <label for="">Review Status</label>
+            <select class="form-control" id="reviews" value.bind="evidence.metadata.Status">
+              <option value="Draft">Draft</option>
+              <option value="Review">Review</option>
+              <option value="Approved">Approved</option>
+              <option value="Rejected">Rejected</option>
+            </select>
+          </div>
+          <!-- .form-group -->
+        </div>
+        <!-- .col-sm-3 -->
+        <div class="col-sm-6">
+          <div class="form-group">
+            <label for="">Author</label>
+            <input type="text" class="form-control"></input>
+          </div>
+          <!-- .form-group -->
+        </div>
+        <!-- .col-sm-6 -->
+        <div class="col-sm-3">
+          <div class="form-group">
+            <label for="">Date Created</label>
+            <input class="form-control" type="date"></input>
+          </div>
+          <!-- .form-group -->
+        </div>
+        <!-- .col-sm-3 -->
+
+        <div class="col-sm-6 col-sm-offset-3">
+          <div class="form-group">
+            <label for="">Reviewer</label>
+            <input type="text" class="form-control"></input>
+          </div>
+          <!-- .form-group -->
+        </div>
+        <!-- .col-sm-6.col-sm-offset-3 -->
+
+        <div class="col-sm-3">
+          <div class="form-group">
+            <label for="">Date Reviewed</label>
+            <input class="form-control" type="date"></input>
+          </div>
+          <!-- .form-group -->
+        </div>
+        <!-- .col-sm-3 -->
+
+        <div class="col-sm-6 col-sm-offset-3">
+          <div class="form-group">
+            <label for="">BEL Evidence Source</label>
+            <input id="source" type="text" class="form-control" value.bind="evidence.metadata.evidence_source"></input>
+          </div>
+          <!-- .form-group -->
+        </div>
+        <!-- .col-sm-6.col-sm-offset-3 -->
+
+      </div>
+      <!-- #bel-metadata -->
+
+
+      <div class="col-sm-3 col-sm-offset-1">
+        <input type="submit" class="btn btn-success form-control"></input>
+      </div>
+      <!-- .col-sm-3.col-sm-offset-1 -->
+      <div class="col-sm-3 col-sm-offset-4">
+        <input type="reset" class="btn btn-danger form-control pull-right"></input>
+      </div>
+
+    </form>
   </div>
 
 </template>

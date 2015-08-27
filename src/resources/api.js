@@ -12,13 +12,38 @@ let parse = message => JSON.parse(message.response);
 // http://europepmc.org/RestfulWebService#search
 // http://www.ebi.ac.uk/europepmc/webservices/rest/search/resulttype=core&format=json&query=src:med ext_id:1945500
 // http://next.belframework.org/europepmc/webservices/rest/search/resulttype=core&format=json&query=src:med  // proxied to remove CORS issue
+// http://next.belframework.org/europepmc/webservices/rest/search/resulttype=core&format=json&query=src:med ext_id:1945500
 // Using this technique to proxy http://oskarhane.com/avoid-cors-with-nginx-proxy_pass
 let pubmedBaseUrl = 'http://next.belframework.org/europepmc/webservices/rest/search';
 
 export class Api {
 
   constructor() {
+    // Simple API Client - not preconfigured with BaseUrl
+    this.client = new HttpClient();
+    this.client.configure(config => {
+      config
+        .withDefaults({
+          headers: {
+            'Accept'          : 'application/json',
+            'X-Requested-With': 'Fetch'
+          }
+        })
+        .rejectErrorResponses()
+        .withInterceptor({
+          request(request) {
+            logger.debug(`Requesting ${request.method} ${request.url}`);
+            return request; // you can return a modified Request, or you can short-circuit the request by returning a
+                            // Response
+          },
+          response(response) {
+            logger.debug(`Received ${response.status} ${response.url}`);
+            return response; // you can return a modified Response
+          }
+        });
+    });
 
+    // OpenBEL API Client - preconfigured with BaseUrl
     this.apiClient = new HttpClient();
     // this.apiClient.baseUrl = baseUrl;
     this.apiClient.configure(config => {
@@ -33,20 +58,40 @@ export class Api {
         .rejectErrorResponses()
         .withInterceptor({
           request(request) {
-            console.log(`Requesting ${request.method} ${request.url}`);
+            logger.debug(`Requesting ${request.method} ${request.url}`);
             return request; // you can return a modified Request, or you can short-circuit the request by returning a
                             // Response
           },
           response(response) {
-            console.log(`Received ${response.status} ${response.url}`);
+            logger.debug(`Received ${response.status} ${response.url}`);
             return response; // you can return a modified Response
           }
         });
     });
 
+    // Pubmed API Client - preconfigured with BaseUrl
     this.pubmedClient = new HttpClient();
-    this.pubmedClient.baseUrl = pubmedBaseUrl;
-
+    this.pubmedClient.configure(config => {
+      config
+        .withBaseUrl(pubmedBaseUrl)
+        .withDefaults({
+          headers: {
+            'Accept'          : 'application/json'
+          }
+        })
+        .rejectErrorResponses()
+        .withInterceptor({
+          request(request) {
+            logger.debug(`Requesting ${request.method} ${request.url}`);
+            return request; // you can return a modified Request, or you can short-circuit the request by returning a
+                            // Response
+          },
+          response(response) {
+            logger.debug(`Received ${response.status} ${response.url}`);
+            return response; // you can return a modified Response
+          }
+        });
+    });
   }
 
 
@@ -59,7 +104,7 @@ export class Api {
    * @param {Object} facets - facets returned by BEL API from search
    * @returns {Object} facets - facets after processing to be used in web page
    * */
-  process_facets(facets) {
+  processFacets(facets) {
     let new_facets = {};
 
     for (let facet of facets) {
@@ -106,7 +151,7 @@ export class Api {
       .then(data => {
               let new_data = {};
               new_data['evidences'] = data.evidence;
-              new_data['facets'] = this.process_facets(data.facets);
+              new_data['facets'] = this.processFacets(data.facets);
               logger.debug('New Data: ', new_data);
               return new_data;
             })
@@ -120,13 +165,92 @@ export class Api {
              });
   }
 
-  getPubmed(id) {
-    let getstring = `/resulttype=core&format=json&query=src:med ext_id:${id}`;
-    let results = {};
-    return this.pubmedClient.fetch(getstring)
+  /**
+   * Get BEL Evidence from API Service
+   *
+   * @param id
+   * @returns evidence object
+   */
+  getBelEvidence(id) {
+    return this.apiClient.fetch(`/evidence/${id}`)
       .then(response => response.json())
-      .catch(function(reason) {console.log(`getPubmed Error: ${reason}`)});
+      .then(data => {
+                        // logger.debug('BEL Evidence: ', data);
+                        return data['evidence'][0];
+            })
+      .catch(function(reason) {logger.error(`GET BEL Evidence Error: ${reason}`)});
+
   }
 
+  /**
+   * Load BEL Evidence (POST or PUT)
+   *
+   * @param id
+   * @param evidence
+   */
+  loadBelEvidence(id, evidence) {
+    if (id) {
+      return this.apiClient.fetch(`/evidence/${id}`, {
+          method: 'post',
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(evidence)
+        })
+        .then(response => response.json())
+        .catch(function (reason) {logger.error(`POST BEL Evidence Error: ${reason}`)});
+    }
+    else {
+      return this.apiClient.fetch(`/evidence/${id}`, {
+        method: 'put',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(evidence)
+      })
+        .then(response => response.json())
+        .catch(function (reason) {logger.error(`PUT BEL Evidence Error: ${reason}`)});
+    }
+  }
 
+  /**
+   * Get Pubmed document information - e.g. title, abstract, etc.
+   *
+   * @param id
+   * @returns {*}
+   */
+  getPubmed(id) {
+    let getstring = `/resulttype=core&format=json&query=ext_id:${id} src:med`;
+
+    return this.pubmedClient.fetch(getstring)
+      .then(response => response.json())
+      .then(data => {
+                         logger.debug('Pubmed: ', data);
+                       })
+      .catch(function(reason) {logger.error(`GET Pubmed Error: ${reason}`)});
+  }
+
+  // Get list of all BEL Relations
+  getBelRelations() {
+    return this.apiClient.fetch('/annotations')
+      .then(response => response.json())
+      .then(data => {
+              logger.debug('GET BEL Annotations: ', data);
+              return data;
+            })
+      .catch(function(reason) {logger.error(`GET BEL Annotations Error: ${reason}`)});
+  }
+
+  // Get list of all BEL Annotation Resources
+  getBelAnnotations() {
+    return this.apiClient.fetch('/annotations')
+      .then(response => response.json())
+      .then(data => {
+                         logger.debug('GET BEL Annotations: ', data);
+                         return data;
+            })
+      .catch(function(reason) {logger.error(`GET BEL Annotations Error: ${reason}`)});
+  }
 }
