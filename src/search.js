@@ -1,6 +1,6 @@
 import {inject} from 'aurelia-framework';
 import {Api} from './resources/api';
-import {SortValueConverter} from './value_converters/value_converters.js';
+import {SortValueConverter} from './valueConverters/valueConverters.js';
 
 import {LogManager} from 'aurelia-framework';
 let logger = LogManager.getLogger('search');
@@ -11,61 +11,86 @@ export class Search {
   constructor(api) {
     this.api = api;
     this.results = null;
-    this.selected_facets = {};
-    this.search_terms = null;
-    this.search_start = 0;
-    this.search_size = 10;
-    this.search_faceted = 1;
+    this.selectedFacets = {};
+    this.searchTerms = null;
+    this.searchStart = 0;
+    if (! localStorage.getItem('belMgrSearchSize')) {
+      this.searchSize = "10";
+    }
+    else {
+      this.searchSize = localStorage.getItem('belMgrSearchSize');
+    }
+    this.searchFaceted = 1;
+
+    this.evidences = [];
+    this.facetSets = {};
   }
 
 
-  async activate() {
-
+  activate() {
     // Get initial search results
-    try {
-      this.results = await this.api.search(this.search_start, this.search_size, this.search_faceted);
-      logger.debug("Search results: %O", this.results.evidences);
-      logger.debug("Search facets: ", this.results.facets);
-    }
-    catch (err) {
-      logger.error('Search result error: ', err);
-    }
+    this.search();
 
-    // Testing pubmed queries
-//    this.api.getPubmed('1945500')
-//      .then(results => logger.debug('Pubmed results: ', results))
-//      .catch(reason => logger.error(`Pubmed Error: ${reason}`));
   }
 
   async search() {
-//    logger.debug(JSON.stringify(this.selected_facets, null, 2));
-//    logger.debug('Search terms: ', this.search_terms);
+//    logger.debug(JSON.stringify(this.selectedFacets, null, 2));
+//    logger.debug('Search terms: ', this.searchTerms);
     let filters = []; // filters to send to api.search
-    if (this.selected_facets) {
-      let keys = Object.keys(this.selected_facets);
+    if (this.selectedFacets) {
+      let keys = Object.keys(this.selectedFacets);
       for (let key of keys) {
-          if (this.selected_facets[key]) {
+          if (this.selectedFacets[key]) {
           filters.push(key);
         }
       }
     }
-    if (this.search_terms) {
-      filters.push(`{"category": "fts", "name": "search", "value": "${this.search_terms}" }`);
+    if (this.searchTerms) {
+      filters.push(`{"category": "fts", "name": "search", "value": "${this.searchTerms}" }`);
     }
     logger.debug('Filters: ', filters);
     try {
-      this.results = await this.api.search(this.search_start, this.search_size, this.search_faceted, filters);
-      logger.debug("Search results: %O", this.results.evidences);
-      logger.debug("Search facets: ", this.results.facets);
+      this.results = await this.api.search(this.searchStart, this.searchSize, this.searchFaceted, filters);
+      this.evidences =  this.results.evidences;
+      this.facetSets = this.results.facets;
+
+      logger.debug("Search results: ", this.evidences);
+      logger.debug("Search facets: ", this.facetSets);
     }
     catch (err) {
       logger.error('Search result error: ', err);
     }
+    this.pagerPrevious = this.pagerNext = '';
+    if (this.searchStart === 0) {this.pagerPrevious = 'disabled';}
+    this.searchResultsRange = `${this.searchStart + 1} - ${Number(this.searchStart) + Number(this.searchSize)}`;
   }
 
-  get_evidence_id(url) {
+  /**
+   * Save Search results size in local storage
+   */
+  saveSearchSize() {
+    localStorage.setItem('belMgrSearchSize', this.searchSize.toString());
+    this.search();
+  }
+
+  /**
+   *
+   * @param direction
+   */
+  pageSearchResults(direction) {
+    this.searchStart += Number(this.searchSize) * direction;
+    this.search();
+  }
+
+  /**
+   * Get Evidence ID from self link href in evidence object
+   *
+   * @param url
+   * @returns evidenceID
+   */
+  getEvidenceId(url) {
     let matches = url.match(/\/(\w+?)$/);
-    logger.debug('Matches: ', matches[1]);
+    // logger.debug('Matches: ', matches[1]);
     return matches[1];
   }
 

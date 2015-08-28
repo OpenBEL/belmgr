@@ -48,3 +48,22 @@ export class KeysValueConverter {
     return Object.keys(object);
   }
 }
+
+/**
+ * Convert authors delimited by ';' on Edit BEL page to '|' for storage
+ */
+export class PipedelimValueConverter {
+  toView(text) {
+    if (text) {
+      text = text.replace(/\|/g, ';');
+    }
+    return text;
+
+  }
+  fromView(text) {
+    if (text) {
+      text = text.replace(/\;/g, '|');
+    }
+    return text;
+  }
+}

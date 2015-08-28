@@ -55,6 +55,7 @@
             <h3>Citation</h3>
           </div>
           <!-- .col-sm-12 -->
+
           <div class="col-sm-2">
             <div class="form-group">
               <label for="citation_type">Citation Type</label>
@@ -74,6 +75,7 @@
               <label for="citation_name">Name</label>
               <input type="text" class="form-control" id="citation_ref" value.bind="evidence.citation.name"
                      placeholder="Citation Name - e.g. journal reference or book name">
+              <p class="text-warning" if.bind="pubmed.bel.mismatch.refString">${pubmed.bel.refString}</p>
             </div>
             <!-- .form-group -->
           </div>
@@ -83,15 +85,17 @@
               <label for="citation_ref">PubDate</label>
               <input type="date" class="form-control" id="citation_pubdate" value.bind="evidence.citation.date"
                      placeholder="YYYY-MM-DD">
+              <p class="warning" if.bind="pubmed.bel.mismatch.date">${pubmed.journalInfo.dateOfPublication}</p>
             </div>
             <!-- .form-group -->
           </div>
           <!-- col-sm-2 -->
+
           <div class="col-sm-12">
             <div class="form-group">
               <label for="citation_ref">Reference</label>
               <input type="text" class="form-control" id="citation_ref" value.bind="evidence.citation.id"
-                     placeholder="Citation Reference - e.g. PubmedID, ISBN, or URL">
+                     blur.delegate="getPubmed()" placeholder="Citation Reference - e.g. PubmedID, ISBN, or URL">
             </div>
             <!-- .form-group -->
           </div>
@@ -102,6 +106,7 @@
               <input type="text" class="form-control" id="citation_authors"
                      value.bind="evidence.citation.authors | pipedelim"
                      placeholder="separate authors with a semicolon ';'">
+              <p class="help-block text-warning" if.bind="pubmed.bel.mismatch.authors">${pubmed.bel.authors}</p>
             </div>
             <!-- .form-group -->
           </div>
@@ -109,10 +114,25 @@
           <div class="col-sm-12">
             <div class="form-group">
               <label for="citation_ref">Comments</label>
-              <input type="text" class="form-control" id="citation_comments"
-                     value.bind="evidence.citation.comment"></input>
+              <textarea rows="3" class="form-control" id="citation_comments"
+                     value.bind="evidence.citation.comment"></textarea>
             </div>
+            <p class="warning" if.bind="pubmed.bel.mismatch.comments">${pubmed.title}</br>${pubmed.abstractText}</p>
             <!-- .form-group -->
+          </div>
+          <div if.bind="evidence.citation.id && evidence.citation.type==='PubMed'" class="col-sm-12">
+            <div class="form-group">
+
+              <!-- todo Kelly might want to use icons for EuropePMC and Pubmed like
+              https://pbs.twimg.com/profile_images/2792175138/f93f2e30d1cca847800e6f3060b8101a.jpeg instead of buttons -->
+
+              <a href="http://europepmc.org/abstract/MED/${evidence.citation.id}" class="btn btn-primary active" role="button">EuropePMC</a>
+              <a href="http://www.ncbi.nlm.nih.gov/pubmed/?term=${evidence.citation.id}[uid]" class="btn btn-primary active" role="button">PubMed</a>
+              <h3>Pubmed Title</h3>
+              <p>${pubmed.title}</p>
+              <h3>Abstract</h3>
+              <p>${pubmed.abstractText}</p>
+            </div>
           </div>
           <!-- .col-sm-12 -->
         </div>

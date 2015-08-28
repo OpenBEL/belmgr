@@ -143,8 +143,8 @@ export class Api {
         getstring += `&filter=${filter}`;
       }
     }
-    logger.debug('Filters2: ', filters);
-    logger.debug('Getstring: ', getstring);
+    // logger.debug('Filters2: ', filters);
+    // logger.debug('Getstring: ', getstring);
 
     return this.apiClient.fetch(getstring)
       .then(response => response.json())
@@ -227,7 +227,8 @@ export class Api {
     return this.pubmedClient.fetch(getstring)
       .then(response => response.json())
       .then(data => {
-                         logger.debug('Pubmed: ', data);
+                         // logger.debug('Pubmed: ', data);
+                        return data.resultList.result[0];
                        })
       .catch(function(reason) {logger.error(`GET Pubmed Error: ${reason}`)});
   }

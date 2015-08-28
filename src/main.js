@@ -1,7 +1,9 @@
 import {LogManager} from 'aurelia-framework';
-import {CustomLogAppender} from './resources/custom-log-appender';
+import {CustomLogAppender} from './resources/CustomLogAppender';
+import {ConsoleAppender} from 'aurelia-logging-console';
 
-LogManager.addAppender(new CustomLogAppender());
+// LogManager.addAppender(new CustomLogAppender());
+LogManager.addAppender(new ConsoleAppender());
 LogManager.setLevel(LogManager.logLevel.debug);
 // LogManager.setLevel(LogManager.logLevel.info);
 
