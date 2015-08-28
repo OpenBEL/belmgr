@@ -162,32 +162,36 @@
 
           <!-- Structured Annotations -->
           <div class="col-sm-12">
-            <h4>Structured Annotations</h4>
+            <h4>Annotations</h4>
           </div>
           <!-- .col-sm-12 -->
-
-          <div>
-            <div class="col-sm-3">
-              <div class="form-group">
-                <label for="structuredAnnotations-{{$index}}">Annotation Type</label>
-                <select name="structuredAnnotations-{{$index}}" class="form-control structuredAnnotations"></select>
+          <template repeat.for="i of evidence.experiment_context.length + 1">
+            <div>
+              <div class="col-sm-3">
+                <div class="form-group">
+                  <label for="annotationType-${$index}">Annotation Type</label>
+                  <select name="annotationType-${$index}" class="form-control" value.bind="$parent.evidence.experiment_context[$index].name">
+                    <option repeat.for="annotationType of $parent.annotationList" value.bind="annotationType.name">${annotationType.name}</option>
+                    <option>Unknown</option>
+                  </select>
+                </div>
+                <!-- .form-group -->
               </div>
-              <!-- .form-group -->
-            </div>
-            <!-- .col-sm-3 -->
-            <div class="col-sm-8">
-              <div class="form-group">
-                <label for="s-annotation-{{$index}}">Annotation</label>
-                <input name="s-annotation-{{$index}}" class="form-control s-annotation" type="text"></input>
+              <!-- .col-sm-3 -->
+              <div class="col-sm-8">
+                <div class="form-group">
+                  <label for="annotationVal-${$index}">Annotation</label>
+                  <input name="annotationVal-${$index}" class="form-control" type="text" value.bind="$parent.evidence.experiment_context[$index].value || ''"></input>
+                </div>
+                <!-- .form-group -->
               </div>
-              <!-- .form-group -->
+              <!-- .col-sm-8 -->
+              <div class="col-sm-1" style="padding-top: 24px;">
+                <button class="btn btn-danger">X</button>
+              </div>
+              <!-- .col-sm-1 -->
             </div>
-            <!-- .col-sm-8 -->
-            <div class="col-sm-1" style="padding-top: 24px;">
-              <button class="btn btn-danger">-</button>
-            </div>
-            <!-- .col-sm-1 -->
-          </div>
+          </template>
 
           <!-- End Structured Annotations -->
 

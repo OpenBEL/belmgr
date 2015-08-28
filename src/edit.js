@@ -17,7 +17,14 @@ export class Edit {
     this.evidenceId = null;
     this.evidence = {};
     this.relationsList = relationsList;
-    this.annotationList = this.api.getBelAnnotations();
+
+//    this.api.getBelAnnotations()
+//      .then(data => {this.annotationList = data;logger.debug('AnnoList: ', this.annotationList);})
+//      .catch(
+//        function(reason) {logger.error(`GET BEL Annotations Error: ${reason}`)}
+//      );
+
+
     this.pubmed = null;
   }
 
@@ -32,7 +39,9 @@ export class Edit {
       // Get BEL Evidence
       try {
         this.evidence = await this.api.getBelEvidence(this.evidenceId);
+        this.annotationList = await this.api.getBelAnnotations();
         logger.debug("BEL Evidence", this.evidence);
+        logger.debug('AnnoList: ', this.annotationList);
       }
       catch (err) {
         logger.error('GET BEL Evidence error: ', err);
@@ -73,7 +82,6 @@ export class Edit {
         this.pubmed.bel.mismatch.date = true;
       }
       // Check authors
-      logger.debug(this.evidence.citation.authors, '!==', this.pubmed.bel.authors);
       if (! this.evidence.citation.authors) {
         this.evidence.citation.authors = this.pubmed.bel.authors;
       }

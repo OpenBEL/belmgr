@@ -250,7 +250,7 @@ export class Api {
       .then(response => response.json())
       .then(data => {
                          logger.debug('GET BEL Annotations: ', data);
-                         return data;
+                         return data['annotations'];
             })
       .catch(function(reason) {logger.error(`GET BEL Annotations Error: ${reason}`)});
   }
