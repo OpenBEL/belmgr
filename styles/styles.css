@@ -8120,12 +8120,16 @@ a:hover {
     margin-right: 0px;
 }
 
-
+.fa-spin {
+  color: #F99B2A;
+}
 /*END MARGIN SHORTCUTS*/
 
 
 /*PADDING SHORTCUTS*/
-
+.paddingNone {
+  padding: 0 !important;
+}
 .paddingrt0 {
     padding-right: 0px;
 }
@@ -8328,6 +8332,7 @@ label.filter-boxlabel {
 
 .filter-facetTitle {
     margin-left: -20px;
+    font-weight: 500;
 }
 
 input[type=checkbox] {
