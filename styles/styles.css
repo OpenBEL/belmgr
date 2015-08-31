@@ -8103,8 +8103,9 @@ a:focus,
 button:hover,
 button:hover>i,
 a:hover {
-  color: #F99B2A;
+    color: #F99B2A;
 }
+
 
 /*MARGIN SHORTCUTS*/
 
@@ -8121,15 +8122,19 @@ a:hover {
 }
 
 .fa-spin {
-  color: #F99B2A;
+    color: #F99B2A;
 }
+
+
 /*END MARGIN SHORTCUTS*/
 
 
 /*PADDING SHORTCUTS*/
+
 .paddingNone {
-  padding: 0 !important;
+    padding: 0 !important;
 }
+
 .paddingrt0 {
     padding-right: 0px;
 }
@@ -8267,15 +8272,27 @@ div.au-stagger {
 
 /*SEARCH PAGE*/
 
-.search-btn {
-    color: #001d69;
-    background-color: #fff !important;
-    border: 1px solid #1e1e24 !important;
+.pager .next > .search-btn,
+.pager .previous > .search-btn {
+    color: #1e1e24;
+    background-color: transparent;
+    border-radius: 4px;
 }
 
-.search-btn:hover {
-    background-color: #001243;
+.pager .next > .search-btn:hover,
+.pager .previous > .search-btn:hover,
+.search-showRow > .search-showForm:hover {
     color: #F99B2A;
+    box-shadow: inset 1px 1px 10px #e3e3e8;
+}
+
+.pager .disabled > .search-btn,
+.pager .disabled > .search-btn:hover,
+.pager .disabled > .search-btn:active,
+.pager .disabled > .search-btn:focus {
+    color: #8f8fa3;
+    background-color: #f7f7f8;
+    box-shadow: none;
 }
 
 .search-searchBtn {
@@ -8298,7 +8315,7 @@ div.au-stagger {
     width: 70px;
     float: right;
     z-index: 100;
-    border-color: #001d69;
+    border-color: #F99B2A;
 }
 
 .search-showForm:focus {
@@ -8320,6 +8337,7 @@ label.filter-boxlabel {
     margin-bottom: 5px;
     font-weight: normal;
     font-size: 12px;
+    pointer-events: none;
 }
 
 .filter-boxcontent {
@@ -8356,6 +8374,10 @@ input[type=checkbox]:after {
     color: #001d69;
 }
 
+input[type=checkbox]:hover:after {
+    box-shadow: inset 1px 1px 10px #e3e3e8;
+}
+
 input[type=checkbox]:checked:after {
     content: '✓';
     color: #001d69;
@@ -8375,6 +8397,7 @@ th.table-range:hover {
     z-index: 10;
     border: none;
     border-top: none !important;
+    width: 30%;
 }
 
 td.table-td {
@@ -8387,9 +8410,11 @@ td.table-td a {
     color: #001d69;
     font-size: 12px;
 }
+
 tbody>tr:hover {
-  background-color: 
+    background-color:
 }
+
 
 /*END TABLE SECTION*/
 
