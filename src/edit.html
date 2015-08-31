@@ -4,7 +4,7 @@
       <h2>BEL Editor</h2>
     </div>
 
-    <form name="newBelForm">
+    <form name="newBelForm" submit.delegate="submit()">
 
 
       <!-- BEL Statement -->
@@ -58,7 +58,7 @@
 
           <div class="col-sm-2">
             <div class="form-group">
-              <label for="citation_type">Citation Type</label>
+              <label for="citation_type">Type</label>
               <select class="form-control" id="citation_type" value.bind="evidence.citation.type">
                 <option value="PubMed">PubMed</option>
                 <option value="Journal">Journal</option>
@@ -72,17 +72,16 @@
           <!-- .col-sm-2 -->
           <div class="col-sm-7">
             <div class="form-group">
-              <label for="citation_name">Name</label>
-              <input type="text" class="form-control" id="citation_ref" value.bind="evidence.citation.name"
-                     placeholder="Citation Name - e.g. journal reference or book name">
-              <p class="text-warning" if.bind="pubmed.bel.mismatch.refString">${pubmed.bel.refString}</p>
+              <label for="citation_ref">Reference ID</label>
+              <input type="text" class="form-control" id="citation_ref" value.bind="evidence.citation.id"
+                     blur.delegate="getPubmed()" placeholder="Citation Reference - e.g. PubmedID, ISBN, or URL">
             </div>
             <!-- .form-group -->
           </div>
           <!-- .col-sm-8 -->
           <div class="col-sm-3">
             <div class="form-group">
-              <label for="citation_ref">PubDate</label>
+              <label for="citation_ref">Publication Date</label>
               <input type="date" class="form-control" id="citation_pubdate" value.bind="evidence.citation.date"
                      placeholder="YYYY-MM-DD">
               <p class="warning" if.bind="pubmed.bel.mismatch.date">${pubmed.journalInfo.dateOfPublication}</p>
@@ -93,9 +92,12 @@
 
           <div class="col-sm-12">
             <div class="form-group">
-              <label for="citation_ref">Reference</label>
-              <input type="text" class="form-control" id="citation_ref" value.bind="evidence.citation.id"
-                     blur.delegate="getPubmed()" placeholder="Citation Reference - e.g. PubmedID, ISBN, or URL">
+              <label for="citation_name">Reference Name</label>
+              <input type="text" class="form-control" id="citation_name" value.bind="evidence.citation.name"
+                     placeholder="Citation Name - e.g. journal or book reference">
+              <p class="text-warning" if.bind="pubmed.bel.mismatch.refString">${pubmed.bel.refString}</p>
+
+
             </div>
             <!-- .form-group -->
           </div>
@@ -103,9 +105,10 @@
           <div class="col-sm-12">
             <div class="form-group">
               <label for="citation_ref">Authors</label>
-              <input type="text" class="form-control" id="citation_authors"
-                     value.bind="evidence.citation.authors | pipedelim"
+              <input compile-spy type="text" class="form-control" id="citation_authors"
+                     value.bind="evidence.citation.authors | pipeDelim"
                      placeholder="separate authors with a semicolon ';'">
+              <p>Authors: ${evidence.citation.authors}</p>
               <p class="help-block text-warning" if.bind="pubmed.bel.mismatch.authors">${pubmed.bel.authors}</p>
             </div>
             <!-- .form-group -->
@@ -126,8 +129,8 @@
               <!-- todo Kelly might want to use icons for EuropePMC and Pubmed like
               https://pbs.twimg.com/profile_images/2792175138/f93f2e30d1cca847800e6f3060b8101a.jpeg instead of buttons -->
 
-              <a href="http://europepmc.org/abstract/MED/${evidence.citation.id}" class="btn btn-primary active" role="button">EuropePMC</a>
-              <a href="http://www.ncbi.nlm.nih.gov/pubmed/?term=${evidence.citation.id}[uid]" class="btn btn-primary active" role="button">PubMed</a>
+              <a href="http://europepmc.org/abstract/MED/${evidence.citation.id}" class="btn btn-primary active" role="button" target="_blank">EuropePMC</a>
+              <a href="http://www.ncbi.nlm.nih.gov/pubmed/?term=${evidence.citation.id}[uid]" class="btn btn-primary active" role="button" target="_blank">PubMed</a>
               <h3>Pubmed Title</h3>
               <p>${pubmed.title}</p>
               <h3>Abstract</h3>
@@ -142,7 +145,7 @@
       <section>
         <div id="bel-annotation">
           <div class="col-sm-12">
-            <h3>Annotation</h3>
+            <h3>Summary Text</h3>
           </div>
           <!-- .col-sm-12 -->
 
@@ -150,7 +153,7 @@
 
           <div class="col-sm-12">
             <div class="form-group">
-              <label for="summaryText">BEL Summary Text</label>
+              <label sr-only for="summaryText">BEL Summary Text</label>
               <textarea class="form-control" value.bind="evidence.summary_text" id="summaryText" rows="3"
                         placeholder="Extract from source text supporting this BEL Statement"></textarea>
             </div>
@@ -162,15 +165,16 @@
 
           <!-- Structured Annotations -->
           <div class="col-sm-12">
-            <h4>Annotations</h4>
+            <h3>Experiment Context</h3>
           </div>
           <!-- .col-sm-12 -->
-          <template repeat.for="i of evidence.experiment_context.length + 1">
+          <template repeat.for="annotation of annotations">
             <div>
               <div class="col-sm-3">
                 <div class="form-group">
+                  <!-- todo Find out from Tony if we need to add the uri to the annotations object -->
                   <label for="annotationType-${$index}">Annotation Type</label>
-                  <select name="annotationType-${$index}" class="form-control" value.bind="$parent.evidence.experiment_context[$index].name">
+                  <select name="annotationType-${$index}" class="form-control" value.bind="$parent.annotations[$index].name">
                     <option repeat.for="annotationType of $parent.annotationList" value.bind="annotationType.name">${annotationType.name}</option>
                     <option>Unknown</option>
                   </select>
@@ -181,20 +185,18 @@
               <div class="col-sm-8">
                 <div class="form-group">
                   <label for="annotationVal-${$index}">Annotation</label>
-                  <input name="annotationVal-${$index}" class="form-control" type="text" value.bind="$parent.evidence.experiment_context[$index].value || ''"></input>
+                  <input name="annotationVal-${$index}" class="form-control" type="text" submit.delegate="false" change.delegate="$parent.addBlankAnnotation($index, $event)" value.bind="$parent.annotations[$index].value"></input>
                 </div>
                 <!-- .form-group -->
               </div>
               <!-- .col-sm-8 -->
               <div class="col-sm-1" style="padding-top: 24px;">
-                <button class="btn btn-danger">X</button>
+                <button class="btn btn-danger" click.delegate="$parent.removeAnnotation($index)">X</button>
               </div>
               <!-- .col-sm-1 -->
             </div>
           </template>
-
           <!-- End Structured Annotations -->
-
         </div>
       </section>
 
@@ -276,5 +278,15 @@
 
     </form>
   </div>
+
+  <div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <h3>Evidence Object - unsynced annotations</h3>
+      <pre>${evidence | objectToString}</pre>
+      <h3>Experiment Context (Annotations) Object</h3>
+      <pre>${annotations | objectToString}</pre>
+    </div>
+  </div></div>
 
 </template>

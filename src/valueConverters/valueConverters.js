@@ -52,7 +52,7 @@ export class KeysValueConverter {
 /**
  * Convert authors delimited by ';' on Edit BEL page to '|' for storage
  */
-export class PipedelimValueConverter {
+export class PipemeValueConverter {
   toView(text) {
     if (text) {
       text = text.replace(/\|/g, ';');
@@ -67,3 +67,21 @@ export class PipedelimValueConverter {
     return text;
   }
 }
+
+
+/**
+ * Usage
+ *
+ * <require from="ObjectToString"></require>
+ * <pre>${object | objectToString}</pre>
+ */
+
+/**
+ * Convert Object to pretty-printed JSON string to insert into the VIEW
+ */
+export class ObjectToStringValueConverter {
+  toView(object) {
+    return JSON.stringify(object, null, 2);
+  }
+}
+

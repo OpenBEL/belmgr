@@ -47,6 +47,7 @@ System.config({
     "css": "github:systemjs/plugin-css@0.1.13",
     "fetch": "github:github/fetch@0.9.0",
     "font-awesome": "npm:font-awesome@4.4.0",
+    "horsey": "npm:horsey@2.6.1",
     "github:aurelia/animator-css@0.15.0": {
       "aurelia-metadata": "github:aurelia/metadata@0.7.3",
       "aurelia-templating": "github:aurelia/templating@0.14.4"
@@ -225,6 +226,11 @@ System.config({
       "ieee754": "npm:ieee754@1.1.6",
       "is-array": "npm:is-array@1.0.1"
     },
+    "npm:bullseye@1.4.6": {
+      "crossvent": "npm:crossvent@1.5.0",
+      "seleccion": "npm:seleccion@2.0.0",
+      "sell": "npm:sell@1.0.0"
+    },
     "npm:clean-css@3.3.9": {
       "buffer": "github:jspm/nodelibs-buffer@0.1.0",
       "commander": "npm:commander@2.8.1",
@@ -259,11 +265,25 @@ System.config({
     "npm:core-util-is@1.0.1": {
       "buffer": "github:jspm/nodelibs-buffer@0.1.0"
     },
+    "npm:crossvent@1.5.0": {
+      "child_process": "github:jspm/nodelibs-child_process@0.1.0",
+      "custom-event": "npm:custom-event@1.0.0",
+      "fs": "github:jspm/nodelibs-fs@0.1.2",
+      "path": "github:jspm/nodelibs-path@0.1.0",
+      "process": "github:jspm/nodelibs-process@0.1.1",
+      "systemjs-json": "github:systemjs/plugin-json@0.1.0"
+    },
     "npm:font-awesome@4.4.0": {
       "css": "github:systemjs/plugin-css@0.1.13"
     },
     "npm:graceful-readlink@1.0.1": {
       "fs": "github:jspm/nodelibs-fs@0.1.2"
+    },
+    "npm:horsey@2.6.1": {
+      "bullseye": "npm:bullseye@1.4.6",
+      "crossvent": "npm:crossvent@1.5.0",
+      "fuzzysearch": "npm:fuzzysearch@1.0.3",
+      "sell": "npm:sell@1.0.0"
     },
     "npm:https-browserify@0.0.0": {
       "http": "github:jspm/nodelibs-http@1.7.1"
