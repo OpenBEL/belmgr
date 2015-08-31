@@ -33,6 +33,8 @@ export class Edit {
       // Get BEL Evidencea
       try {
         this.evidence = await this.api.getBelEvidence(this.evidenceId);
+        this.belComponents = await this.api.getBelComponents(this.evidence.bel_statement);
+        logger.debug('BC: ', this.belComponents);
         await this.getPubmed();
         logger.debug('Evidence: ', this.evidence);
         logger.debug('PubmedAwait: ', this.pubmed);
@@ -67,9 +69,10 @@ export class Edit {
    * @returns {boolean}
    */
   submit() {
+    this.evidence.bel_statement = `${this.belComponents.subject} ${this.belComponents.relationship} ${this.belComponents.object}`;
     this.evidence.experiment_context = this.annotations.filter(this.removeBlankAnnotations);
     logger.debug('Submit evidence', JSON.stringify(this.evidence,null,2));
-    // this.api.loadBelEvidence(this.evidenceId, this.evidence);
+    this.api.loadBelEvidence(this.evidenceId, this.evidence);
     return true;
   }
 
@@ -133,13 +136,8 @@ export class Edit {
    * @param event
    */
   addBlankAnnotation(idx, event) {
-//    logger.debug('Event', event);
-//    this.annotations[idx].value = event.target.value;
-//    event.target.value = '';
     if (this.annotations[this.annotations.length - 1]) {
-      logger.debug('Anno1: ', this.annotations);
       this.annotations.push({'name': '', 'value': ''});
-      logger.debug('Anno2: ', this.annotations);
     }
   }
 }

@@ -216,6 +216,21 @@ export class Api {
   }
 
   /**
+   * Get BEL components (subject, relation, object) from a BEL statement
+   * @param belStatement
+   * @returns {"subject": "", "relationship": "", "object": ""}
+   */
+  getBelComponents(belStatement) {
+    return this.apiClient.fetch(`/expressions/${belStatement}/components`)
+      .then(response => response.json())
+      .then(data => {
+              // logger.debug('BEL Evidence: ', data);
+              return data['expression_components'];
+            })
+      .catch(function(reason) {logger.error(`GET BEL Components Error: ${reason}`)});
+  }
+
+  /**
    * Get Pubmed document information - e.g. title, abstract, etc.
    *
    * @param id

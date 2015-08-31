@@ -4,7 +4,7 @@
       <h2>BEL Editor</h2>
     </div>
 
-    <form name="newBelForm" submit.delegate="submit()">
+    <div name="newBelForm">
 
 
       <!-- BEL Statement -->
@@ -17,7 +17,7 @@
           <div id="bel-source-div" class="col-sm-5">
             <div class="form-group">
               <label class="sr-only" for="belsubject">BEL Source</label>
-              <input name="belsubject" id="belsubject" type="text" class="form-control typeahead" placeholder="Subject"
+              <input name="belsubject" id="belsubject" type="text" value.bind="belComponents.subject" class="form-control typeahead" placeholder="Subject"
                      autocomplete="on" debounce></input>
             </div>
 
@@ -28,7 +28,7 @@
 
           <div id="bel-relation-div" class="col-sm-2">
             <label class="sr-only" for="belrelation">BEL Relation</label>
-            <select class="form-control" id="belrelation" style="margin-top: 4px;" model.bind="belRelation">
+            <select class="form-control" id="belrelation" style="margin-top: 4px;" value.bind="belComponents.relationship"">
               <option>--Relation--</option>
               <option repeat.for="relation of relationsList" model.bind="relation.value">${relation.label}</option>
             </select>
@@ -37,14 +37,10 @@
           <div id="bel-target-div" class="col-sm-5">
             <div class="form-group input-block-level">
               <label class="sr-only" for="belobject">BEL Object</label>
-              <input name="belobject" id="belobject" type="text" class="form-control typeahead" placeholder="Object"
+              <input name="belobject" id="belobject" type="text" value.bind="belComponents.object" class="form-control typeahead" placeholder="Object"
                      autocomplete="on" debounce></input>
             </div>
           </div>
-        </div>
-
-        <div class="row container">
-          <p class="col-md-12">${evidence.bel_statement}</p>
         </div>
       </section>
 
@@ -105,10 +101,9 @@
           <div class="col-sm-12">
             <div class="form-group">
               <label for="citation_ref">Authors</label>
-              <input compile-spy type="text" class="form-control" id="citation_authors"
+              <input type="text" class="form-control" id="citation_authors"
                      value.bind="evidence.citation.authors | pipeDelim"
                      placeholder="separate authors with a semicolon ';'">
-              <p>Authors: ${evidence.citation.authors}</p>
               <p class="help-block text-warning" if.bind="pubmed.bel.mismatch.authors">${pubmed.bel.authors}</p>
             </div>
             <!-- .form-group -->
@@ -141,7 +136,7 @@
         </div>
       </section>
 
-      <!-- BEL Annotations -->
+      <!-- BEL Summary Text -->
       <section>
         <div id="bel-annotation">
           <div class="col-sm-12">
@@ -163,7 +158,7 @@
 
           <!-- End SummaryText -->
 
-          <!-- Structured Annotations -->
+          <!-- Experiment Context -->
           <div class="col-sm-12">
             <h3>Experiment Context</h3>
           </div>
@@ -269,24 +264,14 @@
 
 
       <div class="col-sm-3 col-sm-offset-1">
-        <input type="submit" class="btn btn-success form-control"></input>
+        <button type="button" click.trigger="submit()" class="btn btn-default btn-success"></button>
       </div>
       <!-- .col-sm-3.col-sm-offset-1 -->
       <div class="col-sm-3 col-sm-offset-4">
         <input type="reset" class="btn btn-danger form-control pull-right"></input>
       </div>
 
-    </form>
-  </div>
-
-  <div class="container">
-  <div class="row">
-    <div class="col-md-12">
-      <h3>Evidence Object - unsynced annotations</h3>
-      <pre>${evidence | objectToString}</pre>
-      <h3>Experiment Context (Annotations) Object</h3>
-      <pre>${annotations | objectToString}</pre>
     </div>
-  </div></div>
+  </div>
 
 </template>
