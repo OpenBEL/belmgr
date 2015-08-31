@@ -1,0 +1,63 @@
+commit 2dda4933ba26563cae205f9c29d7a65a68992f22
+Author: kellymccann91 <kellymccann91@gmail.com>
+Date:   Fri Aug 28 20:06:48 2015 -0400
+
+    More theming
+
+diff --git a/dist/search.html b/dist/search.html
+index d79de2e..afb4b05 100644
+--- a/dist/search.html
++++ b/dist/search.html
+@@ -9,7 +9,7 @@
+           </ul>
+         </nav>
+       </div>
+-      <div id="dportalsearchbar" class=" col-xs-4 col-md-3">
++      <div id="dportalsearchbar paddingNone" class="col-xs-3">
+         <form role="form" submit.delegate="search()">
+           <div class="form-group">
+             <div class="input-group col-xs-11 col-xs-12">
+diff --git a/src/search.html b/src/search.html
+index d79de2e..afb4b05 100644
+--- a/src/search.html
++++ b/src/search.html
+@@ -9,7 +9,7 @@
+           </ul>
+         </nav>
+       </div>
+-      <div id="dportalsearchbar" class=" col-xs-4 col-md-3">
++      <div id="dportalsearchbar paddingNone" class="col-xs-3">
+         <form role="form" submit.delegate="search()">
+           <div class="form-group">
+             <div class="input-group col-xs-11 col-xs-12">
+diff --git a/styles/styles.css b/styles/styles.css
+index c475a5c..30dd59d 100644
+--- a/styles/styles.css
++++ b/styles/styles.css
+@@ -8120,12 +8120,16 @@ a:hover {
+     margin-right: 0px;
+ }
+ 
+-
++.fa-spin {
++  color: #F99B2A;
++}
+ /*END MARGIN SHORTCUTS*/
+ 
+ 
+ /*PADDING SHORTCUTS*/
+-
++.paddingNone {
++  padding: 0 !important;
++}
+ .paddingrt0 {
+     padding-right: 0px;
+ }
+@@ -8328,6 +8332,7 @@ label.filter-boxlabel {
+ 
+ .filter-facetTitle {
+     margin-left: -20px;
++    font-weight: 500;
+ }
+ 
+ input[type=checkbox] {

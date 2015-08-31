@@ -28,7 +28,7 @@
 
           <div id="bel-relation-div" class="col-sm-2">
             <label class="sr-only" for="belrelation">BEL Relation</label>
-            <select class="form-control" id="belrelation" style="margin-top: 4px;" value.bind="belComponents.relationship"">
+            <select class="form-control" id="belrelation" style="margin-top: 4px;" value.bind="belComponents.relationship">
               <option>--Relation--</option>
               <option repeat.for="relation of relationsList" model.bind="relation.value">${relation.label}</option>
             </select>
@@ -264,7 +264,7 @@
 
 
       <div class="col-sm-3 col-sm-offset-1">
-        <button type="button" click.trigger="submit()" class="btn btn-default btn-success"></button>
+        <button type="button" click.trigger="submit()" class="btn form-control btn-success">Submit</button>
       </div>
       <!-- .col-sm-3.col-sm-offset-1 -->
       <div class="col-sm-3 col-sm-offset-4">
