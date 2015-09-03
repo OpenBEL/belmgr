@@ -46,7 +46,7 @@ export class Search {
       }
     }
     if (this.searchTerms) {
-      filters.push(`{"category": "fts", "name": "search", "value": "${this.searchTerms}" }`);
+      filters.push(`{"category":"fts","name":"search","value":"${this.searchTerms}"sue}`);
     }
     logger.debug('Filters: ', filters);
     try {

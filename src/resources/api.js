@@ -136,7 +136,7 @@ export class Api {
    * @return {Promise} data - processed search results ready to display on the search results web page
    * */
   search(start = 0, size = 10, faceted = "yes", filters) {
-    let max_values_per_facet = 20;
+    let max_values_per_facet = 10;
     let getstring = `/evidence?start=${start}&size=${size}&faceted=${faceted}&max_values_per_facet=${max_values_per_facet}`;
     if (filters) {
       for (let filter of filters) {
@@ -144,7 +144,7 @@ export class Api {
       }
     }
     // logger.debug('Filters2: ', filters);
-    // logger.debug('Getstring: ', getstring);
+    logger.debug('Getstring: ', getstring);
 
     return this.apiClient.fetch(getstring)
       .then(response => response.json())
