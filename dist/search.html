@@ -9,10 +9,10 @@
           </ul>
         </nav>
       </div>
-      <div id="dportalsearchbar paddingNone" class="col-xs-3">
+      <div id="dportalsearchbar" class="col-xs-3 paddingNone">
         <form role="form" submit.delegate="search()">
           <div class="form-group">
-            <div class="input-group col-xs-11 col-xs-12">
+            <div class="input-group col-xs-12">
               <input type="text" onblur.delegate="search()" value.bind="search_terms" class="search-searchForm form-control" id="searchToken" placeholder="search">
                 <span class="input-group-btn highlight">
                   <button type="submit" class="btn search-searchBtn">
@@ -24,7 +24,7 @@
         </form>
       </div>
       <div class="search-showRow">
-        <select class="form-control search-showForm" id="search_size" value.bind="searchSize" change.delegate="saveSearchSize()">
+        <select class="form-control search-showForm selectDrop" id="search_size" value.bind="searchSize" change.delegate="saveSearchSize()">
           <option value="10" > 10</option>
           <option value="20" > 20</option>
           <option value="50" > 50</option>
@@ -61,11 +61,13 @@
       <div class=" col-xs-9" id="resultscolumn">
         <template if.bind="evidences">
           <table class="table table-hover">
-            <tr><th class="table-range"><h5>Results ${searchResultsRange}</h5></th></tr>
+            <tr><th class="table-range"><h4>Results ${searchResultsRange}</h4></th></tr>
             <tbody>
             <tr repeat.for="evidence of evidences">
               <td class="table-td col-xs-9">
-                <a route-href="route: edit; params.bind: { id: $parent.getEvidenceId(evidence._links.self.href)  }" target="editbel">${evidence.bel_statement}</a>
+                <a class="" route-href="route: edit; params.bind: { id: $parent.getEvidenceId(evidence._links.self.href)  }" target="editbel">${evidence.bel_statement}
+                </a>
+                <!-- <p class="visitedNote col-xs-1 col-xs-offset-11"></p> -->
               </td>
             </tr>
             </tbody>

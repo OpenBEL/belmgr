@@ -8086,7 +8086,7 @@ button.close {
 
 body {
     margin: 0;
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'Ubuntu', sans-serif;
 }
 
 h1,
@@ -8095,6 +8095,8 @@ h3,
 h4,
 h5 {
     font-weight: 300;
+    font-family: 'Dosis', sans-serif;
+    text-transform: uppercase;
 }
 
 button:focus,
@@ -8103,11 +8105,16 @@ a:focus,
 button:hover,
 button:hover>i,
 a:hover {
-    color: #F99B2A;
+    color: #0C91A5;
 }
 
 
 /*MARGIN SHORTCUTS*/
+
+.marginlftrt0 {
+    margin-right: 0px;
+    margin-right: 0px;
+}
 
 .margintop10 {
     margin-top: 10px;
@@ -8117,12 +8124,16 @@ a:hover {
     margin-top: 30px;
 }
 
+.marginbtm10 {
+    margin-bottom: 10px;
+}
+
 .marginrt0 {
     margin-right: 0px;
 }
 
 .fa-spin {
-    color: #F99B2A;
+    color: #fdc975;
 }
 
 
@@ -8142,6 +8153,84 @@ a:hover {
 
 /*END PADDING SHORTCUTS*/
 
+
+/*FORM/COMPONENT CONTROL*/
+
+.input-group .form-control:last-child,
+.input-group-addon:last-child,
+.input-group-btn:last-child > .btn,
+.input-group-btn:last-child > .btn-group > .btn,
+.input-group-btn:last-child > .dropdown-toggle,
+.input-group-btn:first-child > .btn:not(:first-child),
+.input-group-btn:first-child > .btn-group:not(:first-child) > .btn {
+    border-radius: 2px;
+}
+
+.form-control {
+    border: none;
+    border-radius: 4px;
+    box-shadow: none;
+    border-bottom: 1px solid #F9F9FA;
+    background: -webkit-linear-gradient(180deg, #fff, #F9F9FA);
+    /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(180deg, #fff, #F9F9FA);
+    /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(180deg, #fff, #F9F9FA);
+    /* For Firefox 3.6 to 15 */
+    background: linear-gradient(180deg, #fff, #F9F9FA);
+    /* Standard syntax */
+}
+
+.form-control:focus,
+.form-control:hover,
+.form-control:active {
+    border: none;
+    border-color: none;
+    box-shadow: inset 1px 1px 10px #E4E5E7;
+    color: #25777D;
+}
+.selectDrop {
+    border-radius: 2px;
+}
+
+.selectDrop:hover {
+    color: #0C91A5;
+    box-shadow: inset 1px 1px 10px #E4E5E7;
+}
+
+
+/*placeholder css*/
+
+.form-control::-webkit-input-placeholder {
+    color: #474350;
+    text-transform: ;
+    font-family: 'Ubuntu', sans-serif;
+}
+
+FF 4-18 .form-control:-moz-placeholder {
+    color: #474350;
+    text-transform: ;
+    font-family: 'Ubuntu', sans-serif;
+}
+
+FF 19+ .form-control::-moz-placeholder {
+    color: #474350;
+    text-transform: ;
+    font-family: 'Ubuntu', sans-serif;
+}
+
+IE 10+ .form-control:-ms-input-placeholder {
+    color: #474350;
+    text-transform: ;
+    font-family: 'Ubuntu', sans-serif;
+}
+
+
+/*end placeholder css*/
+
+
+/*END FORM/COMPONENT CONTROL*/
+
 .splash {
     text-align: center;
     margin: 10% 0 0 0;
@@ -8151,8 +8240,8 @@ a:hover {
 .splash .message {
     font-size: 72px;
     line-height: 72px;
-    font-family: 'Open Sans', sans-serif;
-    color: #001d69;
+    font-family: 'Ubuntu', sans-serif;
+    color: #46676E;
 }
 
 .splash .fa-spin {
@@ -8160,7 +8249,7 @@ a:hover {
     display: inline-block;
     font-size: 1.5em;
     margin-top: 50px;
-    color: #F99B2A;
+    color: #fdc975;
 }
 
 .page-host {
@@ -8270,6 +8359,29 @@ div.au-stagger {
 }
 
 
+/* EDIT PAGE */
+
+.pubmedContent {
+    background-color: rgba(253, 201, 117, .7);
+    height: auto;
+    max-height: 75%;
+    margin-top: 70px;
+    border-radius: 2px;
+    overflow-y: scroll;
+    float: left;
+    left: 0;
+    position: fixed;
+    display: inline-block;
+}
+
+.noshowPubmed {
+    display: none;
+}
+
+
+/* END EDIT PAGE */
+
+
 /*SEARCH PAGE*/
 
 .pager .next > .search-btn,
@@ -8277,13 +8389,6 @@ div.au-stagger {
     color: #1e1e24;
     background-color: transparent;
     border-radius: 4px;
-}
-
-.pager .next > .search-btn:hover,
-.pager .previous > .search-btn:hover,
-.search-showRow > .search-showForm:hover {
-    color: #F99B2A;
-    box-shadow: inset 1px 1px 10px #e3e3e8;
 }
 
 .pager .disabled > .search-btn,
@@ -8296,12 +8401,12 @@ div.au-stagger {
 }
 
 .search-searchBtn {
-    background-color: #001d69;
+    background-color: #46676E;
     color: #fff;
 }
 
 .search-searchForm {
-    border-color: #001d69;
+    /*border-color: #46676E;*/
     bottom: 0;
 }
 
@@ -8315,12 +8420,11 @@ div.au-stagger {
     width: 70px;
     float: right;
     z-index: 100;
-    border-color: #001d69;
 }
 
 .search-showForm:focus {
     box-shadow: 1px 0px 3px #eee;
-    border-color: #001d69;
+    border-color: #46676E;
 }
 
 .search-showRow {}
@@ -8348,9 +8452,13 @@ label.filter-boxlabel {
     margin: 8px -15px 8px -15px;
 }
 
+.filter-facetRow>label {
+    font-weight: 500;
+}
+
 .filter-facetTitle {
     margin-left: -20px;
-    font-weight: 500;
+    font-weight: 300;
 }
 
 input[type=checkbox] {
@@ -8368,19 +8476,19 @@ input[type=checkbox]:after {
     line-height: 12px;
     width: 12px;
     text-align: center;
-    border: 1px solid #f99b2a;
-    border-radius: 2px;
+    border: 1px solid #fdc975;
+    border-radius: 1px;
     background: transparent;
-    color: #001d69;
+    color: #46676E;
 }
 
 input[type=checkbox]:hover:after {
-    box-shadow: inset 1px 1px 10px #e3e3e8;
+    box-shadow: inset 1px 1px 10px #E4E5E7;
 }
 
 input[type=checkbox]:checked:after {
     content: '✓';
-    color: #001d69;
+    color: #0C91A5;
 }
 
 
@@ -8402,17 +8510,37 @@ th.table-range:hover {
 
 td.table-td {
     border-top: none;
-    border-left: 5px solid #001d69;
+    border-left: 5px solid #46676E;
     border-bottom: 1px solid #eee;
 }
 
 td.table-td a {
-    color: #001d69;
-    font-size: 12px;
+    color: #0C91A5;
+    font-size: 14px;
 }
 
-tbody>tr:hover {
-    background-color:
+td.table-td a:visited {
+    color: #46676E;
+}
+
+
+/*a:visited + .visitedNote {
+    content: "visited";
+}*/
+
+td.table-td:hover a,
+td.table-td:focus a,
+td.table-td:active a {
+    color: #0C91A5;
+    font-weight: 500;
+    text-decoration: none;
+}
+
+.table-hover > tbody > tr:hover {
+    background: -webkit-linear-gradient(180deg, #fff, #F9F9FA);
+    background: -o-linear-gradient(180deg, #fff, #F9F9FA);
+    background: -moz-linear-gradient(180deg, #fff, #F9F9FA);
+    background: linear-gradient(180deg, #fff, #F9F9FA)
 }
 
 
@@ -8471,4 +8599,26 @@ tbody>tr:hover {
     100% {
         opacity: 1;
     }
+}
+
+.hvr-grow {
+    display: inline-block;
+    vertical-align: middle;
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-transition-duration: 0.3s;
+    transition-duration: 0.3s;
+    -webkit-transition-property: transform;
+    transition-property: transform;
+}
+
+.hvr-grow:hover,
+.hvr-grow:focus,
+.hvr-grow:active {
+    -webkit-transform: scale(1.1);
+    transform: scale(1.1);
 }
