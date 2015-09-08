@@ -1,8 +1,8 @@
 <template>
   <div class="col-xs-5 col-xs-offset-1 marginbtm10">
-  <div class="col-sm-10 col-sm-offset-1">
     <div class="col-md-3">
       <h2>BEL Editor</h2>
+    </div>
   </div>
   <div class="container">
     <div class="row">
@@ -14,51 +14,50 @@
       </section>
     </div>
   </div>
-  <div class="${pubmed.title ? 'col-xs-8 col-xs-offset-4 col-md-9 col-md-offset-3' : 'col-xs-10 col-xs-offset-1'}">
+  <div class="container">
+    <div class="${pubmed.title ? 'col-xs-8 col-xs-offset-4 col-md-9 col-md-offset-3' : 'col-xs-10 col-xs-offset-1'}">
+      <div name="newBelForm">
 
-    <div name="newBelForm">
 
+        <!-- BEL Statement -->
+        <div id="bel-statement">
+          <div class="row col-xs-12">
+            <h3>BEL Statement</h3>
+          </div>
+          <!-- .col-xs-12 -->
+          <div class="row">
+            <div id="bel-source-div" class="col-xs-5">
+              <div class="form-group">
+                <label class="sr-only" for="belsubject">BEL Source</label>
+                <input name="belsubject" id="belsubject" type="text" value.bind="belComponents.subject" class="form-control typeahead" placeholder="Subject" autocomplete="on" debounce></input>
+              </div>
 
-      <!-- BEL Statement -->
-      <section id="bel-statement">
-        <div class="col-xs-12">
-          <h3>BEL Statement</h3>
+              <div id="source-searchbox" class="search-box" style="display: none;">
+                <h3>Entity Search</h3>
+              </div>
+            </div>
+
+            <div id="bel-relation-div" class="col-xs-2">
+              <label class="sr-only" for="belrelation">BEL Relation</label>
+              <select class="form-control selectDrop" id="belrelation" style="margin-top: 4px;" value.bind="belComponents.relationship">
+                <option>--Relation--</option>
+                <option repeat.for="relation of relationsList" model.bind="relation.value">${relation.label}</option>
+              </select>
+            </div>
+
+            <div id="bel-target-div" class="col-xs-5">
+              <div class="form-group input-block-level">
+                <label class="sr-only" for="belobject">BEL Object</label>
+                <input name="belobject" id="belobject" type="text" value.bind="belComponents.object" class="form-control typeahead" placeholder="Object"
+                       autocomplete="on" debounce></input>
+              </div>
+            </div>
+          </div>
         </div>
-        <!-- .col-xs-12 -->
-        <div class="row">
-          <div id="bel-source-div" class="col-xs-5">
-            <div class="form-group">
-              <label class="sr-only" for="belsubject">BEL Source</label>
-              <input name="belsubject" id="belsubject" type="text" value.bind="belComponents.subject" class="form-control typeahead" placeholder="Subject"
-                     autocomplete="on" debounce></input>
-            </div>
 
-            <div id="source-searchbox" class="search-box" style="display: none;">
-              <h3>Entity Search</h3>
-            </div>
-          </div>
-
-          <div id="bel-relation-div" class="col-xs-2">
-            <label class="sr-only" for="belrelation">BEL Relation</label>
-            <select class="form-control selectDrop" id="belrelation" style="margin-top: 4px;" value.bind="belComponents.relationship">
-              <option>--Relation--</option>
-              <option repeat.for="relation of relationsList" model.bind="relation.value">${relation.label}</option>
-            </select>
-          </div>
-
-          <div id="bel-target-div" class="col-xs-5">
-            <div class="form-group input-block-level">
-              <label class="sr-only" for="belobject">BEL Object</label>
-              <input name="belobject" id="belobject" type="text" value.bind="belComponents.object" class="form-control typeahead" placeholder="Object"
-                     autocomplete="on" debounce></input>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- BEL Citation -->
-      <section>
-        <div id="bel-citation">
+        <!-- BEL Citation -->
+        
+        <div class="row" id="bel-citation">
           <div class="col-xs-12">
             <h3>Citation</h3>
           </div>
@@ -146,31 +145,32 @@
           </div>
           <!-- .col-xs-12 -->
         </div>
-      </section>
+        
 
-      <!-- BEL Summary Text -->
-      <section>
-        <div id="bel-annotation">
-          <div class="col-xs-12">
-            <h3>Summary Text</h3>
-          </div>
-          <!-- .col-xs-12 -->
-
-          <!-- SummaryText -->
-
-          <div class="col-xs-12">
-            <div class="form-group">
-              <label sr-only for="summaryText">BEL Summary Text</label>
-              <textarea class="form-control" value.bind="evidence.summary_text" id="summaryText" rows="3"
-                        placeholder="Extract from source text supporting this BEL Statement"></textarea>
+        <!-- BEL Summary Text -->
+        <div class="row">
+          <div id="bel-annotation">
+            <div class="col-xs-12">
+              <h3>Summary Text</h3>
             </div>
-            <!-- .form-group -->
+            <!-- .col-xs-12 -->
+
+            <!-- SummaryText -->
+
+            <div class="col-xs-12">
+              <div class="form-group">
+                <label sr-only for="summaryText">BEL Summary Text</label>
+                <textarea class="form-control" value.bind="evidence.summary_text" id="summaryText" rows="3"
+                          placeholder="Extract from source text supporting this BEL Statement"></textarea>
+              </div>
+              <!-- .form-group -->
+            </div>
+            <!-- .col-xs-12 -->
           </div>
-          <!-- .col-xs-12 -->
-
-          <!-- End SummaryText -->
-
-          <!-- Experiment Context -->
+            <!-- End SummaryText -->
+        </div>
+            <!-- Experiment Context -->
+        <div class="row">
           <div class="col-xs-12">
             <h3>Experiment Context</h3>
           </div>
@@ -205,96 +205,101 @@
           </template>
           <!-- End Structured Annotations -->
         </div>
-      </section>
+    
 
-      <!-- BEL Statement Metadata -->
-      <div id="bel-metadata" class="bottom30">
-        <div class="col-xs-12">
-          <h3>BEL Evidence Metadata</h3>
-        </div>
+        <!-- BEL Statement Metadata -->
+        <div class="row">
+          <div id="bel-metadata" class="bottom30">
+            <div class="col-xs-12">
+              <h3>BEL Evidence Metadata</h3>
+            </div>
 
-        <!-- .col-xs12 -->
-        <div class="col-xs-3">
-          <div class="form-group">
-            <label for="">Review Status</label>
-            <select class="form-control selectDrop" id="reviews" value.bind="evidence.metadata.Status">
-              <option value="Draft">Draft</option>
-              <option value="Review">Review</option>
-              <option value="Approved">Approved</option>
-              <option value="Rejected">Rejected</option>
-            </select>
-          </div>
-          <!-- .form-group -->
-        </div>
-        <!-- .col-xs-3 -->
-        <div class="col-xs-6">
-          <div class="form-group">
-            <label for="">Author</label>
-            <input type="text" class="form-control"></input>
-          </div>
-          <!-- .form-group -->
-        </div>
-        <!-- .col-xs-6 -->
-        <div class="col-xs-3">
-          <div class="form-group">
-            <label for="">Date Created</label>
-            <input class="form-control selectDrop" type="date"></input>
-          </div>
-          <!-- .form-group -->
-        </div>
-        <!-- .col-xs-3 -->
+            <!-- .col-xs12 -->
+            <div class="col-xs-3">
+              <div class="form-group">
+                <label for="">Review Status</label>
+                <select class="form-control selectDrop" id="reviews" value.bind="evidence.metadata.Status">
+                  <option value="Draft">Draft</option>
+                  <option value="Review">Review</option>
+                  <option value="Approved">Approved</option>
+                  <option value="Rejected">Rejected</option>
+                </select>
+              </div>
+              <!-- .form-group -->
+            </div>
+            <!-- .col-xs-3 -->
+            <div class="col-xs-6">
+              <div class="form-group">
+                <label for="">Author</label>
+                <input type="text" class="form-control"></input>
+              </div>
+              <!-- .form-group -->
+            </div>
+            <!-- .col-xs-6 -->
+            <div class="col-xs-3">
+              <div class="form-group">
+                <label for="">Date Created</label>
+                <input class="form-control selectDrop" type="date"></input>
+              </div>
+              <!-- .form-group -->
+            </div>
+            <!-- .col-xs-3 -->
 
-        <div class="col-xs-6 col-xs-offset-3">
-          <div class="form-group">
-            <label for="">Reviewer</label>
-            <input type="text" class="form-control"></input>
-          </div>
-          <!-- .form-group -->
-        </div>
-        <!-- .col-xs-6.col-xs-offset-3 -->
+            <div class="col-xs-6 col-xs-offset-3">
+              <div class="form-group">
+                <label for="">Reviewer</label>
+                <input type="text" class="form-control"></input>
+              </div>
+              <!-- .form-group -->
+            </div>
+            <!-- .col-xs-6.col-xs-offset-3 -->
 
-        <div class="col-xs-3">
-          <div class="form-group">
-            <label for="">Date Reviewed</label>
-            <input class="form-control selectDrop" type="date"></input>
-          </div>
-          <!-- .form-group -->
-        </div>
-        <!-- .col-xs-3 -->
+            <div class="col-xs-3">
+              <div class="form-group">
+                <label for="">Date Reviewed</label>
+                <input class="form-control selectDrop" type="date"></input>
+              </div>
+              <!-- .form-group -->
+            </div>
+            <!-- .col-xs-3 -->
 
-        <div class="col-xs-6 col-xs-offset-3">
-          <div class="form-group">
-            <label for="">BEL Evidence Source</label>
-            <input id="source" type="text" class="form-control" value.bind="evidence.metadata.evidence_source"></input>
-          </div>
-          <!-- .form-group -->
-        </div>
-        <!-- .col-xs-6.col-xs-offset-3 -->
+            <div class="col-xs-6 col-xs-offset-3">
+              <div class="form-group">
+                <label for="">BEL Evidence Source</label>
+                <input id="source" type="text" class="form-control" value.bind="evidence.metadata.evidence_source"></input>
+              </div>
+              <!-- .form-group -->
+            </div>
+            <!-- .col-xs-6.col-xs-offset-3 -->
 
+          </div>
+        </div>
+        <!-- #bel-metadata -->
+
+        <div class="row">
+          <div class="col-xs-3 col-xs-offset-1">
+            <button type="button" click.trigger="submit()" class="btn form-control">Submit</button>
+          </div>
+          <div class="col-sm-3 col-sm-offset-1">
+            <button show.bind="evidenceId" type="button" click.delegate="submit()" class="btn form-control">Edit</button>
+          </div>
+          <!-- .col-xs-3.col-xs-offset-1 -->
+          <div class="col-xs-3 col-xs-offset-4">
+            <input type="reset" class="btn btn-danger form-control pull-right"></input>
+          </div>
+          <div class="col-sm-3 col-sm-offset-1">
+            <button type="button" click.delegate="submitNew()" class="btn form-control">Add</button>
+          </div>
+          <!-- .col-sm-3.col-sm-offset-1 -->
+          <div class="col-sm-3 col-sm-offset-1">
+            <input type="reset" click.delegate="reset()" class="btn btn-danger form-control pull-right"></input>
+          </div>
+        </div>
       </div>
-      <!-- #bel-metadata -->
-
-
-      <div class="col-xs-3 col-xs-offset-1">
-        <button type="button" click.trigger="submit()" class="btn form-control btn-success">Submit</button>
-      <div class="col-sm-3 col-sm-offset-1">
-        <button show.bind="evidenceId" type="button" click.delegate="submit()" class="btn form-control btn-success">Edit</button>
-      </div>
-      <!-- .col-xs-3.col-xs-offset-1 -->
-      <div class="col-xs-3 col-xs-offset-4">
-        <input type="reset" class="btn btn-danger form-control pull-right"></input>
-
-      <div class="col-sm-3 col-sm-offset-1">
-        <button type="button" click.delegate="submitNew()" class="btn form-control btn-success">Add</button>
-      </div>
-      <!-- .col-sm-3.col-sm-offset-1 -->
-      <div class="col-sm-3 col-sm-offset-1">
-        <input type="reset" click.delegate="reset()" class="btn btn-danger form-control pull-right"></input>
-      </div>
-
     </div>
   </div>
-
-
-
 </template>
+
+
+
+
