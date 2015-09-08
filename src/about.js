@@ -1,6 +1,18 @@
 
 
 export class About{
-  wshEmail="whayes@selventa.com";
+
+  builders = [
+    {'name': 'Anthony Bargnesi', 'email': 'abargnesi@selventa.com'},
+    {'name': 'Nick Bargnesi', 'email': 'nbargnesi@selventa.com'},
+    {'name': 'William Hayes', 'email': 'whayes@selventa.com'},
+    {'name': 'Kelly McCann', 'email': 'kmccann@selventa.com'}
+  ];
+
+  consultants = [
+    {'name': 'Anselmo Di Fabio', 'email': 'adifabio@ads-llc.com'},
+    {'name': 'Grant Shih', 'email': 'gshih@ads-llc.com'}
+  ];
+
 
 }
