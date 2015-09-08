@@ -13,6 +13,7 @@ export function configure(aurelia) {
     .standardConfiguration()
 //    .developmentLogging()
     .plugin('aurelia-validation')
+    .plugin("aurelia-gravatar")
     .plugin('aurelia-animator-css');
 
   aurelia.start().then(a => a.setRoot());
