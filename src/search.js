@@ -94,22 +94,29 @@ export class Search {
     return matches[1];
   }
 
-//  uri_encode(uri) {
-//    return encodeURIComponent(uri);
-//  }
-//
-//  get facet_values() {
-//    let facet_values = [];
-//
-//    for (let key of this.results.facets[this.facet_type]) {
-//      count = this.results.facets[this.facet_type][key]["count"];
-//      filter = this.results.facets[this.facet_type][key]["filter"];
-//
-//      facet_values.append({"key": key, "count": count, "filter": filter});
-//    }
-//    logger.debug(facet_values);
-//    return facet_values;
-//  }
+  /**
+   * Get Species from Evidence Experiment Context
+   * @param evidence
+   * @returns 'Genus species'
+   */
+  getSpecies(evidence) {
+    let default_val = 'Unknown';
+    let item = evidence.experiment_context.find(x => x.name === 'Ncbi Taxonomy');
+    if (item) {
+      return item.value;
+    }
+    return default_val;
+  }
+
+  /**
+   * Creates array of experiment_context values without the Ncbi Taxonomy item
+   * @param evidence
+   * @returns array of experiment_context values
+   */
+  getExperimentContextItems(evidence) {
+    let items = evidence.experiment_context.filter(x => x.name !== 'Ncbi Taxonomy').map(x => `${x.name}::${x.value}`);
+    return items;
+  }
 
 }
 
