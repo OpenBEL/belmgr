@@ -4,7 +4,18 @@
   </div>
   <div class="container">
     <div class="row">
-      <section class="pubmedContent ${pubmed.title ? 'col-xs-4 col-md-3' : 'noshowPubmed'}"> 
+      <section class="pubmedContent ${pubmed.title ? 'col-xs-4 col-md-3' : 'noshowPubmed'}">
+
+        <div class="row">
+          <div class="col-xs-6">
+            <a href="http://europepmc.org/abstract/MED/${evidence.citation.id}" class="col-xs-12 btn btn-bel form-control" role="button" target="_blank">EuropePMC</a>
+          </div>
+          <div class="col-xs-6">
+            <a href="http://www.ncbi.nlm.nih.gov/pubmed/?term=${evidence.citation.id}[uid]" class="col-xs-12 btn btn-bel form-control" role="button" target="_blank">PubMed</a>
+          </div>
+        </div>
+        <!-- todo Kelly might want to use icons for EuropePMC and Pubmed like
+        https://pbs.twimg.com/profile_images/2792175138/f93f2e30d1cca847800e6f3060b8101a.jpeg instead of buttons -->
         <h3 class="col-xs-12">Pubmed Title</h3>
         <p class="col-xs-12">${pubmed.title}</p>
         <h3 class="col-xs-12">Abstract</h3>
@@ -54,7 +65,7 @@
         </div>
 
         <!-- BEL Citation -->
-        
+
         <div class="row edit-belForm" id="bel-citation">
           <div class="col-xs-12">
             <h3>Citation</h3>
@@ -126,21 +137,8 @@
             <p class="warning" if.bind="pubmed.bel.mismatch.comments">${pubmed.title}</br>${pubmed.abstractText}</p>
             <!-- .form-group -->
           </div>
-          <div if.bind="evidence.citation.id && evidence.citation.type==='PubMed'" class="form-group col-xs-12 col-sm-8 col-md-6 ">
-            
-              <div class="col-xs-6">
-                <a href="http://europepmc.org/abstract/MED/${evidence.citation.id}" class="col-xs-12 btn btn-bel form-control" role="button" target="_blank">EuropePMC</a>
-              </div>
-              <div class="col-xs-6">
-                <a href="http://www.ncbi.nlm.nih.gov/pubmed/?term=${evidence.citation.id}[uid]" class="col-xs-12 btn btn-bel form-control" role="button" target="_blank">PubMed</a>
-              </div>
-              <!-- todo Kelly might want to use icons for EuropePMC and Pubmed like
-              https://pbs.twimg.com/profile_images/2792175138/f93f2e30d1cca847800e6f3060b8101a.jpeg instead of buttons -->
-            </div>
-
-          <!-- .col-xs-12 -->
         </div>
-        
+
 
         <!-- BEL Summary Text -->
         <div class="row edit-belForm">
@@ -164,7 +162,7 @@
           </div>
             <!-- End SummaryText -->
         </div>
-        
+
 
         <!-- Experiment Context -->
         <div class="row edit-belForm">
@@ -179,6 +177,7 @@
                   <!-- todo Find out from Tony if we need to add the uri to the annotations object -->
                   <label for="annotationType-${$index}">Annotation Type</label>
                   <select name="annotationType-${$index}" class="form-control" value.bind="$parent.annotations[$index].name">
+                    <option>--select--</option>
                     <option repeat.for="annotationType of $parent.annotationList" value.bind="annotationType.name">${annotationType.name}</option>
                     <option>Unknown</option>
                   </select>
@@ -202,7 +201,7 @@
           </template>
           <!-- End Structured Annotations -->
         </div>
-    
+
 
         <!-- BEL Statement Metadata -->
         <div class="row edit-belForm">
@@ -274,11 +273,11 @@
         <!-- #bel-metadata -->
 
         <div class="row edit-editBtns">
-          <div class="col-xs-4">
-            <input type="reset" class="col-xs-10 col-xs-offset-1 btn btn-edit btn-reset form-control pull-right"></input>
-          </div>
+          <!--<div class="col-xs-4">-->
+            <!--<input type="reset" click.delegate="reset()" class="col-xs-10 col-xs-offset-1 btn btn-edit btn-reset form-control pull-right"></input>-->
+          <!--</div>-->
           <!--fin SHOW ON BOTH-->
-          
+
           <div class="col-xs-4" show.bind="evidenceId">
             <button type="button" click.delegate="submit()" class="col-xs-10 col-xs-offset-1 btn-edit btn-saveUpdates btn form-control">Save Updates</button>
           </div>
@@ -286,13 +285,6 @@
           <div class="${evidenceId ? 'col-xs-4' : 'col-xs-4 col-xs-offset-4'}">
             <button type="button" click.delegate="submitNew()" class="col-xs-10 col-xs-offset-1 btn btn-edit btn-saveNew form-control">${evidenceId ? 'Save as New' : 'Save'}</button>
           </div>
-
-
-        
-         
-
-          
-          
         </div>
       </div>
     </div>

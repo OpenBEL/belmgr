@@ -1,4 +1,6 @@
 import {inject} from 'aurelia-framework';
+import {activationStrategy} from 'aurelia-router';
+
 import {Api} from './resources/api';
 import {relationsList} from './relationsList';
 import {PubmedService} from './resources/PubmedService';
@@ -10,6 +12,10 @@ let logger = LogManager.getLogger('edit');
 @inject(Api, PubmedService)
 export class Edit {
 
+  determineActivationStrategy(){
+    return activationStrategy.replace;
+  }
+  
   constructor(Api, PubmedService) {
     this.api = Api;
     this.pubmedService = PubmedService;
@@ -19,8 +25,25 @@ export class Edit {
     this.relationsList = relationsList;
     this.pubmed = null;
 
+//    let evidence_subscription = this.observerLocator
+//      .getObserver(this.evidence.citation.id)
+//      .subscribe(this.citationChanged);
+
   }
 
+//  onFeaturesChanged(mutations) {
+//    let temp = this.selectedFeatures;
+//    this.selectedFeatures = [];
+//    this.selectedFeatures = temp;
+//    console.log(JSON.stringify(mutations));
+//  }
+
+
+  evidenceChanged() {
+    let temp = this.evidence;
+    this.evidence = {};
+    this.evidence = temp;
+  }
 
   async activate(params) {
 
@@ -30,7 +53,7 @@ export class Edit {
       logger.debug('ID: ', params.id);
       this.evidenceId = params.id;
 
-      // Get BEL Evidencea
+      // Get BEL Evidence
       try {
         this.evidence = await this.api.getBelEvidence(this.evidenceId);
         this.belComponents = await this.api.getBelComponents(this.evidence.bel_statement);
@@ -64,6 +87,11 @@ export class Edit {
     else {return false;}
   }
 
+  reset() {
+    this.evidence = {};
+    logger.debug('Evidence: ', this.evidence);
+    return true;
+  }
   /**
    * Submit BEL Evidence to API
    * @returns {boolean}
