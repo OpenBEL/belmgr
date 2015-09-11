@@ -280,7 +280,7 @@ section {
 .input-group-addon:last-child,
 .input-group-btn:last-child > .btn,
 .input-group-btn:last-child > .btn:hover,
-.input-group-btn:last-child > .btn:focu,
+.input-group-btn:last-child > .btn:focus,
 .input-group-btn:last-child > .btn-group > .btn,
 .input-group-btn:last-child > .dropdown-toggle,
 .input-group-btn:first-child > .btn:not(:first-child),

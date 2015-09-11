@@ -16,7 +16,7 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav navbar-right">
         <li repeat.for="row of router.navigation" class="navbar-title ${row.isActive ? 'active' : ''}">
-          <a data-toggle="collapse" data-target="" href.bind="row.href">${row.title}</a>
+          <a data-toggle="collapse" data-target=" href.bind="row.href"">${row.title}</a>
         </li>
         <li class="loader navbar-loader" if.bind="router.isNavigating">
           <i class="fa fa-circle-o-notch fa-spin fa-lg"></i>

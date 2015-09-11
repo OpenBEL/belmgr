@@ -100,7 +100,7 @@
               <label for="citation_ref">Publication Date</label>
               <input type="date" class="form-control selectDrop" id="citation_pubdate" value.bind="evidence.citation.date"
                      placeholder="YYYY-MM-DD">
-              <p class="warning" if.bind="pubmed.bel.mismatch.date">${pubmed.firstPublicationDate} <button click.delegate="replaceCitationDate(pubmed.firstPublicationDate)">Replace</button></p>
+              <p class="warning" if.bind="pubmed.bel.mismatch.date">${pubmed.firstPublicationDate} <button class="btn btn-replace" click.delegate="replaceCitationDate(pubmed.firstPublicationDate)">Replace</button></p>
             </div>
             <!-- .form-group -->
           </div>
