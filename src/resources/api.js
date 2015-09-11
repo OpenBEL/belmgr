@@ -174,10 +174,7 @@ export class Api {
   getBelEvidence(id) {
     return this.apiClient.fetch(`/evidence/${id}`)
       .then(response => response.json())
-      .then(data => {
-                        // logger.debug('BEL Evidence: ', data);
-                        return data['evidence'][0];
-            })
+      .then(data => {return data;})
       .catch(function(reason) {logger.error(`GET BEL Evidence Error: ${reason}`)});
 
   }
@@ -188,30 +185,30 @@ export class Api {
    * @param id
    * @param evidence
    */
-  loadBelEvidence(id, evidence) {
+  loadBelEvidence(evidence, id) {
     if (id) {
       return this.apiClient.fetch(`/evidence/${id}`, {
-          method: 'post',
+          method: 'put',
           headers: {
             'Accept': 'application/json',
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json; profile=http://next.belframework.org/schema/evidence.schema.json'
           },
           body: JSON.stringify(evidence)
         })
         .then(response => response.json())
-        .catch(function (reason) {logger.error(`POST BEL Evidence Error: ${reason}`)});
+        .catch(function (reason) {logger.error(`PUT BEL Evidence Error: ${reason}`)});
     }
     else {
-      return this.apiClient.fetch(`/evidence/${id}`, {
-        method: 'put',
+      return this.apiClient.fetch(`/evidence`, {
+        method: 'post',
         headers: {
           'Accept': 'application/json',
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json; profile=http://next.belframework.org/schema/evidence.schema.json'
         },
         body: JSON.stringify(evidence)
       })
         .then(response => response.json())
-        .catch(function (reason) {logger.error(`PUT BEL Evidence Error: ${reason}`)});
+        .catch(function (reason) {logger.error(`POST BEL Evidence Error: ${reason}`)});
     }
   }
 
