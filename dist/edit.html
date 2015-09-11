@@ -110,7 +110,7 @@
             <div class="form-group">
               <label for="citation_name">Reference Name</label>
               <input type="text" class="form-control" id="citation_name" value.bind="evidence.citation.name" placeholder="Citation Name - e.g. journal or book reference">
-              <p class="text-warning" if.bind="pubmed.bel.mismatch.refString">PubMed Citation: <span class="text-warningCitation">${pubmed.bel.refString}</span> <button click.delegate="replaceCitationName(pubmed.bel.refString)">Replace</button></p>
+              <p class="text-warning" if.bind="pubmed.bel.mismatch.refString">PubMed Citation: <span class="text-warningCitation">${pubmed.bel.refString}</span> <button class="btn-bel btn-replace" click.delegate="replaceCitationName(pubmed.bel.refString)">Replace</button></p>
 
 
             </div>

@@ -355,11 +355,11 @@ section {
 .pager li:not(.disabled) > .btn-bel:focus,
 .pager li:not(.disabled) > a:hover,
 .pager li:not(.disabled) > a:focus,
-.bel-btn:hover,
-.bel-btn:focus {
+.btn-bel:hover,
+.btn-bel:focus {
     background-color: #474350;
     color: #0C91A5;
-    box-shadow: 1px 1px 3px rgba(71, 67, 80, .5);
+    box-shadow: 1px 1px 2px rgba(71, 67, 80, .4);
 }
 
 .pager li>a,
@@ -383,6 +383,10 @@ section {
     border: none;
     background-color: #E4E5E7;
     box-shadow: none;
+}
+
+.btn-replace {
+    float: right;
 }
 
 .pager-top {
@@ -409,17 +413,18 @@ section {
 }
 
 .form-control.btn-euPMC-pubmed {
-    border-bottom: 4px solid rgba(228, 229, 231, 1);
-    font-family: 'Dosis';
-    text-transform: uppercase;
+    background-color: rgba(228, 229, 231, .7);
+    /*box-shadow: inset 0px 35px 0px #E4E5E7;*/
+    border-bottom: 2px solid rgba(228, 229, 231, .9);
+    color: #474350;
+    font-size: 600;
 }
 
 .form-control.btn-euPMC-pubmed:hover {
-    max-height: 34px;
-    box-shadow: inset 0px 35px 0px #E4E5E7;
-    -webkit-transition: box-shadow .1s;
+    background-color: rgba(228, 229, 231, 1);
+   
     color: #0C91A5;
-    font-weight: 600;
+    border: none;
 }
 
 @media (max-width: 767px) {
@@ -565,7 +570,7 @@ div.au-stagger {
     color: #e4e5e7;
     font-weight: 300;
     max-height: 80%;
-    margin-top: 100px;
+    margin-top: 90px;
     padding-bottom: 20px;
     border-radius: 4px;
     overflow-y: scroll;
