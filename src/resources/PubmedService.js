@@ -16,8 +16,11 @@ export class PubmedService {
 
     try {
       this.pubmed = await this.api.getPubmed(id);
-      this.enhancePubmed(); // filter and enhance Pubmed object
-      logger.debug("Pubmed", this.pubmed);
+
+      // filter and enhance PubMed object
+      if (this.pubmed) {this.enhancePubmed();}
+
+      logger.debug(`PubMed ID: ${id}  Pubmed: ${this.pubmed}`);
       return this.pubmed;
     }
     catch (err) {

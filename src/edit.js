@@ -12,37 +12,20 @@ let logger = LogManager.getLogger('edit');
 @inject(Api, PubmedService)
 export class Edit {
 
+  // Needed to allow New BEL menu item to refresh the form
   determineActivationStrategy(){
     return activationStrategy.replace;
   }
-  
+
   constructor(Api, PubmedService) {
     this.api = Api;
     this.pubmedService = PubmedService;
     this.evidenceId = null;
+    this.citationId = null;
     this.evidence = {};
     this.annotations = [];
     this.relationsList = relationsList;
     this.pubmed = null;
-
-//    let evidence_subscription = this.observerLocator
-//      .getObserver(this.evidence.citation.id)
-//      .subscribe(this.citationChanged);
-
-  }
-
-//  onFeaturesChanged(mutations) {
-//    let temp = this.selectedFeatures;
-//    this.selectedFeatures = [];
-//    this.selectedFeatures = temp;
-//    console.log(JSON.stringify(mutations));
-//  }
-
-
-  evidenceChanged() {
-    let temp = this.evidence;
-    this.evidence = {};
-    this.evidence = temp;
   }
 
   async activate(params) {
@@ -55,8 +38,12 @@ export class Edit {
 
       // Get BEL Evidence
       try {
-        this.evidence = await this.api.getBelEvidence(this.evidenceId);
+        this.data = await this.api.getBelEvidence(this.evidenceId);
+        this.evidence = this.data.evidence[0];
         this.belComponents = await this.api.getBelComponents(this.evidence.bel_statement);
+
+        this.citationId = this.evidence.citation.id;
+
         logger.debug('BC: ', this.belComponents);
         await this.getPubmed();
         logger.debug('Evidence: ', this.evidence);
@@ -77,6 +64,16 @@ export class Edit {
   }
 
   /**
+   * Force the evidence object to be recreated for force an update of the nested
+   * object binding in the View
+   */
+  refreshEvidenceObjBinding () {
+    let temp = this.evidence;
+    this.evidence = {};
+    this.evidence = temp;
+  }
+
+  /**
    * Remove blank annotations (added to the end - or just annotations with empty values
    *
    * @param obj
@@ -87,11 +84,6 @@ export class Edit {
     else {return false;}
   }
 
-  reset() {
-    this.evidence = {};
-    logger.debug('Evidence: ', this.evidence);
-    return true;
-  }
   /**
    * Submit BEL Evidence to API
    * @returns {boolean}
@@ -99,8 +91,10 @@ export class Edit {
   submit() {
     this.evidence.bel_statement = `${this.belComponents.subject} ${this.belComponents.relationship} ${this.belComponents.object}`;
     this.evidence.experiment_context = this.annotations.filter(this.removeBlankAnnotations);
-    logger.debug('Submit evidence', JSON.stringify(this.evidence,null,2));
-    this.api.loadBelEvidence(this.evidenceId, this.evidence);
+    this.evidence.citation.id = this.citationId;
+    this.data.evidence[0] = this.evidence;
+    logger.debug('Submit evidence', JSON.stringify(this.data,null,2));
+    this.api.loadBelEvidence(this.evidence, this.evidenceId);
     return true;
   }
 
@@ -137,10 +131,15 @@ export class Edit {
 
   async getPubmed() {
     // Get Pubmed
-    if (this.evidence.citation.type === 'PubMed' && this.evidence.citation.id) {
+    if (this.citationId && this.evidence.citation.type === 'PubMed') {
       try {
-        this.pubmed = await this.pubmedService.getPubmed(this.evidence.citation.id);
-        this.citationPubmedChecks();
+        this.pubmed = await this.pubmedService.getPubmed(this.citationId);
+        if (this.pubmed) {this.citationPubmedChecks();}
+        else {
+          this.evidence.citation = {};
+        }
+
+        this.refreshEvidenceObjBinding();
       }
       catch (err) {
         logger.error('GET Pubmed error: ', err);
@@ -168,6 +167,40 @@ export class Edit {
       this.annotations.push({'name': '', 'value': ''});
     }
   }
+
+
+  // Todo: convert replace* methods with getter/setters after making sure they will update the View correctly
+
+  /**
+   * Replace evidence citation date with newval
+   * @param newval
+   */
+  replaceCitationDate(newval) {
+    this.evidence.citation.date = newval;
+    this.pubmed.bel.mismatch.date = false;
+    this.refreshEvidenceObjBinding();
+  }
+
+  /**
+   * Replace evidence citation date with newval
+   * @param newval
+   */
+  replaceCitationName(newval) {
+    this.evidence.citation.name = newval;
+    this.pubmed.bel.mismatch.refString = false;
+    this.refreshEvidenceObjBinding();
+  }
+
+  /**
+   * Replace evidence citation date with newval
+   * @param newval
+   */
+  replaceCitationAuthors(newval) {
+    this.evidence.citation.authors = newval;
+    this.pubmed.bel.mismatch.authors = false;
+    this.refreshEvidenceObjBinding();
+  }
+
 }
 
 /**
