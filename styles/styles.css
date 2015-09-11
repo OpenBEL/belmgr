@@ -366,7 +366,7 @@ section {
     box-shadow: inset 0px 35px 0px #E4E5E7;
     -webkit-transition: box-shadow .1s;
     color: #0C91A5;
-        font-weight: 600;
+    font-weight: 600;
 }
 
 @media (max-width: 767px) {
