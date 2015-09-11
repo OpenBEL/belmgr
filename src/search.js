@@ -99,14 +99,32 @@ export class Search {
    * @param evidence
    * @returns 'Genus species'
    */
+
+  // getSpecies(evidence) {
+  //   let default_val = 'Unknown';
+  //   let item = evidence.experiment_context.find(x => x.name === 'Ncbi Taxonomy');
+  //   if (item) {
+  //     return item.value;
+  //   }
+  //   return default_val;
+  // }
+
   getSpecies(evidence) {
-    let default_val = 'Unknown';
+    let organisms = {
+      "Mus musculus": "mouse-icon",
+      "Rattus norvegicus": "rat-icon",
+      "Homo sapiens": "human-icon",
+      "Unknown": "unknown-icon"  
+    }
     let item = evidence.experiment_context.find(x => x.name === 'Ncbi Taxonomy');
     if (item) {
-      return item.value;
+      return organisms[item.value];
     }
-    return default_val;
+    return organisms.Unknown;
   }
+
+
+
 
   /**
    * Creates array of experiment_context values without the Ncbi Taxonomy item

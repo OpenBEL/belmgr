@@ -45,6 +45,10 @@ a:hover {
     margin-top: 10px;
 }
 
+.margintop20 {
+    margin-top: 20px;
+}
+
 .margintop30 {
     margin-top: 30px;
 }
@@ -84,11 +88,28 @@ a:hover {
 .navbar-default .navbar-collapse,
 .navbar-default .navbar-form {
     border: none;
+    height: 75px;
+    background-image: none;
+    background-color: transparent;
 }
 
-.navbar {
+.navbar.navbar-fixed-top {
     background-image: none;
     background-color: rgba(56, 51, 66, .1);
+    height: 75px;
+    padding: 10px;
+    margin: 0px;
+}
+
+.navbar-brand {
+    position: relative;
+}
+
+.navbar-logo {
+    width: 60px;
+    height: 60px;
+    position: absolute;
+    top: 0%;
 }
 
 
@@ -96,32 +117,6 @@ a:hover {
 
 
 /*FORM/COMPONENT CONTROL*/
-
-.input-group .form-control:last-child,
-.input-group-addon:last-child,
-.input-group-btn:last-child > .btn,
-.input-group-btn:last-child > .btn-group > .btn,
-.input-group-btn:last-child > .dropdown-toggle,
-.input-group-btn:first-child > .btn:not(:first-child),
-.input-group-btn:first-child > .btn-group:not(:first-child) > .btn {
-    border-radius: 2px;
-}
-
-.form-control:not(.btn-bel):not(.btn-edit) {
-    border: none;
-    border: 0px solid transparent;
-    border-radius: 4px;
-    box-shadow: none;
-    border-bottom: 2px solid rgba(12, 145, 165, .5);
-    background: -webkit-linear-gradient(180deg, #fff, #fbfbfb);
-    /* For Safari 5.1 to 6.0 */
-    background: -o-linear-gradient(180deg, #fff, #fbfbfb);
-    /* For Opera 11.1 to 12.0 */
-    background: -moz-linear-gradient(180deg, #fff, #fbfbfb);
-    /* For Firefox 3.6 to 15 */
-    background: linear-gradient(180deg, #fff, #fbfbfb);
-    /* Standard syntax */
-}
 
 .form-control {
     color: #474350;
@@ -200,8 +195,8 @@ IE 10+ .form-control:-ms-input-placeholder {
 }
 
 .splash .message {
-    font-size: 72px;
-    line-height: 72px;
+    font-size: 18px;
+    line-height: 24px;
     font-family: 'Ubuntu', sans-serif;
     color: #46676E;
 }
@@ -251,6 +246,34 @@ section {
 
 /*BUTTONS*/
 
+.input-group .form-control:last-child,
+.input-group-addon:last-child,
+.input-group-btn:last-child > .btn,
+.input-group-btn:last-child > .btn:hover,
+.input-group-btn:last-child > .btn:focu,
+.input-group-btn:last-child > .btn-group > .btn,
+.input-group-btn:last-child > .dropdown-toggle,
+.input-group-btn:first-child > .btn:not(:first-child),
+.input-group-btn:first-child > .btn-group:not(:first-child) > .btn {
+    border-radius: 2px !important;
+}
+
+.form-control:not(.btn-bel):not(.btn-edit) {
+    border: none;
+    border: 0px solid transparent;
+    border-radius: 4px;
+    box-shadow: none;
+    border-bottom: 2px solid rgba(12, 145, 165, .5);
+    background: -webkit-linear-gradient(180deg, #fcfcfc, #F8F8F8);
+    /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(180deg, #fcfcfc, #F8F8F8);
+    /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(180deg, #fcfcfc, #F8F8F8);
+    /* For Firefox 3.6 to 15 */
+    background: linear-gradient(180deg, #fcfcfc, #F8F8F8);
+    /* Standard syntax */
+}
+
 .btn:focus,
 .btn:active:focus,
 .btn.active:focus,
@@ -262,7 +285,7 @@ section {
 
 .btn-bel,
 .form-control.btn-bel,
-.search-searchBtn,
+.btn-search,
 .pager li > .btn-bel {
     color: #E4E5E7;
     background-color: #474350;
@@ -271,18 +294,24 @@ section {
 
 .form-control.btn-bel:hover,
 .form-control.btn-bel:focus,
-.search-searchBtn:hover,
-.search-searchBtn:focus,
-.pager li > .btn-bel:hover,
-.pager li > .btn-bel:focus,
-.pager li > a:hover,
-.pager li > a:focus,
+.btn-search:hover,
+.btn-search:focus,
+.btn-remove:hover,
+.btn-remove:focus,
+.pager li:not(.disabled) > .btn-bel:hover,
+.pager li:not(.disabled) > .btn-bel:focus,
+.pager li:not(.disabled) > a:hover,
+.pager li:not(.disabled) > a:focus,
 .bel-btn:hover,
 .bel-btn:focus {
     background-color: #474350;
     color: #0C91A5;
-    box-shadow: none;
-    border-bottom: none;
+    box-shadow: 1px 1px 3px rgba(71, 67, 80, .5);
+}
+
+.pager li>a,
+.pager li>span {
+    border: none;
 }
 
 .pager .disabled > a,
@@ -303,16 +332,54 @@ section {
     box-shadow: none;
 }
 
+.pager-top {
+    margin-left: 5px;
+}
+
+.pager-bottom {
+    padding: 0px;
+    margin-left: 5px;
+}
+
 .form-control.btn-edit {
-    font-weight: 500;
+    font-weight: 600;
     background-color: #E4E5E7;
     box-shadow: none;
     max-height: 34px;
+    font-family: 'Dosis', sans-serif;
+    text-transform: uppercase;
 }
 
 .form-control.btn-edit:hover,
 .form-control.btn-edit:focus {
     color: #0C91A5;
+}
+
+.form-control.btn-euPMC-pubmed {
+    border-bottom: 4px solid rgba(228, 229, 231, 1);
+    font-family: 'Dosis';
+    text-transform: uppercase;
+}
+
+.form-control.btn-euPMC-pubmed:hover {
+    max-height: 34px;
+    box-shadow: inset 0px 35px 0px #E4E5E7;
+    -webkit-transition: box-shadow .1s;
+    color: #0C91A5;
+        font-weight: 600;
+}
+
+@media (max-width: 767px) {
+    .btn-euPMC-pubmed {
+        font-size: 10px;
+        padding-top: 10px;
+    }
+}
+
+@media (max-width: 767px) {
+    .btn-euPMC-pubmed-div {
+        padding: 0px;
+    }
 }
 
 .form-control.btn-saveUpdates {
@@ -426,19 +493,39 @@ div.au-stagger {
 
 /* EDIT PAGE */
 
+@media (max-width: 767px) {
+    label,
+    .form-control {
+        font-size: 12px;
+    }
+}
+
 .pubmedContent {
-    background-color: rgba(71, 67, 80, .9);
+    background-color: rgba(71, 67, 80, .85);
     height: auto;
     color: #e4e5e7;
     font-weight: 300;
     max-height: 80%;
-    margin-top: 70px;
+    margin-top: 100px;
+    padding-bottom: 20px;
     border-radius: 4px;
     overflow-y: scroll;
     float: left;
     left: -20px;
     position: fixed;
     display: inline-block;
+}
+
+@media (max-width: 767px) {
+    .pubmedContent h3 {
+        font-size: 18px;
+    }
+}
+
+@media (max-width: 767px) {
+    .pubmedContent p {
+        font-size: 12px;
+    }
 }
 
 .noshowPubmed {
@@ -451,9 +538,9 @@ div.au-stagger {
 }
 
 .text-warning {
-    color: #2C4A4A;
+    color: #B22D1E;
     font-weight: 400;
-    font-size: 14px;
+    font-size: 12px;
     margin-left: 20px;
     margin-top: 5px;
 }
@@ -490,7 +577,9 @@ div.au-stagger {
     border-color: #46676E;
 }
 
-.search-showRow {}
+.search-showRow {
+    padding-right: 15px;
+}
 
 
 /*SEARCH TABLE*/
@@ -499,7 +588,7 @@ div.au-stagger {
 /*FILTER SECTION*/
 
 label {
-    font-weight: 500;
+    font-weight: 300;
 }
 
 label.filter-boxlabel {
@@ -589,12 +678,67 @@ td.table-td a {
 
 td.table-td a:visited {
     color: #46676E;
+    font-weight: 35px;
+    content: 'visited';
 }
 
+td.table-td a:focus {
+    text-decoration: none;
+    outline: none;
+}
 
-/*a:visited + .visitedNote {
-    content: "visited";
-}*/
+.table-expContextDiv {
+    margin-left: 15px;
+}
+
+p.table-expContext {
+    list-style-type: none;
+    display: inline-block;
+    font-size: 12px;
+    font-style: italic;
+    font-weight: 600;
+    font-family: 'Dosis';
+}
+
+p.table-expContext:not(:last-child)::after {
+    content: ",";
+    margin-right: 5px;
+}
+
+tr td div p.table-expContext {
+    line-height: 1;
+    margin: 0px;
+}
+
+div.mouse-icon {
+    content: url("../../media/mouse2-icon.png");
+    height: 40px;
+    width: 40px;
+}
+
+div.rat-icon {
+    content: url("../../media/rat2-icon.png");
+    height: 40px;
+    width: 40px;
+}
+
+div.human-icon {
+    content: url("../../media/human2-icon.png");
+    height: 40px;
+    width: 40px;
+}
+
+div.unknown-icon {
+    content: url("../../media/unknown-icon.png");
+    height: 40px;
+    width: 40px;
+}
+
+.table-speciesIcon {
+    float: left;
+    display: inline-block;
+    padding: 0px;
+}
 
 td.table-td:hover a,
 td.table-td:focus a,

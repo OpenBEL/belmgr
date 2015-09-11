@@ -1,9 +1,9 @@
 <template>
   <div class="container margintop30">
     <div class="row">
-      <div class="col-xs-9 col-xs-offset-3">
+      <div class="paddingrt0  col-xs-9 col-xs-offset-3">
         <nav>
-          <ul class="pager pager-top">
+          <ul class="pager">
             <li class="previous ${pagerPrevious}"><a href="#" class="search-btn btn-bel" click.delegate="pageSearchResults(-1)"><span aria-hidden="true">&larr;</span>Previous</a></li>
             <li class="next ${pagerNext}"><a href="#" class="search-btn btn-bel" click.delegate="pageSearchResults(1)">Next <span aria-hidden="true">&rarr;</span></a></li>
           </ul>
@@ -65,13 +65,9 @@
             <tbody>
             <tr repeat.for="evidence of evidences">
               <td class="table-td col-xs-9">
-                <a class="" route-href="route: edit; params.bind: { id: $parent.getEvidenceId(evidence._links.self.href)  }" target="editbel">${evidence.bel_statement ? evidence.bel_statement : 'Missing BEL Statement'}
+                <a class="" route-href="route: edit; params.bind: { id: $parent.getEvidenceId(evidence._links.self.href)  }" target="editbel">${evidence.bel_statement}
                 </a>
                 <!-- <p class="visitedNote col-xs-1 col-xs-offset-11"></p> -->
-                <p>Species: ${$parent.getSpecies(evidence)}</p>
-                <ul>
-                  <li repeat.for="value of $parent.getExperimentContextItems(evidence)">${value}</li>
-                </ul>
               </td>
             </tr>
             </tbody>

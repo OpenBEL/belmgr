@@ -1,17 +1,17 @@
 <template>
-  <div class="col-xs-5 col-xs-offset-1 marginbtm10">
-      <h2>BEL Editor</h2>
+  <div class="col-xs-5 col-xs-offset-1 marginbtm10 margintop20">
+      <h1>BEL Editor</h1>
   </div>
   <div class="container">
     <div class="row">
       <section class="pubmedContent ${pubmed.title ? 'col-xs-4 col-md-3' : 'noshowPubmed'}">
 
         <div class="row">
-          <div class="col-xs-6">
-            <a href="http://europepmc.org/abstract/MED/${evidence.citation.id}" class="col-xs-12 btn btn-bel form-control" role="button" target="_blank">EuropePMC</a>
+          <div class="col-xs-6 btn-euPMC-pubmed-div">
+            <a href="http://europepmc.org/abstract/MED/${evidence.citation.id}" class="col-xs-12 btn btn-bel btn-euPMC-pubmed form-control" role="button" target="_blank">EuropePMC</a>
           </div>
-          <div class="col-xs-6">
-            <a href="http://www.ncbi.nlm.nih.gov/pubmed/?term=${evidence.citation.id}[uid]" class="col-xs-12 btn btn-bel form-control" role="button" target="_blank">PubMed</a>
+          <div class="col-xs-6 btn-euPMC-pubmed-div">
+            <a href="http://www.ncbi.nlm.nih.gov/pubmed/?term=${evidence.citation.id}[uid]" class="col-xs-12 btn btn-bel btn-euPMC-pubmed form-control" role="button" target="_blank">PubMed</a>
           </div>
         </div>
         <!-- todo Kelly might want to use icons for EuropePMC and Pubmed like
@@ -194,7 +194,7 @@
               </div>
               <!-- .col-xs-8 -->
               <div class="col-xs-1" style="padding-top: 24px;">
-                <button class="btn btn-bel" click.delegate="$parent.removeAnnotation($index)">X</button>
+                <button class="btn btn-bel btn-remove" click.delegate="$parent.removeAnnotation($index)">X</button>
               </div>
               <!-- .col-xs-1 -->
             </div>
@@ -273,17 +273,19 @@
         <!-- #bel-metadata -->
 
         <div class="row edit-editBtns">
+
           <!--<div class="col-xs-4">-->
             <!--<input type="reset" click.delegate="reset()" class="col-xs-10 col-xs-offset-1 btn btn-edit btn-reset form-control pull-right"></input>-->
           <!--</div>-->
+
           <!--fin SHOW ON BOTH-->
 
-          <div class="col-xs-4" show.bind="evidenceId">
-            <button type="button" click.delegate="submit()" class="col-xs-10 col-xs-offset-1 btn-edit btn-saveUpdates btn form-control">Save Updates</button>
+          <div class="col-xs-6 col-sm-4" show.bind="evidenceId">
+            <button type="button" click.delegate="submit()" class="col-xs-10 btn-edit btn-saveUpdates btn form-control">Save Updates</button>
           </div>
 
-          <div class="${evidenceId ? 'col-xs-4' : 'col-xs-4 col-xs-offset-4'}">
-            <button type="button" click.delegate="submitNew()" class="col-xs-10 col-xs-offset-1 btn btn-edit btn-saveNew form-control">${evidenceId ? 'Save as New' : 'Save'}</button>
+          <div class="${evidenceId ? 'col-xs-6 col-sm-4 col-sm-offset-4' : 'col-xs-6 col-xs-offset-6 col-sm-4 col-sm-offset-8'}">
+            <button type="button" click.delegate="submitNew()" class="col-xs-10 btn btn-edit btn-saveNew form-control">${evidenceId ? 'Save as New' : 'Save'}</button>
           </div>
         </div>
       </div>

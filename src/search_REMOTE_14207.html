@@ -65,13 +65,13 @@
             <tbody>
             <tr repeat.for="evidence of evidences">
               <td class="table-td col-xs-9">
-                <a class="" route-href="route: edit; params.bind: { id: $parent.getEvidenceId(evidence._links.self.href)  }" target="editbel">${evidence.bel_statement ? evidence.bel_statement : 'Missing BEL Statement'}
+                <a class="" route-href="route: edit; params.bind: { id: $parent.getEvidenceId(evidence._links.self.href)  }" target="editbel">${evidence.bel_statement}
                 </a>
-                <!-- <p class="visitedNote col-xs-1 col-xs-offset-11"></p> -->
-                <p>Species: ${$parent.getSpecies(evidence)}</p>
-                <ul>
-                  <li repeat.for="value of $parent.getExperimentContextItems(evidence)">${value}</li>
-                </ul>
+                <div class="col-xs-11 col-xs-offset-1">
+                  <p class="table-expContext" repeat.for="cxt of evidence.experiment_context">${cxt.value}</p>
+                  
+                </div>
+
               </td>
             </tr>
             </tbody>
