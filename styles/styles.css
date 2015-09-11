@@ -92,11 +92,33 @@ a:hover {
     background-image: none;
     background-color: transparent;
 }
+
+.navbar-default .navbar-nav>.active>a,
+.navbar-default .navbar-nav>.open>a {
+    background-color: #E4E5E7;
+    box-shadow: none;
+    background-image: none;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+}
+
+.navbar-title a:hover {
+    box-shadow: inset 0px 50px 0px #0C91A5;
+    -webkit-transition: box-shadow .1s;
+    color: #E4E5E7;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+}
+
 .navbar-title a {
     font-family: 'Dosis', sans-serif;
-    font-size: 16px;
+    font-size: 18px;
     text-transform: uppercase;
+    border-radius: 2px;
+    border-bottom: 4px solid #0c91a5;
+    margin-left: 5px;
 }
+
 .navbar-headerTitle {
     font-family: 'Dosis', sans-serif;
     font-size: 28px;
@@ -104,13 +126,15 @@ a:hover {
     color: #0C91A5;
     font-weight: 300;
 }
+
 .navbar-title:last-child {
     margin-right: 70px;
-} 
+}
 
 .navbar-titleDiv {
     margin-right: 60px;
 }
+
 .navbar-loader {
     position: fixed;
     width: 40px;
@@ -132,7 +156,6 @@ a:hover {
 
 .navbar-brand {
     position: relative;
-
 }
 
 .navbar-logo {
@@ -357,7 +380,7 @@ section {
 .disabled > .bel-btn:active,
 .disabled > .bel-btn:focus {
     color: rgba(71, 67, 80, .2);
-    border: 1px solid rgba(71, 67, 80, .2);
+    border: none;
     background-color: #E4E5E7;
     box-shadow: none;
 }
