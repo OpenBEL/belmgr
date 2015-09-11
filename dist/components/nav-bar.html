@@ -8,23 +8,22 @@
         <span class="icon-bar"></span>
       </button>
       <a class="navbar-brand" href="#">
-        <img class="navbar-logo" src="../../media/bel300x.png">>
-        <span>${router.title}</span>
+        <img class="navbar-logo" src="../../media/bel300x.png">
+        <span class="navbar-headerTitle">${router.title}</span>
       </a>
     </div>
 
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav">
-        <li repeat.for="row of router.navigation" class="${row.isActive ? 'active' : ''}">
-          <a data-toggle="collapse" data-target="#bs-example-navbar-collapse-1.in" href.bind="row.href">${row.title}</a>
+      <ul class="nav navbar-nav navbar-right">
+        <li repeat.for="row of router.navigation" class="navbar-title ${row.isActive ? 'active' : ''}">
+          <a data-toggle="collapse" data-target="" href.bind="row.href">${row.title}</a>
+        </li>
+        <li class="loader navbar-loader" if.bind="router.isNavigating">
+          <i class="fa fa-circle-o-notch fa-spin fa-lg"></i>
         </li>
       </ul>
 
-      <ul class="nav navbar-nav navbar-right">
-        <li class="loader" if.bind="router.isNavigating">
-          <i class="fa fa-spinner fa-spin fa-2x"></i>
-        </li>
-      </ul>
+      
     </div>
   </nav>
 </template>

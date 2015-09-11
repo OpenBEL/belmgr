@@ -1,11 +1,11 @@
 <template>
   <div class="container margintop30">
     <div class="row">
-      <div class="col-xs-9 col-xs-offset-3">
+      <div class="paddingrt0  col-xs-9 col-xs-offset-3">
         <nav>
-          <ul class="pager pager-top">
-            <li class="previous ${pagerPrevious}"><a href="#" class="btn-search btn-bel" click.delegate="pageSearchResults(-1)"><span aria-hidden="true">&larr;</span>Previous</a></li>
-            <li class="next ${pagerNext}"><a href="#" class="btn-search btn-bel" click.delegate="pageSearchResults(1)">Next <span aria-hidden="true">&rarr;</span></a></li>
+          <ul class="pager">
+            <li class="previous ${pagerPrevious}"><a href="#" class="search-btn btn-bel" click.delegate="pageSearchResults(-1)"><span aria-hidden="true">&larr;</span>Previous</a></li>
+            <li class="next ${pagerNext}"><a href="#" class="search-btn btn-bel" click.delegate="pageSearchResults(1)">Next <span aria-hidden="true">&rarr;</span></a></li>
           </ul>
         </nav>
       </div>
@@ -15,7 +15,7 @@
             <div class="input-group col-xs-11 col-xs-12">
               <input type="text" onblur.delegate="search()" value.bind="searchTerms" class="search-searchForm form-control" id="searchToken" placeholder="search">
                 <span class="input-group-btn btn-bel highlight">
-                  <button type="submit" class="btn btn-search">
+                  <button type="submit" class="btn search-searchBtn">
                     <i class="fa fa-search"></i>
                   </button>
                 </span>
@@ -64,23 +64,10 @@
             <tr><th class="table-range"><h4>Results ${searchResultsRange}</h4></th></tr>
             <tbody>
             <tr repeat.for="evidence of evidences">
-              <td class="table-td">
-                <div class="col-xs-2 col-sm-1 table-speciesHolder">
-                  <div class=" table-speciesIcon ${$parent.getSpecies(evidence)}"></div>
-                </div>
-                <div class="col-xs-10 col-sm-11">
-                  <a route-href="route: edit; params.bind: { id: $parent.getEvidenceId(evidence._links.self.href)  }" target="editbel">${evidence.bel_statement ? evidence.bel_statement : 'Missing BEL Statement'}
-                  </a>
-                  <div class="table-expContextDiv">
-                    <p class="table-expContext value" repeat.for="value of $parent.getExperimentContextItems(evidence)"> ${value}</p>
-                  </div>
-                </div>
-
-                                
-               <!-- <div class="col-xs-11 col-xs-offset-1">
-                  <p class="table-expContext value " repeat.for="value of $parent.getExperimentContextItems(evidence)"> ${value}</p>
-                </div> -->
-
+              <td class="table-td col-xs-9">
+                <a class="" route-href="route: edit; params.bind: { id: $parent.getEvidenceId(evidence._links.self.href)  }" target="editbel">${evidence.bel_statement}
+                </a>
+                <!-- <p class="visitedNote col-xs-1 col-xs-offset-11"></p> -->
               </td>
             </tr>
             </tbody>
@@ -89,16 +76,15 @@
         <template if.bind="! evidences">
           <p>No search results</p>
         </template>
-        <div class="col-xs-12 pager-bottom">
-          <nav>
-            <ul class="pager">
-              <li class="previous ${pagerPrevious}"><a class="btn-search btn-bel" href="#" click.delegate="pageSearchResults(-1)"><span aria-hidden="true">&larr;</span>Previous</a></li>
-              <li class="next ${pagerNext}"><a class="btn-search btn-bel" href="#" click.delegate="pageSearchResults(1)">Next <span aria-hidden="true">&rarr;</span></a></li>
-            </ul>
-          </nav>
-        </div>
       </div>
-      
+      <div class=" col-xs-9">
+        <nav>
+          <ul class="pager">
+            <li class="previous ${pagerPrevious}"><a class="search-btn btn-bel" href="#" click.delegate="pageSearchResults(-1)"><span aria-hidden="true">&larr;</span>Previous</a></li>
+            <li class="next ${pagerNext}"><a class="search-btn btn-bel" href="#" click.delegate="pageSearchResults(1)">Next <span aria-hidden="true">&rarr;</span></a></li>
+          </ul>
+        </nav>
+      </div>
       <!--<div class="col-md-9" id="resultscolumn">-->
         <!--<pre>${selectedFacets | stringify}</pre>-->
       <!--</div>-->

@@ -92,10 +92,39 @@ a:hover {
     background-image: none;
     background-color: transparent;
 }
+.navbar-title a {
+    font-family: 'Dosis', sans-serif;
+    font-size: 16px;
+    text-transform: uppercase;
+}
+.navbar-headerTitle {
+    font-family: 'Dosis', sans-serif;
+    font-size: 28px;
+    margin-left: 80px;
+    color: #0C91A5;
+    font-weight: 300;
+}
+.navbar-title:last-child {
+    margin-right: 70px;
+} 
+
+.navbar-titleDiv {
+    margin-right: 60px;
+}
+.navbar-loader {
+    position: fixed;
+    width: 40px;
+    margin-top: 15px;
+}
+
+.navbar-collapse {
+    margin-left: 20px;
+    margin-right: 20px;
+}
 
 .navbar.navbar-fixed-top {
     background-image: none;
-    background-color: rgba(56, 51, 66, .1);
+    background-color: #fff;
     height: 75px;
     padding: 10px;
     margin: 0px;
@@ -103,13 +132,14 @@ a:hover {
 
 .navbar-brand {
     position: relative;
+
 }
 
 .navbar-logo {
     width: 60px;
     height: 60px;
     position: absolute;
-    top: 0%;
+    top: -2px;
 }
 
 
@@ -492,6 +522,12 @@ div.au-stagger {
 
 
 /* EDIT PAGE */
+
+.edit-belEditorTitle {
+    margin-bottom: 10px;
+    margin-top: 20px;
+    margin-left: 90px;
+}
 
 @media (max-width: 767px) {
     label,
