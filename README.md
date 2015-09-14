@@ -1,8 +1,7 @@
 # belmgr
 Website for managing BEL Evidences - based on Aurelia.  Requires the OpenBEL Platform for the backend API/storage.
 
-[![ZenHub](https://raw.githubusercontent.com/ZenHubIO/support/master/zenhub-badge.png)](https://zenhub.io)
-[![Join the chat at https://gitter.im/aurelia/discuss](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/aurelia/discuss?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+[OpenBEL Platform API Docs](http://next.belframework.org/docs.html)
 
 
 ## Running The App
