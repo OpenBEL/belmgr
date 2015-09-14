@@ -1,42 +1,19 @@
-System.register(['babel-runtime/helpers/define-decorated-property-descriptor', 'babel-runtime/helpers/create-decorated-class', 'babel-runtime/helpers/class-call-check', 'aurelia-framework'], function (_export) {
-  var _defineDecoratedPropertyDescriptor, _createDecoratedClass, _classCallCheck, bindable, Footer;
+System.register(["babel-runtime/helpers/class-call-check"], function (_export) {
+  var _classCallCheck, Footer;
 
   return {
-    setters: [function (_babelRuntimeHelpersDefineDecoratedPropertyDescriptor) {
-      _defineDecoratedPropertyDescriptor = _babelRuntimeHelpersDefineDecoratedPropertyDescriptor['default'];
-    }, function (_babelRuntimeHelpersCreateDecoratedClass) {
-      _createDecoratedClass = _babelRuntimeHelpersCreateDecoratedClass['default'];
-    }, function (_babelRuntimeHelpersClassCallCheck) {
-      _classCallCheck = _babelRuntimeHelpersClassCallCheck['default'];
-    }, function (_aureliaFramework) {
-      bindable = _aureliaFramework.bindable;
+    setters: [function (_babelRuntimeHelpersClassCallCheck) {
+      _classCallCheck = _babelRuntimeHelpersClassCallCheck["default"];
     }],
     execute: function () {
-      'use strict';
+      "use strict";
 
-      Footer = (function () {
-        var _instanceInitializers = {};
+      Footer = function Footer() {
+        _classCallCheck(this, Footer);
+      };
 
-        function Footer() {
-          _classCallCheck(this, Footer);
-
-          _defineDecoratedPropertyDescriptor(this, 'router', _instanceInitializers);
-        }
-
-        _createDecoratedClass(Footer, [{
-          key: 'router',
-          decorators: [bindable],
-          initializer: function initializer() {
-            return null;
-          },
-          enumerable: true
-        }], null, _instanceInitializers);
-
-        return Footer;
-      })();
-
-      _export('Footer', Footer);
+      _export("Footer", Footer);
     }
   };
 });
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImNvbXBvbmVudHMvZm9vdGVyLmpzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7NEZBRWEsTUFBTTs7Ozs7Ozs7OzttQ0FGWCxRQUFROzs7OztBQUVILFlBQU07OztpQkFBTixNQUFNO2dDQUFOLE1BQU07Ozs7OzhCQUFOLE1BQU07O3VCQUNoQixRQUFROzttQkFBVSxJQUFJOzs7OztlQURaLE1BQU0iLCJmaWxlIjoiY29tcG9uZW50cy9mb290ZXIuanMiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQge2JpbmRhYmxlfSBmcm9tICdhdXJlbGlhLWZyYW1ld29yayc7XG5cbmV4cG9ydCBjbGFzcyBGb290ZXIge1xuICBAYmluZGFibGUgcm91dGVyID0gbnVsbDtcbn1cbiJdLCJzb3VyY2VSb290IjoiL3NvdXJjZS8ifQ==
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImNvbXBvbmVudHMvZm9vdGVyLmpzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7dUJBRWEsTUFBTTs7Ozs7Ozs7O0FBQU4sWUFBTSxZQUFOLE1BQU07OEJBQU4sTUFBTSIsImZpbGUiOiJjb21wb25lbnRzL2Zvb3Rlci5qcyIsInNvdXJjZXNDb250ZW50IjpbIlxuXG5leHBvcnQgY2xhc3MgRm9vdGVyIHtcbiBcbn1cbiJdLCJzb3VyY2VSb290IjoiL3NvdXJjZS8ifQ==
