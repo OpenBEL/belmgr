@@ -21,7 +21,7 @@ echo $cur_ver
 echo "Cloning if needed." >&2
 ssh "$host" "if [ ! -d "\$HOME/belmgr" ]; then cd \$HOME && git clone https://github.com/OpenBEL/belmgr.git; fi"
 echo "Getting changes." >&2
-ssh "$host" "cd \$HOME/belmgr && git checkout master && git pull --ff-only origin master"
+ssh "$host" "cd \$HOME/belmgr && git reset --hard && git checkout master && git pull --ff-only origin master"
 echo "Checking out version." >&2
 ssh "$host" "cd \$HOME/belmgr && git checkout $cur_ver"
 echo "Building." >&2
