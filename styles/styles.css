@@ -470,6 +470,8 @@ section {
     border-bottom: 2px solid rgba(228, 229, 231, .9);
     color: #474350;
     font-size: 600;
+    border-top-right-radius: 0;
+    border-top-left-radius: 0;
 }
 
 .form-control.btn-euPMC-pubmed:hover {
@@ -648,7 +650,7 @@ div.au-stagger {
 }
 
 .edit-editBtns {
-        margin-top: 40px;
+    margin-top: 40px;
     margin-bottom: 60px;
 }
 
@@ -658,15 +660,17 @@ div.au-stagger {
     font-size: 12px;
     margin-left: 20px;
 }
+
 p.text-warning {
     margin-top: 6px;
 }
 
-
 .text-warningCitation {
     font-style: italic;
 }
-
+.search-filterFacets {
+    margin-bottom: 40px;
+}
 
 /* END EDIT PAGE */
 
