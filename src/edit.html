@@ -114,7 +114,7 @@
               <input type="text" class="form-control" id="citation_name" value.bind="evidence.citation.name" placeholder="Citation Name - e.g. journal or book reference">
 
                 <button class="btn-bel btn-replace" if.bind="pubmed.bel.mismatch.refString" click.delegate="replaceCitationName(pubmed.bel.refString)">Replace</button>
-                <p class="text-warning" if.bind="pubmed.bel.mismatch.refString">PubMed Citation: <span class="text-warningCitation">${pubmed.bel.refString}</span></p> 
+                <p class="text-warning" if.bind="pubmed.bel.mismatch.refString">PubMed Citation: <span class="text-warningCitation">${pubmed.bel.refString}</span></p>
 
 
             </div>
@@ -125,9 +125,9 @@
             <div class="form-group">
               <label for="citation_ref">Authors</label>
               <input type="text" class="form-control" id="citation_authors"
-                     value.bind="evidence.citation.authors | pipeDelim"
+                     value.bind="evidence.citation.authors | stringToArray"
                      placeholder="separate authors with a semicolon ';'">
-              <p class="help-block text-warning" if.bind="pubmed.bel.mismatch.authors">${pubmed.bel.authors}  <button click.delegate="replaceCitationAuthors(pubmed.bel.authors)">Replace</button></p>
+              <p class="help-block text-warning" if.bind="pubmed.bel.mismatch.authors">${pubmed.bel.authors | stringToArray}  <button click.delegate="replaceCitationAuthors(pubmed.bel.authors)">Replace</button></p>
             </div>
             <!-- .form-group -->
           </div>
