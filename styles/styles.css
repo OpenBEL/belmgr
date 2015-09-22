@@ -283,6 +283,27 @@ IE 10+ .form-control:-ms-input-placeholder {
 }
 
 
+
+
+    /* FOCUS ON PLACEHOLDER*/
+
+.form-control:focus::-webkit-input-placeholder {
+    color: #25777D;
+}
+
+FF 4-18 .form-control:focus:-moz-placeholder {
+    color: #25777D;
+    }
+
+FF 19+ .form-control:focus::-moz-placeholder {
+    color: #25777D;
+}
+
+IE 10+ .form-control:focus:-ms-input-placeholder {
+    color: #25777D;
+}
+
+
 /*END FORM PLACEHOLDERS*/
 
 
@@ -390,6 +411,9 @@ section {
     color: #E4E5E7;
     background-color: #474350;
     border-radius: 4px;
+}
+form>.form-group>.input-group>input.search-searchForm {
+    height: 34px;
 }
 
 .form-control.btn-bel:hover,
@@ -668,9 +692,27 @@ p.text-warning {
 .text-warningCitation {
     font-style: italic;
 }
-.search-filterFacets {
-    margin-bottom: 40px;
+
+.form-group {
+    margin-bottom: 10px;
 }
+
+.form-group label {
+    margin: 0px;
+}
+
+.form-group input {
+    height: 28px;
+    padding: 6px, 6px, 4px, 6px;
+}
+
+.edit-header h3 {
+    margin-top: 10px;
+}
+.selectDrop {
+    height: 28px;
+}
+
 
 /* END EDIT PAGE */
 
@@ -701,6 +743,10 @@ p.text-warning {
 
 .search-showRow {
     padding-right: 15px;
+}
+
+.search-filterFacets {
+    margin-bottom: 40px;
 }
 
 
@@ -833,33 +879,28 @@ tr td div p.table-expContext {
 }
 
 div.mouse-icon {
-    content: url("../../media/mouse2-icon.png");
-    height: 40px;
-    width: 40px;
+    content: url("../../media/mouse-yellowfill.png");
 }
 
 div.rat-icon {
-    content: url("../../media/rat2-icon.png");
-    height: 40px;
-    width: 40px;
+    content: url("../../media/rat-tealfill.png");
 }
 
 div.human-icon {
-    content: url("../../media/human2-icon.png");
-    height: 40px;
-    width: 40px;
+    content: url("../../media/human-bluefill2.png");
 }
 
 div.unknown-icon {
-    content: url("../../media/unknown-icon.png");
-    height: 40px;
-    width: 40px;
+    content: url("../../media/unknown-grayfill.png");
 }
 
 .table-speciesIcon {
     float: left;
     display: inline-block;
     padding: 0px;
+    height: 33px;
+    width: 33px;
+    margin-top: 3px;
 }
 
 td.table-td:hover a,
