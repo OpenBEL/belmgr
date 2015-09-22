@@ -725,7 +725,9 @@ p.text-warning {
     border: 0px !important;
     font-size: 12px;
 }
-
+.panel-group {
+    margin-bottom: 5px;
+}
 .panel.acForm {
     font-family: 'Dosis', sans-serif;
     font-size: 18px;
@@ -745,7 +747,7 @@ p.text-warning {
 }
 .acForm>.panel-heading {
     padding-top: 5px;
-    padding-bottom: 5px;
+    padding-bottom: 20px;
 }
 .edit-acTitle>a:focus,
 .edit-acTitle>a:active {
@@ -755,6 +757,16 @@ p.text-warning {
 }
 .edit-acTitle>a:hover {
     text-decoration: none;
+}
+.edit-acTitle>a {
+    width: 100%;
+    height: 100%;
+}
+.floatLeft {
+    float: left;
+}
+.floatRight {
+    float: right;
 }
 
 
