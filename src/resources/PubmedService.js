@@ -20,13 +20,12 @@ export class PubmedService {
       // filter and enhance PubMed object
       if (this.pubmed) {this.enhancePubmed();}
 
-      logger.debug(`PubMed ID: ${id}  Pubmed: ${this.pubmed}`);
+      // logger.debug(`PubMed ID: ${id}  Pubmed: ${this.pubmed}`);
       return this.pubmed;
     }
     catch (err) {
       logger.error('GET Pubmed error: ', err);
     }
-
   }
 
   enhancePubmed() {
@@ -41,7 +40,9 @@ export class PubmedService {
     this.pubmed.bel.refString += ` p:${this.pubmed.pageInfo}`;
 
     // Adjust authors string to the BEL Evidence format - convert ',' to '|'
-    this.pubmed.bel.authors = this.pubmed.authorString.replace(/,/g , '|').replace(/\.$/, '');
+    // this.pubmed.bel.authors = this.pubmed.authorString.replace(/,/g , '|').replace(/\.$/, '');  old version - authors in BEL Evidence is now an array
+    this.pubmed.bel.authors = this.pubmed.authorList.author.map(obj => {return obj.fullName;});
+
   }
 
 }

@@ -250,7 +250,7 @@ export class Api {
     return this.apiClient.fetch('/annotations')
       .then(response => response.json())
       .then(data => {
-              logger.debug('GET BEL Annotations: ', data);
+              // logger.debug('GET BEL Relations: ', data);
               return data;
             })
       .catch(function(reason) {logger.error(`GET BEL Annotations Error: ${reason}`)});
@@ -261,7 +261,7 @@ export class Api {
     return this.apiClient.fetch('/annotations')
       .then(response => response.json())
       .then(data => {
-                         logger.debug('GET BEL Annotations: ', data);
+                         // logger.debug('GET BEL Annotations: ', data);
                          return data['annotations'];
             })
       .catch(function(reason) {logger.error(`GET BEL Annotations Error: ${reason}`)});

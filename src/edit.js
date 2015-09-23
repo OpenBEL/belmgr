@@ -39,7 +39,8 @@ export class Edit {
       // Get BEL Evidence
       try {
         this.data = await this.api.getBelEvidence(this.evidenceId);
-        this.evidence = this.data.evidence[0];
+        this.evidence = this.data.evidence;
+        logger.info('BEL Statement: ', this.evidence);
         this.belComponents = await this.api.getBelComponents(this.evidence.bel_statement);
 
         this.citationId = this.evidence.citation.id;
@@ -205,6 +206,8 @@ export class Edit {
 
 /**
  * Convert authors delimited by ';' in webpage to '|' for storage
+ *
+ * use it in the View as ' | pipeDelim'
  */
 export class PipeDelimValueConverter {
   toView(text) {
@@ -220,6 +223,28 @@ export class PipeDelimValueConverter {
       logger.debug('Pipe-fromView: ', text);
     }
     return text;
+  }
+}
+
+/**
+ * Convert author array to from text string delimited by ';'
+ *
+ * use it in the View as ' | stringToArray'
+ */
+export class StringToArrayValueConverter {
+  toView(array) {
+    let text = "";
+    if (array) {
+      text = array.join('; ');
+    }
+    return text;
+  }
+  fromView(text) {
+    let array = [];
+    if (text) {
+    array = text.split('; ');
+    }
+    return array;
   }
 }
 
