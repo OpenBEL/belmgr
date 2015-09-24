@@ -72,15 +72,16 @@
           </div>
         </div>
             <!-- col-xs-2 -->
-        <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+
+        <div class="panel-group accordion-group" id="accordion" role="tablist" aria-multiselectable="true">
           <div class="panel acForm">
             <div class="panel-heading" role="tab" id="headingOne">
               <h5 class="panel-title edit-acTitle">
-                <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                <a class="accordionAnchor collapsed col-xs-12" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
                   <div>
-                    <span class="floatLeft">Reference Name
+                    <span class="accordionTitle col-xs-11 floatLeft">Reference Name
                     </span>
-                    <i class="floatRight fa fa-caret-down"></i>
+                    <i class="accordionArrow col-xs-1 floatRight fa fa-caret-down"></i>
                   </div>
                 </a>
               </h5>
@@ -103,10 +104,10 @@
           <div class="panel acForm">
             <div class="panel-heading" role="tab" id="headingTwo">
               <h5 class="panel-title edit-acTitle">
-                <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                <a class="accordionAnchor collapsed col-xs-12" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
                   <div>
-                    <span class="floatLeft">Authors</span>
-                    <i class="floatRight fa fa-caret-down"></i>
+                    <span class="accordionTitle col-xs-11 floatLeft">Authors</span>
+                    <i class="accordionArrow col-xs-1 floatRight fa fa-caret-down"></i>
                   </div>
                 </a>
               </h5>
@@ -387,7 +388,7 @@
             <!--fin SHOW ON BOTH-->
 
             <div class="col-xs-6 col-sm-4" show.bind="evidenceId">
-              <button type="button" click.delegate="submit()" class="col-xs-10 btn-edit btn-saveUpdates btn form-control">Save Updates</button>
+              <button type="button" click.delegate="submit()" class="col-xs-10 btn-edit btn-saveUpdates btn form-control" onclick="return confirm('Are you sure you would like to overwrite the current Bel statement with your changes?')">Update Current BEL</button>
             </div>
 
             <div class="${evidenceId ? 'col-xs-6 col-sm-4 col-sm-offset-4' : 'col-xs-6 col-xs-offset-6 col-sm-4 col-sm-offset-8'}">

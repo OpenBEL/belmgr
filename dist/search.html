@@ -66,7 +66,7 @@
             <tr repeat.for="evidence of evidences">
               <td class="table-td">
                 <div class="col-xs-2 col-sm-1 table-speciesHolder">
-                  <div class=" table-speciesIcon ${$parent.getSpecies(evidence)}"></div>
+                  <div class="table-speciesIcon ${$parent.getSpecies(evidence)}"></div>
                 </div>
                 <div class="col-xs-10 col-sm-11">
                   <a route-href="route: edit; params.bind: { id: $parent.getEvidenceId(evidence._links.self.href)  }" target="editbel">${evidence.bel_statement ? evidence.bel_statement : 'Missing BEL Statement'}
