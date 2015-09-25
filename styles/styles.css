@@ -68,6 +68,14 @@ a:hover {
     margin-top: 30px;
 }
 
+.margintop60 {
+    margin-top: 60px;
+}
+
+.margintop80 {
+    margin-top: 80px;
+}
+
 .marginbtm10 {
     margin-bottom: 10px;
 }
@@ -75,6 +83,10 @@ a:hover {
 .marginrt0 {
     margin-right: 0px;
 }
+.marginrt10 {
+    margin-right: 10px;
+}
+
 
 .fa-spin {
     color: #fdc975;
@@ -132,11 +144,15 @@ a:hover {
     border-radius: 2px;
     border-bottom: 4px solid #0c91a5;
     margin-left: 5px;
-    padding-left: 10px !important;
-    padding-right: 10px !important;
+    margin-top: 5px;
+    padding-left: 5px !important;
+    padding-right: 5px !important;
+    padding-top: 12px !important;
     text-align: center;
     left: 50%;
     right: 50%;
+    z-index: 1600;
+    height: 45px;
 }
 
 .navbar-headerTitle {
@@ -149,6 +165,7 @@ a:hover {
 
 .navbar-title {
     width: 90px;
+    margin-top: 10px;
 }
 
 .navbar-titleDiv {
@@ -169,13 +186,19 @@ a:hover {
 .navbar.navbar-fixed-top {
     background-image: none;
     background-color: #fff;
-    height: 75px;
+    height: 85px;
     padding: 10px;
     margin: 0px;
 }
 
+.navbar-right {
+    margin-right: 120px;
+    margin-top: 10px;
+}
+
 .navbar-brand {
     position: relative;
+    margin-top: 5px;
 }
 
 .navbar-logo {
@@ -183,6 +206,33 @@ a:hover {
     height: 60px;
     position: absolute;
     top: -2px;
+}
+
+.navbar-userRow {
+    position: absolute;
+    width: 100%;
+    margin-top: -5px;
+}
+
+.navbar-userDiv {
+    position: absolute;
+    width: 180px;
+    float: right;
+    right: 75px;
+}
+
+.navbar-userDiv a {
+    height: 16px;
+    margin-left: 15px;
+    border-bottom: 2px solid #FDC975;
+    color: #0C91A5;
+    float: right;
+    font-size: 12px;
+}
+
+.navbar-userDiv a:hover {
+    text-decoration: none;
+    border-bottom: 1px solid #FDC975;
 }
 
 .navbar-user {
@@ -253,13 +303,7 @@ footer {
 
 .edit-belForm .form-control:focus,
 .edit-belForm .form-control:hover,
-.edit-belForm .form-control:active,
-.search-searchForm.form-control:focus,
-.search-searchForm.form-control:hover,
-.search-searchForm.form-control:active,
-.search-showForm.form-control:focus,
-.search-showForm.form-control:hover,
-.search-showForm.form-control:active {
+.edit-belForm .form-control:active {
     border-bottom: 2px solid rgba(12, 145, 165, .2) !important;
     box-shadow: inset 1px 1px 10px rgba(228, 229, 231, .4);
     color: #25777D;
@@ -384,7 +428,8 @@ section {
 
 /*BUTTONS*/
 
-.input-group .form-control:last-child,
+
+/*.input-group .form-control:last-child,
 .input-group-addon:last-child,
 .input-group-btn:last-child > .btn,
 .input-group-btn:last-child > .btn:hover,
@@ -394,9 +439,9 @@ section {
 .input-group-btn:first-child > .btn:not(:first-child),
 .input-group-btn:first-child > .btn-group:not(:first-child) > .btn {
     border-radius: 2px !important;
-}
+}*/
 
-.form-control:not(.btn-bel):not(.btn-edit):not(.authorCitation) {
+.form-control:not(.btn-bel):not(.btn-edit) {
     border: none;
     border: 0px solid transparent;
     border-radius: 4px;
@@ -421,12 +466,17 @@ section {
     outline: none
 }
 
-.btn-bel,
 .form-control.btn-bel,
-.btn-search,
-.pager li > .btn-bel {
-    color: #E4E5E7;
+.btn-bel,
+.btn-search {
+    border-radius: 4px;
     background-color: #474350;
+    color: #E4E5E7;
+}
+
+.pager li > .btn-bel {
+    color: #474350;
+    background-color: transparent;
     border-radius: 4px;
 }
 
@@ -436,14 +486,8 @@ form>.form-group>.input-group>input.search-searchForm {
 
 .form-control.btn-bel:hover,
 .form-control.btn-bel:focus,
-.btn-search:hover,
-.btn-search:focus,
 .btn-remove:hover,
 .btn-remove:focus,
-.pager li:not(.disabled) > .btn-bel:hover,
-.pager li:not(.disabled) > .btn-bel:focus,
-.pager li:not(.disabled) > a:hover,
-.pager li:not(.disabled) > a:focus,
 .btn-bel:hover,
 .btn-bel:focus {
     background-color: #474350;
@@ -456,14 +500,16 @@ form>.form-group>.input-group>input.search-searchForm {
     border: none;
 }
 
-.pager .disabled > a,
+
+/*.pager .disabled > a,
 .pager .disabled > a:hover,
 .pager .disabled > a:focus,
 .pager .disabled > span,
 .pager .disabled > .bel-btn,
 .pager .disabled > .bel-btn:hover,
 .pager .disabled > .bel-btn:active,
-.pager .disabled > .bel-btn:focus,
+.pager .disabled > .bel-btn:focus,*/
+
 .disabled > .bel-btn,
 .disabled > .bel-btn:hover,
 .disabled > .bel-btn:active,
@@ -477,14 +523,65 @@ form>.form-group>.input-group>input.search-searchForm {
 .btn-replace {
     float: left;
     margin-right: 12px;
-    margin-left: 25px;
+    margin-left: 10px;
     height: 20px;
-    font-size: 11px;
-    margin-top: 3px;
+    font-size: 10px;
+    margin-top: 7px;
+    box-shadow: none;
+    border: none;
+    padding-top: 3px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.btn-remove {
+    height: 24px;
+    width: 24px;
+    margin-top: 2px;
+    padding: 0px;
+}
+
+.btn-search {
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
+}
+
+.btn-edit.btn-export {
+    border-bottom: 4px solid #FDC975;
+    margin-left: 15px;
+    margin-top: 15px;
+    /* margin-bottom: 0px; */
+    font-weight: 600;
+    background-color: #E4E5E7;
+    box-shadow: none;
+    max-height: 26px;
+    font-family: 'Dosis', sans-serif;
+    text-transform: capitalize;
+    padding: 2px 3px 0px 3px;
+    font-size: 14px;
+    font-weight: 400;
+    width: 110px;
+    color: #474350;
+    right: 0px;
+    /* margin-right: 14px; */
+    /* position: absolute; */
+}
+
+.btn-edit.btn-export:hover {
+    max-height: 26px;
+    box-shadow: inset 0px 34px 0px #FDC975;
+    -webkit-transition: box-shadow .1s;
+    /* color: #e4e5e7;*/
+}
+
+.pager>li>.btn-search {
+    width: 90px;
 }
 
 .pager-top {
     margin-left: 5px;
+    height: 25px;
+    margin-top: 13px;
 }
 
 .pager-bottom {
@@ -501,25 +598,28 @@ form>.form-group>.input-group>input.search-searchForm {
     text-transform: uppercase;
 }
 
-.form-control.btn-edit:hover,
-.form-control.btn-edit:focus {
-    color: #0C91A5;
-}
-
 .form-control.btn-euPMC-pubmed {
-    background-color: rgba(228, 229, 231, .7);
+    background-color: rgba(228, 229, 231, .75);
     /*box-shadow: inset 0px 35px 0px #E4E5E7;*/
     border-bottom: 2px solid rgba(228, 229, 231, .9);
     color: #474350;
     font-size: 600;
     border-top-right-radius: 0;
     border-top-left-radius: 0;
+    padding: 0px;
+    height: 40px;
 }
 
 .form-control.btn-euPMC-pubmed:hover {
     background-color: rgba(228, 229, 231, 1);
     color: #0C91A5;
     border: none;
+    padding: 0px;
+}
+
+.euPMC-pubmed-logo {
+    max-width: 95%;
+    max-height: 100%;
 }
 
 @media (max-width: 767px) {
@@ -648,7 +748,7 @@ div.au-stagger {
 
 .edit-belEditorTitle {
     margin-bottom: 10px;
-    margin-top: 20px;
+    margin-top: 25px;
     margin-left: 90px;
 }
 
@@ -687,7 +787,7 @@ div.au-stagger {
     }
 }
 
-.noshowPubmed {
+.noShow {
     display: none;
 }
 
@@ -700,11 +800,16 @@ div.au-stagger {
     color: #B22D1E;
     font-weight: 400;
     font-size: 12px;
-    margin-left: 20px;
+    margin-bottom: 5px;
+}
+
+.edit-annotationBlock {
+    height: 32px;
+    padding: 4px 0px 4px 0px;
 }
 
 p.text-warning {
-    margin-top: 6px;
+    margin-top: 9px;
 }
 
 .text-warningCitation {
@@ -712,7 +817,7 @@ p.text-warning {
 }
 
 .form-group {
-    margin-bottom: 10px;
+    margin-bottom: 0px;
 }
 
 .form-group label {
@@ -720,18 +825,18 @@ p.text-warning {
 }
 
 .form-group input {
-    height: 28px;
+    height: 26px;
     padding: 6px, 6px, 4px, 6px;
 }
 
 .edit-header h3 {
     margin-top: 10px;
     font-size: 18px;
-    font-weight: 500
+    font-weight: 500;
 }
 
 .selectDrop {
-    height: 28px;
+    height: 26px;
 }
 
 .edit-acPanelBody {
@@ -751,14 +856,22 @@ p.text-warning {
     font-size: 12px;
 }
 
+.edit-annotationType {
+    display: none;
+}
+
+.edit-eContext .edit-annotationType:first-of-type {
+    display: inline;
+}
+
 .panel-group {
     margin-bottom: 5px;
 }
 
 .panel.acForm {
-    font-family: 'Dosis', sans-serif;
+    font-family: 'Ubuntu', sans-serif;
     font-size: 18px;
-    text-transform: uppercase;
+    margin-top: 5px;
     border-radius: 2px;
     background-color: #E4E5E7;
     box-shadow: none;
@@ -830,23 +943,39 @@ p.text-warning {
     margin-right: 5px;
 }
 
-.search-showForm {
-    width: 70px;
-    float: right;
-    z-index: 100;
-}
-
-.search-showForm:focus {
-    box-shadow: 1px 0px 3px #eee;
-    border-color: #46676E;
-}
-
-.search-showRow {
-    padding-right: 15px;
-}
-
 .search-filterFacets {
     margin-bottom: 40px;
+    margin-top: 12px;
+}
+
+.search-pageCount {
+    font-family: 'Dosis', sans-serif;
+    font-size: 16px;
+    font-weight: 300;
+    margin-top: 4px;
+}
+
+.pager .disabled>.pagerArrow,
+.pager .disabled>.pagerArrow:focus,
+.pager .disabled>.pagerArrow:hover {
+    opacity: .2;
+}
+
+.pager li>.pagerArrow:hover,
+.pager li>.pagerArrow:focus {
+    background-color: transparent;
+    box-shadow: none;
+}
+
+.fa-angle-right,
+.fa-angle-left {
+    color: #474350;
+}
+
+.fa-angle-right:hover,
+.fa-angle-left:hover {
+    color: #0C91A5;
+    text-shadow: 1px 1px 2px rgba(71, 67, 80, .4);
 }
 
 
@@ -921,15 +1050,42 @@ input[type=checkbox]:checked:after {
 
 /*TABLE SECTION*/
 
+.table-range {
+    padding-left: 6px;
+}
+
+.tableTopSpacer {
+    height: 70px;
+    margin-top: 0px;
+}
+
 th.table-range,
 th.table-range:hover {
     display: flex;
-    margin-top: -55px;
+    margin-top: -50px;
     background-color: transparent;
     z-index: 10;
     border: none;
     border-top: none !important;
-    width: 30%;
+    width: 100%;
+}
+
+.table-range h4 {
+    margin-bottom: 0px;
+    margin-top: 20px;
+    float: left;
+}
+
+.search-resultsLabel {
+    width: auto;
+    float: left;
+}
+
+.table-range .selectDrop {
+    width: auto;
+    margin-top: 15px;
+    float: left;
+    margin-left: 5px;
 }
 
 td.table-td {

@@ -5,14 +5,14 @@
   </div>
   <div class="container">
     <div class="row">
-      <section class="pubmedContent ${pubmed.title ? 'col-xs-4 col-md-3' : 'noshowPubmed'}">
+      <section class="pubmedContent ${pubmed.title ? 'col-xs-4 col-md-3' : 'noShow'}">
 
         <div class="row">
           <div class="col-xs-6 btn-euPMC-pubmed-div">
-            <a href="http://europepmc.org/abstract/MED/${evidence.citation.id}" class="col-xs-12 btn btn-bel btn-euPMC-pubmed form-control" role="button" target="_blank">EuropePMC</a>
+            <a href="http://europepmc.org/abstract/MED/${evidence.citation.id}" class="col-xs-12 btn btn-bel btn-euPMC-pubmed form-control" role="button" target="_blank"><img class="euPMC-pubmed-logo" src="./media/EuropePMC.png" alt=""></a>
           </div>
           <div class="col-xs-6 btn-euPMC-pubmed-div">
-            <a href="http://www.ncbi.nlm.nih.gov/pubmed/?term=${evidence.citation.id}[uid]" class="col-xs-12 btn btn-bel btn-euPMC-pubmed form-control" role="button" target="_blank">PubMed</a>
+            <a href="http://www.ncbi.nlm.nih.gov/pubmed/?term=${evidence.citation.id}[uid]" class="col-xs-12 btn btn-bel btn-euPMC-pubmed form-control" role="button" target="_blank"><img class="euPMC-pubmed-logo" src="./media/pubmed-logo.png" alt=""></a>
           </div>
         </div>
         <!-- todo Kelly might want to use icons for EuropePMC and Pubmed like
@@ -92,8 +92,8 @@
                    <!-- <label for="citation_name">Reference Name</label> -->
                     <textarea type="text" class="form-control authorCitation" id="citation_name" value.bind="evidence.citation.name" placeholder="Citation Name - e.g. journal or book reference"></textarea>
 
-                    <button class="btn-bel btn-replace" if.bind="pubmed.bel.mismatch.refString" click.delegate="replaceCitationName(pubmed.bel.refString)">Replace</button>
-                    <p class="text-warning" if.bind="pubmed.bel.mismatch.refString">PubMed Citation: <span class="text-warningCitation">${pubmed.bel.refString}</span></p>
+                    <button class="btn-bel btn-replace col-xs-1" if.bind="pubmed.bel.mismatch.refString" click.delegate="replaceCitationName(pubmed.bel.refString)">Replace</button>
+                    <p class="text-warning col-xs-10" if.bind="pubmed.bel.mismatch.refString">PubMed Citation: <span class="text-warningCitation">${pubmed.bel.refString}</span></p>
                   <!-- .form-group -->
                 </div>
               </div>
@@ -117,8 +117,8 @@
                       <!--<label for="citation_ref">Authors</label>-->
                       <textarea type="text" class="form-control authorCitation" id="citation_authors" value.bind="evidence.citation.authors | stringToArray" placeholder="separate authors with a semicolon ';'"></textarea>
 
-                      <button class="btn-bel btn-replace" if.bind="pubmed.bel.mismatch.authors" click.delegate="replaceCitationAuthors(pubmed.bel.authors)">Replace</button>
-                      <p class="text-warning" if.bind="pubmed.bel.mismatch.authors">Authors listed on PubMed: <span class="text-warningCitation">${pubmed.bel.authors | stringToArray}</span></p>
+                      <button class="btn-bel btn-replace col-xs-1" if.bind="pubmed.bel.mismatch.authors" click.delegate="replaceCitationAuthors(pubmed.bel.authors)">Replace</button>
+                      <p class="text-warning col-xs-10" if.bind="pubmed.bel.mismatch.authors">Authors listed on PubMed: <span class="text-warningCitation">${pubmed.bel.authors | stringToArray}</span></p>
 
                     <!-- .form-group -->
               </div>
@@ -177,12 +177,12 @@
             <div class="col-xs-12">
               <div class="form-group">
                 <label sr-only for="summaryText">BEL Summary Text</label>
-                <textarea class="form-control" value.bind="evidence.summary_text" id="summaryText" rows="3"
+                <textarea class="form-control textBlocks" value.bind="evidence.summary_text" id="summaryText" rows="3"
                           placeholder="Extract from source text supporting this BEL Statement"></textarea>
               </div>
               <div class="form-group">
                 <label for="citation_ref">Evidence Notes</label>
-                <textarea rows="3" class="form-control" id="citation_comments" value.bind="evidence.citation.comment"></textarea>
+                <textarea rows="3" class="form-control textBlocks" id="citation_comments" value.bind="evidence.citation.comment"></textarea>
               </div>
               <!-- .form-group -->
             </div>
@@ -193,19 +193,32 @@
 
 
         <!-- Experiment Context -->
-        <div id="experimental-context">
+        <div id="experimental-context" class="edit-eContext ">
           <div class="row edit-belForm">
           <div class="col-xs-12 edit-header">
             <h3>Experiment Context</h3>
           </div>
           <!-- .col-xs-12 -->
+          
+          <div class="col-xs-12" show.bind="evidenceId">
+          <!-- todo: will all statements w/ evidenceId's have annotations? -->
+              <div class="col-xs-3">
+                <label class="edit-annotationType">Annotation Type</label>
+              </div>
+              <div class="col-xs-8">
+                <div class="form-group">
+                  <label class="edit-annotation">Annotation</label>
+                </div>
+              </div>
+          </div>
+
           <template repeat.for="annotation of annotations">
-            <div class="col-xs-12">
+
+            <div class="col-xs-12 edit-annotationBlock">
               <div class="col-xs-3">
                 <div class="form-group">
-                  <!-- todo Find out from Tony if we need to add the uri to the annotations object -->
-                  <label for="annotationType-${$index}">Annotation Type</label>
-                  <select name="annotationType-${$index}" class="form-control" value.bind="$parent.annotations[$index].name">
+                  <!-- todo Find out from Tony if we need to add the uri to the annotations object -->             
+                  <select name="annotationType-${$index}" class="form-control selectDrop" value.bind="$parent.annotations[$index].name">
                     <option>--select--</option>
                     <option repeat.for="annotationType of $parent.annotationList" value.bind="annotationType.name">${annotationType.name}</option>
                     <option>Unknown</option>
@@ -215,14 +228,13 @@
               </div>
               <!-- .col-xs-3 -->
               <div class="col-xs-8">
-                <div class="form-group">
-                  <label for="annotationVal-${$index}">Annotation</label>
+                <div class="form-group">                 
                   <input name="annotationVal-${$index}" class="form-control" type="text" submit.delegate="false" change.delegate="$parent.addBlankAnnotation($index, $event)" value.bind="$parent.annotations[$index].value"></input>
                 </div>
                 <!-- .form-group -->
               </div>
               <!-- .col-xs-8 -->
-              <div class="col-xs-1" style="padding-top: 24px;">
+              <div class="col-xs-1">
                 <button class="btn btn-bel btn-remove" click.delegate="$parent.removeAnnotation($index)">X</button>
               </div>
               <!-- .col-xs-1 -->
@@ -310,9 +322,9 @@
           <!--fin SHOW ON BOTH-->
 
 
-            <div class="col-xs-6 col-sm-4" show.bind="evidenceId">
-              <button type="button" click.delegate="submit()" class="col-xs-10 btn-edit btn-saveUpdates btn form-control" onclick="return confirm('Are you sure you would like to overwrite the current Bel statement with your changes?')">Update Current BEL</button>
-            </div>
+          <div class="col-xs-6 col-sm-4" show.bind="evidenceId">
+            <button type="button" click.delegate="submit()" class="col-xs-10 btn-edit btn-saveUpdates btn form-control")>Update Current BEL</button>
+          </div>
 
           <div class="${evidenceId ? 'col-xs-6 col-sm-4 col-sm-offset-4' : 'col-xs-6 col-xs-offset-6 col-sm-4 col-sm-offset-8'}">
             <button type="button" click.delegate="submitNew()" class="col-xs-10 btn btn-edit btn-saveNew form-control">${evidenceId ? 'Save as New' : 'Save'}</button>
@@ -322,8 +334,7 @@
     </div>
   </div>
 </div>
-</template>
 
-
+<!-- onclick="return confirm('Are you sure you would like to overwrite the current Bel statement with your changes?' -->
 
 

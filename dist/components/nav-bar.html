@@ -1,7 +1,7 @@
 <template>
   <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
     <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#openBelNavbar">
         <span class="sr-only">Toggle Navigation</span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
@@ -13,20 +13,19 @@
       </a>
     </div>
 
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+    <div class="collapse navbar-collapse" id="openBelNavbar">
+      <div class="row navbar-userRow">
+        <div class="navbar-userDiv">
+          <a href="#">log in</a>
+          <a href="#">register</a>
+      </div>
       <ul class="nav navbar-nav navbar-right">
         <li repeat.for="row of router.navigation" class="navbar-title ${row.isActive ? 'active' : ''}">
-      <!--  todo: WM, how does the below navbar-collapse data-target work? -->
-          <a data-toggle="collapse" data-target="#bs-example-navbar-collapse-1.in" href.bind="row.href">${row.title}</a>
+          <a data-toggle="collapse" data-target="#openBelNavbar.in" href.bind="row.href">${row.title}</a>
         </li>
         <!--<li class="loader navbar-loader" if.bind="router.isNavigating">
           <i class="fa fa-circle-o-notch fa-spin"></i>
         </li>-->
-        <li class="navbar-user">
-          <a class="col-xs-5 col-xs-offset-1" href="#">register</a>
-          <a class="col-xs-6" href="#">log in</a>
-
-        </li>
       </ul>
     </div>
   </nav>

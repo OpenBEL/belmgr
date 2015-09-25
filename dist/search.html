@@ -1,14 +1,8 @@
 <template>
-  <div class="container margintop30 search-html">
+  <div class="container margintop80 search-html">
     <div class="row">
-      <div class="col-xs-9 col-xs-offset-3">
-        <nav>
-          <ul class="pager pager-top">
-            <li class="previous ${pagerPrevious}"><a href="#" class="btn-search btn-bel" click.delegate="pageSearchResults(-1)"><span aria-hidden="true">&larr;</span>Previous</a></li>
-            <li class="next ${pagerNext}"><a href="#" class="btn-search btn-bel" click.delegate="pageSearchResults(1)">Next <span aria-hidden="true">&rarr;</span></a></li>
-          </ul>
-        </nav>
-      </div>
+
+    
       <div id="dportalsearchbar" class="col-xs-3 paddingNone">
         <form role="form" submit.delegate="search()">
           <div class="form-group">
@@ -23,16 +17,10 @@
           </div>
         </form>
       </div>
-      <div class="search-showRow">
-        <select class="form-control search-showForm selectDrop" id="search_size" value.bind="searchSize" change.delegate="saveSearchSize()">
-          <option value="10" > 10</option>
-          <option value="20" > 20</option>
-          <option value="50" > 50</option>
-          <option value="100">100</option>
-        </select>
-        <h5 class="search-show">Show:  </h5>
-      </div>
+
+
     </div>
+
     <div class="row">
       <template if.bind="facetSets">
         <div class="search-filterFacets col-xs-3">
@@ -58,10 +46,40 @@
         </div>
       </template>
 
-      <div class=" col-xs-9" id="resultscolumn">
+      <div class="col-xs-9 paddingNone" id="resultscolumn">
         <template if.bind="evidences">
           <table class="table table-hover">
-            <tr><th class="table-range"><h4>Results ${searchResultsRange}</h4></th></tr>
+            <tr>
+              <th class="table-range tableTopSpacer">
+                <div class="col-xs-12 col-sm-9 col-md-8 paddingNone">
+                    <h4 class="search-resultsLabel paddingNone ">Results:</h4>
+                    
+                    <select class="paddingNone form-control selectDrop" id="search_size" value.bind="searchSize" change.delegate="saveSearchSize()">
+                      <option value="10" > 10</option>
+                      <option value="20" > 20</option>
+                      <option value="50" > 50</option>
+                      <option value="100">100</option>
+                    </select>
+                    
+                </div>
+                <a type="button" class="col-xs-2 btn btn-export btn-edit" href="#" onClick="return confirm('Which file type would you like to download?')">Export Results <i class="fa fa-download"></i></a>
+                
+                <!--  ${searchResultsRange} -->
+          <!-- todo: finagle file type selection -->
+                
+                <nav class="paddingNone col-xs-11 col-xs-offset-1  col-sm-8 col-sm-offset-4 col-md-6 col-md-offset-6">
+                  <ul class="col-xs-12 paddingNone pager pager-top">
+                    <li class="col-xs-2 paddingNone previous ${pagerPrevious}"><a href="#" class="pagerArrow paddingNone" click.delegate="pageSearchResults(-1)"><span aria-hidden="true"><i class="fa fa-angle-left fa-2x"></i></a></li>
+                    <p class="search-pageCount col-xs-8 paddingNone ">${searchResultsRange}</p>
+                    <li class="col-xs-2 paddingNone next ${pagerNext}"><a href="#" class="pagerArrow paddingNone" click.delegate="pageSearchResults(1)"><i class="fa fa-angle-right fa-2x"></i></a></li>
+                  </ul>
+                </nav>
+
+                
+              </th>
+            </tr>
+
+
             <tbody>
             <tr repeat.for="evidence of evidences">
               <td class="table-td">
@@ -89,7 +107,7 @@
         <template if.bind="! evidences">
           <p>No search results</p>
         </template>
-        <div class="col-xs-12 pager-bottom">
+       <!--  <div class="col-xs-12 pager-bottom">
           <nav>
             <ul class="pager">
               <li class="previous ${pagerPrevious}"><a class="btn-search btn-bel" href="#" click.delegate="pageSearchResults(-1)"><span aria-hidden="true">&larr;</span>Previous</a></li>
@@ -97,7 +115,25 @@
             </ul>
           </nav>
         </div>
-      </div>
+      </div> -->
+  
+            <div class="marginrt10" if.bind="evidences">
+                
+                    
+                <!--  ${searchResultsRange} -->
+          <!-- todo: finagle file type selection -->
+                
+                <nav class="paddingNone marginrt10 col-xs-4 col-xs-offset-8ß  col-sm-3 col-sm-offset-9 col-md-2 col-md-offset-10">
+                  <ul class="col-xs-12 paddingNone pager pager-top">
+                    <li class="col-xs-2 paddingNone previous ${pagerPrevious}"><a href="#" class="pagerArrow paddingNone" click.delegate="pageSearchResults(-1)"><span aria-hidden="true"><i class="fa fa-angle-left fa-2x"></i></a></li>
+                    <p class="search-pageCount col-xs-8 paddingNone ">${searchResultsRange}</p>
+                    <li class="col-xs-2 paddingNone next ${pagerNext}"><a href="#" class="pagerArrow paddingNone" click.delegate="pageSearchResults(1)"><i class="fa fa-angle-right fa-2x"></i></a></li>
+                  </ul>
+                </nav>
+
+                
+
+            </div>
       
       <!--<div class="col-md-9" id="resultscolumn">-->
         <!--<pre>${selectedFacets | stringify}</pre>-->

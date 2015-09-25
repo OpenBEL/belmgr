@@ -258,3 +258,25 @@ export class ObjectToStringValueConverter {
     return JSON.stringify(object, null, 2);
   }
 }
+
+
+// // AURELIA DIALOG TRY 
+import {EditPerson} from 'editperson';
+import {DialogService} from 'aurelia-dialog';
+export class Welcome {
+  static inject = [DialogService];
+  constructor(dialogService) {
+    this.dialogService = dialogService;
+  }
+  person = { firstName: 'Wade', middleName: 'Owen', lastName: 'Watts' };
+  submit(){
+    this.dialogService.open({ viewModel: EditPerson, model: this.person}).then(response => {
+      if (!response.wasCancelled) {
+        console.log('good');
+      } else {
+        console.log('bad');
+      }
+      console.log(response.output);
+    });
+  }
+}
