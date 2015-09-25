@@ -19,7 +19,7 @@ body {
     margin-left: 0px;
     margin-right: 0px;
     margin-bottom: 180px;
-    font-family: 'Ubuntu', sans-serif;
+    font-family: 'Open Sans', sans-serif;
 }
 
 h1,
@@ -28,7 +28,7 @@ h3,
 h4,
 h5 {
     font-weight: 300;
-    font-family: 'Dosis', sans-serif;
+    font-family: 'Lato', sans-serif;
     text-transform: uppercase;
 }
 
@@ -133,22 +133,26 @@ textarea {
 
 .navbar-title a:hover {
     box-shadow: inset 0px 50px 0px #0C91A5;
-    -webkit-transition: box-shadow .1s;
     color: #E4E5E7;
     border-top-left-radius: 4px;
     border-top-right-radius: 4px;
+    -webkit-transition: box-shadow .2s;
+    -moz-transition: box-shadow .2s;
+    -ms-transition: box-shadow .2s;
+    -o-transition: box-shadow .2s;
+    transition: box-shadow .2s;
 }
 
 .navbar-title>a {
-    font-family: 'Dosis', sans-serif;
-    font-size: 18px;
+    font-family: 'Lato', sans-serif;
+    font-size: 16px;
     text-transform: uppercase;
     border-radius: 2px;
     border-bottom: 4px solid #0c91a5;
     margin-left: 5px;
     margin-top: 5px;
-    padding-left: 5px !important;
-    padding-right: 5px !important;
+    padding-left: 2px !important;
+    padding-right: 2px !important;
     padding-top: 12px !important;
     text-align: center;
     left: 50%;
@@ -158,7 +162,7 @@ textarea {
 }
 
 .navbar-headerTitle {
-    font-family: 'Dosis', sans-serif;
+    font-family: 'Lato', sans-serif;
     font-size: 28px;
     margin-left: 80px;
     color: #0C91A5;
@@ -278,7 +282,7 @@ footer {
 
 .footerUl li a {
     color: #E4E5E7;
-    font-family: 'Dosis', sans-serif;
+    font-family: 'Lato', sans-serif;
     font-weight: 400;
     font-size: 16px;
 }
@@ -326,25 +330,25 @@ footer {
 .form-control::-webkit-input-placeholder {
     color: #474350;
     text-transform: ;
-    font-family: 'Ubuntu', sans-serif;
+    font-family: 'Open Sans', sans-serif;
 }
 
 FF 4-18 .form-control:-moz-placeholder {
     color: #474350;
     text-transform: ;
-    font-family: 'Ubuntu', sans-serif;
+    font-family: 'Open Sans', sans-serif;
 }
 
 FF 19+ .form-control::-moz-placeholder {
     color: #474350;
     text-transform: ;
-    font-family: 'Ubuntu', sans-serif;
+    font-family: 'Open Sans', sans-serif;
 }
 
 IE 10+ .form-control:-ms-input-placeholder {
     color: #474350;
     text-transform: ;
-    font-family: 'Ubuntu', sans-serif;
+    font-family: 'Open Sans', sans-serif;
 }
 
 
@@ -381,7 +385,7 @@ IE 10+ .form-control:focus:-ms-input-placeholder {
 .splash .message {
     font-size: 18px;
     line-height: 24px;
-    font-family: 'Ubuntu', sans-serif;
+    font-family: 'Open Sans', sans-serif;
     color: #46676E;
 }
 
@@ -565,7 +569,7 @@ form>.form-group>.input-group>input.search-searchForm {
     background-color: #E4E5E7;
     box-shadow: none;
     max-height: 26px;
-    font-family: 'Dosis', sans-serif;
+    font-family: 'Lato', sans-serif;
     text-transform: capitalize;
     padding: 2px 3px 0px 3px;
     font-size: 14px;
@@ -580,8 +584,11 @@ form>.form-group>.input-group>input.search-searchForm {
 .btn-edit.btn-export:hover {
     max-height: 26px;
     box-shadow: inset 0px 34px 0px #FDC975;
-    -webkit-transition: box-shadow .1s;
-    /* color: #e4e5e7;*/
+    -webkit-transition: box-shadow .4s;
+    -moz-transition: box-shadow .4s;
+    -ms-transition: box-shadow .4s;
+    -o-transition: box-shadow .4s;
+    transition: box-shadow .4s;
 }
 
 .pager>li>.btn-search {
@@ -604,7 +611,7 @@ form>.form-group>.input-group>input.search-searchForm {
     background-color: #E4E5E7;
     box-shadow: none;
     max-height: 34px;
-    font-family: 'Dosis', sans-serif;
+    font-family: 'Lato', sans-serif;
     text-transform: uppercase;
 }
 
@@ -879,7 +886,7 @@ p.text-warning {
 }
 
 .panel.acForm {
-    font-family: 'Ubuntu', sans-serif;
+    font-family: 'Open Sans', sans-serif;
     font-size: 18px;
     margin-top: 5px;
     border-radius: 2px;
@@ -959,7 +966,7 @@ p.text-warning {
 }
 
 .search-pageCount {
-    font-family: 'Dosis', sans-serif;
+    font-family: 'Lato', sans-serif;
     font-size: 16px;
     font-weight: 300;
     margin-top: 4px;
@@ -969,6 +976,7 @@ p.text-warning {
 .pager .disabled>.pagerArrow:focus,
 .pager .disabled>.pagerArrow:hover {
     opacity: .2;
+    pointer-events: none;
 }
 
 .pager li>.pagerArrow:hover,
@@ -1131,7 +1139,7 @@ p.table-expContext {
     font-size: 12px;
     font-style: italic;
     font-weight: 600;
-    font-family: 'Dosis';
+    font-family: 'Lato';
 }
 
 p.table-expContext:not(:last-child)::after {

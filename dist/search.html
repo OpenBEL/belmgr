@@ -51,7 +51,7 @@
           <table class="table table-hover">
             <tr>
               <th class="table-range tableTopSpacer">
-                <div class="col-xs-12 col-sm-9 col-md-8 paddingNone">
+                <div class="col-xs-12 paddingNone">
                     <h4 class="search-resultsLabel paddingNone ">Results:</h4>
                     
                     <select class="paddingNone form-control selectDrop" id="search_size" value.bind="searchSize" change.delegate="saveSearchSize()">
@@ -87,18 +87,12 @@
                   <div class="table-speciesIcon ${$parent.getSpecies(evidence)}"></div>
                 </div>
                 <div class="col-xs-10 col-sm-11">
-                  <a route-href="route: edit; params.bind: { id: $parent.getEvidenceId(evidence._links.self.href)  }" target="editbel">${evidence.bel_statement ? evidence.bel_statement : 'Missing BEL Statement'}
+                  <a route-href="route: edit; params.bind: { id: $parent.getEvidenceId(evidence._links.self.href) }" target="editbel" a href="#" data-toggle="tooltip" title="${evidence.summary_text}">${evidence.bel_statement ? evidence.bel_statement : 'Missing BEL Statement'}
                   </a>
                   <div class="table-expContextDiv">
-                    <p class="table-expContext value" repeat.for="value of $parent.getExperimentContextItems(evidence)"> ${value}</p>
+                    <p class="table-expContext value" repeat.for="value of $parent.getExperimentContextItems(evidence)">${value}</p>
                   </div>
                 </div>
-
-                                
-               <!-- <div class="col-xs-11 col-xs-offset-1">
-                  <p class="table-expContext value " repeat.for="value of $parent.getExperimentContextItems(evidence)"> ${value}</p>
-                </div> -->
-
               </td>
             </tr>
             </tbody>
@@ -107,21 +101,8 @@
         <template if.bind="! evidences">
           <p>No search results</p>
         </template>
-       <!--  <div class="col-xs-12 pager-bottom">
-          <nav>
-            <ul class="pager">
-              <li class="previous ${pagerPrevious}"><a class="btn-search btn-bel" href="#" click.delegate="pageSearchResults(-1)"><span aria-hidden="true">&larr;</span>Previous</a></li>
-              <li class="next ${pagerNext}"><a class="btn-search btn-bel" href="#" click.delegate="pageSearchResults(1)">Next <span aria-hidden="true">&rarr;</span></a></li>
-            </ul>
-          </nav>
-        </div>
-      </div> -->
   
             <div class="marginrt10" if.bind="evidences">
-                
-                    
-                <!--  ${searchResultsRange} -->
-          <!-- todo: finagle file type selection -->
                 
                 <nav class="paddingNone marginrt10 col-xs-4 col-xs-offset-8ß  col-sm-3 col-sm-offset-9 col-md-2 col-md-offset-10">
                   <ul class="col-xs-12 paddingNone pager pager-top">
@@ -131,7 +112,6 @@
                   </ul>
                 </nav>
 
-                
 
             </div>
       

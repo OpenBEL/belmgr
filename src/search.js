@@ -175,4 +175,8 @@ export class KeysValueConverter {
   }
 }
 
-// PRACTICE DOWNLOAD CONTENT TYPE
+
+$(document).ready(function(){
+    $('[data-toggle="tooltip"]').tooltip(); 
+});
+
