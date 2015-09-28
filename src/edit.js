@@ -5,11 +5,14 @@ import {Api} from './resources/api';
 import {relationsList} from './relationsList';
 import {PubmedService} from './resources/PubmedService';
 
+import {Prompt} from './components/dialogs/prompt';
+import {DialogService} from 'aurelia-dialog';
+
 import {LogManager} from 'aurelia-framework';
 let logger = LogManager.getLogger('edit');
 
 
-@inject(Api, PubmedService)
+@inject(Api, PubmedService, DialogService)
 export class Edit {
 
   // Needed to allow New BEL menu item to refresh the form
@@ -17,7 +20,7 @@ export class Edit {
     return activationStrategy.replace;
   }
 
-  constructor(Api, PubmedService) {
+  constructor(Api, PubmedService, DialogService) {
     this.api = Api;
     this.pubmedService = PubmedService;
     this.evidenceId = null;
@@ -26,6 +29,7 @@ export class Edit {
     this.annotations = [];
     this.relationsList = relationsList;
     this.pubmed = null;
+    this.dialogService = DialogService;
   }
 
   async activate(params) {
@@ -89,13 +93,38 @@ export class Edit {
    * Submit BEL Evidence to API
    * @returns {boolean}
    */
+
   submit() {
+    let prompt = 'This will update the Evidence!';
+    this.dialogService.open({ viewModel: Prompt, model: prompt}).then(response => {
+      if (!response.wasCancelled) {
+        console.log('approvedPrompt');
+        this.submitUpdate;
+      } else {
+        console.log('cancelledPrompt');
+      }
+      console.log(response.output);
+    });
+    return true;
+  }
+
+  submitUpdate() {
     this.evidence.bel_statement = `${this.belComponents.subject} ${this.belComponents.relationship} ${this.belComponents.object}`;
     this.evidence.experiment_context = this.annotations.filter(this.removeBlankAnnotations);
     this.evidence.citation.id = this.citationId;
     this.data.evidence[0] = this.evidence;
     logger.debug('Submit evidence', JSON.stringify(this.data,null,2));
     this.api.loadBelEvidence(this.evidence, this.evidenceId);
+    return true;
+  }
+
+  submitNew() {
+    this.evidence.bel_statement = `${this.belComponents.subject} ${this.belComponents.relationship} ${this.belComponents.object}`;
+    this.evidence.experiment_context = this.annotations.filter(this.removeBlankAnnotations);
+    this.evidence.citation.id = this.citationId;
+    this.data.evidence[0] = this.evidence;
+    logger.debug('Submit evidence', JSON.stringify(this.data,null,2));
+    this.api.loadBelEvidence(this.evidence);
     return true;
   }
 
@@ -259,24 +288,24 @@ export class ObjectToStringValueConverter {
   }
 }
 
-
-// // AURELIA DIALOG TRY 
-import {EditPerson} from 'editperson';
-import {DialogService} from 'aurelia-dialog';
-export class Welcome {
-  static inject = [DialogService];
-  constructor(dialogService) {
-    this.dialogService = dialogService;
-  }
-  person = { firstName: 'Wade', middleName: 'Owen', lastName: 'Watts' };
-  submit(){
-    this.dialogService.open({ viewModel: EditPerson, model: this.person}).then(response => {
-      if (!response.wasCancelled) {
-        console.log('good');
-      } else {
-        console.log('bad');
-      }
-      console.log(response.output);
-    });
-  }
-}
+//
+//// AURELIA DIALOG TRY
+//import {EditPerson} from 'editperson';
+//import {DialogService} from 'aurelia-dialog';
+//export class Welcome {
+//  static inject = [DialogService];
+//  constructor(dialogService) {
+//    this.dialogService = dialogService;
+//  }
+//  person = { firstName: 'Wade', middleName: 'Owen', lastName: 'Watts' };
+//  submit(){
+//    this.dialogService.open({ viewModel: EditPerson, model: this.person}).then(response => {
+//      if (!response.wasCancelled) {
+//        console.log('good');
+//      } else {
+//        console.log('bad');
+//      }
+//      console.log(response.output);
+//    });
+//  }
+//}

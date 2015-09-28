@@ -14,7 +14,7 @@ export function configure(aurelia) {
    	// .developmentLogging()
     .plugin('aurelia-validation')
     .plugin("aurelia-gravatar")
-    .plugin('aurelia-animator-css');
+    .plugin('aurelia-animator-css')
     .plugin('aurelia-dialog');
 
   aurelia.start().then(a => a.setRoot());

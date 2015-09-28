@@ -109,12 +109,16 @@ export class Api {
 
     for (let facet of facets) {
       // logger.debug("Facet: ", facet);
-      if (facet.category === 'experiment_context' || facet.name === 'Status') {
+      if (facet.category === 'experiment_context' || facet.name === 'Status' || facet.category === 'citation') {
         // logger.debug("Status Facet: ", facet);
-        new_facets[facet.name] = [];
+        let facetName = facet.name;
+
+        if (facet.category === 'citation') {facetName = 'Reference ID';}
+
+        new_facets[facetName] = [];
         for (let value of facet.values) {
           let name = value["value"];
-          new_facets[facet.name].push({
+          new_facets[facetName].push({
             'name': name,
             'count' : value.count,
             'filter' : value.filter
@@ -164,6 +168,7 @@ export class Api {
                          }
              });
   }
+
 
   /**
    * Get BEL Evidence from API Service

@@ -1,0 +1,17 @@
+<template>
+  <dialog>
+    <dialog-header>${question}</dialog-header>
+
+    <dialog-body>
+      <p>This will update the Evidence by saving any changes you made to the Evidence loaded.</p>
+      <!--<form submit.trigger="controller.ok(answer)">-->
+        <!--<input type="text" value.bind="answer" style="width: 100%; line-height: 16px; font-size: 16px" attach-focus>-->
+      <!--</form>-->
+    </dialog-body>
+
+    <dialog-footer>
+      <button click.trigger="controller.cancel()">Cancel</button>
+      <button click.trigger="controller.ok(answer)">Go ahead and save the updated Evidence</button>
+    </dialog-footer>
+  </dialog>
+</template>

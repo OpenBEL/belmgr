@@ -8,3 +8,6 @@ esdoc
 src/components/lookahead.html
 src/components/lookahead.js
 src/components/typeahead-tmp.js
+dist/components/lookahead.html
+dist/components/lookahead.js
+dist/components/typeahead-tmp.js
