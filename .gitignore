@@ -5,3 +5,6 @@ bower_components
 .DS_STORE
 build/reports
 esdoc
+src/components/lookahead.html
+src/components/lookahead.js
+src/components/typeahead-tmp.js
