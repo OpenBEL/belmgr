@@ -6,21 +6,22 @@
   <div class="container">
     <div class="row">
       <section class="pubmedContent ${pubmed.title ? 'col-xs-4 col-md-3' : 'noShow'}">
-
-        <div class="row">
-          <div class="col-xs-6 btn-euPMC-pubmed-div">
-            <a href="http://europepmc.org/abstract/MED/${evidence.citation.id}" class="col-xs-12 btn btn-bel btn-euPMC-pubmed form-control" role="button" target="_blank"><img class="euPMC-pubmed-logo" src="./media/EuropePMC.png" alt=""></a>
+        <nav class="navbar navbar-inverse" data-spy="affix" data-offset-top="197">
+          <div class="row">
+            <div class="col-xs-6 btn-euPMC-pubmed-div">
+              <a href="http://europepmc.org/abstract/MED/${evidence.citation.id}" class="col-xs-12 btn btn-bel btn-euPMC-pubmed form-control" role="button" target="_blank"><img class="euPMC-pubmed-logo" src="./media/EuropePMC.png" alt=""></a>
+            </div>
+            <div class="col-xs-6 btn-euPMC-pubmed-div">
+              <a href="http://www.ncbi.nlm.nih.gov/pubmed/?term=${evidence.citation.id}[uid]" class="col-xs-12 btn btn-bel btn-euPMC-pubmed form-control" role="button" target="_blank"><img class="euPMC-pubmed-logo" src="./media/pubmed-logo.png" alt=""></a>
+            </div>
           </div>
-          <div class="col-xs-6 btn-euPMC-pubmed-div">
-            <a href="http://www.ncbi.nlm.nih.gov/pubmed/?term=${evidence.citation.id}[uid]" class="col-xs-12 btn btn-bel btn-euPMC-pubmed form-control" role="button" target="_blank"><img class="euPMC-pubmed-logo" src="./media/pubmed-logo.png" alt=""></a>
-          </div>
-        </div>
-        <!-- todo Kelly might want to use icons for EuropePMC and Pubmed like
-        https://pbs.twimg.com/profile_images/2792175138/f93f2e30d1cca847800e6f3060b8101a.jpeg instead of buttons -->
-        <h3 class="col-xs-12">Pubmed Title</h3>
-        <p class="col-xs-12">${pubmed.title}</p>
-        <h3 class="col-xs-12">Abstract</h3>
-        <p class="col-xs-12">${pubmed.abstractText}</p>
+          <!-- todo Kelly might want to use icons for EuropePMC and Pubmed like
+          https://pbs.twimg.com/profile_images/2792175138/f93f2e30d1cca847800e6f3060b8101a.jpeg instead of buttons -->
+          <h3 class="col-xs-12">Pubmed Title</h3>
+          <p class="col-xs-12">${pubmed.title}</p>
+          <h3 class="col-xs-12">Abstract</h3>
+          <p class="col-xs-12">${pubmed.abstractText}</p>
+        </nav>
       </section>
     </div>
   </div>
@@ -200,14 +201,12 @@
           <!-- .col-xs-12 -->
           
           <div class="col-xs-12" show.bind="evidenceId">
-          <!-- todo: will all statements w/ evidenceId's have annotations? -->
-              <div class="col-xs-3">
+          <!-- todo: will all statements w/ evidenceIds have annotations? -->
+              <div class=" form-group col-xs-3">
                 <label class="edit-annotationType">Annotation Type</label>
               </div>
-              <div class="col-xs-8">
-                <div class="form-group">
-                  <label class="edit-annotation">Annotation</label>
-                </div>
+              <div class="col-xs-8 form-group">
+                <label class="edit-annotation">Annotation</label>
               </div>
           </div>
 

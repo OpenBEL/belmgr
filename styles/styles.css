@@ -40,9 +40,11 @@ button:hover>i,
 a:hover {
     color: #0C91A5;
 }
+
 textarea {
     max-width: 100%;
 }
+
 .search-html,
 .about-html,
 .edit-html,
@@ -85,10 +87,10 @@ textarea {
 .marginrt0 {
     margin-right: 0px;
 }
+
 .marginrt10 {
     margin-right: 10px;
 }
-
 
 .fa-spin {
     color: #fdc975;
@@ -159,6 +161,8 @@ textarea {
     right: 50%;
     z-index: 1600;
     height: 45px;
+    font-weight: 300;
+    width: 90px;
 }
 
 .navbar-headerTitle {
@@ -170,7 +174,7 @@ textarea {
 }
 
 .navbar-title {
-    width: 90px;
+    width: 95px;
     margin-top: 10px;
 }
 
@@ -492,8 +496,10 @@ form>.form-group>.input-group>input.search-searchForm {
 
 .form-control.btn-bel:hover,
 .form-control.btn-bel:focus,
+
 /*.btn-remove:hover,
 .btn-remove:focus,*/
+
 .btn-bel:hover,
 .btn-bel:focus {
     background-color: #474350;
@@ -564,8 +570,6 @@ form>.form-group>.input-group>input.search-searchForm {
     border-bottom: 4px solid #FDC975;
     margin-left: 15px;
     margin-top: 15px;
-    /* margin-bottom: 0px; */
-    font-weight: 600;
     background-color: #E4E5E7;
     box-shadow: none;
     max-height: 26px;
@@ -577,8 +581,20 @@ form>.form-group>.input-group>input.search-searchForm {
     width: 110px;
     color: #474350;
     right: 0px;
-    /* margin-right: 14px; */
-    /* position: absolute; */
+}
+
+@media (min-width: 769px) and (max-width: 992px) {
+    .btn-edit.btn-export {
+        position: absolute;
+        margin-right: 30%;
+    }
+}
+
+@media (min-width: 993px) {
+    .btn-edit.btn-export {
+        position: absolute;
+        margin-right: 20%;
+    }
 }
 
 .btn-edit.btn-export:hover {
@@ -605,9 +621,11 @@ form>.form-group>.input-group>input.search-searchForm {
     padding: 0px;
     margin-left: 5px;
 }
-
+.pager {
+    width: 100px;
+}
 .form-control.btn-edit {
-    font-weight: 600;
+    font-weight: 400;
     background-color: #E4E5E7;
     box-shadow: none;
     max-height: 34px;
@@ -628,10 +646,11 @@ form>.form-group>.input-group>input.search-searchForm {
 }
 
 .form-control.btn-euPMC-pubmed:hover {
-    background-color: rgba(228, 229, 231, 1);
+    box-shadow: inset 0px 34px 0px rgba(228, 229, 231, 1);
     color: #0C91A5;
     border: none;
     padding: 0px;
+    -webkit-transition: box-shadow .1s;
 }
 
 .euPMC-pubmed-logo {
@@ -838,7 +857,7 @@ p.text-warning {
 }
 
 .form-group label {
-    margin: 0px;
+    margin: 10px 0px 5px 0px;
 }
 
 .form-group input {
@@ -846,14 +865,18 @@ p.text-warning {
     padding: 6px, 6px, 4px, 6px;
 }
 
-.edit-header h3 {
+
+/*.edit-header h3 {
     margin-top: 10px;
     font-size: 18px;
     font-weight: 500;
-}
+}*/
 
 .selectDrop {
     height: 26px;
+    font-weight: 300;
+    font-family: 'Lato';
+    font-size: 16px;
 }
 
 .edit-acPanelBody {
@@ -873,8 +896,12 @@ p.text-warning {
     font-size: 12px;
 }
 
-.edit-annotationType {
-    display: none;
+.form-group .edit-annotationType {
+    margin-left: -15px;
+}
+
+.form-group .edit-annotation {
+    margin-left: -5px;
 }
 
 .edit-eContext .edit-annotationType:first-of-type {
@@ -970,6 +997,7 @@ p.text-warning {
     font-size: 16px;
     font-weight: 300;
     margin-top: 4px;
+    min-width: 60px;
 }
 
 .pager .disabled>.pagerArrow,
@@ -1067,20 +1095,60 @@ input[type=checkbox]:checked:after {
 
 
 /*TABLE SECTION*/
-
+.tableTopSpacer {
+    display: flex;
+    justify-content: space-between;
+}
+.table-displayFlex {
+    display: flex;
+    justify-content: flex-start;
+}
+.table-display1 {
+    order: 1;
+}
+.table-display2 {
+    order: 2;
+}
+.table-display3 {
+    order: 3;
+}
+.table-item1 {
+    order: 1;
+}
+.table-item2 {
+    order: 2;
+}
+.table-item3 {
+    order:3;
+}
+.table-item4 {
+    order: 4;
+}
+.table-showing {
+    padding-top: 12px;
+}
+.table-totalResults {
+    padding-top: 12px;
+    margin-left: 5px;
+}
+@media (max-width: 622px) {
+    .table-totalResults {
+        margin-top: 0px;
+    }
+}
 .table-range {
     padding-left: 6px;
 }
 
 .tableTopSpacer {
-    height: 70px;
+    height: 65px;
     margin-top: 0px;
 }
 
 th.table-range,
 th.table-range:hover {
     display: flex;
-    margin-top: -50px;
+    margin-top: -60px;
     background-color: transparent;
     z-index: 10;
     border: none;
@@ -1097,6 +1165,9 @@ th.table-range:hover {
 .search-resultsLabel {
     width: auto;
     float: left;
+}
+.search-searchBar {
+    width: 98%;
 }
 
 .table-range .selectDrop {
