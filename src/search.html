@@ -52,9 +52,12 @@
             <tr>
               <th class="table-range tableTopSpacer">
                 <div class="col-xs-12 paddingNone">
-                    <h4 class="search-resultsLabel paddingNone ">Results:</h4>
+                  <h4 class="search-resultsLabel paddingNone ">PageSize: </h4>
+                  <h4 class="search-resultsLabel paddingNone ">Results: ${search_metadata.total_filtered} of ${search_metadata.total}</h4>
+                  <h4 class="search-resultsLabel paddingNone ">Page: ${search_metadata.current_page} of ${search_metadata.total_pages} PageSize: </h4>
 
-                    <select class="paddingNone form-control selectDrop" id="search_size" value.bind="searchSize" change.delegate="saveSearchSize()">
+
+                  <select class="paddingNone form-control selectDrop" id="search_size" value.bind="searchSize" change.delegate="saveSearchSize()">
                       <option value="10" > 10</option>
                       <option value="20" > 20</option>
                       <option value="50" > 50</option>
@@ -62,7 +65,7 @@
                     </select>
 
                 </div>
-                <a type="button" class="col-xs-2 btn btn-export btn-edit" href="#" onClick="return confirm('Which file type would you like to download?')">Export Results <i class="fa fa-download"></i></a>
+                <a type="button" class="col-xs-2 btn btn-export btn-edit" href="#" onClick="return confirm('Not implemented yet.')">Export Results <i class="fa fa-download"></i></a>
 
                 <!--  ${searchResultsRange} -->
           <!-- todo: finagle file type selection -->
