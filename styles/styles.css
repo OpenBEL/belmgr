@@ -240,7 +240,8 @@ textarea {
     font-size: 12px;
 }
 
-.navbar-userDiv a:hover {
+.navbar-userDiv a:hover,
+.navbar-userDiv a:focus {
     text-decoration: none;
     border-bottom: 1px solid #FDC975;
 }
@@ -274,6 +275,14 @@ footer {
     margin-top: 0px;
     margin-bottom: -160px;
     color: #E4E5E7;
+    background: -webkit-linear-gradient(180deg, #5a5565, #474350);
+    /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(180deg, #5a5565, #474350);
+    /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(180deg, #5a5565, #474350);
+    /* For Firefox 3.6 to 15 */
+    background: linear-gradient(180deg, #5a5565, #474350);
+    /* Standard syntax */
 }
 
 .footer-body {
@@ -289,6 +298,15 @@ footer {
     font-family: 'Lato', sans-serif;
     font-weight: 400;
     font-size: 16px;
+}
+
+.footerImg {
+    position: absolute;
+    overflow: hidden !important;
+    right: 0;
+    width: 250px;
+    margin-right: -30px;
+    margin-top: -15px;
 }
 
 
@@ -621,9 +639,11 @@ form>.form-group>.input-group>input.search-searchForm {
     padding: 0px;
     margin-left: 5px;
 }
+
 .pager {
     width: 100px;
 }
+
 .form-control.btn-edit {
     font-weight: 400;
     background-color: #E4E5E7;
@@ -891,6 +911,34 @@ p.text-warning {
     text-transform: capitalize;
 }
 
+.edit-belStatement {
+    margin: 15px 0px 15px 0px;
+}
+
+.edit-belStatement input {
+    height: 35px;
+}
+
+.edit-belStatementDivs,
+.edit-belStatementDivs .form-control,
+.selectDrop-relation {
+    height: 35px;
+    font-size: 16px;
+    font-weight: 300;
+}
+.edit-belStatementDivs .form-control,
+.selectDrop-relation {
+    border-bottom: 2px solid rgba(253, 201, 117, 1) !important;
+}
+/*.edit-belStatementDivs>.form-group>.form-control:hover,
+.edit-belStatementDivs>.form-group>.form-control:focus,
+.edit-belStatementDivs>.form-group>.form-control:active,
+.selectDrop-relation:hover,
+.selectDrop-relation:focus,
+.selectDrop-relation:active {
+    border-bottom: 2px solid rgba(253, 201, 117, .4) !important;
+}
+*/
 .authorCitation {
     border: 0px !important;
     font-size: 12px;
@@ -1095,47 +1143,60 @@ input[type=checkbox]:checked:after {
 
 
 /*TABLE SECTION*/
+
 .tableTopSpacer {
     display: flex;
     justify-content: space-between;
 }
+
 .table-displayFlex {
     display: flex;
     justify-content: flex-start;
 }
+
 .table-display1 {
     order: 1;
 }
+
 .table-display2 {
     order: 2;
 }
+
 .table-display3 {
     order: 3;
 }
+
 .table-item1 {
     order: 1;
 }
+
 .table-item2 {
     order: 2;
 }
+
 .table-item3 {
-    order:3;
+    order: 3;
 }
+
 .table-item4 {
     order: 4;
 }
+
 .table-showing {
     padding-top: 12px;
 }
+
 .table-totalResults {
     padding-top: 12px;
     margin-left: 5px;
 }
+
 @media (max-width: 622px) {
     .table-totalResults {
         margin-top: 0px;
     }
 }
+
 .table-range {
     padding-left: 6px;
 }
@@ -1148,7 +1209,7 @@ input[type=checkbox]:checked:after {
 th.table-range,
 th.table-range:hover {
     display: flex;
-    margin-top: -60px;
+    margin-top: -50px;
     background-color: transparent;
     z-index: 10;
     border: none;
@@ -1166,6 +1227,7 @@ th.table-range:hover {
     width: auto;
     float: left;
 }
+
 .search-searchBar {
     width: 98%;
 }
