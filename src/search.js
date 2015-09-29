@@ -53,6 +53,7 @@ export class Search {
       this.results = await this.api.search(this.searchStart, this.searchSize, this.searchFaceted, filters);
       this.evidences =  this.results.evidences;
       this.facetSets = this.results.facets;
+      this.search_metadata = this.results.metadata;
 
       logger.debug("Search results: ", this.evidences);
       logger.debug("Search facets: ", this.facetSets);
@@ -109,16 +110,19 @@ export class Search {
   //   return default_val;
   // }
 
-  getSpecies(evidence) {
+  getSpecies(item) {
     let organisms = {
       "Mus musculus": "mouse-icon",
+      "10090": "mouse-icon",
       "Rattus norvegicus": "rat-icon",
+      "10116": "rat-icon",
       "Homo sapiens": "human-icon",
-      "Unknown": "unknown-icon"  
+      "9606": "human-icon",
+      "Unknown": "unknown-icon"
     }
-    let item = evidence.experiment_context.find(x => x.name === 'Ncbi Taxonomy');
-    if (item) {
-      return organisms[item.value];
+    let result = item.evidence.experiment_context.find(x => x.name === 'Species');
+    if (result) {
+      return organisms[result.value];
     }
     return organisms.Unknown;
   }
@@ -177,6 +181,6 @@ export class KeysValueConverter {
 
 
 $(document).ready(function(){
-    $('[data-toggle="tooltip"]').tooltip(); 
+    $('[data-toggle="tooltip"]').tooltip();
 });
 

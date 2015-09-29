@@ -154,8 +154,9 @@ export class Api {
       .then(response => response.json())
       .then(data => {
               let new_data = {};
-              new_data['evidences'] = data.evidence;
+              new_data['evidences'] = data.evidence_collection;
               new_data['facets'] = this.processFacets(data.facets);
+              new_data['metadata'] = data.metadata;
               logger.debug('New Data: ', new_data);
               return new_data;
             })
