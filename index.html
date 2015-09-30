@@ -20,26 +20,29 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
   </head>
-  <body aurelia-app="main">
-    <div class="splash">
-      <div class="message">
-        <h1>Loading OpenBEL Manager</h1>
+  <body>
+    <!--Aurelia Application-->
+    <div aurelia-app="main">
+      <div class="splash">
+        <div class="message">
+          <h1>Loading OpenBEL Manager</h1>
+        </div>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
       </div>
-      <i class="fa fa-circle-o-notch fa-spin"></i>
+
+      <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+      <!-- Latest compiled and minified Bootstrap JavaScript -->
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+      <script src="jspm_packages/system.js"></script>
+      <script src="config.js"></script>
+      <script>
+        System.import('aurelia-bootstrapper');
+      </script>
+
     </div>
-
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-
-    <!-- Latest compiled and minified Bootstrap JavaScript -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-
-    <script src="jspm_packages/system.js"></script>
-    <script src="config.js"></script>
-    <script>
-      System.import('aurelia-bootstrapper');
-    </script>
-
 
     <!-- Added UserSnap feedback tool -->
     <script type="text/javascript">
@@ -53,7 +56,6 @@
         x.parentNode.insertBefore(s, x);
       })();
     </script>
-
-
+  
 </body>
 </html>
