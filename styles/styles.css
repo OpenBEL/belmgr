@@ -53,6 +53,17 @@ textarea {
 }
 
 
+/* WELCOME PAGE */
+
+.testingMsg {
+    margin: 40px 10% 40px 10%;
+}
+.testingMsg h3, 
+.testingMsg h5 {
+    text-transform: none;
+}
+
+/* END WELCOME PAGE */
 /*MARGIN SHORTCUTS*/
 
 .marginlftrt0 {
@@ -634,7 +645,9 @@ form>.form-group>.input-group>input.search-searchForm {
     height: 25px;
     margin-top: 13px;
 }
-
+.search-bottomPager {
+    float: right;
+}
 .pager-bottom {
     padding: 0px;
     margin-left: 5px;
