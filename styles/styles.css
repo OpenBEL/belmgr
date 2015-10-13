@@ -53,6 +53,17 @@ textarea {
 }
 
 
+/* WELCOME PAGE */
+
+.testingMsg {
+    margin: 40px 10% 40px 10%;
+}
+.testingMsg h3, 
+.testingMsg h5 {
+    text-transform: none;
+}
+
+/* END WELCOME PAGE */
 /*MARGIN SHORTCUTS*/
 
 .marginlftrt0 {
@@ -132,10 +143,15 @@ textarea {
     border-top-left-radius: 4px;
     border-top-right-radius: 4px;
 }
+.navbar-default .navbar-nav>.active>a:hover,
+.navbar-default .navbar-nav>.open>a:hover {
+    color: #474350 !important;
+    box-shadow: inset 0px 50px 0px #eeeeee !important;
+}
 
 .navbar-title a:hover {
     box-shadow: inset 0px 50px 0px #0C91A5;
-    color: #E4E5E7;
+    color: #E4E5E7 !important;
     border-top-left-radius: 4px;
     border-top-right-radius: 4px;
     -webkit-transition: box-shadow .2s;
@@ -634,7 +650,9 @@ form>.form-group>.input-group>input.search-searchForm {
     height: 25px;
     margin-top: 13px;
 }
-
+.search-bottomPager {
+    float: right;
+}
 .pager-bottom {
     padding: 0px;
     margin-left: 5px;
