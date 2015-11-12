@@ -14,7 +14,9 @@ let parse = message => JSON.parse(message.response);
 // http://next.belframework.org/europepmc/webservices/rest/search/resulttype=core&format=json&query=src:med  // proxied to remove CORS issue
 // http://next.belframework.org/europepmc/webservices/rest/search/resulttype=core&format=json&query=src:med ext_id:1945500
 // Using this technique to proxy http://oskarhane.com/avoid-cors-with-nginx-proxy_pass
-let pubmedBaseUrl = 'http://next.belframework.org/europepmc/webservices/rest/search';
+
+// let pubmedBaseUrl = 'http://next.belframework.org/europepmc/webservices/rest/search';
+let pubmedBaseUrl = 'http://www.ebi.ac.uk/europepmc/webservices/rest/search';
 
 export class Api {
 
