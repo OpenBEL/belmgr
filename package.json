@@ -19,6 +19,7 @@
     "url": "http://github.com/openbel/belmgr"
   },
   "devDependencies": {
+    "aurelia-bundler": "^0.1.9",
     "aurelia-cli": "^0.3.1",
     "aurelia-tools": "^0.1.3",
     "browser-sync": "^1.8.1",
