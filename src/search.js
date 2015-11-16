@@ -46,14 +46,16 @@ export class Search {
       }
     }
     if (this.searchTerms) {
-      filters.push(`{"category":"fts","name":"search","value":"${this.searchTerms}"sue}`);
+      filters.push(`{"category":"fts","name":"search","value":"${this.searchTerms}"}`);
     }
     logger.debug('Filters: ', filters);
     try {
       this.results = await this.api.search(this.searchStart, this.searchSize, this.searchFaceted, filters);
       this.evidences =  this.results.evidences;
       this.facetSets = this.results.facets;
-      this.search_metadata = this.results.metadata.collection_paging;
+      if (this.results.metadata) {
+        this.search_metadata = this.results.metadata.collection_paging;
+      }
 //      current_page: 1
 //      current_page_size: 20
 //      total: 52399

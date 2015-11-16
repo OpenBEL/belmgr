@@ -17,8 +17,6 @@
           </div>
         </form>
       </div>
-
-
     </div>
 
     <div class="row">
@@ -30,15 +28,15 @@
               <h4 class="filter-facetTitle">${facetSet}</h4>
               <div class="filter-boxcontent">
                 <!-- Loop through facet set values -->
-                <div class="row filter-facetRow" repeat.for="facet of $parent.facetSets[facetSet]">
-                  <input class="searchcheckbox" id="option" type="checkbox" name="field" value="option"
-                         value.bind="item.filter"
-                         checked.bind="$parent.$parent.selectedFacets[item.filter]"
-                         change.delegate="$parent.$parent.search()" class=" filterboxcheck col-xs-1">
+                <div class="row filter-facetRow" repeat.for="facet of facetSets[facetSet]">
+                  <input class="searchcheckbox" id="option" type="checkbox" name="field" value="facet"
+                         value.bind="facet.filter"
+                         checked.bind="selectedFacets[facet.filter]"
+                         change.delegate="search()" class=" filterboxcheck col-xs-1">
 
                   <!-- class="col-xs-11 filterboxtext" -->
 
-                  <label for="option" class="filter-boxlabel"><span><span></span></span> ${item.name} (${item.count})</label>
+                  <label for="option" class="filter-boxlabel"><span><span></span></span> ${facet.name} (${facet.count})</label>
                 </div>
               </div>
             </div>
@@ -57,7 +55,7 @@
                   <h4 class="search-resultsLabel paddingNone ">Results: ${search_metadata.total_filtered} of ${search_metadata.total}</h4>
                   <h4 class="search-resultsLabel paddingNone ">Page: ${search_metadata.current_page} of ${search_metadata.total_pages}</h4>
  -->
-                  <h5 class="table-display1 table-showing">Showing </h5> 
+                  <h5 class="table-display1 table-showing">Showing </h5>
                   <select class="table-display2 paddingNone form-control selectDrop" id="search_size" value.bind="searchSize" change.delegate="saveSearchSize()">
                       <option value="10" > 10</option>
                       <option value="20" > 20</option>
@@ -80,7 +78,7 @@
                   <li class="col-xs-1 paddingNone next ${pagerNext}"><a href="#" class="pagerArrow paddingNone" click.delegate="pageSearchResults(1)"><i class="fa fa-angle-right fa-2x"></i></a></li>
                 </ul>
               </nav>
-     
+
             </th>
           </tr>
 
