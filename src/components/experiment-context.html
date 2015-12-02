@@ -1,0 +1,30 @@
+<template>
+  <require from="./experiment-context-item"></require>
+
+  <div id="experiment-context" class="edit-eContext ">
+    <div class="row edit-belForm">
+      <div class="col-xs-12 edit-header">
+        <h3>Experiment Context</h3>
+      </div>
+      <!-- .col-xs-12 -->
+
+      <div class="col-xs-12" show.bind="evidenceId">
+        <!-- todo: will all statements w/ evidenceIds have annotations? -->
+        <div class="col-xs-3">
+          <label class="edit-annotationType">Annotation Type</label>
+        </div>
+        <div class="col-xs-8">
+          <label class="edit-annotation">Annotation</label>
+        </div>
+      </div>
+
+      <p>C: ${experimentContextStr}</p>
+
+      <!--<template repeat.for="context of exp">-->
+        <!--<h3>Context: ${context}</h3>-->
+        <!--<experiment-context-item context.bind="context" annotationList.bind="annotationList"></experiment-context-item>-->
+      <!--</template>-->
+
+    </div>
+
+</template>

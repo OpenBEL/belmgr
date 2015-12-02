@@ -16,17 +16,42 @@
     <div class="collapse navbar-collapse" id="openBelNavbar">
       <div class="row navbar-userRow">
         <div class="navbar-userDiv">
-          <a href="#" onClick="return confirm('Not implemented yet.')">log in</a>
-          <a href="#" onClick="return confirm('Not implemented yet.')">register</a>
-      </div>
+          <!--<a href="#" onClick="return confirm('Not implemented yet.')">log in</a>-->
+          <!--<a href="#" onClick="return confirm('Not implemented yet.')">register</a>-->
+          <template if.bind="!isAuthenticated">
+            <a route-href="route: login">Login</a>
+            <a route-href="route: signup">Sign up</a>
+          </template>
+
+          <template if.bind="isAuthenticated">
+            <a route-href="route: profile">Profile</a>
+            <a route-href="route: logout">Logout</a>
+          </template>
+
+        </div>
+
       <ul class="nav navbar-nav navbar-right">
         <li repeat.for="row of router.navigation" class="navbar-title ${row.isActive ? 'active' : ''}">
           <a data-toggle="collapse" data-target="#openBelNavbar.in" href.bind="row.href">${row.title}</a>
         </li>
-        <!--<li class="loader navbar-loader" if.bind="router.isNavigating">
-          <i class="fa fa-circle-o-notch fa-spin"></i>
-        </li>-->
       </ul>
+
+      <!--<ul if.bind="!isAuthenticated" class="nav navbar-nav navbar-right">-->
+        <!--<li><a href="/#/login">Login</a></li>-->
+        <!--<li><a href="/#/signup">Sign up</a></li>-->
+      <!--</ul>-->
+
+      <!--<ul if.bind="isAuthenticated" class="nav navbar-nav navbar-right">-->
+        <!--<li><a href="/#/profile">Profile</a></li>-->
+        <!--<li><a href="/#/logout">Logout</a></li>-->
+      <!--</ul>-->
+
+      <ul>
+        <li class="loader navbar-loader" if.bind="router.isNavigating">
+          <i class="fa fa-circle-o-notch fa-spin"></i>
+        </li>
+      </ul>
+
     </div>
   </nav>
 </template>

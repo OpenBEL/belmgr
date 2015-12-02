@@ -9,6 +9,7 @@ import {Prompt} from './components/dialogs/prompt';
 import {DialogService} from 'aurelia-dialog';
 
 import {LogManager} from 'aurelia-framework';
+
 let logger = LogManager.getLogger('edit');
 
 
@@ -16,7 +17,7 @@ let logger = LogManager.getLogger('edit');
 export class Edit {
 
   // Needed to allow New BEL menu item to refresh the form
-  determineActivationStrategy(){
+  determineActivationStrategy() {
     return activationStrategy.replace;
   }
 
@@ -53,14 +54,9 @@ export class Edit {
         await this.getPubmed();
         logger.debug('Evidence: ', this.evidence);
         logger.debug('PubmedAwait: ', this.pubmed);
-        this.annotations = this.evidence.experiment_context;
+        this.experimentContext = this.evidence.experiment_context;
 
-        // Adding blank input field to allow adding new Annotations
-        this.annotations.push({'name': '', 'value': ''});
-
-        this.annotationList = await this.api.getBelAnnotations();
-        logger.debug("BEL Annotations", this.annotations);
-        logger.debug('AnnoList: ', this.annotationList);
+        logger.debug('BEL Experiment Context', this.experimentContext);
       }
       catch (err) {
         logger.error('GET BEL Evidence error: ', err);
@@ -76,17 +72,6 @@ export class Edit {
     let temp = this.evidence;
     this.evidence = {};
     this.evidence = temp;
-  }
-
-  /**
-   * Remove blank annotations (added to the end - or just annotations with empty values
-   *
-   * @param obj
-   * @returns {boolean}
-   */
-  removeBlankAnnotations(obj) {
-    if (obj.value) {return true;}
-    else {return false;}
   }
 
   /**
@@ -110,7 +95,7 @@ export class Edit {
 
   submitUpdate() {
     this.evidence.bel_statement = `${this.belComponents.subject} ${this.belComponents.relationship} ${this.belComponents.object}`;
-    this.evidence.experiment_context = this.annotations.filter(this.removeBlankAnnotations);
+    this.evidence.experiment_context = this.annotations.filter(this.removeBlankExperimentContext);
     this.evidence.citation.id = this.citationId;
     this.data.evidence[0] = this.evidence;
     logger.debug('Submit evidence', JSON.stringify(this.data,null,2));
@@ -120,7 +105,7 @@ export class Edit {
 
   submitNew() {
     this.evidence.bel_statement = `${this.belComponents.subject} ${this.belComponents.relationship} ${this.belComponents.object}`;
-    this.evidence.experiment_context = this.annotations.filter(this.removeBlankAnnotations);
+    this.evidence.experiment_context = this.annotations.filter(this.removeBlankExperimentContext);
     this.evidence.citation.id = this.citationId;
     this.data.evidence[0] = this.evidence;
     logger.debug('Submit evidence', JSON.stringify(this.data,null,2));
@@ -177,27 +162,6 @@ export class Edit {
     }
   }
 
-  /**
-   * Allow deletion of Evidence Annotations/Experiment Context
-   *
-   * @param idx
-   */
-  removeAnnotation(idx) {
-    this.annotations.splice(idx, 1);
-  }
-
-  /**
-   * Add blank annotation to end of Annotation input allFields
-   *
-   * @param idx
-   * @param event
-   */
-  addBlankAnnotation(idx, event) {
-    if (this.annotations[this.annotations.length - 1]) {
-      this.annotations.push({'name': '', 'value': ''});
-    }
-  }
-
 
   // Todo: convert replace* methods with getter/setters after making sure they will update the View correctly
 
@@ -247,11 +211,12 @@ export class PipeDelimValueConverter {
   }
 
   fromView(text) {
+    let newText;
     if (text) {
-      text = text.replace(/\;/g, '|');
-      logger.debug('Pipe-fromView: ', text);
+      newText = text.replace(/\;/g, '|');
+      logger.debug('Pipe-fromView: ', newText);
     }
-    return text;
+    return newText;
   }
 }
 
@@ -288,6 +253,20 @@ export class ObjectToStringValueConverter {
   }
 }
 
+///**
+// * Convert Object to pretty-printed JSON string to insert into the VIEW
+// *
+// * Usage:
+// *
+// * <require from="ObjectToString"></require>
+// * <pre>${object | objectToString}</pre>
+// */
+//
+//export class ObjectToStringValueConverter {
+//  toView(object) {
+//    return JSON.stringify(object, null, 2);
+//  }
+//}
 //
 //// AURELIA DIALOG TRY
 //import {EditPerson} from 'editperson';

@@ -70,15 +70,14 @@ export class PipemeValueConverter {
 
 
 /**
- * Usage
+ * Convert Object to pretty-printed JSON string to insert into the VIEW
+ *
+ * Usage:
  *
  * <require from="ObjectToString"></require>
  * <pre>${object | objectToString}</pre>
  */
 
-/**
- * Convert Object to pretty-printed JSON string to insert into the VIEW
- */
 export class ObjectToStringValueConverter {
   toView(object) {
     return JSON.stringify(object, null, 2);

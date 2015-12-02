@@ -1,17 +1,7 @@
-import {
-  inject
-}
-from 'aurelia-framework';
-import {
-  HttpClient
-}
-from 'aurelia-fetch-client';
+import {inject} from 'aurelia-framework';
+import {HttpClient} from 'aurelia-fetch-client';
 import 'fetch';
-
-import {
-  LogManager
-}
-from 'aurelia-framework';
+import {LogManager} from 'aurelia-framework';
 
 let logger = LogManager.getLogger('api');
 
@@ -20,9 +10,10 @@ let parse = message => JSON.parse(message.response);
 
 // http://europepmc.org/RestfulWebService#search
 // http://www.ebi.ac.uk/europepmc/webservices/rest/search/resulttype=core&format=json&query=src:med ext_id:1945500
-// http://next.belframework.org/europepmc/webservices/rest/search/resulttype=core&format=json&query=src:med  // proxied to remove CORS issue
-// http://next.belframework.org/europepmc/webservices/rest/search/resulttype=core&format=json&query=src:med ext_id:1945500
-// Using this technique to proxy http://oskarhane.com/avoid-cors-with-nginx-proxy_pass
+// http://next.belframework.org/europepmc/webservices/rest/search/resulttype=core&format=json&query=src:med  // proxied
+// to remove CORS issue
+// http://next.belframework.org/europepmc/webservices/rest/search/resulttype=core&format=json&query=src:med
+// ext_id:1945500 Using this technique to proxy http://oskarhane.com/avoid-cors-with-nginx-proxy_pass
 
 // let pubmedBaseUrl = 'http://next.belframework.org/europepmc/webservices/rest/search';
 let pubmedBaseUrl = 'http://www.ebi.ac.uk/europepmc/webservices/rest/search';
@@ -276,26 +267,17 @@ export class Api {
       });
   }
 
-  // Get list of all BEL Relations
-  getBelRelations() {
-    return this.apiClient.fetch('/annotations')
-      .then(response => response.json())
-      .then(data => {
-        // logger.debug('GET BEL Relations: ', data);
-        return data;
-      })
-      .catch(function(reason) {
-        logger.error(`GET BEL Annotations Error: ${reason}`)
-      });
-  }
-
   // Get list of all BEL Annotation Resources
-  getBelAnnotations() {
+  getBelAnnotationList() {
     return this.apiClient.fetch('/annotations')
       .then(response => response.json())
       .then(data => {
         // logger.debug('GET BEL Annotations: ', data);
-        return data['annotations'];
+        let list = new Map();
+        for (let annotation of data['annotations']) {
+          list.set(annotation.prefLabel, annotation.prefix)
+        }
+        resolve(list);
       })
       .catch(function(reason) {
         logger.error(`GET BEL Annotations Error: ${reason}`)
