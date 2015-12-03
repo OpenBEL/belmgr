@@ -1,3 +1,7 @@
+import Config from './AppConfig';
+
+let baseUrl = Config.baseUrl;
+
 function extend(obj, src) {
   Object.keys(src).forEach(function(key) { obj[key] = src[key]; });
   return obj;

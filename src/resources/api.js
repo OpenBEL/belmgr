@@ -2,10 +2,13 @@ import {inject} from 'aurelia-framework';
 import {HttpClient} from 'aurelia-fetch-client';
 import 'fetch';
 import {LogManager} from 'aurelia-framework';
+import Config from '../AppConfig';
 
 let logger = LogManager.getLogger('api');
 
-let baseUrl = 'http://next.belframework.org/api';
+//let baseUrl = 'http://next.belframework.org/api';
+let baseUrl = Config.baseUrl;
+
 let parse = message => JSON.parse(message.response);
 
 // http://europepmc.org/RestfulWebService#search
@@ -16,7 +19,9 @@ let parse = message => JSON.parse(message.response);
 // ext_id:1945500 Using this technique to proxy http://oskarhane.com/avoid-cors-with-nginx-proxy_pass
 
 // let pubmedBaseUrl = 'http://next.belframework.org/europepmc/webservices/rest/search';
-let pubmedBaseUrl = 'http://www.ebi.ac.uk/europepmc/webservices/rest/search';
+// let pubmedBaseUrl = 'http://www.ebi.ac.uk/europepmc/webservices/rest/search';
+let pubmedBaseUrl = Config.pubmedBaseUrl;
+
 
 export class Api {
 
