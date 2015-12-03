@@ -38,9 +38,11 @@ System.config({
     "fetch": "github:github/fetch@0.10.1",
     "font-awesome": "npm:font-awesome@4.5.0",
     "jquery": "github:components/jquery@2.1.4",
+    "md5": "npm:blueimp-md5@1.1.1",
     "text": "github:systemjs/plugin-text@0.0.3",
     "traceur": "github:jmcriffey/bower-traceur@0.0.92",
     "traceur-runtime": "github:jmcriffey/bower-traceur-runtime@0.0.92",
+    "wshayes/aurelia-gravatar": "github:wshayes/aurelia-gravatar@master",
     "github:jspm/nodelibs-assert@0.1.0": {
       "assert": "npm:assert@1.3.0"
     },
@@ -64,7 +66,7 @@ System.config({
     },
     "github:wshayes/aurelia-gravatar@master": {
       "aurelia-framework": "npm:aurelia-framework@1.0.0-beta.1.0.2",
-      "md5": "github:blueimp/JavaScript-MD5@1.1.1"
+      "blueimp/JavaScript-MD5": "github:blueimp/JavaScript-MD5@1.1.1"
     },
     "npm:assert@1.3.0": {
       "util": "npm:util@0.10.3"
