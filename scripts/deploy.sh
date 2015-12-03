@@ -25,7 +25,7 @@ ssh "$host" "cd \$HOME/belmgr && git reset --hard && git checkout master && git 
 echo "Checking out version." >&2
 ssh "$host" "cd \$HOME/belmgr && git checkout $cur_ver"
 echo "Running git reset." >&2
-ssh "$host" "git reset --hard"
+ssh "$host" "cd \$HOME/belmgr && git reset --hard"
 echo "Building." >&2
 ssh "$host" "cd \$HOME/belmgr && ./scripts/build.sh"
 echo "Done." >&2
