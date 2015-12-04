@@ -31,6 +31,9 @@ h5 {
     font-family: 'Lato', sans-serif;
     text-transform: uppercase;
 }
+.conversational {
+    text-transform: none;
+}
 
 button:focus,
 button:focus>i,
@@ -48,8 +51,14 @@ textarea {
 .search-html,
 .about-html,
 .edit-html,
-.welcome-html {
-    min-height: 100%;
+.welcome-html,
+.import-html,
+.profile-html,
+.login-html,
+.reset-html,
+.signup-html,
+.logout-html {
+    min-height: calc(100vh - 210px) !important;
 }
 
 
@@ -89,6 +98,12 @@ textarea {
 
 .margintop80 {
     margin-top: 80px;
+}
+.margintop90 {
+    margin-top: 90px;
+}
+.margintop120 {
+    margin-top: 120px;
 }
 
 .marginbtm10 {
@@ -487,7 +502,7 @@ section {
 
 .form-control:not(.btn-bel):not(.btn-edit) {
     border: none;
-    border: 0px solid transparent;
+    border: 1px solid rgba(240, 240, 240, .1);
     border-radius: 4px;
     box-shadow: none;
     border-bottom: 2px solid rgba(12, 145, 165, .5);
@@ -684,11 +699,12 @@ form>.form-group>.input-group>input.search-searchForm {
 }
 
 .form-control.btn-euPMC-pubmed:hover {
-    box-shadow: inset 0px 34px 0px rgba(228, 229, 231, 1);
+    box-shadow: inset 0px 38px 0px rgba(228, 229, 231, 1);
     color: #0C91A5;
     border: none;
     padding: 0px;
     -webkit-transition: box-shadow .1s;
+    -webkit-transition-timing-function: ease-out;
 }
 
 .euPMC-pubmed-logo {
@@ -728,6 +744,7 @@ form>.form-group>.input-group>input.search-searchForm {
     max-height: 34px;
     box-shadow: inset 0px 34px 0px #0C91A5;
     -webkit-transition: box-shadow .1s;
+    -webkit-transition-timing-function: ease-out;
     color: #e4e5e7;
 }
 
@@ -739,9 +756,33 @@ form>.form-group>.input-group>input.search-searchForm {
     max-height: 34px;
     box-shadow: inset 0px 34px 0px #fdc975;
     -webkit-transition: box-shadow .1s;
+    -webkit-transition-timing-function: ease-out;
     color: #474350;
 }
 
+.form-control.btn-profileUpdate,
+.form-control.btn-reset,
+.form-control.btn-signUp,
+.form-control.btn-logIn {
+    border-bottom: 4px solid #FDC975 !important;
+    line-height: 17px;
+    font-size: 16px;
+}
+
+.form-control.btn-profileUpdate:hover,
+.form-control.btn-reset:hover,
+.form-control.btn-signUp:hover,
+.form-control.btn-logIn:hover {
+    max-height: 34px;
+    box-shadow: inset 0px 34px 0px #FDC975 !important;
+    -webkit-transition: box-shadow .1s;
+    -webkit-transition-timing-function: ease-out;
+    color: #474350;
+}
+.form-control.btn-profileUpdate {
+    width: 170px;
+    float: right;
+}
 
 /*END BUTTONS*/
 
@@ -817,6 +858,79 @@ div.au-stagger {
     border: 2px #FFF solid;
 }
 
+/* LOGIN PAGE */
+
+.login-pgRow {
+    margin-top: ;
+}
+.login-pwRequest {
+    right: 0px;
+    margin-right: 0px;
+    padding-right: 0px;
+}
+.login-pwRequest a {
+    color: #25777D;
+    float: right;
+}
+
+@media (max-width: 768px) {
+    .login-pwRequest a {
+        font-size: 12px;
+    }
+}
+.login-accRequest {
+    text-align: left;
+    display: block;
+    font-size: 12px;
+    margin-left: -10px;
+}
+@media (min-width: 768px) {
+    .login-accRequest {
+        margin-top: 2px;
+    }
+}
+.login-accRequest a {
+    color: #25777D;
+    font-weight: 600;
+}
+.login-pwRequest a:hover,
+.login-accRequest a:hover {
+    color: #25777D;
+    text-decoration: none;
+    text-shadow: 0px 0px 0px #25777D;
+}
+/* END LOGIN PAGE */
+
+
+/* SIGN UP PAGE */
+
+.signup-pgRow {
+    margin-top: ;
+}
+
+/* END SIGN UP PAGE */
+
+
+/* RESET PAGE */
+
+.reset-pgRow {
+    margin-top: ;
+}
+
+/* END RESET PAGE */
+
+
+/* PROFILE PAGE */
+
+.profile-pgRow {
+    margin-top: ;
+}
+.profile-picture {
+    border-radius: 0px;
+    box-shadow: 1px 1px 20px rgba(200, 200, 200, .3);
+}
+
+/* END PROFILE PAGE */
 
 /* EDIT PAGE */
 

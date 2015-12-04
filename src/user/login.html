@@ -1,9 +1,8 @@
 <template>
-  <div class="container">
-    <div class="row">
-      <div class="center-form panel col-md-6">
-        <div class="panel-body">
-          <h2 class="text-center">Log in</h2>
+  <div class="container login-html">
+    <div class="row margintop120 login-pgRow">
+      <div class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
+          <h2 class="conversational">Welcome back.</h2>
           <form method="post"  name="loginForm">
             <div class="form-group has-feedback">
               <label for="fn">Email</label>
@@ -17,20 +16,16 @@
               <span class="ion-key form-control-feedback"></span>
             </div>
 
-            <button type="submit" click.delegate="login()" class="btn btn-lg  btn-block btn-success">Log in</button>
+            <div class="margintop30">
+              <button type="submit" click.delegate="login()" class="btn form-control btn-logIn">Log in</button>
 
-            <br/>
+              <p class="col-xs-6 login-accRequest">Don't have an account yet? <a route-href="route: signup">Sign up</a></p>
+              <p class="col-xs-6 login-pwRequest"><a route-href="route: reset-password">Forgot your password?</a></p>
 
-            <p class="text-center">
-              <a route-href="route: reset-password">Forgot your password?</a>
-            </p>
 
-            <p class="text-center text-muted">
-              <small>Don't have an account yet? <a route-href="route: signup">Sign up</a></small>
-            </p>
+            </div>
           </form>
         </div>
-      </div>
     </div>
   </div>
 </template>

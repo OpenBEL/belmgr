@@ -1,22 +1,31 @@
 <template>
-  <section class="au-animate">
-    <h2>${heading}</h2>
 
-    <form role="form" submit.delegate="signup()">
-      <div class="form-group">
-        <label for="fn">Display Name</label>
-        <input type="text" value.bind="displayName" class="form-control" id="fn" placeholder="">
+  <section class="container signup-html">
+    <div class="row margintop120 signup-pgRow">
+      <div class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
+        <h2 class="conversational">Join the BEL Community</h2>
+
+        <form role="form" submit.delegate="signup()">
+          <div class="form-group">
+            <label for="fn">Display Name</label>
+            <input type="text" value.bind="displayName" class="form-control input-lg" id="fn" placeholder="">
+          </div>
+          <div class="form-group">
+            <label for="fn">Email</label>
+            <input type="text" value.bind="email" class="form-control input-lg" id="fn" placeholder="">
+          </div>
+          <div class="form-group">
+            <label for="ln">Password</label>
+            <input type="password" value.bind="password" class="form-control input-lg" id="ln"
+                   placeholder="">
+          </div>
+
+          <div class="margintop30">
+            <button type="submit" class="btn form-control btn-signUp">Create an account</button>
+            <p class="col-xs-6 login-accRequest">Already have an account? <a route-href="route: login">login</a></p>
+          </div>
+        </form>
       </div>
-      <div class="form-group">
-        <label for="fn">Email</label>
-        <input type="text" value.bind="email" class="form-control" id="fn" placeholder="">
-      </div>
-      <div class="form-group">
-        <label for="ln">Password</label>
-        <input type="text" value.bind="password" class="form-control" id="ln"
-               placeholder="">
-      </div>
-      <button type="submit" class="btn btn-default">Signup</button>
-    </form>
+    </div>
   </section>
 </template>
