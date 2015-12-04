@@ -1211,7 +1211,7 @@ p.text-warning {
 /*FILTER SECTION*/
 
 label {
-    font-weight: 300;
+    font-weight: 400;
 }
 
 label.filter-boxlabel {
@@ -1380,7 +1380,7 @@ td.table-td {
 td.table-td a {
     color: #474350;
     font-size: 14px;
-    font-weight: 300;
+    font-weight: 400;
 }
 
 td.table-td a:visited {
