@@ -273,16 +273,16 @@ export class Api {
   }
 
   // Get list of all BEL Annotation Resources
-  getBelAnnotationList() {
+  getBelAnnotationTypes() {
     return this.apiClient.fetch('/annotations')
       .then(response => response.json())
       .then(data => {
         // logger.debug('GET BEL Annotations: ', data);
         let list = new Map();
-        for (let annotation of data['annotations']) {
-          list.set(annotation.prefLabel, annotation.prefix)
+        for (let annotation of data['annotation_collection']) {
+          list.set(annotation.name, annotation.prefix)
         }
-        resolve(list);
+        return list;
       })
       .catch(function(reason) {
         logger.error(`GET BEL Annotations Error: ${reason}`)

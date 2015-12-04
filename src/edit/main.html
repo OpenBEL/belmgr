@@ -1,0 +1,90 @@
+<template>
+  <require from="./citation"></require>
+  <require from="./statement"></require>
+  <require from="./experiment-context"></require>
+  <require from="./metadata"></require>
+
+  <div class="edit-html">
+    <div class="col-xs-5 edit-belEditorTitle">
+        <h1>BEL Editor</h1>
+    </div>
+    <div class="container">
+      <div class="row">
+        <section class="pubmedContent ${pubmed.title ? 'col-xs-4 col-md-3' : 'noShow'}">
+            <div class="row">
+              <div class="col-xs-6 btn-euPMC-pubmed-div">
+                <a href="http://europepmc.org/abstract/MED/${evidence.citation.id}" class="col-xs-12 btn btn-bel btn-euPMC-pubmed form-control" role="button" target="_blank"><img class="euPMC-pubmed-logo" src="./media/EuropePMC.png" alt=""></a>
+              </div>
+              <div class="col-xs-6 btn-euPMC-pubmed-div">
+                <a href="http://www.ncbi.nlm.nih.gov/pubmed/?term=${evidence.citation.id}[uid]" class="col-xs-12 btn btn-bel btn-euPMC-pubmed form-control" role="button" target="_blank"><img class="euPMC-pubmed-logo" src="./media/pubmed-logo.png" alt=""></a>
+              </div>
+            </div>
+            <!-- todo Kelly might want to use icons for EuropePMC and Pubmed like
+            https://pbs.twimg.com/profile_images/2792175138/f93f2e30d1cca847800e6f3060b8101a.jpeg instead of buttons -->
+            <h3 class="col-xs-12">Pubmed Title</h3>
+            <p class="col-xs-12">${pubmed.title}</p>
+            <h3 class="col-xs-12">Abstract</h3>
+            <p class="col-xs-12">${pubmed.abstractText}</p>
+        </section>
+      </div>
+    </div>
+    <div class="container">
+      <div class="${pubmed.title ? 'col-xs-8 col-xs-offset-4 col-md-9 col-md-offset-3' : 'col-xs-11 col-xs-offset-1'}">
+        <div name="newBelForm">
+
+          <!-- Citation -->
+          <citation evidence.bind="evidence"></citation>
+
+          <!-- BEL Statement -->
+          <statement evidence.bind="evidence"></statement>
+
+          <!-- BEL Summary Text -->
+          <div id="summary-text" class="row edit-belForm">
+            <div id="bel-summaryText">
+              <div class="col-xs-12 edit-header">
+                <h3>Summary Text</h3>
+              </div>
+              <!-- .col-xs-12 -->
+
+              <div class="col-xs-12">
+                <div class="form-group">
+                  <label sr-only for="summaryText">BEL Summary Text</label>
+                  <textarea class="form-control textBlocks" value.bind="evidence.summary_text" id="summaryText" rows="3" placeholder="Extract from source text supporting this BEL Statement"></textarea>
+                </div>
+                <div class="form-group">
+                  <label for="citation_ref">Evidence Notes</label>
+                  <textarea rows="3" class="form-control textBlocks" id="citation_comments" value.bind="evidence.citation.comment"></textarea>
+                </div>
+                <!-- .form-group -->
+              </div>
+              <!-- .col-xs-12 -->
+            </div>
+          </div>
+          <!-- End SummaryText -->
+
+          <!-- Experiment Context -->
+          <experiment-context evidence.bind="evidence"></experiment-context>
+
+          <!--Metadata-->
+          <metadata evidence.bind="evidence"></metadata>
+
+
+
+          <div class="row edit-editBtns">
+
+            <div class="col-xs-6 col-md-4" show.bind="evidenceId">
+              <button type="button" click.delegate="submit()" class="col-xs-10 btn-edit btn-saveUpdates btn form-control")>Update Current BEL</button>
+            </div>
+
+            <div class="${evidenceId ? 'col-xs-6 col-md-4 col-md-offset-4' : 'col-xs-6 col-xs-offset-6 col-sm-4 col-sm-offset-8'}">
+              <button type="button" click.delegate="submitNew()" class="col-xs-10 btn btn-edit btn-saveNew form-control">${evidenceId ? 'Save as New' : 'Save'}</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- onclick="return confirm('Are you sure you would like to overwrite the current Bel statement with your changes?' -->
+
+</template>

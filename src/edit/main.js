@@ -1,11 +1,11 @@
 import {inject} from 'aurelia-framework';
 import {activationStrategy} from 'aurelia-router';
 
-import {Api} from './resources/api';
-import {relationsList} from './relationsList';
-import {PubmedService} from './resources/PubmedService';
+import {Api} from '../resources/api';
+import {relationsList} from '../resources/relationsList';
+import {PubmedService} from '../resources/PubmedService';
 
-import {Prompt} from './components/dialogs/prompt';
+import {Prompt} from '../components/dialogs/prompt';
 import {DialogService} from 'aurelia-dialog';
 
 import {LogManager} from 'aurelia-framework';
@@ -54,7 +54,6 @@ export class Edit {
         await this.getPubmed();
         logger.debug('Evidence: ', this.evidence);
         logger.debug('PubmedAwait: ', this.pubmed);
-        this.experimentContext = this.evidence.experiment_context;
 
         logger.debug('BEL Experiment Context', this.experimentContext);
       }
@@ -196,95 +195,3 @@ export class Edit {
   }
 
 }
-
-/**
- * Convert authors delimited by ';' in webpage to '|' for storage
- *
- * use it in the View as ' | pipeDelim'
- */
-export class PipeDelimValueConverter {
-  toView(text) {
-    if (text) {
-      text = text.replace(/\|/g, ';');
-    }
-    return text;
-  }
-
-  fromView(text) {
-    let newText;
-    if (text) {
-      newText = text.replace(/\;/g, '|');
-      logger.debug('Pipe-fromView: ', newText);
-    }
-    return newText;
-  }
-}
-
-/**
- * Convert author array to from text string delimited by ';'
- *
- * use it in the View as ' | stringToArray'
- */
-export class StringToArrayValueConverter {
-  toView(array) {
-    let text = "";
-    if (array) {
-      text = array.join('; ');
-    }
-    return text;
-  }
-  fromView(text) {
-    let array = [];
-    if (text) {
-    array = text.split('; ');
-    }
-    return array;
-  }
-}
-
-/**
- * Convert Object to pretty-printed JSON string to insert into the VIEW
- * @example Insert into the View: <pre>${object | objectToString}</pre>
- */
-export class ObjectToStringValueConverter {
-  toView(object) {
-    logger.debug('Here in Object to string converter');
-    return JSON.stringify(object, null, 2);
-  }
-}
-
-///**
-// * Convert Object to pretty-printed JSON string to insert into the VIEW
-// *
-// * Usage:
-// *
-// * <require from="ObjectToString"></require>
-// * <pre>${object | objectToString}</pre>
-// */
-//
-//export class ObjectToStringValueConverter {
-//  toView(object) {
-//    return JSON.stringify(object, null, 2);
-//  }
-//}
-//
-//// AURELIA DIALOG TRY
-//import {EditPerson} from 'editperson';
-//import {DialogService} from 'aurelia-dialog';
-//export class Welcome {
-//  static inject = [DialogService];
-//  constructor(dialogService) {
-//    this.dialogService = dialogService;
-//  }
-//  person = { firstName: 'Wade', middleName: 'Owen', lastName: 'Watts' };
-//  submit(){
-//    this.dialogService.open({ viewModel: EditPerson, model: this.person}).then(response => {
-//      if (!response.wasCancelled) {
-//        console.log('good');
-//      } else {
-//        console.log('bad');
-//      }
-//      console.log(response.output);
-//    });
-//  }
-//}

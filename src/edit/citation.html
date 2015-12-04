@@ -1,0 +1,99 @@
+<template>
+  <require from="../valueConverters/arrayify"></require>
+
+  <div class="row edit-belForm" id="bel-citation">
+    <div id="citation" class="edit-header">
+      <div class="col-xs-12"> <h3>Citation</h3> </div>
+      <!-- .col-xs-12 -->
+
+      <div class="col-xs-2">
+        <div class="form-group">
+          <label for="citation_type">Type</label>
+          <select class="form-control selectDrop" id="citation_type" value.bind="evidence.citation.type">
+            <option value="PubMed">PubMed</option>
+            <option value="Journal">Journal</option>
+            <option value="Book">Book</option>
+            <option value="Online Resource">Online Resource</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
+        <!-- .form-group -->
+      </div>
+      <!-- .col-xs-2 -->
+      <div class="col-xs-7">
+        <div class="form-group">
+          <label for="citation_ref">Reference ID</label>
+          <input type="text" class="form-control" id="citation_ref" value.bind="citationId"
+                 blur.trigger="getPubmed()" placeholder="Citation Reference - e.g. PubmedID, ISBN, or URL">
+        </div>
+        <!-- .form-group -->
+      </div>
+      <!-- .col-xs-8 -->
+      <div class="col-xs-3">
+        <div class="form-group">
+          <label for="citation_ref">Publication Date</label>
+          <input type="date" class="form-control selectDrop" id="citation_pubdate" value.bind="evidence.citation.date"
+                 placeholder="YYYY-MM-DD">
+
+          <p class="warning" if.bind="pubmed.bel.mismatch.date">${pubmed.firstPublicationDate} <button class="btn btn-replace" click.delegate="replaceCitationDate(pubmed.firstPublicationDate)">Replace</button></p>
+        </div>
+        <!-- .form-group -->
+      </div>
+    </div>
+  </div>
+  <!-- col-xs-2 -->
+  <div class="panel-group accordion-group" id="accordion" role="tablist" aria-multiselectable="true">
+    <div class="panel acForm">
+      <div class="panel-heading" role="tab" id="headingOne">
+        <h5 class="panel-title edit-acTitle">
+          <a class="accordionAnchor collapsed col-xs-12" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+            <div>
+                      <span class="accordionTitle col-xs-11 floatLeft">Reference Name
+                      </span>
+              <i class="accordionArrow col-xs-1 floatRight fa fa-caret-down"></i>
+            </div>
+          </a>
+        </h5>
+      </div>
+      <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+        <div class="panel-body edit-acPanelBody">
+
+          <div class="form-group edit-acFormGroup">
+            <!-- <label for="citation_name">Reference Name</label> -->
+            <textarea type="text" class="form-control authorCitation" id="citation_name" value.bind="evidence.citation.name" placeholder="Citation Name - e.g. journal or book reference"></textarea>
+
+            <button class="btn-bel btn-replace col-xs-1" if.bind="pubmed.bel.mismatch.refString" click.delegate="replaceCitationName(pubmed.bel.refString)">Replace</button>
+            <p class="text-warning col-xs-10" if.bind="pubmed.bel.mismatch.refString">PubMed Citation: <span class="text-warningCitation">${pubmed.bel.refString}</span></p>
+            <!-- .form-group -->
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="panel acForm">
+      <div class="panel-heading" role="tab" id="headingTwo">
+        <h5 class="panel-title edit-acTitle">
+          <a class="accordionAnchor collapsed col-xs-12" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+            <div>
+              <span class="accordionTitle col-xs-11 floatLeft">Authors</span>
+              <i class="accordionArrow col-xs-1 floatRight fa fa-caret-down"></i>
+            </div>
+          </a>
+        </h5>
+      </div>
+      <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+        <div class="panel-body edit-acPanelBody">
+
+          <div class="form-group edit-acFormGroup">
+            <!--<label for="citation_ref">Authors</label>-->
+            <textarea type="text" class="form-control authorCitation" id="citation_authors" value.bind="evidence.citation.authors | arrayify" placeholder="separate authors with a semicolon ';'"></textarea>
+
+            <button class="btn-bel btn-replace col-xs-1" if.bind="pubmed.bel.mismatch.authors" click.delegate="replaceCitationAuthors(pubmed.bel.authors)">Replace</button>
+            <p class="text-warning col-xs-10" if.bind="pubmed.bel.mismatch.authors">Authors listed on PubMed: <span class="text-warningCitation">${pubmed.bel.authors | arrayify}</span></p>
+
+            <!-- .form-group -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>

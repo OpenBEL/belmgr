@@ -26,11 +26,9 @@ export class Search {
     this.facetSets = {};
   }
 
-
   activate() {
     // Get initial search results
     this.search();
-
   }
 
   async search() {
@@ -136,9 +134,6 @@ export class Search {
     return organisms.Unknown;
   }
 
-
-
-
   /**
    * Creates array of experiment_context values without the Ncbi Taxonomy item
    * @param evidence
@@ -150,44 +145,6 @@ export class Search {
   }
 
 }
-
-/**
- * Stringify value
- */
-export class StringifyValueConverter {
-  toView(value) {
-    if (value === null)
-      return 'null';
-    if (value === undefined)
-      return 'undefined';
-    return JSON.stringify(value, null, 2);
-  }
-}
-
-
-/**
- * Extract keys from object for use in repeat.for loop
- */
-export class KeysValueConverter {
-
-  /**
-   * To View method
-   *
-   * @param {Object} object to extract keys from
-   * @return {array} list of keys
-   */
-  toView(object){
-    if (typeof object === 'object') {
-      logger.debug('Keys: ', Object.keys(object));
-      let arr = Object.keys(object);
-      return arr;
-    }
-    else {
-      return [];
-    }
-  }
-}
-
 
 $(document).ready(function(){
     $('[data-toggle="tooltip"]').tooltip();

@@ -1,0 +1,39 @@
+<template>
+  <require from="./experiment-context-item"></require>
+
+  <div id="experiment-context" class="edit-eContext ">
+    <div class="row edit-belForm">
+      <div class="col-xs-12 edit-header">
+        <h3>Experimental Context</h3>
+      </div>
+      <!-- .col-xs-12 -->
+
+      <div class="row col-xs-12">
+        <div class="col-xs-3">
+          <label class="edit-annotationType">Context Type</label>
+        </div>
+        <div class="col-xs-8">
+          <label class="edit-annotation">Value</label>
+        </div>
+      </div>
+
+      <!--<select ref="mySelect">-->
+
+      <template repeat.for="context of evidence.experiment_context">
+        <div class="row col-xs-12">
+
+          <div class="col-xs-3">
+            <input type="text" class="form-control" name="context-type" value.bind="context.name"
+                   placeholder="Context Type">
+          </div>
+          <div class="col-xs-6">
+            <input type="text" class="form-control" name="context-value" value.bind="context.value & debounce"
+             placeholder="Enter experimental context value">
+          </div>
+        </div>
+        <!--<experiment-context-item context.bind="context" annotationList.bind="annotationList"></experiment-context-item>-->
+      </template>
+
+    </div>
+
+</template>
