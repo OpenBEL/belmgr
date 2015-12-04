@@ -18,6 +18,15 @@ export class Profile{
   email='';
   password='';
 
+
+// below is breaking the js 
+
+// export class Profile{
+
+//   users = [
+//     {'name': 'Anthony Bargnesi', 'email': 'abargnesi@selventa.com'},
+//     {'name': 'Nick Bargnesi', 'email': 'nbargnesi@selventa.com'},
+//     {'name': 'William Hayes', 'email': 'whayes@selventa.com'},
+//     {'name': 'Kelly McCann', 'email': 'kmccann@selventa.com'}
+//   ];
 }
-
-

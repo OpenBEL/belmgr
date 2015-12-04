@@ -7,7 +7,18 @@
                     <div class="margintop30">
                         <form method="post" ng-submit="updateProfile()">
                             <div class="form-group">
-                                <img class="profile-picture" src.bind="profile.picture || 'http://placehold.it/175x175'">
+                                <!-- <img class="profile-picture" src.bind="profile.picture || 'http://placehold.it/175x175'"> -->
+
+                                <ul class="li-nobullets" repeat.for="user of users">
+                                  <li>
+                                    <gravatar id="profile-gravitar" class="avatar-frame"
+                                                 credential.bind="user.email" size="150"
+                                                 default-image="wavatar" is-secure="true" rating="g" >
+                                    </gravatar>
+                                    ${user.name}
+                                  </li>
+                                </ul>
+                                
                             </div>
                             <div class="form-group">
                                 <label class="control-label"><i class="ion-person"></i> Display Name</label>
