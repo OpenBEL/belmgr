@@ -19,7 +19,7 @@ body {
     margin-left: 0px;
     margin-right: 0px;
     margin-bottom: 180px;
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'Lato', 'Helvetica Neue', sans-serif;
 }
 
 h1,
@@ -28,7 +28,7 @@ h3,
 h4,
 h5 {
     font-weight: 300;
-    font-family: 'Lato', sans-serif;
+    font-family: 'Open Sans', 'Helvetica Neue' sans-serif;
     text-transform: uppercase;
 }
 .conversational {
@@ -1220,6 +1220,7 @@ label.filter-boxlabel {
     margin-bottom: 5px;
     font-weight: normal;
     font-size: 12px;
+    letter-spacing: .1px;
     pointer-events: none;
 }
 
@@ -1401,10 +1402,11 @@ td.table-td a:focus {
 p.table-expContext {
     list-style-type: none;
     display: inline-block;
-    font-size: 12px;
-    font-style: italic;
-    font-weight: 600;
-    font-family: 'Lato';
+    font-size: 13px;
+    font-weight: 500;
+    font-family: 'Open Sans';
+    letter-spacing: .3px;
+    font-style: oblique;
 }
 
 p.table-expContext:not(:last-child)::after {
