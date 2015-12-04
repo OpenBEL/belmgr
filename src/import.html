@@ -2,14 +2,21 @@
 <div class="import-html">
     <div class="container au-animate">
         <div class="row">
-            <div class="col-xs-12 margintop30">
-                <h2>${heading}</h2>
-            </div>
-
-            <div class="col-xs-12">
-              <p class="">This page is for importing BEL Scripts and XBEL files.</p>
-              
-            </div>
+          <div class="col-xs-12 margintop30">
+            <h2>${heading}</h2>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12">
+            <span class="btn btn-default btn-file">
+              <input type="file" files.bind="belScripts">
+            </span>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-3">
+            <button type="button" class="btn btn-default btn-primary" name="submit" click.delegate="upload">Upload</button>
+          </div>
         </div>
     </div>
 </div>

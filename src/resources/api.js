@@ -276,16 +276,39 @@ export class Api {
   getBelAnnotationTypes() {
     return this.apiClient.fetch('/annotations')
       .then(response => response.json())
-      .then(data => {
-        // logger.debug('GET BEL Annotations: ', data);
-        let list = new Map();
-        for (let annotation of data['annotation_collection']) {
-          list.set(annotation.name, annotation.prefix)
-        }
-        return list;
-      })
+      .then(data => {return(data.annotation_collection)})
       .catch(function(reason) {
         logger.error(`GET BEL Annotations Error: ${reason}`)
       });
+  }
+
+  getBELAnnotationValues(query) {
+    let numResults = 10;
+    let query_string = `/annotations/values?filter={"category":"fts","name":"search","value":"${query}"}&start=0&size=${numResults}`;
+
+    return this.apiClient.fetch(query_string)
+      .then(response => response.json())
+      .then(data => {
+        logger.debug('GET BEL Values: ', data);
+
+      })
+      .catch(function(reason) {
+        logger.error(`GET BEL Annotations Values Error: ${reason}`)
+      });
+  }
+
+  // Upload BEL Script to OpenBEL Evidence Store
+  // Notes:
+  //    https://github.com/github/fetch
+  //    http://blog.gospodarets.com/fetch_in_action/
+  //
+  uploadBELScript(file) {
+    let data = new FormData();
+    data.append('file', file);
+
+    return this.apiClient.fetch('/import', {
+      method: 'post',
+      body: data
+    });
   }
 }
