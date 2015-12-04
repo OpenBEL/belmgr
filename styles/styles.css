@@ -1219,7 +1219,7 @@ label.filter-boxlabel {
     max-width: 100%;
     margin-bottom: 5px;
     font-weight: normal;
-    font-size: 12px;
+    font-size: 14px;
     letter-spacing: .1px;
     pointer-events: none;
 }
@@ -1402,11 +1402,10 @@ td.table-td a:focus {
 p.table-expContext {
     list-style-type: none;
     display: inline-block;
-    font-size: 13px;
+    font-size: 14px;
+    /* color: #25777D; */
     font-weight: 500;
-    font-family: 'Open Sans';
-    letter-spacing: .3px;
-    font-style: oblique;
+    font-family: 'Lato';
 }
 
 p.table-expContext:not(:last-child)::after {
