@@ -1,6 +1,5 @@
 import {inject} from 'aurelia-framework';
 import {Api} from './resources/api';
-import {SortValueConverter} from './valueConverters/valueConverters.js';
 
 import {LogManager} from 'aurelia-framework';
 let logger = LogManager.getLogger('search');
