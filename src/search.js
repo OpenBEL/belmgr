@@ -101,6 +101,12 @@ export class Search {
     return matches[1];
   }
 
+  deleteEvidence(evidenceUrl, idx) {
+    let evidenceId = this.getEvidenceId(evidenceUrl);
+    this.api.deleteBelEvidence(evidenceId);
+    this.evidences.splice(idx, 1);
+  }
+
   /**
    * Get Species from Evidence Experiment Context
    * @param evidence

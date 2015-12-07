@@ -228,13 +228,24 @@ export class Api {
           },
           body: JSON.stringify(evidence)
         })
-        .then(response => response.json())
         .catch(function(reason) {
           logger.error(`POST BEL Evidence Error: ${reason}`)
         });
     }
   }
 
+  deleteBelEvidence(evidenceId) {
+    return this.apiClient.fetch(`/evidence/${evidenceId}`, {
+      method: 'delete',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json; profile=http://next.belframework.org/schema/evidence.schema.json'
+      }
+    })
+    .catch(function(reason) {
+      logger.error(`DELETE BEL Evidence Error: ${reason}`)
+    });
+  }
   /**
    * Get BEL components (subject, relation, object) from a BEL statement
    * @param belStatement
@@ -276,9 +287,9 @@ export class Api {
   getBelAnnotationTypes() {
     return this.apiClient.fetch('/annotations')
       .then(response => response.json())
-      .then(data => {return(data.annotation_collection)})
+      .then(data => data.annotation_collection)
       .catch(function(reason) {
-        logger.error(`GET BEL Annotations Error: ${reason}`)
+        logger.error(`GET BEL Annotation Types Error: ${reason}`)
       });
   }
 
@@ -288,12 +299,9 @@ export class Api {
 
     return this.apiClient.fetch(query_string)
       .then(response => response.json())
-      .then(data => {
-        logger.debug('GET BEL Values: ', data);
-
-      })
+      .then(data => data.annotation_value_collection)
       .catch(function(reason) {
-        logger.error(`GET BEL Annotations Values Error: ${reason}`)
+        logger.error(`GET BEL Annotation Values Error: ${reason}`)
       });
   }
 
@@ -301,7 +309,8 @@ export class Api {
   // Notes:
   //    https://github.com/github/fetch
   //    http://blog.gospodarets.com/fetch_in_action/
-  //
+  //    http://www.petermorlion.com/file-upload-with-aurelia/
+
   uploadBELScript(file) {
     let data = new FormData();
     data.append('file', file);

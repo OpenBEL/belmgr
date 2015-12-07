@@ -91,13 +91,16 @@
                 <div class="col-xs-2 col-sm-1 table-speciesHolder">
                   <div class="table-speciesIcon ${$parent.getSpecies(item)}"></div>
                 </div>
-                <div class="col-xs-10 col-sm-11">
+                <div class="col-xs-9 col-sm-10">
                   <a route-href="route: edit; params.bind: { id: $parent.getEvidenceId(item._links.self.href) }" target="editbel" a href="#" data-toggle="tooltip" title="${item.evidence.summary_text}">${item.evidence.bel_statement ? item.evidence.bel_statement : 'Missing BEL Statement'}
                   </a>
                   <div class="table-expContextDiv">
                     <p class="table-expContext value" repeat.for="value of $parent.getExperimentContextItems(item.evidence)">${value}</p>
                   </div>
                 </div>
+                <div class="col-xs-1 col-sm-1">
+                  <a class="" href="#" click.delegate="deleteEvidence(item._links.self.href, $index)"> <i class="fa fa-trash-o fa-lg"></i></a>
+                </div><!-- /.col-xs-1 col-sm-1 -->
               </td>
             </tr>
             </tbody>
