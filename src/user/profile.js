@@ -18,7 +18,7 @@ export class Profile{
   email='';
   password='';
 
-
+}
 // below is breaking the js 
 
 // export class Profile{
@@ -29,4 +29,4 @@ export class Profile{
 //     {'name': 'William Hayes', 'email': 'whayes@selventa.com'},
 //     {'name': 'Kelly McCann', 'email': 'kmccann@selventa.com'}
 //   ];
-}
+// }
