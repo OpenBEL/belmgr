@@ -90,7 +90,6 @@ export class Search {
   }
 
 
-
   deleteEvidence(evidenceUrl, idx) {
     let evidenceId = this.api.getEvidenceId(evidenceUrl);
     this.api.deleteBelEvidence(evidenceId);

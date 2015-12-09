@@ -92,7 +92,7 @@
                   <div class="table-speciesIcon ${$parent.getSpecies(item)}"></div>
                 </div>
                 <div class="col-xs-9 col-sm-10">
-                  <a route-href="route: edit; params.bind: { id: $parent.getEvidenceId(item._links.self.href) }" target="editbel" a href="#" data-toggle="tooltip" title="${item.evidence.summary_text}">${item.evidence.bel_statement ? item.evidence.bel_statement : 'Missing BEL Statement'}
+                  <a route-href="route: edit; params.bind: { id: api.getEvidenceId(item._links.self.href) }" target="editbel" a href="#" data-toggle="tooltip" title="${item.evidence.summary_text}">${item.evidence.bel_statement ? item.evidence.bel_statement : 'Missing BEL Statement'}
                   </a>
                   <div class="table-expContextDiv">
                     <p class="table-expContext value" repeat.for="value of $parent.getExperimentContextItems(item.evidence)">${value}</p>
