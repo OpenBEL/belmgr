@@ -181,6 +181,22 @@ export class Api {
       });
   }
 
+  /**
+   * Get BEL components (subject, relation, object) from a BEL statement
+   * @param belStatement
+   * @returns {"subject": "", "relationship": "", "object": ""}
+   */
+  getBelComponents(belStatement) {
+    return this.apiClient.fetch(`/expressions/${belStatement}/components?flatten=1`)
+      .then(response => response.json())
+      .then(data => {
+        // logger.debug('BEL Evidence: ', data);
+        return data['expression_components'];
+      })
+      .catch(function(reason) {
+        logger.error(`GET BEL Components Error: ${reason}`)
+      });
+  }
 
   /**
    * Get BEL Evidence from API Service
@@ -192,7 +208,23 @@ export class Api {
     return this.apiClient.fetch(`/evidence/${id}`)
       .then(response => response.json())
       .then(data => {
-        return data;
+        return data.evidence;
+      })
+      .then(evidence => {
+        logger.debug("Ev1: ", evidence);
+        this.getBelComponents(evidence.bel_statement)
+        .then(comp => {
+          evidence.bel_subject = comp.subject;
+          evidence.bel_object = comp.object;
+          evidence.bel_relationship = comp.relationship;
+          logger.debug('Evidence: ', evidence);
+          logger.debug('Comp: ', comp);
+          return evidence;
+        })
+        .catch(function(reason) {
+          logger.error(`GET Statement components error: ${reason}`)
+        });
+        return evidence;
       })
       .catch(function(reason) {
         logger.error(`GET BEL Evidence Error: ${reason}`)
@@ -246,22 +278,6 @@ export class Api {
     .catch(function(reason) {
       logger.error(`DELETE BEL Evidence Error: ${reason}`)
     });
-  }
-  /**
-   * Get BEL components (subject, relation, object) from a BEL statement
-   * @param belStatement
-   * @returns {"subject": "", "relationship": "", "object": ""}
-   */
-  getBelComponents(belStatement) {
-    return this.apiClient.fetch(`/expressions/${belStatement}/components`)
-      .then(response => response.json())
-      .then(data => {
-        // logger.debug('BEL Evidence: ', data);
-        return data['expression_components'];
-      })
-      .catch(function(reason) {
-        logger.error(`GET BEL Components Error: ${reason}`)
-      });
   }
 
   /**

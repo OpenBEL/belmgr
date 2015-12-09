@@ -8,7 +8,7 @@
       <div id="bel-source-div" class="edit-belStatementDivs col-xs-5">
         <div class="form-group">
           <label class="sr-only" for="belsubject">BEL Source</label>
-          <input name="belsubject" id="belsubject" type="text" value.bind="belComponents.subject" class="form-control typeahead" placeholder="Subject" autocomplete="on" debounce></input>
+          <input name="belsubject" id="belsubject" type="text" value.bind="evidence.bel_subject" class="form-control typeahead" placeholder="Subject" autocomplete="on" debounce></input>
         </div>
 
         <div id="source-searchbox" class="search-box" style="display: none;">
@@ -18,7 +18,7 @@
 
       <div id="bel-relation-div" class="edit-belStatementDivs col-xs-2">
         <label class="sr-only" for="belrelation">BEL Relation</label>
-        <select class="form-control selectDrop selectDrop-relation" id="belrelation" value.bind="belComponents.relationship">
+        <select class="form-control selectDrop selectDrop-relation" id="belrelation" value.bind="evidence.bel_relationship">
           <option>--Relation--</option>
           <option repeat.for="relation of relationsList" model.bind="relation.value">${relation.label}</option>
         </select>
@@ -27,7 +27,7 @@
       <div id="bel-target-div" class="edit-belStatementDivs col-xs-5">
         <div class="form-group input-block-level">
           <label class="sr-only" for="belobject">BEL Object</label>
-          <input name="belobject" id="belobject" type="text" value.bind="belComponents.object" class="form-control typeahead" placeholder="Object"
+          <input name="belobject" id="belobject" type="text" value.bind="evidence.bel_object" class="form-control typeahead" placeholder="Object"
                  autocomplete="on" debounce></input>
         </div>
       </div>

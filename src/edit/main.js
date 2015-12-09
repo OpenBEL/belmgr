@@ -50,11 +50,10 @@ export class Edit {
 
       // Get BEL Evidence
       try {
-        this.data = await this.api.getBelEvidence(this.evidenceId);
-        this.evidence = this.data.evidence;
+        this.evidence = await this.api.getBelEvidence(this.evidenceId);
         this.extractFormMetadata();
         logger.info('BEL Statement: ', this.evidence);
-        this.belComponents = await this.api.getBelComponents(this.evidence.bel_statement);
+        // this.belComponents = await this.api.getBelComponents(this.evidence.bel_statement);
 
         this.citationId = this.evidence.citation.id;
 

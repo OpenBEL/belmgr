@@ -6,7 +6,7 @@ export class App {
       { route: ['', 'welcome'],   moduleId: './welcome',         name: 'home',      nav: true,  title: 'Welcome' },
       { route: 'search',          moduleId: './search',          name: 'search',    nav: true,  title: 'Search' },
       { route: 'edit/:id',        moduleId: './edit/main',       name: 'edit',      nav: false, title: 'Edit BEL' },
-      { route: 'create',          moduleId: './edit',            name: 'create',    nav: true,  title: 'New BEL' },
+      { route: 'create',          moduleId: './edit/main',            name: 'create',    nav: true,  title: 'New BEL' },
       { route: 'import',          moduleId: './import',          name: 'import',    nav: true,  title: 'Import' },
       { route: 'about',           moduleId: './about',           name: 'about',     nav: true,  title: 'About' },
       { route: 'signup',          moduleId: './user/signup',     name: 'signup',    nav: false, title: 'Signup' },
