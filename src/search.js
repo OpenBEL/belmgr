@@ -89,20 +89,10 @@ export class Search {
     this.search();
   }
 
-  /**
-   * Get Evidence ID from self link href in evidence object
-   *
-   * @param url
-   * @returns evidenceID
-   */
-  getEvidenceId(url) {
-    let matches = url.match(/\/(\w+?)$/);
-    // logger.debug('Matches: ', matches[1]);
-    return matches[1];
-  }
+
 
   deleteEvidence(evidenceUrl, idx) {
-    let evidenceId = this.getEvidenceId(evidenceUrl);
+    let evidenceId = this.api.getEvidenceId(evidenceUrl);
     this.api.deleteBelEvidence(evidenceId);
     this.evidences.splice(idx, 1);
   }

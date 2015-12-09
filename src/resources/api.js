@@ -228,6 +228,7 @@ export class Api {
           },
           body: JSON.stringify(evidence)
         })
+        .then(response => response.headers.get('Location'))
         .catch(function(reason) {
           logger.error(`POST BEL Evidence Error: ${reason}`)
         });
@@ -320,4 +321,17 @@ export class Api {
       body: data
     });
   }
+
+  /**
+   * Get Evidence ID from self link href in evidence object
+   *
+   * @param url
+   * @returns evidenceID
+   */
+  getEvidenceId(url) {
+    let matches = url.match(/\/(\w+?)$/);
+    // logger.debug('Matches: ', matches[1]);
+    return matches[1];
+  }
+
 }

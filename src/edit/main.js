@@ -1,5 +1,5 @@
 import {inject} from 'aurelia-framework';
-import {activationStrategy} from 'aurelia-router';
+import {activationStrategy, Router} from 'aurelia-router';
 
 import {Api} from '../resources/api';
 import {relationsList} from '../resources/relationsList';
@@ -13,24 +13,31 @@ import {LogManager} from 'aurelia-framework';
 let logger = LogManager.getLogger('edit');
 
 
-@inject(Api, PubmedService, DialogService)
+@inject(Api, PubmedService, DialogService, Router)
 export class Edit {
+
+    evidenceId = null;
+    citationId = null;
+    evidence = {};
+    metadata = {
+      'evidence_notes': '', 'evidence_status': '', 'author': '',
+      'creation_date': '', 'reviewer': '', 'review_date': '',
+      'evidence_source': ''};
+    submitEvidence = {};  // add back the top-level 'evidence' key, value prior to submission
+    annotations = [];
+    relationsList = relationsList;
+    pubmed = null;
 
   // Needed to allow New BEL menu item to refresh the form
   determineActivationStrategy() {
     return activationStrategy.replace;
   }
 
-  constructor(Api, PubmedService, DialogService) {
+  constructor(Api, PubmedService, DialogService, Router) {
     this.api = Api;
     this.pubmedService = PubmedService;
-    this.evidenceId = null;
-    this.citationId = null;
-    this.evidence = {};
-    this.annotations = [];
-    this.relationsList = relationsList;
-    this.pubmed = null;
     this.dialogService = DialogService;
+    this.router = Router;
   }
 
   async activate(params) {
@@ -45,6 +52,7 @@ export class Edit {
       try {
         this.data = await this.api.getBelEvidence(this.evidenceId);
         this.evidence = this.data.evidence;
+        this.extractFormMetadata();
         logger.info('BEL Statement: ', this.evidence);
         this.belComponents = await this.api.getBelComponents(this.evidence.bel_statement);
 
@@ -52,10 +60,9 @@ export class Edit {
 
         logger.debug('BC: ', this.belComponents);
         await this.getPubmed();
+
         logger.debug('Evidence: ', this.evidence);
         logger.debug('PubmedAwait: ', this.pubmed);
-
-        logger.debug('BEL Experiment Context', this.experimentContext);
       }
       catch (err) {
         logger.error('GET BEL Evidence error: ', err);
@@ -73,6 +80,47 @@ export class Edit {
     this.evidence = temp;
   }
 
+  prepareEvidence() {
+    // Prepare BEL Statement
+    this.evidence.bel_statement = `${this.belComponents.subject} ${this.belComponents.relationship} ${this.belComponents.object}`;
+
+    // Remove blank entries in evidence.experiment_context
+    logger.debug('Cleaning evidence -- context items');
+    this.evidence.experiment_context = this.evidence.experiment_context.filter(obj => obj.value);
+
+    // Add to Metadata
+    this.addFormMetadata();
+
+    this.submitEvidence = {'evidence': this.evidence};
+  }
+
+  // Add to evidence Metadata
+  //   Note - this is only for adding strings
+  //   TODO - support adding objects as values
+  addFormMetadata() {
+    for (let key in this.metadata) {
+      let idx = this.evidence.metadata.findIndex(obj => obj.name === key);
+      if (idx >= 0) {
+        this.evidence.metadata[idx].value += this.metadata.key;
+      } else {
+        this.evidence.metadata.push(
+          {
+            'name' : key,
+            'value': this.metadata[key]
+          });
+      }
+    }
+  }
+
+  extractFormMetadata() {
+    for (let k in this.metadata) {
+      let idx = this.evidence.metadata.findIndex(obj => obj.name === k);
+      if (idx >= 0) {
+        this.metadata[k] = this.evidence.metadata[idx].value;
+      }
+    }
+  }
+
   /**
    * Submit BEL Evidence to API
    * @returns {boolean}
@@ -82,33 +130,39 @@ export class Edit {
     let prompt = 'This will update the Evidence!';
     this.dialogService.open({ viewModel: Prompt, model: prompt}).then(response => {
       if (!response.wasCancelled) {
-        console.log('approvedPrompt');
+        logger.debug('approvedPrompt');
         this.submitUpdate;
       } else {
-        console.log('cancelledPrompt');
+        logger.debug('cancelledPrompt');
       }
-      console.log(response.output);
+      logger.debug(response.output);
     });
     return true;
   }
 
   submitUpdate() {
-    this.evidence.bel_statement = `${this.belComponents.subject} ${this.belComponents.relationship} ${this.belComponents.object}`;
-    this.evidence.experiment_context = this.annotations.filter(this.removeBlankExperimentContext);
-    this.evidence.citation.id = this.citationId;
-    this.data.evidence[0] = this.evidence;
-    logger.debug('Submit evidence', JSON.stringify(this.data,null,2));
-    this.api.loadBelEvidence(this.evidence, this.evidenceId);
+    this.prepareEvidence();
+    logger.debug('Submit evidence', JSON.stringify(this.submitEvidence, null, 2));
+    this.api.loadBelEvidence(this.submitEvidence, this.evidenceId);
     return true;
   }
 
   submitNew() {
-    this.evidence.bel_statement = `${this.belComponents.subject} ${this.belComponents.relationship} ${this.belComponents.object}`;
-    this.evidence.experiment_context = this.annotations.filter(this.removeBlankExperimentContext);
-    this.evidence.citation.id = this.citationId;
-    this.data.evidence[0] = this.evidence;
-    logger.debug('Submit evidence', JSON.stringify(this.data,null,2));
-    this.api.loadBelEvidence(this.evidence);
+    this.prepareEvidence();
+    logger.debug('Submit evidence', JSON.stringify(this.submitEvidence, null, 2));
+
+    let res = this.api.loadBelEvidence(this.submitEvidence);
+
+    res.then(location => {
+      logger.debug('Loc: ', location);
+      let evidenceId = this.api.getEvidenceId(location);
+      logger.debug('Router: ', this.router);
+      this.router.navigateToRoute('edit', { id: evidenceId });
+    })
+    .catch(function(reason) {
+      logger.error(`Cannot reset: ${reason}`)
+    });
+
     return true;
   }
 

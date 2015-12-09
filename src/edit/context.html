@@ -1,0 +1,41 @@
+<template>
+  <require from="./context-item"></require>
+  <require from="./type-ahead"></require>
+
+  <div id="context" class="edit-context ">
+    <div class="row edit-belForm">
+      <div class="col-xs-12 edit-header">
+        <h3>Experimental Context</h3>
+      </div>
+
+      <!--Context List Header-->
+      <div class="row col-xs-12">
+        <div class="col-xs-3">
+          <label class="edit-annotationType">Context Type</label>
+        </div>
+        <div class="col-xs-8">
+          <label class="edit-annotation">Value</label>
+        </div>
+      </div>
+
+      <!--List Context-->
+      <template repeat.for="context of evidence.experiment_context">
+        <div class="row col-xs-12">
+
+          <context-item context.two-way="context" annotationTypes.bind="annotationTypes" index.bind="$index" last.bind="$last"></context-item>
+
+        </div>
+
+      </template>
+
+    <div class="row">
+        <h3>Typeahead test</h3>
+
+        <type-ahead selected-option.two-way="selectedPlanet"
+        text="name"></type-ahead>
+
+    </div>
+
+  </div>
+
+</template>

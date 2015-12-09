@@ -1,7 +1,7 @@
 <template>
   <require from="./citation"></require>
   <require from="./statement"></require>
-  <require from="./experiment-context"></require>
+  <require from="./context"></require>
   <require from="./metadata"></require>
 
   <div class="edit-html">
@@ -32,15 +32,28 @@
       <div class="${pubmed.title ? 'col-xs-8 col-xs-offset-4 col-md-9 col-md-offset-3' : 'col-xs-11 col-xs-offset-1'}">
         <div name="newBelForm">
 
+          <div class="row edit-editBtns">
+            <div class="col-xs-6 col-md-4" show.bind="evidenceId">
+              <button type="button" click.delegate="submit()" class="col-xs-10 btn-edit btn-saveUpdates btn form-control")>Update Current BEL</button>
+            </div>
+
+            <div class="${evidenceId ? 'col-xs-6 col-md-4 col-md-offset-4' : 'col-xs-6 col-xs-offset-6 col-sm-4 col-sm-offset-8'}">
+              <button type="button" click.delegate="submitNew()" class="col-xs-10 btn btn-edit btn-saveNew form-control">${evidenceId ? 'Save as New' : 'Save'}</button>
+            </div>
+          </div>
+
+          <!-- Experiment Context -->
+          <context evidence.bind="evidence"></context>
+
           <!-- Citation -->
           <citation evidence.bind="evidence"></citation>
 
           <!-- BEL Statement -->
           <statement evidence.bind="evidence"></statement>
 
-          <!-- BEL Summary Text -->
-          <div id="summary-text" class="row edit-belForm">
-            <div id="bel-summaryText">
+          <!-- BEL SummaryText -->
+          <div id="bel-summary-text" class="row edit-belForm">
+            <div id="summaryText">
               <div class="col-xs-12 edit-header">
                 <h3>Summary Text</h3>
               </div>
@@ -48,25 +61,32 @@
 
               <div class="col-xs-12">
                 <div class="form-group">
-                  <label sr-only for="summaryText">BEL Summary Text</label>
-                  <textarea class="form-control textBlocks" value.bind="evidence.summary_text" id="summaryText" rows="3" placeholder="Extract from source text supporting this BEL Statement"></textarea>
+                  <textarea class="form-control textBlocks" value.bind="evidence.summary_text" id="summary-text-textarea" rows="3" placeholder="Extract from source text supporting this BEL Statement"></textarea>
                 </div>
+              </div>
+            </div>
+          </div>
+          <!-- End BEL SummaryText -->
+
+          <!-- BEL Evidence Notes -->
+          <div id="bel-evidence-notes" class="row edit-belForm">
+            <div id="evidence-notes">
+              <div class="col-xs-12 edit-header">
+                <h3>Evidence Notes</h3>
+              </div>
+              <div class="col-xs-12">
                 <div class="form-group">
-                  <label for="citation_ref">Evidence Notes</label>
-                  <textarea rows="3" class="form-control textBlocks" id="citation_comments" value.bind="evidence.citation.comment"></textarea>
+                  <textarea rows="3" class="form-control textBlocks" id="evidence-notes-textarea" value.bind="metadata.evidence_notes"></textarea>
                 </div>
                 <!-- .form-group -->
               </div>
               <!-- .col-xs-12 -->
             </div>
           </div>
-          <!-- End SummaryText -->
-
-          <!-- Experiment Context -->
-          <experiment-context evidence.bind="evidence"></experiment-context>
+          <!-- End BEL Evidence Notes -->
 
           <!--Metadata-->
-          <metadata evidence.bind="evidence"></metadata>
+          <metadata evidence.two-way="evidence" metadata.two-way='metadata'></metadata>
 
 
 

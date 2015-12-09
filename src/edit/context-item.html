@@ -1,0 +1,18 @@
+<template>
+
+  <div class="col-xs-3">
+    <input type="text" class="form-control" name="context-type"
+           value.bind="context.name">
+  </div>
+  <div class="col-xs-8">
+    <input type="text" class="form-control typeahead" name="context-value"
+      value.bind="context.value"
+      blur.delegate="addBlank(index, $event)"  placeholder="Enter experimental context value">
+
+  </div>
+  <div class="col-xs-1">
+    <a class="btn btn-danger" show.bind="!last" href="#" click.delegate="removeItem(index)">
+      <i class="fa fa-trash-o fa-lg"></i>Delete
+    </a>
+  </div>
+</template>

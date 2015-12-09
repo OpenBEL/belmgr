@@ -28,6 +28,7 @@ System.config({
     "aurelia-loader-default": "npm:aurelia-loader-default@1.0.0-beta.1.0.1",
     "aurelia-logging-console": "npm:aurelia-logging-console@1.0.0-beta.1",
     "aurelia-router": "npm:aurelia-router@1.0.0-beta.1",
+    "aurelia-task-queue": "npm:aurelia-task-queue@1.0.0-beta.1.0.1",
     "aurelia-templating-binding": "npm:aurelia-templating-binding@1.0.0-beta.1.0.1",
     "aurelia-templating-resources": "npm:aurelia-templating-resources@1.0.0-beta.1.0.2",
     "aurelia-templating-router": "npm:aurelia-templating-router@1.0.0-beta.1.0.2",
@@ -42,6 +43,7 @@ System.config({
     "text": "github:systemjs/plugin-text@0.0.3",
     "traceur": "github:jmcriffey/bower-traceur@0.0.92",
     "traceur-runtime": "github:jmcriffey/bower-traceur-runtime@0.0.92",
+    "typeahead": "github:twitter/typeahead.js@0.11.1",
     "wshayes/aurelia-gravatar": "github:wshayes/aurelia-gravatar@master",
     "github:brianreavis/selectize.js@0.12.1": {
       "css": "github:systemjs/plugin-css@0.1.20",
@@ -68,6 +70,9 @@ System.config({
       "aurelia-router": "npm:aurelia-router@1.0.0-beta.1"
     },
     "github:twbs/bootstrap@3.3.6": {
+      "jquery": "github:components/jquery@2.1.4"
+    },
+    "github:twitter/typeahead.js@0.11.1": {
       "jquery": "github:components/jquery@2.1.4"
     },
     "github:wshayes/aurelia-gravatar@master": {
@@ -180,6 +185,9 @@ System.config({
       "core-js": "npm:core-js@1.2.6"
     },
     "npm:aurelia-task-queue@1.0.0-beta.1": {
+      "aurelia-pal": "npm:aurelia-pal@1.0.0-beta.1"
+    },
+    "npm:aurelia-task-queue@1.0.0-beta.1.0.1": {
       "aurelia-pal": "npm:aurelia-pal@1.0.0-beta.1"
     },
     "npm:aurelia-templating-binding@1.0.0-beta.1.0.1": {

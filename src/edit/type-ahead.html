@@ -1,0 +1,11 @@
+<template>
+  <input value.bind="searchText" focus.bind="hasFocus" />
+  <a href="#" click.trigger="clear()"><i class="fa fa-close"></i></a>
+  <ul show.bind="showResults">
+    <li repeat.for="result of results" click.delegate="$parent.selectItem(result)">
+      <a href="#">
+        ${result[$parent.text]}
+      </a>
+    </li>
+  </ul>
+</template>

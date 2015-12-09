@@ -11,9 +11,10 @@ let logger = LogManager.getLogger('metadata');
 })
 @customElement('metadata')
 export class Metadata {
+  @bindable metadata;
 
   evidenceChanged(value) {
-    logger.debug('Changed: ', this.evidence);
+    logger.debug('Metadata Changed: ', this.evidence);
   }
 }
 
