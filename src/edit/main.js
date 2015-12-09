@@ -1,4 +1,4 @@
-import {inject} from 'aurelia-framework';
+import {inject, LogManager} from 'aurelia-framework';
 import {activationStrategy, Router} from 'aurelia-router';
 
 import {Api} from '../resources/api';
@@ -8,10 +8,7 @@ import {PubmedService} from '../resources/PubmedService';
 import {Prompt} from '../components/dialogs/prompt';
 import {DialogService} from 'aurelia-dialog';
 
-import {LogManager} from 'aurelia-framework';
-
 let logger = LogManager.getLogger('edit');
-
 
 @inject(Api, PubmedService, DialogService, Router)
 export class Edit {
@@ -81,7 +78,7 @@ export class Edit {
 
   prepareEvidence() {
     // Prepare BEL Statement
-    this.evidence.bel_statement = `${this.belComponents.subject} ${this.belComponents.relationship} ${this.belComponents.object}`;
+    this.evidence.bel_statement = `${this.evidence.bel_subject} ${this.evidence.bel_relationship} ${this.evidence.bel_object}`;
 
     // Remove blank entries in evidence.experiment_context
     logger.debug('Cleaning evidence -- context items');
@@ -125,6 +122,7 @@ export class Edit {
    * @returns {boolean}
    */
 
+  // TODO test this
   submit() {
     let prompt = 'This will update the Evidence!';
     this.dialogService.open({ viewModel: Prompt, model: prompt}).then(response => {
@@ -139,6 +137,7 @@ export class Edit {
     return true;
   }
 
+  // TODO  Add notification of successful update or new evidence
   submitUpdate() {
     this.prepareEvidence();
     logger.debug('Submit evidence', JSON.stringify(this.submitEvidence, null, 2));
@@ -150,9 +149,8 @@ export class Edit {
     this.prepareEvidence();
     logger.debug('Submit evidence', JSON.stringify(this.submitEvidence, null, 2));
 
-    let res = this.api.loadBelEvidence(this.submitEvidence);
-
-    res.then(location => {
+    this.api.loadBelEvidence(this.submitEvidence)
+    .then(location => {
       logger.debug('Loc: ', location);
       let evidenceId = this.api.getEvidenceId(location);
       logger.debug('Router: ', this.router);

@@ -1,6 +1,6 @@
 <template>
   <require from="./context-item"></require>
-  <require from="./type-ahead"></require>
+  <!-- <require from="./type-ahead"></require> -->
 
   <div id="context" class="edit-context ">
     <div class="row edit-belForm">
@@ -22,19 +22,22 @@
       <template repeat.for="context of evidence.experiment_context">
         <div class="row col-xs-12">
 
-          <context-item context.two-way="context" annotationTypes.bind="annotationTypes" index.bind="$index" last.bind="$last"></context-item>
+          <context-item context.two-way="context" types.bind="annotationTypes" index.bind="$index" last.bind="$last"></context-item>
 
         </div>
 
       </template>
 
-    <div class="row">
-        <h3>Typeahead test</h3>
+<!--     <div class="row">
+          <div class="col-xs-12 edit-header">
 
-        <type-ahead selected-option.two-way="selectedPlanet"
-        text="name"></type-ahead>
+            <h3>Typeahead test</h3>
 
-    </div>
+            <type-ahead selected-option.two-way="selectedPlanet"
+            text="name"></type-ahead>
+          </div>
+
+    </div> -->
 
   </div>
 

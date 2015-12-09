@@ -1,13 +1,23 @@
 <template>
-
   <div class="col-xs-3">
+
     <input type="text" class="form-control" name="context-type"
-           value.bind="context.name">
+      value.bind="type" focus.bind="hasTypeFocus" />
+
+    <!-- <a href="#" click.trigger="typeClear()"><i class="fa fa-close"></i></a> -->
+
+    <ul show.bind="showTypeResults">
+      <li repeat.for="type of filteredTypes" click.delegate="selectType(type)">
+        <a href="#">
+          ${type}
+        </a>
+      </li>
+    </ul>
   </div>
   <div class="col-xs-8">
-    <input type="text" class="form-control typeahead" name="context-value"
-      value.bind="context.value"
-      blur.delegate="addBlank(index, $event)"  placeholder="Enter experimental context value">
+    <input type="text" class="form-control" name="context-value"
+      value.bind="annotation" blur.trigger="addBlank()"
+      placeholder="Enter experimental context value">
 
   </div>
   <div class="col-xs-1">

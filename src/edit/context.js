@@ -25,7 +25,7 @@ export class Context {
 
   async attached() {
     // Add blank entry to end of experiment context to insert new form fields
-    this.addBlank(0, null);
+    this.addBlank();
 
     try {
       this.annotationTypes = await this.api.getBelAnnotationTypes();
@@ -37,16 +37,23 @@ export class Context {
   }
 
   evidenceChanged(value) {
-    console.log('Experiment Context changes: ', this.evidence);
+    logger.debug('Experiment Context changes: ', this.evidence.experiment_context);
   }
 
   /**
    * Add blank experiment content to end of experiment context
    */
-  addBlank(idx, event) {
-    logger.debug('add Blank Items: ', this.evidence.experiment_context.length,
-                 'Item: ', this.evidence.experiment_context[this.evidence.experiment_context.length-1]);
-    this.evidence.experiment_context.push({'name': '', 'value': ''});
+  addBlank() {
+    let last_item_idx = this.evidence.experiment_context.length - 1;
+    logger.debug('Idx: ', last_item_idx);
+    logger.debug('Last item: ', this.evidence.experiment_context[last_item_idx].value);
+
+    // logger.debug('add Blank Items: ', this.evidence.experiment_context.length,
+    //              'Item: ', this.evidence.experiment_context[last_item_idx]);
+
+    if (this.evidence.experiment_context[last_item_idx].value) {
+      this.evidence.experiment_context.push({'name': '', 'value': ''});
+    }
   }
 
   /**
