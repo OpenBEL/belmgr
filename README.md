@@ -7,9 +7,9 @@ Website for managing BEL Evidences - based on Aurelia.  Requires the OpenBEL Pla
 
 ## Configuration
 
-1) Edit the src/AppConfig.js file to set the baseUrl
-  2) Optional: set the loglevel
-3) Edit the src/AuthConfig.js file to set the authentication information.  Please see [Aurelia-Auth](https://github.com/paulvanbladel/aurelia-auth) for details on what to configure.
+1. Edit the src/AppConfig.js file to set the baseUrl
+  1. Optional: set the loglevel
+1. Edit the src/AuthConfig.js file to set the authentication information.  Please see [Aurelia-Auth](https://github.com/paulvanbladel/aurelia-auth) for details on what to configure.
 
 
 ## Running The App
