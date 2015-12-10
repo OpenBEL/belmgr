@@ -310,14 +310,16 @@ export class Api {
       });
   }
 
+  // Get BEL Annotation values for the edit form typeahead
+  //   the query string should be wildcarded on the OpenBEL API side (e.g. 'ho sap' -> 'ho* sap*')
   getBELAnnotationValues(query, annotation_type) {
     let numResults = 10;
     let query_string = '';
 
     if (annotation_type) {
-      query_string = `/annotations/${annotation_type}/values?filter={"category":"fts","name":"search","value":"${query}*"}&start=0&size=${numResults}`;
+      query_string = `/annotations/${annotation_type}/values?filter={"category":"fts","name":"search","value":"${query}"}&start=0&size=${numResults}`;
     } else {
-      query_string = `/annotations/values?filter={"category":"fts","name":"search","value":"${query}*"}&start=0&size=${numResults}`;
+      query_string = `/annotations/values?filter={"category":"fts","name":"search","value":"${query}"}&start=0&size=${numResults}`;
     }
 
     return this.apiClient.fetch(query_string)
@@ -327,6 +329,12 @@ export class Api {
         logger.error(`GET BEL Annotation Values Error: ${reason}`)
       });
   }
+
+  // Get BEL term completions for the edit form typeahead
+  getBELCompletions(query, cursor) {
+
+  }
+
 
   // Upload BEL Script to OpenBEL Evidence Store
   // Notes:

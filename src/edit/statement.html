@@ -1,4 +1,6 @@
 <template>
+  <require from="./term"></require>
+
   <div id="bel-statement" class="edit-belForm edit-belStatement edit-header">
     <div class="row col-xs-12">
       <h3>BEL Statement</h3>
@@ -8,6 +10,9 @@
       <div id="bel-source-div" class="edit-belStatementDivs col-xs-5">
         <div class="form-group">
           <label class="sr-only" for="belsubject">BEL Source</label>
+
+          <term bel.bind="evidence.bel_subject"></term>
+
           <input name="belsubject" id="belsubject" type="text" value.bind="evidence.bel_subject" class="form-control typeahead" placeholder="Subject" autocomplete="on" debounce></input>
         </div>
 
@@ -27,6 +32,9 @@
       <div id="bel-target-div" class="edit-belStatementDivs col-xs-5">
         <div class="form-group input-block-level">
           <label class="sr-only" for="belobject">BEL Object</label>
+
+          <term bel.bind="evidence.bel_object"></term>
+
           <input name="belobject" id="belobject" type="text" value.bind="evidence.bel_object" class="form-control typeahead" placeholder="Object"
                  autocomplete="on" debounce></input>
         </div>

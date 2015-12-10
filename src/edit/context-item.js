@@ -102,6 +102,7 @@ export class ContextItem {
 
   selectAnnotation(annotation){
     this.annotation = annotation.annotation_value.name;
+    this.type = annotation.annotation_value.annotation.name;
     this.showAnnotations = false;
   }
 
