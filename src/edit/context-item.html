@@ -21,7 +21,8 @@
     <ul show.bind="showAnnotations">
       <li repeat.for="annotation of filteredAnnotations" click.delegate="selectAnnotation(annotation)">
         <a href="#">
-          ${annotation.annotation_value.annotation.name} :: ${annotation.annotation_value.name} => ${annotation.annotation_value.match_text}
+          ${annotation.annotation_value.annotation.name} :: ${annotation.annotation_value.name}
+          <!-- ==> ${annotation.annotation_value.match_text} -->
         </a>
       </li>
     </ul>
