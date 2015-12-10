@@ -49,6 +49,10 @@ export class Edit {
       try {
         this.evidence = await this.api.getBelEvidence(this.evidenceId);
         this.extractFormMetadata();
+
+        this.types = await this.api.getBelAnnotationTypes();
+        logger.debug('AnnotationTypes: ', this.types);
+
         logger.info('BEL Statement: ', this.evidence);
         // this.belComponents = await this.api.getBelComponents(this.evidence.bel_statement);
 

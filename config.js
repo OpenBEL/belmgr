@@ -18,12 +18,12 @@ System.config({
 
   map: {
     "aurelia-animator-css": "npm:aurelia-animator-css@1.0.0-beta.1.0.1",
-    "aurelia-auth": "github:paulvanbladel/aurelia-auth@0.11.4",
+    "aurelia-auth": "github:paulvanbladel/aurelia-auth@0.11.5",
     "aurelia-bootstrapper": "npm:aurelia-bootstrapper@1.0.0-beta.1",
     "aurelia-dialog": "npm:aurelia-dialog@0.5.1",
     "aurelia-fetch-client": "npm:aurelia-fetch-client@1.0.0-beta.1.0.1",
     "aurelia-framework": "npm:aurelia-framework@1.0.0-beta.1.0.3",
-    "aurelia-gravatar": "github:wshayes/aurelia-gravatar@master",
+    "aurelia-gravatar": "github:wshayes/aurelia-gravatar@0.1.0",
     "aurelia-history-browser": "npm:aurelia-history-browser@1.0.0-beta.1.0.1",
     "aurelia-loader-default": "npm:aurelia-loader-default@1.0.0-beta.1.0.1",
     "aurelia-logging-console": "npm:aurelia-logging-console@1.0.0-beta.1",
@@ -44,7 +44,7 @@ System.config({
     "traceur": "github:jmcriffey/bower-traceur@0.0.92",
     "traceur-runtime": "github:jmcriffey/bower-traceur-runtime@0.0.92",
     "typeahead": "github:twitter/typeahead.js@0.11.1",
-    "wshayes/aurelia-gravatar": "github:wshayes/aurelia-gravatar@master",
+    "wshayes/aurelia-gravatar": "github:wshayes/aurelia-gravatar@0.1.0",
     "github:brianreavis/selectize.js@0.12.1": {
       "css": "github:systemjs/plugin-css@0.1.20",
       "jquery": "github:components/jquery@2.1.4",
@@ -63,7 +63,7 @@ System.config({
     "github:jspm/nodelibs-util@0.1.0": {
       "util": "npm:util@0.10.3"
     },
-    "github:paulvanbladel/aurelia-auth@0.11.4": {
+    "github:paulvanbladel/aurelia-auth@0.11.5": {
       "aurelia-fetch-client": "npm:aurelia-fetch-client@1.0.0-beta.1.0.1",
       "aurelia-framework": "npm:aurelia-framework@1.0.0-beta.1.0.3",
       "aurelia-http-client": "npm:aurelia-http-client@1.0.0-beta.1",
@@ -75,7 +75,7 @@ System.config({
     "github:twitter/typeahead.js@0.11.1": {
       "jquery": "github:components/jquery@2.1.4"
     },
-    "github:wshayes/aurelia-gravatar@master": {
+    "github:wshayes/aurelia-gravatar@0.1.0": {
       "aurelia-framework": "npm:aurelia-framework@1.0.0-beta.1.0.3",
       "md5": "github:blueimp/JavaScript-MD5@1.1.1"
     },
@@ -90,7 +90,7 @@ System.config({
     "npm:aurelia-binding@1.0.0-beta.1.0.2": {
       "aurelia-metadata": "npm:aurelia-metadata@1.0.0-beta.1",
       "aurelia-pal": "npm:aurelia-pal@1.0.0-beta.1",
-      "aurelia-task-queue": "npm:aurelia-task-queue@1.0.0-beta.1",
+      "aurelia-task-queue": "npm:aurelia-task-queue@1.0.0-beta.1.0.1",
       "core-js": "npm:core-js@1.2.6"
     },
     "npm:aurelia-bootstrapper@1.0.0-beta.1": {
@@ -137,7 +137,7 @@ System.config({
       "aurelia-metadata": "npm:aurelia-metadata@1.0.0-beta.1",
       "aurelia-pal": "npm:aurelia-pal@1.0.0-beta.1",
       "aurelia-path": "npm:aurelia-path@1.0.0-beta.1",
-      "aurelia-task-queue": "npm:aurelia-task-queue@1.0.0-beta.1",
+      "aurelia-task-queue": "npm:aurelia-task-queue@1.0.0-beta.1.0.1",
       "aurelia-templating": "npm:aurelia-templating@1.0.0-beta.1.0.1",
       "core-js": "npm:core-js@1.2.6"
     },
@@ -184,9 +184,6 @@ System.config({
       "aurelia-route-recognizer": "npm:aurelia-route-recognizer@1.0.0-beta.1",
       "core-js": "npm:core-js@1.2.6"
     },
-    "npm:aurelia-task-queue@1.0.0-beta.1": {
-      "aurelia-pal": "npm:aurelia-pal@1.0.0-beta.1"
-    },
     "npm:aurelia-task-queue@1.0.0-beta.1.0.1": {
       "aurelia-pal": "npm:aurelia-pal@1.0.0-beta.1"
     },
@@ -202,7 +199,7 @@ System.config({
       "aurelia-logging": "npm:aurelia-logging@1.0.0-beta.1",
       "aurelia-pal": "npm:aurelia-pal@1.0.0-beta.1",
       "aurelia-path": "npm:aurelia-path@1.0.0-beta.1",
-      "aurelia-task-queue": "npm:aurelia-task-queue@1.0.0-beta.1",
+      "aurelia-task-queue": "npm:aurelia-task-queue@1.0.0-beta.1.0.1",
       "aurelia-templating": "npm:aurelia-templating@1.0.0-beta.1.0.1",
       "core-js": "npm:core-js@1.2.6"
     },
@@ -223,7 +220,7 @@ System.config({
       "aurelia-metadata": "npm:aurelia-metadata@1.0.0-beta.1",
       "aurelia-pal": "npm:aurelia-pal@1.0.0-beta.1",
       "aurelia-path": "npm:aurelia-path@1.0.0-beta.1",
-      "aurelia-task-queue": "npm:aurelia-task-queue@1.0.0-beta.1",
+      "aurelia-task-queue": "npm:aurelia-task-queue@1.0.0-beta.1.0.1",
       "core-js": "npm:core-js@1.2.6"
     },
     "npm:babel-runtime@5.8.34": {

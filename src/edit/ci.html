@@ -1,17 +1,19 @@
 <template>
   <div class="col-xs-3">
 
-    <input type="text" class="form-control" name="context-type"
+   <!--  <input type="text" class="form-control" name="context-type"
       value.bind="type" focus.bind="hasTypeFocus" />
 
-    <!-- <a href="#" click.trigger="typeClear()"><i class="fa fa-close"></i></a> -->
-    <ul show.bind="showTypes">
+    <a href="#" click.trigger="typeClear()"><i class="fa fa-close"></i></a>
+
+    <ul show.bind="showTypeResults">
       <li repeat.for="type of filteredTypes" click.delegate="selectType(type)">
         <a href="#">
           ${type}
         </a>
       </li>
-    </ul>
+    </ul> -->
+    <p>IDX: ${index}</p>
   </div>
   <div class="col-xs-8">
     <input type="text" class="form-control" name="context-value"

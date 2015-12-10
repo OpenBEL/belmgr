@@ -16,24 +16,16 @@ let logger = LogManager.getLogger('context');
 @customElement('context')
 @inject(Api)
 export class Context {
-
-  annotationTypes;
+  @bindable types;
 
   constructor(Api) {
     this.api = Api;
+    logger.debug('AT1: ', this.types);
   }
 
-  async attached() {
+  attached() {
     // Add blank entry to end of experiment context to insert new form fields
     this.addBlank();
-
-    try {
-      this.annotationTypes = await this.api.getBelAnnotationTypes();
-    }
-    catch (err) {
-      logger.error('GET BEL Annotation Types List error: ', err);
-    }
-    logger.debug('Annotation Types: ', this.annotationTypes);
   }
 
   evidenceChanged(value) {
