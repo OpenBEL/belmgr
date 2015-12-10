@@ -5,21 +5,24 @@
       value.bind="type" change.trigger="filterTypes()" focus.bind="hasTypeFocus"/>
 
     <!-- <a href="#" click.trigger="typeClear()"><i class="fa fa-close"></i></a> -->
-    <ul show.bind="showTypes">
-      <li repeat.for="type of filteredTypes" click.trigger="selectType(type)" mousedown.trigger="selectType(type)">
+
+    <ul class="ci-aNameUl" show.bind="showTypes">
+      <li class="ci-aNameLi" repeat.for="type of filteredTypes" click.trigger="selectType(type)" mousedown.trigger="selectType(type)">
         <a href="#">
           ${type.annotation.name}
         </a>
       </li>
     </ul>
   </div>
-  <div class="col-xs-8">
+  <div class="ci-aValDiv col-xs-8">
     <input type="text" class="form-control" name="context-value"
       value.bind="annotation" blur.trigger="addBlank()" focus.bind="hasAnnotationFocus"
       placeholder="Enter experimental context value">
 
-    <ul show.bind="showAnnotations">
-      <li repeat.for="annotation of filteredAnnotations" click.trigger="selectAnnotation(annotation)" mousedown.trigger="selectAnnotation(annotation)">
+    <ul class="ci-aValUl row" show.bind="showAnnotations">
+      <li class="ci-aValLi" repeat.for="annotation of filteredAnnotations" click.trigger="selectAnnotation(annotation)" mousedown.trigger="selectAnnotation(annotation)">
+    <ul class="ci-aValUl row" show.bind="showAnnotations">
+      <li class="ci-aValLi" repeat.for="annotation of filteredAnnotations" click.delegate="selectAnnotation(annotation)">
         <a href="#">
           ${annotation.annotation_value.annotation.name} :: ${annotation.annotation_value.name}
           <!-- ==> ${annotation.annotation_value.match_text} -->
@@ -28,7 +31,8 @@
     </ul>
   </div>
   <div class="col-xs-1">
-    <a class="btn btn-danger" show.bind="!last" href="#" click.delegate="removeItem(index)">
-      <i class="fa fa-trash-o fa-lg"></i>Delete</a>
+    <a class="btn ci-deleteBtn" show.bind="!last" href="#" click.delegate="removeItem(index)">
+      <i class="fa fa-trash-o fa-lg"></i>
+    </a>
   </div>
 </template>

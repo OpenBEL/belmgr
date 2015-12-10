@@ -353,7 +353,7 @@ footer {
 .form-control:focus,
 .form-control:hover,
 .form-control:active {
-    border: 0px !important;
+   /* border: 0px !important;*/
     border-color: transparent !important;
     border-bottom: 2px solid rgba(12, 145, 165, .2);
     box-shadow: inset 1px 1px 10px rgba(228, 229, 231, .4);
@@ -952,9 +952,7 @@ div.au-stagger {
     margin: 10px 0px 20px 0px;
     padding: 0px;
 }
-div.import-fileDiv input {
-    
-}
+
 .import-uploadDiv {
     padding-left: 0px;
     padding-right: 0px;
@@ -978,11 +976,11 @@ div.import-fileDiv input {
 }
 
 .pubmedContent {
-    background-color: rgba(71, 67, 80, .8);
-    height: auto;
+    background-color: rgba(90, 85, 101, 1);
+    height: calc(100% - 300px);
+    /*min-height: 70%;*/
     color: #e4e5e7;
     font-weight: 300;
-    max-height: 80%;
     margin-top: 90px;
     padding-bottom: 20px;
     border-radius: 4px;
@@ -1074,7 +1072,7 @@ p.text-warning {
 }
 
 .edit-belStatement {
-    margin: 15px 0px 15px 0px;
+    margin: 0px 0px 35px 0px;
 }
 
 .edit-belStatement input {
@@ -1092,15 +1090,15 @@ p.text-warning {
 .selectDrop-relation {
     border-bottom: 2px solid rgba(253, 201, 117, 1) !important;
 }
-/*.edit-belStatementDivs>.form-group>.form-control:hover,
-.edit-belStatementDivs>.form-group>.form-control:focus,
-.edit-belStatementDivs>.form-group>.form-control:active,
+.edit-belStatementDivs .form-control:hover,
 .selectDrop-relation:hover,
+.edit-belStatementDivs .form-control:focus,
 .selectDrop-relation:focus,
+.edit-belStatementDivs .form-control:active,
 .selectDrop-relation:active {
     border-bottom: 2px solid rgba(253, 201, 117, .4) !important;
 }
-*/
+
 .authorCitation {
     border: 0px !important;
     font-size: 12px;
@@ -1180,6 +1178,70 @@ p.text-warning {
     width: 2px;
 }
 
+/* context (EDIT PAGE) */
+
+
+/* END context (EDIT PAGE) */
+
+/* context-item (EDIT PAGE) */
+
+/*.ci-aValDiv {
+    height: 34px;
+}*/
+
+.ci-aValUl:empty < .ci-aValDiv {
+    height: 34px !important;
+}
+
+.ci-aNameUl,
+.ci-aValUl {
+    margin: 0px;
+    padding: 0px;
+}
+
+.ci-aNameLi,
+.ci-aNameLi a,
+.ci-aValLi,
+.ci-aValLi a {
+    list-style-type: none;
+    color: #46676E;
+    text-decoration: none
+}
+.ci-aNameLi:nth-child(1),
+.ci-aValLi:nth-child(1) {
+    margin-top: 5px;
+}
+.ci-aNameLi,
+.ci-aValLi {
+    margin-left: 20px;
+    width: calc(100% - 30px);
+    padding-left: 0px;
+    padding-right: 0px;
+}
+.ci-aNameLi a:hover,
+.ci-aValLi a:hover {
+    list-style-type: none;
+    color: #0C91A5;
+    text-shadow: 0px 0px 0px #0C91A5;
+    text-decoration: none
+}
+
+
+.ci-deleteBtn {
+    color: #B22D1E;
+    padding: 7px 0px 0px 0px;
+    margin-left: -20px;
+}
+.ci-deleteBtn:hover {
+    text-shadow: 0px 0px 0px #B22D1E;
+    color: #B22D1E;
+}
+.ci-deleteBtn i {
+    font-size: 1.5em;
+}
+
+
+/* END context-item (EDIT PAGE) */
 
 /* END EDIT PAGE */
 
@@ -1448,6 +1510,23 @@ tr td div p.table-expContext {
     margin: 0px;
 }
 
+.table-delete {
+    float: right;
+}
+@media (max-width: 991px) {
+    .table-delete {
+        margin-top: 20px;
+    }
+}
+@media (min-width: 992px) {
+    .table-delete {
+        margin-top: 10px;
+    }
+}
+.table-delete:hover i {
+    color: #B22D1E;
+}
+
 .table-speciesIcon.mouse-icon {
     content: url("../../media/mouse-yellowfill.png");
 }
@@ -1473,9 +1552,9 @@ tr td div p.table-expContext {
     margin-top: 3px;
 }
 
-td.table-td:hover a,
-td.table-td:focus a,
-td.table-td:active a {
+td.table-td:hover a:not(.table-delete),
+td.table-td:focus a:not(.table-delete),
+td.table-td:active a:not(.table-delete) {
     color: #0C91A5;
     /*font-weight: 500;*/
     text-decoration: none;
