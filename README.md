@@ -1,7 +1,15 @@
-# belmgr
+# BELMgr
 Website for managing BEL Evidences - based on Aurelia.  Requires the OpenBEL Platform for the backend API/storage.
 
-[OpenBEL Platform API Docs](http://next.belframework.org/docs.html)
+[OpenBEL Platform API Docs](http://next.belframework.org/)
+
+[Demo OpenBEL Platform API](http://next.belframework.org/api)
+
+## Configuration
+
+1) Edit the src/AppConfig.js file to set the baseUrl
+  2) Optional: set the loglevel
+3) Edit the src/AuthConfig.js file to set the authentication information.  Please see [Aurelia-Auth](https://github.com/paulvanbladel/aurelia-auth) for details on what to configure.
 
 
 ## Running The App
@@ -14,17 +22,20 @@ To run the app, follow these steps.
   ```shell
   npm install
   ```
-3. Ensure that [Gulp](http://gulpjs.com/) is installed. If you need to install it, use the following command:
+3. Ensure that [Gulp](http://gulpjs.com/) is installed globally. If you need to install it, use the following command:
 
   ```shell
   npm install -g gulp
   ```
-4. Ensure that [jspm](http://jspm.io/) is installed. If you need to install it, use the following command:
+  > **Note:** Gulp must be installed globally, but a local version will also be installed to ensure a compatible version is used for the project.
+4. Ensure that [jspm](http://jspm.io/) is installed globally. If you need to install it, use the following command:
 
   ```shell
   npm install -g jspm
   ```
-  > **Note:** jspm queries GitHub to install semver packages, but GitHub has a rate limit on anonymous API requests. It is advised that you configure jspm with your GitHub credentials in order to avoid problems. You can do this by executing `jspm registry config github` and following the prompts.
+  > **Note:** jspm must be installed globally, but a local version will also be installed to ensure a compatible version is used for the project.
+
+  > **Note:** jspm queries GitHub to install semver packages, but GitHub has a rate limit on anonymous API requests. It is advised that you configure jspm with your GitHub credentials in order to avoid problems. You can do this by executing `jspm registry config github` and following the prompts. If you choose to authorize jspm by an access token instead of giving your password (see GitHub `Settings > Personal Access Tokens`), `public_repo` access for the token is required.
 5. Install the client-side dependencies with jspm:
 
   ```shell
@@ -38,26 +49,52 @@ To run the app, follow these steps.
   ```
 7. Browse to [http://localhost:9000](http://localhost:9000) to see the app. You can make changes in the code found under `src` and the browser should auto-refresh itself as you save files.
 
-> Note: At present there is a bug in the HTMLImports polyfill which only occurs on IE. We have submitted a pull request to the team with the fix. In the mean time, if you want to test on IE, you can work around the issue by explicitly adding a script tag before you load system.js. The script tag should look something like this (be sure to confirm the version number):
+> The Skeleton App uses [BrowserSync](http://www.browsersync.io/) for automated page refreshes on code/markup changes concurrently across multiple browsers. If you prefer to disable the mirroring feature set the [ghostMode option](http://www.browsersync.io/docs/options/#option-ghostMode) to false
 
-```html
-<script src="jspm_packages/github/webcomponents/webcomponentsjs@0.5.2/HTMLImports.js"></script>
-```
-## Bundling
-Bundling is performed by [Aurelia CLI](http://github.com/aurelia/cli). If you don't have the cli installed, use the following command:
+## Running The App under Electron
+
+To run the app under [Electron](http://electron.atom.io), follow these steps.
+
+1. Install [Electron](http://electron.atom.io)
 
   ```shell
-   npm install -g aurelia-cli
+  npm install electron-prebuilt -g
+  ```
+2. To start the app, execute the following command:
+
+  ```shell
+  electron index.js
+  ```
+>**Note:** If you use electron every time or are packaging and so-forth, Then change this line in package.json from
+`"main": "dist/main.js",` to `"main": "index.js",`
+Build the app (this will give you a dist directory)
+```shell
+gulp build
+```
+To start the app, execute the following command:
+```shell
+   electron .
+```
+
+
+## Bundling
+Bundling is performed by [Aurelia Bundler](http://github.com/aurelia/bundler). A gulp task is already configured for that. Use the following command to bundle the app:
+
+  ```shell
+    gulp bundle
   ```
 
-You can create bundles for both javascript modules and Aurelia views/templates with this command:
+You can also unbundle using the command bellow:
 
   ```shell
-  aurelia bundle
-  ```  
-> Note that, we have an `aureliafile.js` placed in the root of the project. CLI uses this file for various configuration that includes bundling. To learn more about other configuration options please visit [CLI Documentation](https://github.com/aurelia/cli/blob/master/README.md)
+  gulp unbundle
+  ```
+#### Configuration
+The configuration is done by ```bundles.json``` file.
+##### Optional
+Under ```options``` of ```dist/aurelia``` add ```rev: true``` to add bundle file revision/version.
 
-## Running The Unit Tests
+## Running The Unit Tests (no significant tests implemented)
 
 To run the unit tests, first ensure that you have followed the steps above in order to install all dependencies and successfully build the library. Once you have done that, proceed with these additional steps:
 
@@ -79,26 +116,23 @@ jspm install aurelia-router
   karma start
   ```
 
-## Running The E2E Tests
+## Running The E2E Tests (no significant tests implemented)
 Integration tests are performed with [Protractor](http://angular.github.io/protractor/#/).
 
 1. Place your E2E-Tests into the folder ```test/e2e/src```
-2. Install the necessary webdriver
+2. Run the tests
 
   ```shell
-  gulp webdriver_update
+  npm run e2e
   ```
 
-3. Configure the path to the webdriver by opening the file ```protractor.conf.js``` and adjusting the ```seleniumServerJar``` property. Typically its only needed to adjust the version number.
-
-4. Make sure your app runs and is accessible
+## Exporting bundled production version
+A gulp task is already configured for that. Use the following command to export the app:
 
   ```shell
-  gulp watch
+    gulp export
   ```
-
-5. In another console run the E2E-Tests
-
-  ```shell
-  gulp e2e
-  ```
+The app will be exported into ```export``` directory preserving the directory structure.
+#### Configuration
+The configuration is done by ```bundles.json``` file.
+In addition, ```export.json``` file is available for including individual files.
