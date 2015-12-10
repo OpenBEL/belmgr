@@ -10,18 +10,29 @@ let logger = LogManager.getLogger('import');
 
 
 @inject(Api)
-export class Welcome{
+export class Import{
   heading = 'Upload your BEL Script into the BEL Evidence Repository';
 
-  belScripts = [];
+  belFiles;
 
   constructor(Api) {
     this.api = Api;
   }
 
   upload() {
-    logger.debug('File blob: ', belScripts);
-    this.api.uploadBelScript(this.belScripts[0]);
+    logger.debug('File blob: ', this.belFiles);
+    this.api.uploadBelFile(this.belFiles[0]).then(response => {
+      let data = {"location": null, "msg": ''};
+      if (response.ok) {
+        data.location = response.headers.get("Location");
+        logger.debug("Import location ", data.location);
+      }
+
+      if (response.status === 409) {
+        data.msg = "Tried to upload duplicate dataset";
+        logger.debug("Import err ", data.msg);
+      }
+    });
   }
 
 }

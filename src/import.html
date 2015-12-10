@@ -6,12 +6,12 @@
                 <div class="col-xs-12">
                     <p class="">This page is for importing BEL Scripts and XBEL files.</p>
                 </div>
-                
+
                 <div class="import-fileDiv col-xs-12">
-                  <input class="import-inputCall col-xs-12 col-sm-7" type="file" files.bind="belScripts">
+                  <input class="import-inputCall col-xs-12 col-sm-7" type="file" files.bind="belFiles">
 
                   <div class="import-uploadDiv col-xs-12 col-sm-4">
-                    <button type="button" class="btn form-control btn-upload" name="submit" click.delegate="upload">Upload</button>
+                    <button type="button" class="btn form-control btn-upload" name="submit" click.trigger="upload()">Upload</button>
                   </div>
                 </div>
             </div>

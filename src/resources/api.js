@@ -204,26 +204,38 @@ export class Api {
    * @param id
    * @returns evidence object
    */
+  // getBelEvidence(id) {
+  //   return this.apiClient.fetch(`/evidence/${id}`)
+  //     .then(response => response.json())
+  //     .then(data => {
+  //       return data.evidence;
+  //     })
+  //     .then(evidence => {
+  //       logger.debug("Ev1: ", evidence);
+  //       this.getBelComponents(evidence.bel_statement)
+  //       .then(comp => {
+  //         evidence.bel_subject = comp.subject;
+  //         evidence.bel_object = comp.object;
+  //         evidence.bel_relationship = comp.relationship;
+  //         logger.debug('Evidence: ', evidence);
+  //         logger.debug('Comp: ', comp);
+  //         return evidence;
+  //       })
+  //       .catch(function(reason) {
+  //         logger.error(`GET Statement components error: ${reason}`)
+  //       });
+  //       return evidence;
+  //     })
+  //     .catch(function(reason) {
+  //       logger.error(`GET BEL Evidence Error: ${reason}`)
+  //     });
+  // }
+
   getBelEvidence(id) {
     return this.apiClient.fetch(`/evidence/${id}`)
       .then(response => response.json())
       .then(data => {
-        return data.evidence;
-      })
-      .then(evidence => {
-        logger.debug("Ev1: ", evidence);
-        this.getBelComponents(evidence.bel_statement)
-        .then(comp => {
-          evidence.bel_subject = comp.subject;
-          evidence.bel_object = comp.object;
-          evidence.bel_relationship = comp.relationship;
-          logger.debug('Evidence: ', evidence);
-          logger.debug('Comp: ', comp);
-          return evidence;
-        })
-        .catch(function(reason) {
-          logger.error(`GET Statement components error: ${reason}`)
-        });
+        let evidence = data.evidence;
         return evidence;
       })
       .catch(function(reason) {
@@ -342,11 +354,11 @@ export class Api {
   //    http://blog.gospodarets.com/fetch_in_action/
   //    http://www.petermorlion.com/file-upload-with-aurelia/
 
-  uploadBELScript(file) {
+  uploadBelFile(file) {
     let data = new FormData();
     data.append('file', file);
 
-    return this.apiClient.fetch('/import', {
+    return this.apiClient.fetch('/datasets', {
       method: 'post',
       body: data
     });

@@ -37,7 +37,7 @@ export class Edit {
     this.router = Router;
   }
 
-  async activate(params) {
+  activate(params) {
 
     logger.debug('Relation List: ', relationsList);
 
@@ -45,28 +45,44 @@ export class Edit {
       logger.debug('ID: ', params.id);
       this.evidenceId = params.id;
 
-      // Get BEL Evidence
-      try {
-        this.evidence = await this.api.getBelEvidence(this.evidenceId);
-        this.extractFormMetadata();
+      // Return Promise in activate to wait until all data is collected before building
+      //   the page
+      return this.api.getBelEvidence(this.evidenceId)
+        .then(evidence => {
+          this.evidence = evidence;
 
-        this.types = await this.api.getBelAnnotationTypes();
-        logger.debug('AnnotationTypes: ', this.types);
+          this.api.getBelComponents(this.evidence.bel_statement)
+            .then(comp => {
+              this.bel_subject = comp.subject;
+              this.bel_object = comp.object;
+              this.bel_relationship = comp.relationship;
+              // logger.debug('Subj: ', this.bel_subject);
+            })
+            .catch(function(reason) {
+              logger.error(`GET BEL Components Error: ${reason}`);
+            });
 
-        logger.info('BEL Statement: ', this.evidence);
-        // this.belComponents = await this.api.getBelComponents(this.evidence.bel_statement);
+          this.extractFormMetadata();
 
-        this.citationId = this.evidence.citation.id;
+          this.api.getBelAnnotationTypes()
+            .then(types => {
+              this.types = types;
+              logger.debug('AnnotationTypes: ', this.types);
+            })
+            .catch(function(reason) {
+              logger.error(`GET Annotation Types: ${reason}`);
+            });
 
-        logger.debug('Bel components: ', this.belComponents);
-        await this.getPubmed();
+          this.citationId = this.evidence.citation.id;
 
-        logger.debug('Evidence: ', this.evidence);
-        logger.debug('PubmedAwait: ', this.pubmed);
-      }
-      catch (err) {
-        logger.error('GET BEL Evidence error: ', err);
-      }
+          this.getPubmed();
+
+          logger.debug('Evidence: ', this.evidence);
+          logger.debug('PubmedAwait: ', this.pubmed);
+        })
+        .catch(function(reason) {
+          logger.error(`GET BEL Evidence Error: ${reason}`);
+        });
     }
   }
 
@@ -83,6 +99,9 @@ export class Edit {
   prepareEvidence() {
     // Prepare BEL Statement
     this.evidence.bel_statement = `${this.evidence.bel_subject} ${this.evidence.bel_relationship} ${this.evidence.bel_object}`;
+    delete this.evidence.bel_subject;
+    delete this.evidence.bel_relationship;
+    delete this.evidence.bel_object;
 
     // Remove blank entries in evidence.experiment_context
     logger.debug('Cleaning evidence -- context items');
