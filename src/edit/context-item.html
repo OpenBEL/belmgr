@@ -6,7 +6,7 @@
 
     <!-- <a href="#" click.trigger="typeClear()"><i class="fa fa-close"></i></a> -->
     <ul show.bind="showTypes">
-      <li repeat.for="type of filteredTypes" click.delegate="selectType(type)">
+      <li repeat.for="type of filteredTypes" click.trigger="selectType(type)" mousedown.trigger="selectType(type)">
         <a href="#">
           ${type.annotation.name}
         </a>
@@ -19,7 +19,7 @@
       placeholder="Enter experimental context value">
 
     <ul show.bind="showAnnotations">
-      <li repeat.for="annotation of filteredAnnotations" click.delegate="selectAnnotation(annotation)">
+      <li repeat.for="annotation of filteredAnnotations" click.trigger="selectAnnotation(annotation)" mousedown.trigger="selectAnnotation(annotation)">
         <a href="#">
           ${annotation.annotation_value.annotation.name} :: ${annotation.annotation_value.name}
           <!-- ==> ${annotation.annotation_value.match_text} -->
