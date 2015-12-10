@@ -763,16 +763,19 @@ form>.form-group>.input-group>input.search-searchForm {
 .form-control.btn-profileUpdate,
 .form-control.btn-reset,
 .form-control.btn-signUp,
-.form-control.btn-logIn {
+.form-control.btn-logIn,
+.form-control.btn-upload {
     border-bottom: 4px solid #FDC975 !important;
     line-height: 17px;
-    font-size: 16px;
+    font-size: 16px; 
 }
+
 
 .form-control.btn-profileUpdate:hover,
 .form-control.btn-reset:hover,
 .form-control.btn-signUp:hover,
-.form-control.btn-logIn:hover {
+.form-control.btn-logIn:hover,
+.form-control.btn-upload:hover {
     max-height: 34px;
     box-shadow: inset 0px 34px 0px #FDC975 !important;
     -webkit-transition: box-shadow .1s;
@@ -931,6 +934,33 @@ div.au-stagger {
 }
 
 /* END PROFILE PAGE */
+
+
+/* IMPORT PAGE */
+
+.import-pgRow {
+    margin-top: ;
+}
+.import-fileDiv {
+    margin-top: 40px;
+    margin-left: 0px;
+    margin-right: 0px;
+    padding: 0px;
+}
+.import-inputCall {
+    white-space: normal;
+    margin: 10px 0px 20px 0px;
+    padding: 0px;
+}
+div.import-fileDiv input {
+    
+}
+.import-uploadDiv {
+    padding-left: 0px;
+    padding-right: 0px;
+}
+/* END IMPORT PAGE */
+
 
 /* EDIT PAGE */
 
