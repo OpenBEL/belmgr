@@ -9,7 +9,7 @@
     <ul class="ci-aNameUl" show.bind="showTypes">
       <li class="ci-aNameLi" repeat.for="type of filteredTypes" click.trigger="selectType(type)" mousedown.trigger="selectType(type)">
         <a href="#">
-          ${type.annotation.name}
+          <span class="ci-ctListing">${type.annotation.name}</span>
         </a>
       </li>
     </ul>
