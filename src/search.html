@@ -9,7 +9,7 @@
         <form role="form" submit.delegate="search()">
           <div class="form-group">
             <div class="input-group search-searchBar">
-              <input type="text" onblur.delegate="search()" value.bind="searchTerms" class="search-searchForm form-control" id="searchToken" placeholder="search">
+              <input type="text" onblur.delegate="search()" value.bind="searchTerms" class="search-searchForm form-control fc-normal" id="searchToken" placeholder="search">
                 <span class="input-group-btn btn-bel highlight">
                   <button type="submit" class="btn btn-search btn-searchfind">
                     <i class="fa fa-search"></i>
@@ -58,7 +58,7 @@
                   <h4 class="search-resultsLabel paddingNone ">Page: ${search_metadata.current_page} of ${search_metadata.total_pages}</h4>
  -->
                   <h5 class="table-display1 table-showing">Showing </h5>
-                  <select class="table-display2 paddingNone form-control selectDrop" id="search_size" value.bind="searchSize" change.delegate="saveSearchSize()">
+                  <select class="table-display2 paddingNone form-control fc-normal selectDrop" id="search_size" value.bind="searchSize" change.delegate="saveSearchSize()">
                       <option value="10" > 10</option>
                       <option value="20" > 20</option>
                       <option value="50" > 50</option>

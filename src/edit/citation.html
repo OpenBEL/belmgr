@@ -60,7 +60,7 @@
 
           <div class="form-group edit-acFormGroup">
             <!-- <label for="citation_name">Reference Name</label> -->
-            <textarea type="text" class="form-control fc-normal authorCitation" id="citation_name" value.bind="evidence.citation.name" placeholder="Citation Name - e.g. journal or book reference"></textarea>
+            <textarea type="text" class="form-control authorCitation" id="citation_name" value.bind="evidence.citation.name" placeholder="Citation Name - e.g. journal or book reference"></textarea>
 
             <button class="btn-bel btn-replace col-xs-1" if.bind="pubmed.bel.mismatch.refString" click.delegate="replaceCitationName(pubmed.bel.refString)">Replace</button>
             <p class="text-warning col-xs-10" if.bind="pubmed.bel.mismatch.refString">PubMed Citation: <span class="text-warningCitation">${pubmed.bel.refString}</span></p>
@@ -85,7 +85,7 @@
 
           <div class="form-group edit-acFormGroup">
             <!--<label for="citation_ref">Authors</label>-->
-            <textarea type="text" class="form-control fc-normal authorCitation" id="citation_authors" value.bind="evidence.citation.authors | arrayify" placeholder="separate authors with a semicolon ';'"></textarea>
+            <textarea type="text" class="form-control authorCitation" id="citation_authors" value.bind="evidence.citation.authors | arrayify" placeholder="separate authors with a semicolon ';'"></textarea>
 
             <button class="btn-bel btn-replace col-xs-1" if.bind="pubmed.bel.mismatch.authors" click.delegate="replaceCitationAuthors(pubmed.bel.authors)">Replace</button>
             <p class="text-warning col-xs-10" if.bind="pubmed.bel.mismatch.authors">Authors listed on PubMed: <span class="text-warningCitation">${pubmed.bel.authors | arrayify}</span></p>

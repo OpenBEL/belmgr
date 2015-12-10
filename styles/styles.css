@@ -350,11 +350,38 @@ footer {
     color: #474350;
 }
 
+.form-control:not(.btn-bel):not(.btn-edit) {
+    border-top: 1px solid rgba(240, 240, 240, .1);
+    border-right: 1px solid rgba(240, 240, 240, .1);
+    border-left: 1px solid rgba(240, 240, 240, .1);
+    border-radius: 4px;
+    box-shadow: none;
+    background: -webkit-linear-gradient(180deg, #fcfcfc, #F8F8F8);
+    /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(180deg, #fcfcfc, #F8F8F8);
+    /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(180deg, #fcfcfc, #F8F8F8);
+    /* For Firefox 3.6 to 15 */
+    background: linear-gradient(180deg, #fcfcfc, #F8F8F8);
+    /* Standard syntax */
+}
+.form-control.fc-normal:not(.btn-bel):not(.btn-edit) {
+    border-bottom: 2px solid rgba(12, 145, 165, .5);
+}
+
 .form-control:focus,
 .form-control:hover,
 .form-control:active {
    /* border: 0px !important;*/
     /*border-bottom: 2px solid rgba(12, 145, 165, .2);*/
+    box-shadow: inset 1px 1px 10px rgba(228, 229, 231, .4);
+    color: #25777D;
+}
+.form-control.fc-normal:focus,
+.form-control.fc-normal:hover,
+.form-control.fc-normal:active {
+   /* border: 0px !important;*/
+    border-bottom: 2px solid rgba(12, 145, 165, .2) !important;
     box-shadow: inset 1px 1px 10px rgba(228, 229, 231, .4);
     color: #25777D;
 }
@@ -498,26 +525,6 @@ section {
 .input-group-btn:first-child > .btn-group:not(:first-child) > .btn {
     border-radius: 2px !important;
 }*/
-
-.form-control:not(.btn-bel):not(.btn-edit) {
-    border-top: 1px solid rgba(240, 240, 240, .1);
-    border-right: 1px solid rgba(240, 240, 240, .1);
-    border-left: 1px solid rgba(240, 240, 240, .1);
-    border-radius: 4px;
-    box-shadow: none;
-    background: -webkit-linear-gradient(180deg, #fcfcfc, #F8F8F8);
-    /* For Safari 5.1 to 6.0 */
-    background: -o-linear-gradient(180deg, #fcfcfc, #F8F8F8);
-    /* For Opera 11.1 to 12.0 */
-    background: -moz-linear-gradient(180deg, #fcfcfc, #F8F8F8);
-    /* For Firefox 3.6 to 15 */
-    background: linear-gradient(180deg, #fcfcfc, #F8F8F8);
-    /* Standard syntax */
-}
-.form-control.fc-normal:not(.btn-bel):not(.btn-edit) {
-    border-bottom: 2px solid rgba(12, 145, 165, .5);
-
-}
 
 .btn:focus,
 .btn:active:focus,

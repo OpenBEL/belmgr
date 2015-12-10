@@ -23,7 +23,7 @@
       <!--List Context-->
       <template repeat.for="context of evidence.experiment_context">
         <div class="row col-xs-12">
-          <context-item type.two-way="context.name"  types.bind="types" index.bind="$index" last.bind="$last"></context-item>
+          <context-item type.two-way="context.name" annotation.two-way="context.value" types.bind="types" index.bind="$index" last.bind="$last"></context-item>
 
       <!--     <ci index.bind="$index" last.bind="$last"></ci>
  -->
