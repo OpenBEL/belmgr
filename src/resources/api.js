@@ -310,9 +310,15 @@ export class Api {
       });
   }
 
-  getBELAnnotationValues(query) {
+  getBELAnnotationValues(query, annotation_type) {
     let numResults = 10;
-    let query_string = `/annotations/values?filter={"category":"fts","name":"search","value":"${query}"}&start=0&size=${numResults}`;
+    let query_string = '';
+
+    if (annotation_type) {
+      query_string = `/annotations/${annotation_type}/values?filter={"category":"fts","name":"search","value":"${query}*"}&start=0&size=${numResults}`;
+    } else {
+      query_string = `/annotations/values?filter={"category":"fts","name":"search","value":"${query}*"}&start=0&size=${numResults}`;
+    }
 
     return this.apiClient.fetch(query_string)
       .then(response => response.json())

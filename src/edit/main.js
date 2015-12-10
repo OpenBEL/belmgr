@@ -58,7 +58,7 @@ export class Edit {
 
         this.citationId = this.evidence.citation.id;
 
-        logger.debug('BC: ', this.belComponents);
+        logger.debug('Bel components: ', this.belComponents);
         await this.getPubmed();
 
         logger.debug('Evidence: ', this.evidence);

@@ -30,7 +30,11 @@ export class ContextItem {
     logger.debug('Types: ', this.types);
   }
 
+  /*
+   *  Annotation Types
+   */
   hasTypeFocusChanged(newValue){
+    this.filterTypes();
     logger.debug('Type focus changed: ', newValue);
     logger.debug('Types: ', this.types);
     var self = this;
@@ -40,15 +44,21 @@ export class ContextItem {
     });
   }
 
+  typeChanged(){
+    if (this.type && this.types) {
+      this.filterTypes();
+    }
+  }
+
   filterTypes(){
     this.filteredTypes = this.types.filter(item => {
-      return item.type.toLowerCase().indexOf(this.type.toLowerCase()) > -1;
+      return item.annotation.name.toLowerCase().indexOf(this.type.toLowerCase()) > -1;
     });
+    logger.debug('FT: ', this.filteredTypes);
   }
 
   selectType(type){
-    this.selectedOption = type;
-    this.searchText = this.selectedOption[this.text];
+    this.type = type.annotation.name;
     this.showTypes = false;
   }
 
@@ -58,8 +68,44 @@ export class ContextItem {
     this.showTypes = false;
   }
 
-  selectedTypeChanged(){
-    console.log('changed')
+  /*
+   *  Annotation Values
+   */
+  hasAnnotationFocusChanged(newValue){
+    this.filterAnnotations();
+    logger.debug('Annotation focus changed: ', newValue);
+    var self = this;
+
+    this.taskQueue.queueMicroTask(() => {
+      self.showAnnotations = newValue;
+    });
   }
 
+  annotationChanged(){
+    logger.debug('Annotation changing');
+    if (this.hasAnnotationFocus && this.annotation.length > 1) {
+      this.filterAnnotations();
+    }
+  }
+
+  async filterAnnotations(){
+    try {
+      if (this.annotation.length > 1) {
+        this.filteredAnnotations = await this.api.getBELAnnotationValues(this.annotation, this.type)
+        logger.debug('FA: ', this.filteredAnnotations);
+      }
+    }
+    catch (err) {
+      logger.error('Filter annotations error: ', err);
+    }
+  }
+
+  selectAnnotation(annotation){
+    this.annotation = annotation.annotation_value.name;
+    this.showAnnotations = false;
+  }
+
+  annotationClear(){
+    this.showAnnotations = false;
+  }
 }

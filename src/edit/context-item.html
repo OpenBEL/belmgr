@@ -2,26 +2,32 @@
   <div class="col-xs-3">
 
     <input type="text" class="form-control" name="context-type"
-      value.bind="type" focus.bind="hasTypeFocus" />
+      value.bind="type" change.trigger="filterTypes()" focus.bind="hasTypeFocus"/>
 
     <!-- <a href="#" click.trigger="typeClear()"><i class="fa fa-close"></i></a> -->
     <ul show.bind="showTypes">
       <li repeat.for="type of filteredTypes" click.delegate="selectType(type)">
         <a href="#">
-          ${type}
+          ${type.annotation.name}
         </a>
       </li>
     </ul>
   </div>
   <div class="col-xs-8">
     <input type="text" class="form-control" name="context-value"
-      value.bind="annotation" blur.trigger="addBlank()"
+      value.bind="annotation" blur.trigger="addBlank()" focus.bind="hasAnnotationFocus"
       placeholder="Enter experimental context value">
 
+    <ul show.bind="showAnnotations">
+      <li repeat.for="annotation of filteredAnnotations" click.delegate="selectAnnotation(annotation)">
+        <a href="#">
+          ${annotation.annotation_value.annotation.name} :: ${annotation.annotation_value.name} => ${annotation.annotation_value.match_text}
+        </a>
+      </li>
+    </ul>
   </div>
   <div class="col-xs-1">
     <a class="btn btn-danger" show.bind="!last" href="#" click.delegate="removeItem(index)">
-      <i class="fa fa-trash-o fa-lg"></i>Delete
-    </a>
+      <i class="fa fa-trash-o fa-lg"></i>Delete</a>
   </div>
 </template>
