@@ -43,7 +43,7 @@
               <div class="col-xs-2">
                 <div class="form-group">
                   <label for="citation_type">Type</label>
-                  <select class="form-control selectDrop" id="citation_type" value.bind="evidence.citation.type">
+                  <select class="form-control fc-normal selectDrop" id="citation_type" value.bind="evidence.citation.type">
                     <option value="PubMed">PubMed</option>
                     <option value="Journal">Journal</option>
                     <option value="Book">Book</option>
@@ -57,7 +57,7 @@
               <div class="col-xs-7">
                 <div class="form-group">
                   <label for="citation_ref">Reference ID</label>
-                  <input type="text" class="form-control" id="citation_ref" value.bind="citationId"
+                  <input type="text" class="form-control fc-normal" id="citation_ref" value.bind="citationId"
                          blur.trigger="getPubmed()" placeholder="Citation Reference - e.g. PubmedID, ISBN, or URL">
                 </div>
                 <!-- .form-group -->
@@ -66,7 +66,7 @@
               <div class="col-xs-3">
                 <div class="form-group">
                   <label for="citation_ref">Publication Date</label>
-                  <input type="date" class="form-control selectDrop" id="citation_pubdate" value.bind="evidence.citation.date"
+                  <input type="date" class="form-control fc-normal selectDrop" id="citation_pubdate" value.bind="evidence.citation.date"
                          placeholder="YYYY-MM-DD">
 
                   <p class="warning" if.bind="pubmed.bel.mismatch.date">${pubmed.firstPublicationDate} <button class="btn btn-replace" click.delegate="replaceCitationDate(pubmed.firstPublicationDate)">Replace</button></p>
@@ -94,7 +94,7 @@
 
                     <div class="form-group edit-acFormGroup">
                      <!-- <label for="citation_name">Reference Name</label> -->
-                      <textarea type="text" class="form-control authorCitation" id="citation_name" value.bind="evidence.citation.name" placeholder="Citation Name - e.g. journal or book reference"></textarea>
+                      <textarea type="text" class="form-control fc-normal authorCitation" id="citation_name" value.bind="evidence.citation.name" placeholder="Citation Name - e.g. journal or book reference"></textarea>
 
                       <button class="btn-bel btn-replace col-xs-1" if.bind="pubmed.bel.mismatch.refString" click.delegate="replaceCitationName(pubmed.bel.refString)">Replace</button>
                       <p class="text-warning col-xs-10" if.bind="pubmed.bel.mismatch.refString">PubMed Citation: <span class="text-warningCitation">${pubmed.bel.refString}</span></p>
@@ -119,7 +119,7 @@
 
                       <div class="form-group edit-acFormGroup">
                         <!--<label for="citation_ref">Authors</label>-->
-                        <textarea type="text" class="form-control authorCitation" id="citation_authors" value.bind="evidence.citation.authors | stringToArray" placeholder="separate authors with a semicolon ';'"></textarea>
+                        <textarea type="text" class="form-control fc-normal authorCitation" id="citation_authors" value.bind="evidence.citation.authors | stringToArray" placeholder="separate authors with a semicolon ';'"></textarea>
 
                         <button class="btn-bel btn-replace col-xs-1" if.bind="pubmed.bel.mismatch.authors" click.delegate="replaceCitationAuthors(pubmed.bel.authors)">Replace</button>
                         <p class="text-warning col-xs-10" if.bind="pubmed.bel.mismatch.authors">Authors listed on PubMed: <span class="text-warningCitation">${pubmed.bel.authors | stringToArray}</span></p>
@@ -181,11 +181,11 @@
               <div class="col-xs-12">
                 <div class="form-group">
                   <label sr-only for="summaryText">BEL Summary Text</label>
-                  <textarea class="form-control textBlocks" value.bind="evidence.summary_text" id="summaryText" rows="3" placeholder="Extract from source text supporting this BEL Statement"></textarea>
+                  <textarea class="form-control fc-normal textBlocks" value.bind="evidence.summary_text" id="summaryText" rows="3" placeholder="Extract from source text supporting this BEL Statement"></textarea>
                 </div>
                 <div class="form-group">
                   <label for="citation_ref">Evidence Notes</label>
-                  <textarea rows="3" class="form-control textBlocks" id="citation_comments" value.bind="evidence.citation.comment"></textarea>
+                  <textarea rows="3" class="form-control fc-normal textBlocks" id="citation_comments" value.bind="evidence.citation.comment"></textarea>
                 </div>
                 <!-- .form-group -->
               </div>
@@ -208,7 +208,7 @@
               <div class="col-xs-3">
                 <div class="form-group">
                   <label for="">Review Status</label>
-                  <select class="form-control selectDrop" id="reviews" value.bind="evidence.metadata.Status">
+                  <select class="form-control fc-normal selectDrop" id="reviews" value.bind="evidence.metadata.Status">
                     <option value="Draft">Draft</option>
                     <option value="Review">Review</option>
                     <option value="Approved">Approved</option>
@@ -221,7 +221,7 @@
               <div class="col-xs-6">
                 <div class="form-group">
                   <label for="">Author</label>
-                  <input type="text" class="form-control"></input>
+                  <input type="text" class="form-control fc-normal"></input>
                 </div>
                 <!-- .form-group -->
               </div>
@@ -229,7 +229,7 @@
               <div class="col-xs-3">
                 <div class="form-group">
                   <label for="">Date Created</label>
-                  <input class="form-control selectDrop" type="date"></input>
+                  <input class="form-control fc-normal selectDrop" type="date"></input>
                 </div>
                 <!-- .form-group -->
               </div>
@@ -238,7 +238,7 @@
               <div class="col-xs-6 col-xs-offset-3">
                 <div class="form-group">
                   <label for="">Reviewer</label>
-                  <input type="text" class="form-control"></input>
+                  <input type="text" class="form-control fc-normal"></input>
                 </div>
                 <!-- .form-group -->
               </div>
@@ -247,7 +247,7 @@
               <div class="col-xs-3">
                 <div class="form-group">
                   <label for="">Date Reviewed</label>
-                  <input class="form-control selectDrop" type="date"></input>
+                  <input class="form-control fc-normal selectDrop" type="date"></input>
                 </div>
                 <!-- .form-group -->
               </div>
@@ -256,7 +256,7 @@
               <div class="col-xs-6 col-xs-offset-3">
                 <div class="form-group">
                   <label for="">BEL Evidence Source</label>
-                  <input id="source" type="text" class="form-control" value.bind="evidence.metadata.evidence_source"></input>
+                  <input id="source" type="text" class="form-control fc-normal" value.bind="evidence.metadata.evidence_source"></input>
                 </div>
                 <!-- .form-group -->
               </div>
@@ -269,7 +269,7 @@
           <div class="row edit-editBtns">
 
             <!--<div class="col-xs-4">-->
-              <!--<input type="reset" click.delegate="reset()" class="col-xs-10 col-xs-offset-1 btn btn-edit btn-reset form-control pull-right"></input>-->
+              <!--<input type="reset" click.delegate="reset()" class="col-xs-10 col-xs-offset-1 btn btn-edit btn-reset form-control fc-normal pull-right"></input>-->
             <!--</div>-->
 
             <!--fin SHOW ON BOTH-->

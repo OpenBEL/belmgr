@@ -354,15 +354,14 @@ footer {
 .form-control:hover,
 .form-control:active {
    /* border: 0px !important;*/
-    border-color: transparent !important;
-    border-bottom: 2px solid rgba(12, 145, 165, .2);
+    /*border-bottom: 2px solid rgba(12, 145, 165, .2);*/
     box-shadow: inset 1px 1px 10px rgba(228, 229, 231, .4);
     color: #25777D;
 }
 
-.edit-belForm .form-control:focus,
-.edit-belForm .form-control:hover,
-.edit-belForm .form-control:active {
+.edit-belForm .form-control.fc-normal:focus,
+.edit-belForm .form-control.fc-normal:hover,
+.edit-belForm .form-control.fc-normal:active {
     border-bottom: 2px solid rgba(12, 145, 165, .2) !important;
     box-shadow: inset 1px 1px 10px rgba(228, 229, 231, .4);
     color: #25777D;
@@ -501,11 +500,11 @@ section {
 }*/
 
 .form-control:not(.btn-bel):not(.btn-edit) {
-    border: none;
-    border: 1px solid rgba(240, 240, 240, .1);
+    border-top: 1px solid rgba(240, 240, 240, .1);
+    border-right: 1px solid rgba(240, 240, 240, .1);
+    border-left: 1px solid rgba(240, 240, 240, .1);
     border-radius: 4px;
     box-shadow: none;
-    border-bottom: 2px solid rgba(12, 145, 165, .5);
     background: -webkit-linear-gradient(180deg, #fcfcfc, #F8F8F8);
     /* For Safari 5.1 to 6.0 */
     background: -o-linear-gradient(180deg, #fcfcfc, #F8F8F8);
@@ -514,6 +513,10 @@ section {
     /* For Firefox 3.6 to 15 */
     background: linear-gradient(180deg, #fcfcfc, #F8F8F8);
     /* Standard syntax */
+}
+.form-control.fc-normal:not(.btn-bel):not(.btn-edit) {
+    border-bottom: 2px solid rgba(12, 145, 165, .5);
+
 }
 
 .btn:focus,
@@ -957,6 +960,8 @@ div.au-stagger {
     padding-left: 0px;
     padding-right: 0px;
 }
+
+
 /* END IMPORT PAGE */
 
 
@@ -978,7 +983,7 @@ div.au-stagger {
 .pubmedContent {
     background-color: rgba(90, 85, 101, 1);
     height: calc(100% - 300px);
-    /*min-height: 70%;*/
+    min-height: 550px;
     color: #e4e5e7;
     font-weight: 300;
     margin-top: 90px;
@@ -1185,18 +1190,15 @@ p.text-warning {
 
 /* context-item (EDIT PAGE) */
 
-/*.ci-aValDiv {
-    height: 34px;
-}*/
-
-.ci-aValUl:empty < .ci-aValDiv {
-    height: 34px !important;
-}
-
 .ci-aNameUl,
 .ci-aValUl {
     margin: 0px;
     padding: 0px;
+    max-height: 120px;
+    overflow: scroll;
+    background-color: #E4E5E7;
+    border-bottom-right-radius: 2px;
+    border-bottom-left-radius: 2px;
 }
 
 .ci-aNameLi,
@@ -1204,7 +1206,6 @@ p.text-warning {
 .ci-aValLi,
 .ci-aValLi a {
     list-style-type: none;
-    color: #46676E;
     text-decoration: none
 }
 .ci-aNameLi:nth-child(1),
@@ -1221,7 +1222,6 @@ p.text-warning {
 .ci-aNameLi a:hover,
 .ci-aValLi a:hover {
     list-style-type: none;
-    color: #0C91A5;
     text-shadow: 0px 0px 0px #0C91A5;
     text-decoration: none
 }
@@ -1240,6 +1240,41 @@ p.text-warning {
     font-size: 1.5em;
 }
 
+
+.ci-ctListingInput {
+    border-bottom: 2px solid rgba(12, 145, 165, 1);
+}
+.ci-ctListingInput:hover {
+    border-bottom: 2px solid rgba(12, 145, 165, .3);
+}
+.ci-ctListingInput:active {
+    border-bottom: 2px solid rgba(12, 145, 165, .3);
+}
+.ci-ctListingInput:focus {
+    border-bottom: 2px solid rgba(12, 145, 165, .3);
+}
+.ci-ctListing {
+    font-weight: 400;
+    color: #0C91A5;
+}
+.ci-valListingInput {
+    border-bottom: 2px solid rgba(71, 67, 80, 1);
+}
+
+
+.ci-valListingInput:focus {
+    border-bottom: 2px solid rgba(71, 67, 80, .3);
+}
+.ci-valListingInput:active {
+    border-bottom: 2px solid rgba(71, 67, 80, .3);
+}
+.ci-valListingInput:hover {
+    border-bottom: 2px solid rgba(71, 67, 80, .3);
+}
+.ci-valListing {
+    font-weight: 400;
+    color: #474350;
+}
 
 /* END context-item (EDIT PAGE) */
 
