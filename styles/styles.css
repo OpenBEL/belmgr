@@ -1008,6 +1008,9 @@ div.au-stagger {
 }
 
 /* DS EXPORT TABLE */
+.ds-table {
+    margin: 10px 0px 30px 0px;
+}
 td.ds-td {
     border-top: none;
     border-bottom: 1px solid #eee;
@@ -1015,11 +1018,17 @@ td.ds-td {
 }
 
 td.ds-td a {
-    color: #474350;
+    color: #46676E;
     font-size: 14px;
     font-weight: 400;
+    margin-top: 15px;
 }
-
+.ds-aDiv {
+    padding-top: 3px;
+}
+.ds-downloadIcon {
+    margin-left: 5px;
+}
 td.ds-td a:visited {
     color: #46676E;
     font-weight: 35px;
@@ -1037,6 +1046,25 @@ td.ds-td:active a:not(.table-delete) {
     color: #0C91A5;
     /*font-weight: 500;*/
     text-decoration: none;
+}
+
+p.ds-dsDetail {
+    list-style-type: none;
+    /*display: inline-block;*/
+    font-size: 14px;
+    color: rgb(51, 51, 51) !important; 
+    font-weight: 500;
+    font-family: 'Lato';
+}
+
+/*p.ds-dsDetail:not(:last-child)::after {
+    content: ",";
+    margin-right: 5px;
+}
+*/
+tr td div p.ds-dsDetail {
+    /*line-height: 1;*/
+    margin: 5px;
 }
 
 /* END DS EXPORT TABLE */
@@ -1101,6 +1129,7 @@ td.ds-td:active a:not(.table-delete) {
     font-weight: 400;
     font-size: 12px;
     margin-bottom: 5px;
+    /*padding: 8px 0px 0px 0px;*/
 }
 
 .edit-annotationBlock {
