@@ -52,7 +52,7 @@ textarea {
 .about-html,
 .edit-html,
 .welcome-html,
-.import-html,
+.ds-html,
 .profile-html,
 .login-html,
 .reset-html,
@@ -797,6 +797,7 @@ form>.form-group>.input-group>input.search-searchForm {
     float: right;
 }
 
+
 /*END BUTTONS*/
 
 
@@ -946,30 +947,101 @@ div.au-stagger {
 /* END PROFILE PAGE */
 
 
-/* IMPORT PAGE */
+/* DATASET PAGE */
 
-.import-pgRow {
+
+.ds-pgRow {
     margin-top: ;
 }
-.import-fileDiv {
-    margin-top: 40px;
+.ds-fileDiv {
+    background-color: #E4E5E7;
+    border-radius: 4px;
+    margin-top: 15px;
     margin-left: 0px;
     margin-right: 0px;
-    padding: 0px;
+    padding: 0px 0px 5px 0px;
 }
-.import-inputCall {
+
+@media (min-width: 768px) {
+    .ds-fileUploadDiv {
+        margin-top: 10px;
+    }
+}
+
+.ds-inputCall {
     white-space: normal;
-    margin: 10px 0px 20px 0px;
-    padding: 0px;
+    /*margin: 10px 0px 20px 0px;*/
+    /*padding: 0px;*/
+}
+@media (max-width: 767px) {
+    .ds-uploadDiv {
+        margin-top: -10px;
+    }
+}
+@media (min-width: 768px) and (max-width: 991px) {
+    .ds-uploadDiv {
+        margin-top: 10px;
+    }
+}
+@media (min-width: 991px) {
+    .ds-uploadDiv {
+        margin-top: 5px;
+        padding: 0px;
+    }
+}
+.form-control.btn-upload {
+    width: 100px;
+    border-top: none !important;
+    border-right: none !important;
+    border-left: none !important;
+}
+@media (max-width: 767px) {
+    .form-control.btn-upload {
+        float: right;
+
+    }
+}
+@media (min-width: 991px) {
+    .form-control.btn-upload {
+        float: right;
+    }
 }
 
-.import-uploadDiv {
-    padding-left: 0px;
-    padding-right: 0px;
+/* DS EXPORT TABLE */
+td.ds-td {
+    border-top: none;
+    border-bottom: 1px solid #eee;
+    width: 100%;
 }
 
+td.ds-td a {
+    color: #474350;
+    font-size: 14px;
+    font-weight: 400;
+}
 
-/* END IMPORT PAGE */
+td.ds-td a:visited {
+    color: #46676E;
+    font-weight: 35px;
+    content: 'visited';
+}
+
+td.ds-td a:focus {
+    text-decoration: none;
+    outline: none;
+}
+
+td.ds-td:hover a:not(.table-delete),
+td.ds-td:focus a:not(.table-delete),
+td.ds-td:active a:not(.table-delete) {
+    color: #0C91A5;
+    /*font-weight: 500;*/
+    text-decoration: none;
+}
+
+/* END DS EXPORT TABLE */
+
+/* END DATASET PAGE */
 
 
 /* EDIT PAGE */
