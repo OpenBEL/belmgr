@@ -79,6 +79,7 @@
       "jquery": "github:components/jquery@^2.1.4",
       "selectize": "github:brianreavis/selectize.js@^0.12.1",
       "text": "github:systemjs/plugin-text@^0.0.3",
+      "toastr": "github:CodeSeven/toastr@^2.1.2",
       "typeahead": "github:twitter/typeahead.js@^0.11.1",
       "wshayes/aurelia-gravatar": "github:wshayes/aurelia-gravatar@^0.1.0"
     },

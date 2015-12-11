@@ -41,10 +41,15 @@ System.config({
     "jquery": "github:components/jquery@2.1.4",
     "selectize": "github:brianreavis/selectize.js@0.12.1",
     "text": "github:systemjs/plugin-text@0.0.3",
+    "toastr": "github:CodeSeven/toastr@2.1.2",
     "traceur": "github:jmcriffey/bower-traceur@0.0.92",
     "traceur-runtime": "github:jmcriffey/bower-traceur-runtime@0.0.92",
     "typeahead": "github:twitter/typeahead.js@0.11.1",
     "wshayes/aurelia-gravatar": "github:wshayes/aurelia-gravatar@0.1.0",
+    "github:CodeSeven/toastr@2.1.2": {
+      "css": "github:systemjs/plugin-css@0.1.20",
+      "jquery": "github:components/jquery@2.1.4"
+    },
     "github:brianreavis/selectize.js@0.12.1": {
       "css": "github:systemjs/plugin-css@0.1.20",
       "jquery": "github:components/jquery@2.1.4",

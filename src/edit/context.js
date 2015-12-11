@@ -36,14 +36,14 @@ export class Context {
    * Add blank experiment content to end of experiment context
    */
   addBlank() {
-    let last_item_idx = this.evidence.experiment_context.length - 1;
-    logger.debug('Idx: ', last_item_idx);
-    logger.debug('Last item: ', this.evidence.experiment_context[last_item_idx].value);
-
-    // logger.debug('add Blank Items: ', this.evidence.experiment_context.length,
-    //              'Item: ', this.evidence.experiment_context[last_item_idx]);
-
-    if (this.evidence.experiment_context[last_item_idx].value) {
+    if (this.evidence.experiment_context) {
+      let last_item_idx = this.evidence.experiment_context.length - 1;
+      if (this.evidence.experiment_context[last_item_idx].value) {
+        this.evidence.experiment_context.push({'name': '', 'value': ''});
+      }
+    }
+    else {
+      this.evidence.experiment_context = [];
       this.evidence.experiment_context.push({'name': '', 'value': ''});
     }
   }

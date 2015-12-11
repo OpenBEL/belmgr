@@ -83,7 +83,7 @@ export class ContextItem {
 
   annotationChanged(){
     logger.debug('Annotation changing');
-    if (this.hasAnnotationFocus && this.annotation.length > 1) {
+    if (this.hasAnnotationFocus && this.annotation && this.annotation.length > 1) {
       this.filterAnnotations();
     }
   }
