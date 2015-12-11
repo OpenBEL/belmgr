@@ -757,6 +757,30 @@ form>.form-group>.input-group>input.search-searchForm {
     -webkit-transition-timing-function: ease-out;
     color: #e4e5e7;
 }
+.form-control.btn-dlFiles {
+    border-bottom: 4px solid #0C91A5;
+    padding: 4px 10px;
+    margin-top: 2px;
+    margin-bottom: 2px;
+    max-width: 80px;
+}
+@media (max-width: 500px) {
+    .form-control.btn-dlFiles {
+        padding: 6px 3px;
+}
+}
+
+.form-control.btn-dlFiles:hover {
+    max-height: 34px;
+    box-shadow: inset 0px 34px 0px #0C91A5;
+    -webkit-transition: box-shadow .1s;
+    -webkit-transition-timing-function: ease-out;
+    color: #e4e5e7;
+}
+
+.form-control.btn-dlFiles:hover i {
+    color: #e4e5e7;
+}
 
 .form-control.btn-reset {
     border-bottom: 4px solid #fdc975;
@@ -1040,12 +1064,20 @@ td.ds-td a:focus {
     outline: none;
 }
 
-td.ds-td:hover a:not(.table-delete),
-td.ds-td:focus a:not(.table-delete),
-td.ds-td:active a:not(.table-delete) {
+td.ds-td:hover a:not(.ds-delete),
+td.ds-td:focus a:not(.ds-delete),
+td.ds-td:active a:not(.ds-delete) {
     color: #0C91A5;
     /*font-weight: 500;*/
     text-decoration: none;
+}
+
+.ds-delete i {
+    margin-top: 50px;
+}
+
+.ds-delete:hover i {
+    color: #B22D1E;
 }
 
 p.ds-dsDetail {
