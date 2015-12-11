@@ -1338,7 +1338,6 @@ p.text-warning {
 .ci-aValUl {
     margin: 0px;
     padding: 0px;
-    max-height: 120px;
     overflow: scroll;
     background-color: #E4E5E7;
     border-bottom-right-radius: 2px;
