@@ -14,9 +14,21 @@ export class Import{
   heading = 'Upload your BEL Script into the BEL Evidence Repository';
 
   belFiles;
+  datasets;
 
   constructor(Api) {
     this.api = Api;
+    logger.debug('Test');
+  }
+
+  activate() {
+    return this.api.getDatasets().then(data => {
+      this.datasets = data;
+      logger.debug('Datasets: ', this.datasets);
+    })
+    .catch(function(reason) {
+      logger.error(`GET import datasets Error: ${reason}`)
+    });
   }
 
   upload() {
@@ -33,6 +45,11 @@ export class Import{
         logger.debug("Import err ", data.msg);
       }
     });
+  }
+
+  delete(url, idx) {
+    this.api.deleteDataset(url);
+    this.datasets.splice(idx, 1);
   }
 
 }

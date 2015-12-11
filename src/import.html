@@ -11,10 +11,27 @@
                   <input class="import-inputCall col-xs-12 col-sm-7" type="file" files.bind="belFiles">
 
                   <div class="import-uploadDiv col-xs-12 col-sm-4">
-                    <button type="button" class="btn form-control btn-upload" name="submit" click.trigger="upload()">Upload</button>
+                    <button type="button" class="btn form-control btn-upload" name="submit" mousedown.trigger="upload()">Upload</button>
                   </div>
                 </div>
             </div>
         </div>
+    </div>
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-10">
+          <h2>BEL Datasets</h2>
+        </div><!-- /.col-xs-10 -->
+
+      </div><!-- /.row -->
+      <div class="row" repeat.for="dataset of datasets">
+        <div class="col-xs-10">
+          <a href="${dataset._links.self.href}">${dataset.dataset.title} <i class="fa fa-download"></i></a>
+          <p>${dataset.dataset.description}</p>
+        </div><!-- /.col-xs-10 -->
+        <div class="col-xs-2">
+          <a class="table-delete" href="#" click.trigger="delete(item._links.self.href, $index)"> <i class="fa fa-trash-o fa-lg"></i></a>
+        </div><!-- /.col-xs-2 -->
+      </div><!-- /.row -->
     </div>
 </template>

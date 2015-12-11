@@ -191,7 +191,7 @@ export class Api {
       .then(response => response.json())
       .then(data => {
         // logger.debug('BEL Evidence: ', data);
-        return data['expression_components'];
+        return data.expression_components;
       })
       .catch(function(reason) {
         logger.error(`GET BEL Components Error: ${reason}`)
@@ -360,10 +360,15 @@ export class Api {
 
     return this.apiClient.fetch('/datasets', {
       method: 'post',
+      headers: {
+        'Content-Type': 'multipart/form-data'
+      },
       body: data
     });
   }
 
+  // TODO remove getEvidenceId in favor of getIdFromUrl
+  //
   /**
    * Get Evidence ID from self link href in evidence object
    *
@@ -374,6 +379,36 @@ export class Api {
     let matches = url.match(/\/(\w+?)$/);
     // logger.debug('Matches: ', matches[1]);
     return matches[1];
+  }
+
+    /**
+   * Get ID from self link href
+   *
+   * @param url
+   * @returns ID
+   */
+  getIdFromUrl(url) {
+    let matches = url.match(/\/(\w+?)$/);
+    // logger.debug('Matches: ', matches[1]);
+    return matches[1];
+  }
+
+  getDatasets(){
+    return this.apiClient.fetch('/datasets')
+      .then(response => response.json())
+      .then(data => {return data.dataset_collection;})
+      .catch(function(reason) {
+        logger.error(`GET Datasets Error: ${reason}`)
+      });
+  }
+
+  deleteDataset(url) {
+    dId = this.getIdFromUrl(url);
+    return this.apiClient.fetch(`/datasets/${dId}`, {method: 'DELETE'})
+      .then(response => {return response})
+      .catch(function(reason) {
+        logger.error(`Delete Datasets Error: ${reason}`)
+      });
   }
 
 }
