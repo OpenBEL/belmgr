@@ -360,9 +360,6 @@ export class Api {
 
     return this.apiClient.fetch('/datasets', {
       method: 'post',
-      headers: {
-        'Content-Type': 'multipart/form-data'
-      },
       body: data
     });
   }
