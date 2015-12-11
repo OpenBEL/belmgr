@@ -1,8 +1,8 @@
-<template>
+ <template>
     <div class="container margintop30 ds-html">
         <div class="row ds-pgRow"> 
             <div class="col-xs-12">
-                <h1>Import/Export BEL Datasets</h1>
+                <h1>Import/Export BEL Datasets</h1> 
                <!--  <div class="col-xs-12">
                     <p class="">This page is for importing and exporting BEL Scripts and XBEL files.</p>
                 </div> -->
@@ -27,7 +27,7 @@
 
             <table>
                 <tbody>
-                    <tr classrepeat.for="dataset of datasets">
+                    <tr repeat.for="dataset of datasets">
                         <td class="ds-td col-xs-12">
                             <div class="col-xs-10">
                                 <a href="${dataset._links.self.href}">${dataset.dataset.title} <i class="fa fa-download"></i></a>
