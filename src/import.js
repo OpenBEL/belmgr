@@ -35,29 +35,33 @@ export class Import{
   }
 
   upload() {
-    logger.debug('File blob: ', this.belFiles);
-    this.api.uploadBelFile(this.belFiles[0]).then(response => {
+    // logger.debug('File blob: ', this.belFiles);
+    this.api.uploadDataset(this.belFiles[0]).then(response => {
       let data = {"location": null, "msg": ''};
       if (response.ok) {
         data.location = response.headers.get("Location");
-        logger.debug("Import location ", data.location);
+        // logger.debug("Import location ", data.location);
         toastr.success('', 'Dataset Loaded');
 
-        return this.api.getDatasets();
-      }
+        this.api.getDatasets().then(data => {this.datasets = data;});
 
-      if (response.status === 409) {
-        data.msg = "Tried to upload duplicate dataset";
-        logger.debug("Import err ", data.msg);
-        toastr.error(data.msg, 'Dataset Loading Error');
       }
     })
-    .then(data => {
-      this.datasets = data;
+    .catch(response => {
+      if (response.status === 409) {
+        return response.json();
+      }
     })
-    .catch(function(reason) {
-      logger.error(`Dataset import error: ${reason}`);
+    .then(json => {
+      // logger.debug("JSON ", json);
+      toastr.options = {"timeOut": "15000"};
+      toastr.error(json.msg, 'Duplicate Dataset');
+      toastr.options = {"timeOut": "5000"};
+    })
+    .catch(res => {
+      logger.error(`Dataset import error: `, res);
     });
+
   }
 
   delete(url, idx) {

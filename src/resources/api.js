@@ -354,17 +354,13 @@ export class Api {
   //    http://blog.gospodarets.com/fetch_in_action/
   //    http://www.petermorlion.com/file-upload-with-aurelia/
 
-  uploadBelFile(file) {
+  uploadDataset(file) {
     let data = new FormData();
     data.append('file', file);
 
     return this.apiClient.fetch('/datasets', {
       method: 'post',
       body: data
-    })
-    .then(response => {logger.debug('R: ', response); return response;})
-    .catch(function(reason) {
-      logger.error(`POST dataset import error: ${reason}`);
     });
   }
 
