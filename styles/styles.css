@@ -1036,6 +1036,9 @@ div.au-stagger {
 .ds-table {
     margin: 10px 0px 30px 0px;
 }
+.ds-exportTitle {
+    padding: 0px
+}
 td.ds-td {
     border-top: none;
     border-bottom: 1px solid #eee;

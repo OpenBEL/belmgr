@@ -1,16 +1,16 @@
- <template>
+<template>
     <div class="container margintop30 ds-html">
         <div class="row ds-pgRow">
             <div class="col-xs-12">
                 <h1>Import/Export BEL Datasets</h1>
-               <!--  <div class="col-xs-12">
+                <!--  <div class="col-xs-12">
                     <p class="">This page is for importing and exporting BEL Scripts and XBEL files.</p>
                 </div> -->
             </div>
         </div>
         <div class="row">
             <div class="ds-fileDiv col-xs-12 col-sm-10 col-md-8">
-                <h3 class="col-xs-12 col-sm-5 importconversational">Import Files</h3>
+                <h3 class="col-xs-12 col-sm-5">Import Files</h3>
                 <div class="ds-fileUploadDiv col-xs-12 col-sm-7">
                     <input class="ds-inputCall col-xs-8 col-xs-offset-0 col-sm-12 col-md-8" type="file" files.bind="belFiles">
                     <div class="ds-uploadDiv col-xs-4 col-xs-offset-0 col-sm-12 col-md-4">
@@ -19,13 +19,17 @@
                 </div>
             </div>
         </div>
-
-            <table class="ds-table">
-                <tbody>
-                    <tr repeat.for="dataset of datasets">
-                        <td class="ds-td col-xs-12">
-                            <div class="ds-aDiv col-xs-8 col-sm-9">
-                                <a href="${dataset._links.evidence_collection.href}"><span class="ds-title">${dataset.dataset.title}</span> 
+        <table class="ds-table">
+            <tbody>
+                <thead>
+                    <tr>
+                        <h3 class="ds-exportTitle col-xs-12">Export Files</h3>
+                    </tr>
+                </thead>
+                <tr repeat.for="dataset of datasets">
+                    <td class="ds-td col-xs-12">
+                        <div class="ds-aDiv col-xs-8 col-sm-9">
+                            <a href="${dataset._links.evidence_collection.href}"><span class="ds-title">${dataset.dataset.title}</span> 
                                 <p class="ds-dsDetail">${dataset.dataset.description}</p>
                             </div>
                             <div class="col-xs-3 col-sm-2">
@@ -42,12 +46,11 @@
                             
                             <div class="col-xs-1">
                                 <a class="ds-delete" href="#" click.trigger="delete(item._links.self.href, $index)"> <i class="fa fa-trash-o fa-lg"></i></a>
-                            </div>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-  
-        </div>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
     </div>
 </template>
