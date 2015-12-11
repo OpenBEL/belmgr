@@ -408,4 +408,138 @@ export class Api {
       });
   }
 
+  /*
+   * The options hash can handle queryParams and accept keys.
+   * (call with url OR path, not both)
+   */
+  apiGET(url, path, onSuccess, onErr, options) {
+    if (url === null) {
+      url = baseUrl;
+      // append the path
+      path = encodeURI(path);
+      url += path;
+    }
+
+    // setup the options to our AJAX get
+    const defaultOptions = {
+      queryParams: null,
+      accept: null
+    };
+    const argOptions = $.extend(defaultOptions, options || {});
+
+    if (argOptions.queryParams !== null) {
+      // append query parameters
+      url += `?${argOptions.queryParams}`;
+    }
+
+    const ajaxOptions = {
+      url: url,
+      success: onSuccess,
+      error: onErr
+    };
+
+    if (argOptions.accept !== null) {
+      ajaxOptions.headers = { Accept: argOptions.accept };
+    }
+    $.ajax(ajaxOptions);
+  }
+
+  /**
+   * Applies a completion to the input and returns the result.
+   *
+   * @memberOf belhop.complete
+   *
+   * @param {belhop.Completion} completion BEL API completion object
+   * @param {string} input BEL expression to autocomplete.
+   *
+   * @return {string} Completed input string.
+   */
+  completeApply = function(completion, input) {
+    let cDelete = this.completeActionDelete;
+    let cInsert = this.completeActionInsert;
+    /* applies a single action */
+    function actOn(action) {
+      if (action.delete) {
+        const startPos = action.delete.start_position;
+        const endPos = action.delete.end_position;
+        input = cDelete(input, startPos, endPos);
+      } else if (action.insert) {
+        const value = action.insert.value;
+        const position = action.insert.position;
+        input = cInsert(input, value, position);
+      }
+    }
+    /* apply each action, mutating input */
+    let actions = completion.actions;
+    actions.forEach(actOn);
+    return input;
+  };
+
+  /**
+   * example:
+   * function onSuccess(response, status, request) {
+   *   let completionCollection = response.completion_collection;
+   *   // pick a completion from the array, first element selected here
+   *   let chosenCompletion = completionCollection[0];
+   *   // apply it
+   *   api.completeApply(chosenCompletion, input);
+   * }
+   */
+  completeExpression = function(input, caretPosition, onSuccess, onErr) {
+    const path = `/expressions/${input}/completions`;
+    const getOpts = {};
+    getOpts.queryParams = `caret_position=${caretPosition}`;
+    this.apiGET(null, path, onSuccess, onErr, getOpts);
+  };
+
+  /**
+   * Delete the characters from startPos to endPos inclusively and return the
+   * result.
+   *
+   * @protected
+   * @memberOf belhop.complete.actions
+   *
+   * @param {string} str Input string to operate on.
+   * @param {number} startPos Starting position of the deletion range.
+   * @param {number} endPos Ending position of the deletion range.
+   *
+   * @example
+   * > // delete "JUNK" from input
+   * > belhop.complete.actions.delete('fooJUNKbar', 3, 6);
+   * 'foobar'
+   *
+   * @return {string} Input string after deletion operation.
+   */
+  completeActionDelete = function(str, startPos, endPos) {
+    const str1 = str.substr(0, startPos);
+    const str2 = str.substr(endPos + 1);
+    const ret = str1 + str2;
+    return ret;
+  };
+
+  /**
+   * Insert the string value at position and return the result.
+   *
+   * @protected
+   * @memberOf belhop.complete.actions.insert
+   *
+   * @param {string} str Input string to operate on.
+   * @param {string} value String to insert.
+   * @param {number} position Insertion position.
+   *
+   * @example
+   * > // insert "bar" into input
+   * > belhop.complete.actions.insert('foo', 'bar', 3);
+   * 'foobar'
+   *
+   * @return {string} Input string after insertion operation.
+   */
+  completeActionInsert = function(str, value, position) {
+    const str1 = str.substr(0, position);
+    const str2 = value;
+    const str3 = str.substr(position);
+    const rslt = str1 + str2 + str3;
+    return rslt;
+  };
+
 }
