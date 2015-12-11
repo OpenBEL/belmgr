@@ -25,23 +25,25 @@
                 <h3>Export BEL Datasets</h3>
             </div>
 
-            <table class="ds-table">
-                <tbody>
-                    <tr repeat.for="dataset of datasets">
-                        <td class="ds-td col-xs-12">
-                            <div class="ds-aDiv col-xs-10">
-                                <a href="${dataset._links.self.href}"><span class="ds-title">${dataset.dataset.title}</span> <i class="ds-downloadIcon fa fa-download"></i></a>
-                                <p class="ds-dsDetail">${dataset.dataset.description}</p>
-                            </div>
-                            
-                            <div class="col-xs-1">
-                                <a class="table-delete" href="#" click.trigger="delete(item._links.self.href, $index)"> <i class="fa fa-trash-o fa-lg"></i></a>
-                            </div>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-  
-        </div>
+      </div><!-- /.row -->
+      <div class="row" repeat.for="dataset of datasets">
+        <div class="col-xs-8">
+          <a href="${dataset._links.evidence_collection.href}">${dataset.dataset.title} <i class="fa fa-download"></i></a>
+          <p>${dataset.dataset.description}</p>
+        </div><!-- /.col-xs-10 -->
+        <div class="col-xs-3">
+
+              <a href="${dataset._links.evidence_collection.href}?format=bel_script" class="btn btn-primary" role="button" title="Download BEL Script formatted file">BEL</a>
+
+              <a href="${dataset._links.evidence_collection.href}?format=json_evidence" class="btn btn-primary" role="button" title="Download JSON BEL formatted file">JSON</a>
+
+              <a href="${dataset._links.evidence_collection.href}?format=xbel" class="btn btn-primary" role="button" title="Download XBEL formatted file">XBEL</a>
+
+
+        </div><!-- /.col-xs-2 -->
+        <div class="col-xs-1">
+          <a class="table-delete" href="#" click.trigger="delete(dataset._links.self.href, $index)"> <i class="fa fa-trash-o fa-2x"></i></a>
+        </div><!-- /.col-xs-2 -->
+      </div><!-- /.row -->
     </div>
 </template>

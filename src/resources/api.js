@@ -361,6 +361,10 @@ export class Api {
     return this.apiClient.fetch('/datasets', {
       method: 'post',
       body: data
+    })
+    .then(response => {logger.debug('R: ', response); return response;})
+    .catch(function(reason) {
+      logger.error(`POST dataset import error: ${reason}`);
     });
   }
 
@@ -385,8 +389,9 @@ export class Api {
    * @returns ID
    */
   getIdFromUrl(url) {
-    let matches = url.match(/\/(\w+?)$/);
-    // logger.debug('Matches: ', matches[1]);
+    // logger.debug('U: ', url);
+    let matches = url.match(/\/([\-\w]*)$/);
+    // logger.debug('Matches: ', matches);
     return matches[1];
   }
 
@@ -400,7 +405,7 @@ export class Api {
   }
 
   deleteDataset(url) {
-    dId = this.getIdFromUrl(url);
+    let dId = this.getIdFromUrl(url);
     return this.apiClient.fetch(`/datasets/${dId}`, {method: 'DELETE'})
       .then(response => {return response})
       .catch(function(reason) {
@@ -477,6 +482,19 @@ export class Api {
 
   /**
    * example:
+   *
+      let input = 'p(HGNC:AK';
+      function onSuccess(response, status, request) {
+        let completionCollection = response.completion_collection;
+        let chosenCompletion = completionCollection[0].completion;
+        let completed = api.completeApply(chosenCompletion, input);
+        console.log("completed: " + completed);
+      }
+      function onErr(x) {
+      }
+
+      this.api.completeExpression(input, 9, onSuccess, onErr);
+
    * function onSuccess(response, status, request) {
    *   let completionCollection = response.completion_collection;
    *   // pick a completion from the array, first element selected here
