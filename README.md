@@ -136,3 +136,19 @@ The app will be exported into ```export``` directory preserving the directory st
 #### Configuration
 The configuration is done by ```bundles.json``` file.
 In addition, ```export.json``` file is available for including individual files.
+
+## Deploying
+
+Deploying the BEL Manager only requires serving the static content in your web
+server of choice. Simply add a location for the ``export`` directory above, and
+the BEL Manager is ready for use.
+
+Here's an example of the BEL Manager being served from the web root, in Nginx:
+
+  ```shell
+    location / {
+        alias       /opt/belmgr/export/;
+        index       index.html;
+    }
+  ```
+
