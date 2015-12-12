@@ -1,31 +1,26 @@
 import {AuthService} from 'aurelia-auth';
 import {inject} from 'aurelia-framework';
-@inject(AuthService )
+import {Api} from '../resources/api';
 
-export class Login{
-  constructor(auth){
+@inject(AuthService, Api)
+export class Login {
+
+  constructor(auth, api) {
     this.auth = auth;
+    this.api = api;
+    let tokens = window.location.search.split('?jwt=');
+    if (tokens.length > 1) {
+      let jwt = tokens[1];
+      document.cookie = "token=" + jwt;
+      window.location.href = "/";
+    }
   };
 
   heading = 'Login';
 
   email='';
   password='';
-  login(){
-    return this.auth.login(this.email, this.password)
-      .then(response=>{
-        console.log("success logged " + response);
-      })
-      .catch(err=>{
-        console.log("login failure");
-      });
+  login() {
+    this.api.authenticate();
   };
-
-  authenticate(name){
-    return this.auth.authenticate(name, false, null)
-      .then((response)=>{
-        console.log("auth response " + response);
-      });
-
-  }
 }

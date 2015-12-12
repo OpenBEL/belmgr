@@ -57,6 +57,7 @@ export class Api {
       config
         .withBaseUrl(baseUrl)
         .withDefaults({
+          credentials: 'same-origin',
           headers: {
             'Accept': 'application/json',
             'X-Requested-With': 'Fetch'
@@ -139,6 +140,13 @@ export class Api {
     return newFacets;
   }
 
+  getCookie(name) {
+    let cookies = '; ' + document.cookie;
+    let tokens = cookies.split('; ' + name + '=');
+    if (tokens.length == 2) return tokens.pop().split(';').shift();
+    return null;
+  }
+
   /**
    * Search the BELMgr database and return website ready results
    *
@@ -159,7 +167,11 @@ export class Api {
     // logger.debug('Filters2: ', filters);
     logger.debug('Getstring: ', getstring);
 
-    return this.apiClient.fetch(getstring)
+    return this.apiClient.fetch(getstring, {
+      headers: {
+        Authorization: "Bearer " + this.getCookie("token")
+      }
+    })
       .then(response => response.json())
       .then(data => {
         let new_data = {};
@@ -555,5 +567,10 @@ export class Api {
     const rslt = str1 + str2 + str3;
     return rslt;
   };
+
+  authenticate = function() {
+    let current = window.location.href;
+    window.location.href = baseUrl + '/authenticate?state=' + current;
+  }
 
 }

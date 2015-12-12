@@ -18,16 +18,12 @@
         <div class="navbar-userDiv">
           <!--<a href="#" onClick="return confirm('Not implemented yet.')">log in</a>-->
           <!--<a href="#" onClick="return confirm('Not implemented yet.')">register</a>-->
-          <template if.bind="!isAuthenticated">
-            <a route-href="route: login">Login</a>
-            <a route-href="route: signup">Sign up</a>
+          <template if.bind="!loggedIn">
+            <a click.delegate="navbarLogin()">Login</a>
           </template>
-
-          <template if.bind="isAuthenticated">
-            <a route-href="route: profile">Profile</a>
-            <a route-href="route: logout">Logout</a>
+          <template if.bind="loggedIn">
+            <a click.delegate="navbarLogout()">Logout</a>
           </template>
-
         </div>
 
       <ul class="nav navbar-nav navbar-right">
