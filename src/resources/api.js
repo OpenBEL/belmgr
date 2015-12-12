@@ -244,7 +244,7 @@ export class Api {
   // }
 
   getBelEvidence(id) {
-    return this.apiClient.fetch(`/evidence/${id}`)
+    return this.apiClient.fetch(`/evidence/${id}`, {headers:{Authorization: "Bearer " + this.getCookie("token") }})
       .then(response => response.json())
       .then(data => {
         let evidence = data.evidence;
@@ -267,7 +267,8 @@ export class Api {
           method: 'put',
           headers: {
             'Accept': 'application/json',
-            'Content-Type': 'application/json; profile=http://next.belframework.org/schema/evidence.schema.json'
+            'Content-Type': 'application/json; profile=http://next.belframework.org/schema/evidence.schema.json',
+            'Authorization': "Bearer " + this.getCookie("token")
           },
           body: JSON.stringify(evidence)
         })
@@ -280,7 +281,8 @@ export class Api {
           method: 'post',
           headers: {
             'Accept': 'application/json',
-            'Content-Type': 'application/json; profile=http://next.belframework.org/schema/evidence.schema.json'
+            'Content-Type': 'application/json; profile=http://next.belframework.org/schema/evidence.schema.json',
+            'Authorization': "Bearer " + this.getCookie("token")
           },
           body: JSON.stringify(evidence)
         })
@@ -296,7 +298,8 @@ export class Api {
       method: 'delete',
       headers: {
         'Accept': 'application/json',
-        'Content-Type': 'application/json; profile=http://next.belframework.org/schema/evidence.schema.json'
+        'Content-Type': 'application/json; profile=http://next.belframework.org/schema/evidence.schema.json',
+        'Authorization': "Bearer " + this.getCookie("token")
       }
     })
     .catch(function(reason) {
@@ -372,7 +375,10 @@ export class Api {
 
     return this.apiClient.fetch('/datasets', {
       method: 'post',
-      body: data
+      body: data,
+      headers: {
+        Authorization: "Bearer " + this.getCookie("token")
+      }
     });
   }
 
@@ -404,7 +410,7 @@ export class Api {
   }
 
   getDatasets(){
-    return this.apiClient.fetch('/datasets')
+    return this.apiClient.fetch('/datasets', {headers:{Authorization: "Bearer " + this.getCookie("token") }})
       .then(response => response.json())
       .then(data => {return data.dataset_collection;})
       .catch(function(reason) {
@@ -414,7 +420,7 @@ export class Api {
 
   deleteDataset(url) {
     let dId = this.getIdFromUrl(url);
-    return this.apiClient.fetch(`/datasets/${dId}`, {method: 'DELETE'})
+    return this.apiClient.fetch(`/datasets/${dId}`, {method: 'DELETE', headers:{Authorization: "Bearer " + this.getCookie("token") }})
       .then(response => {return response})
       .catch(function(reason) {
         logger.error(`Delete Datasets Error: ${reason}`)
