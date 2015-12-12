@@ -18,14 +18,14 @@ export class NavBar {
     if (tokens.length > 1) {
       let jwt = tokens[1];
       document.cookie = "token=" + jwt;
-      window.location.href = "/";
+      window.location.href = window.location.origin;
     }
   }
 
   navbarLogout() {
     document.cookie = 'token=;expires=Thu, 01 Jan 1970 00:00:01 GMT;';
     this.loggedIn = false;
-    window.location.href = "/";
+    window.location.href = window.location.origin;
   }
 
   navbarLogin() {
