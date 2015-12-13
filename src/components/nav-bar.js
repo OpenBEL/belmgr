@@ -20,9 +20,8 @@ export class NavBar {
     let tokens = window.location.search.split('?jwt=');
     if (tokens.length > 1) {
       let jwt = tokens[1];
-      logger.debug('Setting token: ', jwt);
+      logger.info('Logged in.');
       this.api.setToken(jwt);
-      logger.debug('Getting token: ', this.api.getToken());
       window.location.href = window.location.origin;
     }
   }
@@ -31,6 +30,7 @@ export class NavBar {
     if (this.action === 'Logout') {
       this.api.removeToken();
       this.action = 'Login';
+      logger.info('Logged out.');
       window.location.href = window.location.origin;
     } else {
       this.api.authenticate();
