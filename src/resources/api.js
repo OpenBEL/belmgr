@@ -73,6 +73,14 @@ export class Api {
             response(resp) {
               logger.debug(`Received ${resp.status} ${resp.url}`);
               return resp; // you can return a modified Response
+            },
+            responseError(resp) {
+              if (resp.status === 401) {
+                logger.info('Backend returned HTTP 401, redirecting to home.');
+                window.location.href = window.location.origin;
+              }
+              logger.debug(`Received ${resp.status} ${resp.url}`);
+              return resp; // you can return a modified Response
             }
         });
     });
