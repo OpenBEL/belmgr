@@ -38,14 +38,14 @@ export class Api {
         })
         .rejectErrorResponses()
         .withInterceptor({
-          request(request) {
-              logger.debug(`Requesting ${request.method} ${request.url}`);
-              return request; // you can return a modified Request, or you can short-circuit the request by returning a
+          request(req) {
+              logger.debug(`Requesting ${req.method} ${req.url}`);
+              return req; // you can return a modified Request, or you can short-circuit the request by returning a
               // Response
             },
-            response(response) {
-              logger.debug(`Received ${response.status} ${response.url}`);
-              return response; // you can return a modified Response
+            response(resp) {
+              logger.debug(`Received ${resp.status} ${resp.url}`);
+              return resp; // you can return a modified Response
             }
         });
     });
@@ -65,14 +65,14 @@ export class Api {
         })
         .rejectErrorResponses()
         .withInterceptor({
-          request(request) {
-              logger.debug(`Requesting ${request.method} ${request.url}`);
-              return request; // you can return a modified Request, or you can short-circuit the request by returning a
+          request(req) {
+              logger.debug(`Requesting ${req.method} ${req.url}`);
+              return req; // you can return a modified Request, or you can short-circuit the request by returning a
               // Response
             },
-            response(response) {
-              logger.debug(`Received ${response.status} ${response.url}`);
-              return response; // you can return a modified Response
+            response(resp) {
+              logger.debug(`Received ${resp.status} ${resp.url}`);
+              return resp; // you can return a modified Response
             }
         });
     });
@@ -89,14 +89,14 @@ export class Api {
         })
         .rejectErrorResponses()
         .withInterceptor({
-          request(request) {
-              logger.debug(`Requesting ${request.method} ${request.url}`);
-              return request; // you can return a modified Request, or you can short-circuit the request by returning a
+          request(req) {
+              logger.debug(`Requesting ${req.method} ${req.url}`);
+              return req; // you can return a modified Request, or you can short-circuit the request by returning a
               // Response
             },
-            response(response) {
-              logger.debug(`Received ${response.status} ${response.url}`);
-              return response; // you can return a modified Response
+            response(resp) {
+              logger.debug(`Received ${resp.status} ${resp.url}`);
+              return resp; // you can return a modified Response
             }
         });
     });
