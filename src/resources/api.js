@@ -350,11 +350,65 @@ export class Api {
     return response;
   }
 
+  // TODO test this!
 
   getBelCompletions2(query, cursor) {
-
+    return this.apiClient.fetch(`/expressions/${query}/completions?caret_position=${cursor}`)
+      .then(response => {
+        return response.json();
+      })
+      .then(json => {
+        let data = json.completion_collection;
+        logger.debug('Data: ', data);
+        let completions = this.processBelCompletions(query, data);
+        logger.debug('Completions: ', completions);
+        return completions;
+      })
+      .catch(reason => {
+        logger.error('GET Bel Completions error: ', reason);
+      });
   }
 
+  processBelCompletions(query, data) {
+    let results = [];
+    logger.debug('Data: ', data);
+    for (let d of data) {
+      logger.debug('d: ', d);
+      let bel = query.slice(0);
+      if (d.completion.actions) {
+        for (let action of d.completion.actions) {
+          logger.debug('Action: ', action);
+          let len = bel.length;
+          let front = '';
+          let back = '';
+          if (action.delete) {
+            if (action.delete.start_position > 0) {
+              front = bel.slice(0, action.delete.start_position);
+            }
+            if (action.delete.end_position < len) {
+              back = bel.slice(action.delete.end_position+1);
+            }
+            bel = front + back;
+          }
+
+          if (action.insert) {
+            if (action.insert.position > 0) {
+              front = bel.slice(0, action.insert.position);
+            }
+            if (action.insert.position < len) {
+              back = bel.slice(action.insert.position);
+            }
+            bel = front + d.completion.value + back;
+          }
+
+
+          logger.debug('F: ', front, ' B: ', back, ' BEL: ', bel, ' T: ', d.completion.type);
+        }
+        results.push({term: bel, type: d.completion.type, label: d.completion.label, value: d.completion.value});
+      }
+    }
+    return results;
+  }
 
   // Upload BEL Script to OpenBEL Evidence Store
   // Notes:

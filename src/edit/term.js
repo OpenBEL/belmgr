@@ -45,13 +45,13 @@ export class Term {
   filterTerms(event) {
     let cursor = event.srcElement.selectionEnd;
     logger.debug('FilterTerms: query ', this.bel, ' event ', event, ' cursor ', cursor);
-    logger.debug('InputElem ', this.belinput);
+    // logger.debug('InputElem ', this.belinput);
 
     if (this.hasTermFocus && this.bel.length > 1) {
 
-      this.api.getBelCompletions(this.bel, cursor)
+      this.api.getBelCompletions2(this.bel, cursor)
       .then(results => {
-        logger.debug("Completions: ", results);
+        logger.debug("Completions2: ", results);
         this.filteredTerms = results;
         this.showTerms = true;
       })

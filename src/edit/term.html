@@ -3,11 +3,13 @@
   <input ref='belinput' type="text" class="form-control fc-normal" name="context-type"
     value.bind="bel" keyup.trigger="filterTerms($event) & debounce:500" focus.bind="hasTermFocus"/>
 
-  <ul show.bind="showTerms">
-    <li repeat.for="item of filteredTerms" click.delegate="selectTerm(item)">
-      <a href="#">
-        <span class="ci-ctListing">${item.term}</span>
-      </a>
-    </li>
-  </ul>
+  <div class="row">
+    <ul show.bind="showTerms">
+      <li repeat.for="item of filteredTerms" click.delegate="selectTerm(item)">
+        <a href="#">
+          ${item.term}, ${item.label}, ${item.type}
+        </a>
+      </li>
+    </ul>
+  </div><!-- /.row -->
 </template>
