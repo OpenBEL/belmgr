@@ -16,12 +16,10 @@ export class Import{
 
   belFiles;
   datasets;
+  loading = false;  // todo set a spinner state while loading dataset
 
   constructor(Api) {
     this.api = Api;
-    logger.debug('Test');
-
-
   }
 
   activate() {
@@ -35,6 +33,9 @@ export class Import{
   }
 
   upload() {
+    this.loading = true;
+    logger.debug('Loading: ', this.loading);
+
     // logger.debug('File blob: ', this.belFiles);
     this.api.uploadDataset(this.belFiles[0]).then(response => {
       let data = {"location": null, "msg": ''};
@@ -43,24 +44,26 @@ export class Import{
         // logger.debug("Import location ", data.location);
         toastr.success('', 'Dataset Loaded');
 
-        this.api.getDatasets().then(data => {this.datasets = data;});
-
+        this.api.getDatasets().then(data => {
+          this.datasets = data;
+        });
       }
+      this.loading = false;
     })
     .catch(response => {
       if (response.status === 409) {
-        return response.json();
+        let json = response.json();
+        // logger.debug("JSON ", json);
+        toastr.options = {"timeOut": "15000"};
+        toastr.error(json.msg, 'Duplicate Dataset');
+        toastr.options = {"timeOut": "5000"};
       }
-    })
-    .then(json => {
-      // logger.debug("JSON ", json);
-      toastr.options = {"timeOut": "15000"};
-      toastr.error(json.msg, 'Duplicate Dataset');
-      toastr.options = {"timeOut": "5000"};
-    })
-    .catch(res => {
-      logger.error(`Dataset import error: `, res);
+      else {
+        logger.error('Problem loading dataset ', response);
+      }
+      this.loading = false;
     });
+    logger.debug('Loading: ', this.loading);
 
   }
 
