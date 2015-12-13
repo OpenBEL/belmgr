@@ -6,7 +6,7 @@
   <ul show.bind="showTerms">
     <li repeat.for="item of filteredTerms" click.delegate="selectTerm(item)">
       <a href="#">
-        ${item.term}
+        <span class="ci-ctListing">${item.term}</span>
       </a>
     </li>
   </ul>

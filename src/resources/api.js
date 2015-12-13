@@ -435,7 +435,7 @@ export class Api {
       .then(response => response.json())
       .then(data => {return data.dataset_collection;})
       .catch(function(reason) {
-        logger.error(`GET Datasets Error: ${reason}`)
+        logger.error('GET Datasets Error: ', reason);
       });
   }
 
@@ -444,7 +444,7 @@ export class Api {
     return this.apiClient.fetch(`/datasets/${dId}`, {method: 'DELETE', headers:{Authorization: "Bearer " + this.getCookie("token") }})
       .then(response => {return response})
       .catch(function(reason) {
-        logger.error(`Delete Datasets Error: ${reason}`)
+        logger.error('Delete Datasets Error: ', reason);
       });
   }
 

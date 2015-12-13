@@ -29,21 +29,21 @@
                 <tr repeat.for="dataset of datasets">
                     <td class="ds-td col-xs-12">
                         <div class="ds-aDiv col-xs-8 col-sm-9">
-                            <a href="${dataset._links.evidence_collection.href}"><span class="ds-title">${dataset.dataset.title}</span> 
+                            <a href="${dataset._links.evidence_collection.href}"><span class="ds-title">${dataset.dataset.title}</span>
                                 <p class="ds-dsDetail">${dataset.dataset.description}</p>
                             </div>
                             <div class="col-xs-3 col-sm-2">
 
-                                  <button href="${dataset._links.evidence_collection.href}?format=bel_script" class="btn form-control btn-dlFiles" role="button" title="Download BEL Script formatted file"><i class="ds-downloadIcon fa fa-download"></i> BEL</button>
+                                  <a href="${dataset._links.evidence_collection.href}?format=bel_script" class="btn form-control btn-dlFiles" role="button" title="Download BEL Script formatted file"><i class="ds-downloadIcon fa fa-download"></i> BEL</a>
 
-                                  <button href="${dataset._links.evidence_collection.href}?format=json_evidence" class="btn form-control btn-dlFiles" role="button" title="Download JSON BEL formatted file"><i class="ds-downloadIcon fa fa-download"></i> JSON</button>
+                                  <a href="${dataset._links.evidence_collection.href}?format=json_evidence" class="btn form-control btn-dlFiles" role="button" title="Download JSON BEL formatted file"><i class="ds-downloadIcon fa fa-download"></i> JSON</a>
 
-                                  <button href="${dataset._links.evidence_collection.href}?format=xbel" class="btn form-control btn-dlFiles" role="button" title="Download XBEL formatted file">
-                                    <i class="ds-downloadIcon fa fa-download"></i> XBEL</button>
+                                  <a href="${dataset._links.evidence_collection.href}?format=xbel" class="btn form-control btn-dlFiles" role="button" title="Download XBEL formatted file">
+                                    <i class="ds-downloadIcon fa fa-download"></i> XBEL</a>
 
 
                             </div>
-                            
+
                             <div class="col-xs-1">
                                 <a class="ds-delete" href="#" click.trigger="delete(item._links.self.href, $index)"> <i class="fa fa-trash-o fa-lg"></i></a>
                         </div>

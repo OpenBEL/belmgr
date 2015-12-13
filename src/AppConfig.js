@@ -17,7 +17,7 @@ var configForDevelopment = {
 
 var configForProduction = {
   'baseUrl': 'http://next.belframework.org/api',
-  'logLevel' : LogManager.logLevel.info
+  'logLevel' : LogManager.logLevel.debug
 }
 
 var appconfig ;
