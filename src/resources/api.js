@@ -148,13 +148,6 @@ export class Api {
     return newFacets;
   }
 
-  getCookie(name) {
-    let cookies = '; ' + document.cookie;
-    let tokens = cookies.split('; ' + name + '=');
-    if (tokens.length == 2) return tokens.pop().split(';').shift();
-    return null;
-  }
-
   /**
    * Search the BELMgr database and return website ready results
    *
@@ -177,7 +170,7 @@ export class Api {
 
     return this.apiClient.fetch(getstring, {
       headers: {
-        Authorization: "Bearer " + this.getCookie("token")
+        Authorization: "Bearer " + this.getToken()
       }
     })
       .then(response => response.json())
@@ -223,7 +216,7 @@ export class Api {
   }
 
   getBelEvidence(id) {
-    return this.apiClient.fetch(`/evidence/${id}`, {headers:{Authorization: "Bearer " + this.getCookie("token") }})
+    return this.apiClient.fetch(`/evidence/${id}`, {headers:{Authorization: "Bearer " + this.getToken() }})
       .then(response => response.json())
       .then(data => {
         let evidence = data.evidence;
@@ -248,7 +241,7 @@ export class Api {
           headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json; profile=http://next.belframework.org/schema/evidence.schema.json',
-            'Authorization': "Bearer " + this.getCookie("token")
+            'Authorization': "Bearer " + this.getToken()
           },
           body: JSON.stringify(evidence)
         })
@@ -262,7 +255,7 @@ export class Api {
           headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json; profile=http://next.belframework.org/schema/evidence.schema.json',
-            'Authorization': "Bearer " + this.getCookie("token")
+            'Authorization': "Bearer " + this.getToken()
           },
           body: JSON.stringify(evidence)
         })
@@ -278,7 +271,7 @@ export class Api {
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json; profile=http://next.belframework.org/schema/evidence.schema.json',
-        'Authorization': "Bearer " + this.getCookie("token")
+        'Authorization': "Bearer " + this.getToken()
       }
     })
     .catch(function(reason) {
@@ -377,7 +370,7 @@ export class Api {
       method: 'post',
       body: data,
       headers: {
-        Authorization: "Bearer " + this.getCookie("token")
+        Authorization: "Bearer " + this.getToken()
       }
     });
   }
@@ -410,7 +403,7 @@ export class Api {
   }
 
   getDatasets(){
-    return this.apiClient.fetch('/datasets', {headers:{Authorization: "Bearer " + this.getCookie("token") }})
+    return this.apiClient.fetch('/datasets', {headers:{Authorization: "Bearer " + this.getToken() }})
       .then(response => response.json())
       .then(data => {return data.dataset_collection;})
       .catch(function(reason) {
@@ -420,7 +413,7 @@ export class Api {
 
   deleteDataset(url) {
     let dId = this.getIdFromUrl(url);
-    return this.apiClient.fetch(`/datasets/${dId}`, {method: 'DELETE', headers:{Authorization: "Bearer " + this.getCookie("token") }})
+    return this.apiClient.fetch(`/datasets/${dId}`, {method: 'DELETE', headers:{Authorization: "Bearer " + this.getToken() }})
       .then(response => {return response})
       .catch(function(reason) {
         logger.error('Delete Datasets Error: ', reason);
@@ -577,6 +570,18 @@ export class Api {
   authenticate = function() {
     let current = window.location.href;
     window.location.href = baseUrl + '/authenticate?state=' + current;
-  }
+  };
+
+  setToken(token) {
+    localStorage.setItem('belmgr-token', token);
+  };
+
+  removeToken() {
+    localStorage.removeItem('belmgr-token');
+  };
+
+  getToken() {
+    return localStorage.getItem('belmgr-token');
+  };
 
 }
