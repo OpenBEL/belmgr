@@ -16,7 +16,7 @@
   </div>
   <div class="ci-aValDiv col-xs-8">
     <input type="text" class="form-control ci-valListingInput" name="context-value"
-      value.bind="annotation" blur.trigger="addBlank()" focus.bind="hasAnnotationFocus"
+      value.bind="annotation & debounce:300" blur.trigger="addBlank()" focus.bind="hasAnnotationFocus"
       placeholder="Enter experimental context value">
 
     <ul class="ci-aValUl row" show.bind="showAnnotations">
