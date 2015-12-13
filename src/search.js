@@ -27,10 +27,10 @@ export class Search {
 
   activate() {
     // Get initial search results
-    this.search();
+    return this.search();
   }
 
-  async search() {
+  search() {
 //    logger.debug(JSON.stringify(this.selectedFacets, null, 2));
 //    logger.debug('Search terms: ', this.searchTerms);
     let filters = []; // filters to send to api.search
@@ -46,30 +46,31 @@ export class Search {
       filters.push(`{"category":"fts","name":"search","value":"${this.searchTerms}"}`);
     }
     logger.debug('Filters: ', filters);
-    try {
-      this.results = await this.api.search(this.searchStart, this.searchSize, this.searchFaceted, filters);
-      this.evidences =  this.results.evidences;
-      this.facetSets = this.results.facets;
-      if (this.results.metadata) {
-        this.search_metadata = this.results.metadata.collection_paging;
+
+    this.api.search(this.searchStart, this.searchSize, this.searchFaceted, filters)
+    .then(data => {
+      this.evidences =  data.evidences;
+      this.facetSets = data.facets;
+      if (data.metadata) {
+        this.search_metadata = data.metadata.collection_paging;
       }
-//      current_page: 1
-//      current_page_size: 20
-//      total: 52399
-//      total_filtered: 52399
-//      total_pages: 2620
+
+      // Pagination setup
+      this.pagerPrevious = this.pagerNext = '';
+      if (this.search_metadata.current_page === 1) {this.pagerPrevious = 'disabled';}
+      if (this.search_metadata.current_page === this.search_metadata.total_pages) {this.pagerNext = 'disabled';}
+      this.searchStart = (Number(this.search_metadata.current_page) - 1) * Number(this.search_metadata.current_page_size) + 1;
+      this.searchResultsRange = `${this.searchStart} - ${Number(this.searchStart) + Number(this.search_metadata.current_page_size) - 1}`;
 
       logger.debug("Search results: ", this.evidences);
       logger.debug("Search facets: ", this.facetSets);
-    }
-    catch (err) {
-      logger.error('Search result error: ', err);
-    }
-    this.pagerPrevious = this.pagerNext = '';
-    if (this.search_metadata.current_page === 1) {this.pagerPrevious = 'disabled';}
-    if (this.search_metadata.current_page === this.search_metadata.total_pages) {this.pagerNext = 'disabled';}
-    this.searchStart = (Number(this.search_metadata.current_page) - 1) * Number(this.search_metadata.current_page_size) + 1;
-    this.searchResultsRange = `${this.searchStart} - ${Number(this.searchStart) + Number(this.search_metadata.current_page_size) - 1}`;
+
+      return data;
+    })
+    .catch(function(reason) {
+      logger.error('Search error ', reason);
+    });
+
   }
 
   /**

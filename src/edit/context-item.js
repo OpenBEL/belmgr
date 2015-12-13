@@ -51,10 +51,12 @@ export class ContextItem {
   }
 
   filterTypes(){
-    this.filteredTypes = this.types.filter(item => {
-      return item.annotation.name.toLowerCase().indexOf(this.type.toLowerCase()) > -1;
-    });
-    logger.debug('FT: ', this.filteredTypes);
+    if (this.types) {
+      this.filteredTypes = this.types.filter(item => {
+        return item.annotation.name.toLowerCase().indexOf(this.type.toLowerCase()) > -1;
+      });
+      logger.debug('FT: ', this.filteredTypes);
+    }
   }
 
   selectType(type){

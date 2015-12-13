@@ -9,39 +9,36 @@ export class PubmedService {
 
   constructor(api) {
     this.api = api;
-    this.pubmed = {};
   }
 
-  async getPubmed(id) {
+  getPubmed(id) {
 
-    try {
-      this.pubmed = await this.api.getPubmed(id);
-
-      // filter and enhance PubMed object
-      if (this.pubmed) {this.enhancePubmed();}
-
-      // logger.debug(`PubMed ID: ${id}  Pubmed: ${this.pubmed}`);
-      return this.pubmed;
-    }
-    catch (err) {
-      logger.error('GET Pubmed error: ', err);
-    }
+    return this.api.getPubmed(id)
+      .then(pubmed => {
+        pubmed = this.enhancePubmed(pubmed);
+        return pubmed;
+      })
+      .catch(function(reason) {
+        logger.error('Collect pubmed error: ', reason)
+      });
   }
 
-  enhancePubmed() {
-    this.pubmed.bel = {'mismatch': {'date': false, 'refString': false, 'authors': false, 'comment': false}};
+  enhancePubmed(pubmed) {
+    pubmed.bel = {'mismatch': {'date': false, 'refString': false, 'authors': false, 'comment': false}};
     // Add reference string - e.g. J Lipid Res 2002 Jan 43(1) 2-12
-    this.pubmed.bel.refString = this.pubmed.journalInfo.journal.isoabbreviation;
-    this.pubmed.bel.refString += `, ${this.pubmed.journalInfo.dateOfPublication},`;
-    this.pubmed.bel.refString += ` ${this.pubmed.journalInfo.volume}`;
-    if (this.pubmed.journalInfo.issue) {
-      this.pubmed.bel.refString += `(${this.pubmed.journalInfo.issue})`;
+    pubmed.bel.refString = pubmed.journalInfo.journal.isoabbreviation;
+    pubmed.bel.refString += `, ${pubmed.journalInfo.dateOfPublication},`;
+    pubmed.bel.refString += ` ${pubmed.journalInfo.volume}`;
+    if (pubmed.journalInfo.issue) {
+      pubmed.bel.refString += `(${pubmed.journalInfo.issue})`;
     }
-    this.pubmed.bel.refString += ` p:${this.pubmed.pageInfo}`;
+    pubmed.bel.refString += ` p:${pubmed.pageInfo}`;
 
     // Adjust authors string to the BEL Evidence format - convert ',' to '|'
-    // this.pubmed.bel.authors = this.pubmed.authorString.replace(/,/g , '|').replace(/\.$/, '');  old version - authors in BEL Evidence is now an array
-    this.pubmed.bel.authors = this.pubmed.authorList.author.map(obj => {return obj.fullName;});
+    // pubmed.bel.authors = pubmed.authorString.replace(/,/g , '|').replace(/\.$/, '');  old version - authors in BEL Evidence is now an array
+    pubmed.bel.authors = pubmed.authorList.author.map(obj => {return obj.fullName;});
+
+    return pubmed;
 
   }
 

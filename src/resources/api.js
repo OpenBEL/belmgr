@@ -178,7 +178,7 @@ export class Api {
         new_data.evidences = data.evidence_collection;
         new_data.facets = this.processFacets(data.facets);
         new_data.metadata = data.metadata;
-        logger.debug('New Data: ', new_data);
+        logger.debug('Search results: ', new_data);
         return new_data;
       })
       .catch(function(reason) {
@@ -262,6 +262,7 @@ export class Api {
    * @param evidence
    */
   loadBelEvidence(evidence, id) {
+    // Update Evidence given an Id
     if (id) {
       return this.apiClient.fetch(`/evidence/${id}`, {
           method: 'put',
@@ -272,11 +273,11 @@ export class Api {
           },
           body: JSON.stringify(evidence)
         })
-        .then(response => response.json())
-        .catch(function(reason) {
-          logger.error(`PUT BEL Evidence Error: ${reason}`)
+        .catch(response => {
+          logger.error('PUT Evidence error ', response);
         });
     } else {
+      // Create new Evidence
       return this.apiClient.fetch(`/evidence`, {
           method: 'post',
           headers: {
@@ -286,9 +287,8 @@ export class Api {
           },
           body: JSON.stringify(evidence)
         })
-        .then(response => response.headers.get('Location'))
-        .catch(function(reason) {
-          logger.error(`POST BEL Evidence Error: ${reason}`)
+        .catch(response => {
+          logger.error('POST Evidence error ', response);
         });
     }
   }
@@ -303,7 +303,7 @@ export class Api {
       }
     })
     .catch(function(reason) {
-      logger.error(`DELETE BEL Evidence Error: ${reason}`)
+      logger.error(`DELETE BEL Evidence Error: `, reason);
     });
   }
 
@@ -314,16 +314,16 @@ export class Api {
    * @returns {*}
    */
   getPubmed(id) {
+
     let getstring = `/resulttype=core&format=json&query=ext_id:${id} src:med`;
 
     return this.pubmedClient.fetch(getstring)
       .then(response => response.json())
       .then(data => {
-        // logger.debug('Pubmed: ', data);
         return data.resultList.result[0];
       })
-      .catch(function(reason) {
-        logger.error(`GET Pubmed Error: ${reason}`)
+      .catch(response => {
+        logger.error(`GET Pubmed Error: `, response);
       });
   }
 
@@ -358,7 +358,28 @@ export class Api {
   }
 
   // Get BEL term completions for the edit form typeahead
-  getBELCompletions(query, cursor) {
+  getBelCompletions(query, cursor) {
+
+    let response = new Promise(function(resolve, reject) {
+      let payload = [
+        {term: 'abundance', cursor: 2},
+        {term: 'activity', cursor: 4}
+      ];
+
+      if (true) {
+        resolve(payload);
+      }
+      else {
+        reject(Error("It broke"));
+      }
+
+    });
+
+    return response;
+  }
+
+
+  getBelCompletions2(query, cursor) {
 
   }
 

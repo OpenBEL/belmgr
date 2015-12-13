@@ -52,7 +52,11 @@
           <citation evidence.bind="evidence"></citation>
 
           <!-- BEL Statement -->
-          <statement evidence.bind="evidence"></statement>
+          <statement evidence.bind="evidence"
+            bel-subject.bind="belSubject" bel-relationship.bind="belRelationship"
+            bel-object.bind="belObject">
+
+          </statement>
 
           <!-- BEL SummaryText -->
           <div id="bel-summary-text" class="row edit-belForm">
@@ -98,11 +102,11 @@
           <div class="row edit-editBtns">
 
             <div class="col-xs-6 col-md-4" show.bind="evidenceId">
-              <button type="button" click.delegate="submit()" class="col-xs-10 btn-edit btn-saveUpdates btn form-control")>Update Current BEL</button>
+              <button type="button" click.trigger="submitUpdate()" class="col-xs-10 btn-edit btn-saveUpdates btn form-control")>Update Current BEL</button>
             </div>
 
             <div class="${evidenceId ? 'col-xs-6 col-md-4 col-md-offset-4' : 'col-xs-6 col-xs-offset-6 col-sm-4 col-sm-offset-8'}">
-              <button type="button" click.delegate="submitNew()" class="col-xs-10 btn btn-edit btn-saveNew form-control">${evidenceId ? 'Save as New' : 'Save'}</button>
+              <button type="button" click.trigger="submitNew()" class="col-xs-10 btn btn-edit btn-saveNew form-control">${evidenceId ? 'Save as New' : 'Save'}</button>
             </div>
           </div>
         </div>

@@ -1,4 +1,5 @@
 import {inject, customElement, bindable, bindingMode, LogManager} from 'aurelia-framework';
+import {relationsList} from '../resources/relationsList';
 
 let logger = LogManager.getLogger('statement');
 
@@ -9,11 +10,22 @@ let logger = LogManager.getLogger('statement');
   defaultBindingMode: bindingMode.twoWay, //default binding mode used with the .bind command
   defaultValue: undefined //default value of the property, if not bound or set in HTML
 })
+@bindable({name:"belSubject", attribute:"bel-subject", defaultBindingMode: bindingMode.twoWay})
+@bindable({name:"belRelationship", attribute:"bel-relationship", defaultBindingMode: bindingMode.twoWay})
+@bindable({name:"belObject", attribute:"bel-object", defaultBindingMode: bindingMode.twoWay})
 @customElement('statement')
+@inject(relationsList)
 export class Statement {
 
-  constructor() {
+  // TODO pull relationsList from OpenBEL API
+  constructor(relationsList) {
+    this.relationsList = relationsList;
+    // logger.debug('RL: ', relationsList);
+  }
 
+  // Pulling parent's context into scope
+  bind(context) {
+    this.$parent = context;
   }
 
   attached() {

@@ -1,20 +1,19 @@
 import {inject, LogManager} from 'aurelia-framework';
 import {activationStrategy, Router} from 'aurelia-router';
+import * as toastr from "toastr";
 
 import {Api} from '../resources/api';
-import {relationsList} from '../resources/relationsList';
-import {PubmedService} from '../resources/PubmedService';
+
 
 import {Prompt} from '../components/dialogs/prompt';
 import {DialogService} from 'aurelia-dialog';
 
 let logger = LogManager.getLogger('edit');
 
-@inject(Api, PubmedService, DialogService, Router)
+@inject(Api, DialogService, Router)
 export class Edit {
 
     evidenceId = null;
-    citationId = null;
     evidence = {};
     metadata = {
       'evidence_notes': '', 'evidence_status': '', 'author': '',
@@ -22,8 +21,6 @@ export class Edit {
       'evidence_source': ''};
     submitEvidence = {};  // add back the top-level 'evidence' key, value prior to submission
     annotations = [];
-    relationsList = relationsList;
-    pubmed = null;
 
   // Needed to allow New BEL menu item to refresh the form
   determineActivationStrategy() {
@@ -32,14 +29,11 @@ export class Edit {
 
   constructor(Api, PubmedService, DialogService, Router) {
     this.api = Api;
-    this.pubmedService = PubmedService;
     this.dialogService = DialogService;
     this.router = Router;
   }
 
   activate(params) {
-
-    logger.debug('Relation List: ', relationsList);
 
     if (params.id) {
       logger.debug('ID: ', params.id);
@@ -50,21 +44,26 @@ export class Edit {
       return this.api.getBelEvidence(this.evidenceId)
         .then(evidence => {
           this.evidence = evidence;
-
-          this.api.getBelComponents(this.evidence.bel_statement)
-            .then(comp => {
-              this.bel_subject = comp.subject;
-              this.bel_object = comp.object;
-              this.bel_relationship = comp.relationship;
-              // logger.debug('Subj: ', this.bel_subject);
-            })
-            .catch(function(reason) {
-              logger.error(`GET BEL Components Error: ${reason}`);
-            });
-
-          this.extractFormMetadata();
-
-          this.api.getBelAnnotationTypes()
+          this.extractFormMetadata(); // depends on this.metadata and this.evidence
+          return this.api.getBelComponents(this.evidence.bel_statement);
+        })
+        .then(comp => {
+          this.bel_subject = comp.subject;
+          this.bel_object = comp.object;
+          this.bel_relationship = comp.relationship;
+          logger.debug('Subj: ', this.bel_subject);
+          return this.api.getBelAnnotationTypes();
+        })
+        .then(types => {
+          this.types = types;
+          logger.debug('AnnotationTypes: ', this.types);
+        })
+        .catch(reason => {
+          logger.error('Process BEL Evidence Error: ', reason);
+        });
+    }
+    else {
+      return this.api.getBelAnnotationTypes()
             .then(types => {
               this.types = types;
               logger.debug('AnnotationTypes: ', this.types);
@@ -72,17 +71,6 @@ export class Edit {
             .catch(function(reason) {
               logger.error(`GET Annotation Types: ${reason}`);
             });
-
-          this.citationId = this.evidence.citation.id;
-
-          this.getPubmed();
-
-          logger.debug('Evidence: ', this.evidence);
-          logger.debug('PubmedAwait: ', this.pubmed);
-        })
-        .catch(function(reason) {
-          logger.error(`GET BEL Evidence Error: ${reason}`);
-        });
     }
   }
 
@@ -98,10 +86,7 @@ export class Edit {
 
   prepareEvidence() {
     // Prepare BEL Statement
-    this.evidence.bel_statement = `${this.evidence.bel_subject} ${this.evidence.bel_relationship} ${this.evidence.bel_object}`;
-    delete this.evidence.bel_subject;
-    delete this.evidence.bel_relationship;
-    delete this.evidence.bel_object;
+    this.evidence.bel_statement = `${this.bel_subject} ${this.bel_relationship} ${this.bel_object}`;
 
     // Remove blank entries in evidence.experiment_context
     logger.debug('Cleaning evidence -- context items');
@@ -117,16 +102,18 @@ export class Edit {
   //   Note - this is only for adding strings
   //   TODO - support adding objects as values
   addFormMetadata() {
-    for (let key in this.metadata) {
-      let idx = this.evidence.metadata.findIndex(obj => obj.name === key);
-      if (idx >= 0) {
-        this.evidence.metadata[idx].value += this.metadata.key;
-      } else {
-        this.evidence.metadata.push(
-          {
-            'name' : key,
-            'value': this.metadata[key]
-          });
+    if (this.evidence.metadata) {
+      for (let key in this.metadata) {
+        let idx = this.evidence.metadata.findIndex(obj => obj.name === key);
+        if (idx >= 0) {
+          this.evidence.metadata[idx].value += this.metadata.key;
+        } else {
+          this.evidence.metadata.push(
+            {
+              'name' : key,
+              'value': this.metadata[key]
+            });
+        }
       }
     }
   }
@@ -145,127 +132,62 @@ export class Edit {
    * @returns {boolean}
    */
 
-  // TODO test this
-  submit() {
-    let prompt = 'This will update the Evidence!';
-    this.dialogService.open({ viewModel: Prompt, model: prompt}).then(response => {
-      if (!response.wasCancelled) {
-        logger.debug('approvedPrompt');
-        this.submitUpdate;
-      } else {
-        logger.debug('cancelledPrompt');
-      }
-      logger.debug(response.output);
-    });
-    return true;
-  }
+  // // TODO test this
+  // submit() {
+  //   let prompt = 'This will update the Evidence!';
+  //   this.dialogService.open({ viewModel: Prompt, model: prompt}).then(response => {
+  //     if (!response.wasCancelled) {
+  //       logger.debug('approvedPrompt');
+  //       this.submitUpdate;
+  //     } else {
+  //       logger.debug('cancelledPrompt');
+  //     }
+  //     logger.debug(response.output);
+  //   });
+  //   return true;
+  // }
 
   // TODO  Add notification of successful update or new evidence
   submitUpdate() {
     this.prepareEvidence();
-    logger.debug('Submit evidence', JSON.stringify(this.submitEvidence, null, 2));
-    this.api.loadBelEvidence(this.submitEvidence, this.evidenceId);
+    logger.debug('Update evidence', JSON.stringify(this.submitEvidence, null, 2));
+    this.api.loadBelEvidence(this.submitEvidence, this.evidenceId)
+    .then(response => {
+      toastr.success('', 'Updated Evidence');
+    })
+    .catch(function(reason) {
+      toastr.options = {"timeOut": "15000"};
+      toastr.error('', 'Cannot update Evidence');
+      toastr.options = {"timeOut": "5000"};
+      logger.error('Problem updating Evidence ', reason);
+    });
+
     return true;
   }
 
   submitNew() {
     this.prepareEvidence();
-    logger.debug('Submit evidence', JSON.stringify(this.submitEvidence, null, 2));
+    logger.debug('Submit new evidence', JSON.stringify(this.submitEvidence, null, 2));
 
     this.api.loadBelEvidence(this.submitEvidence)
+    .then(response => {
+      return response.headers.get('Location');
+    })
     .then(location => {
       logger.debug('Loc: ', location);
       let evidenceId = this.api.getEvidenceId(location);
       logger.debug('Router: ', this.router);
+      toastr.success('', 'Created New Evidence');
       this.router.navigateToRoute('edit', { id: evidenceId });
     })
     .catch(function(reason) {
-      logger.error(`Cannot reset: ${reason}`)
+      toastr.options = {"timeOut": "15000"};
+      toastr.error('', 'Cannot create new Evidence');
+      toastr.options = {"timeOut": "5000"};
+      logger.error('Problem creating Evidence ', reason);
     });
 
     return true;
-  }
-
-  /**
-   * Check for citation information mismatch or missing information for Pubmed entries
-   *
-   * Add Pubmed data to evidence.citation if evidence.citation information is missing
-   */
-  citationPubmedChecks() {
-    if (this.evidence.citation.type === 'PubMed') {
-      // Check date
-      if (!this.evidence.citation.date) {
-        this.evidence.citation.date = this.pubmed.journalInfo.printPublicationDate;
-      }
-      else if (this.evidence.citation.date !== this.pubmed.journalInfo.printPublicationDate) {
-        this.pubmed.bel.mismatch.date = true;
-      }
-      // Check authors
-      if (!this.evidence.citation.authors) {
-        this.evidence.citation.authors = this.pubmed.bel.authors;
-      }
-      else if (this.evidence.citation.authors !== this.pubmed.bel.authors) {
-        this.pubmed.bel.mismatch.authors = true;
-      }
-      // Check refString
-      if (!this.evidence.citation.name) {
-        this.evidence.citation.name = this.pubmed.bel.refString;
-      }
-      else if (this.evidence.citation.name !== this.pubmed.bel.refString) {
-        this.pubmed.bel.mismatch.refString = true;
-      }
-    }
-  }
-
-  async getPubmed() {
-    // Get Pubmed
-    if (this.citationId && this.evidence.citation.type === 'PubMed') {
-      try {
-        this.pubmed = await this.pubmedService.getPubmed(this.citationId);
-        if (this.pubmed) {this.citationPubmedChecks();}
-        else {
-          this.evidence.citation = {};
-        }
-
-        this.refreshEvidenceObjBinding();
-      }
-      catch (err) {
-        logger.error('GET Pubmed error: ', err);
-      }
-    }
-  }
-
-
-  // Todo: convert replace* methods with getter/setters after making sure they will update the View correctly
-
-  /**
-   * Replace evidence citation date with newval
-   * @param newval
-   */
-  replaceCitationDate(newval) {
-    this.evidence.citation.date = newval;
-    this.pubmed.bel.mismatch.date = false;
-    this.refreshEvidenceObjBinding();
-  }
-
-  /**
-   * Replace evidence citation date with newval
-   * @param newval
-   */
-  replaceCitationName(newval) {
-    this.evidence.citation.name = newval;
-    this.pubmed.bel.mismatch.refString = false;
-    this.refreshEvidenceObjBinding();
-  }
-
-  /**
-   * Replace evidence citation date with newval
-   * @param newval
-   */
-  replaceCitationAuthors(newval) {
-    this.evidence.citation.authors = newval;
-    this.pubmed.bel.mismatch.authors = false;
-    this.refreshEvidenceObjBinding();
   }
 
 }
