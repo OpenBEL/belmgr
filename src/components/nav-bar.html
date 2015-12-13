@@ -16,14 +16,7 @@
     <div class="collapse navbar-collapse" id="openBelNavbar">
       <div class="row navbar-userRow">
         <div class="navbar-userDiv">
-          <!--<a href="#" onClick="return confirm('Not implemented yet.')">log in</a>-->
-          <!--<a href="#" onClick="return confirm('Not implemented yet.')">register</a>-->
-          <template if.bind="!loggedIn">
-            <a click.delegate="navbarLogin()">Login</a>
-          </template>
-          <template if.bind="loggedIn">
-            <a click.delegate="navbarLogout()">Logout</a>
-          </template>
+	  <a click.delegate="navbarAction()">${action}</a>
         </div>
 
       <ul class="nav navbar-nav navbar-right">

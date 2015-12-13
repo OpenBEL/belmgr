@@ -1,6 +1,8 @@
-import {bindable} from 'aurelia-framework';
+import {bindable, LogManager} from 'aurelia-framework';
 import {inject} from 'aurelia-framework';
 import {Api} from '../resources/api';
+
+let logger = LogManager.getLogger('nav-bar');
 
 @inject(Api)
 export class NavBar {
@@ -9,26 +11,30 @@ export class NavBar {
 
   constructor(api) {
     this.api = api;
-    let cookies = '; ' + document.cookie;
-    let tokens = cookies.split('; token=');
-    if (tokens.length == 2) {
-      this.loggedIn = true;
+    let token = this.api.getToken();
+    if (token === null) {
+      this.action = 'Login';
+    } else {
+      this.action = 'Logout';
     }
-    tokens = window.location.search.split('?jwt=');
+    let tokens = window.location.search.split('?jwt=');
     if (tokens.length > 1) {
       let jwt = tokens[1];
-      document.cookie = "token=" + jwt;
+      logger.debug('Setting token: ', jwt);
+      this.api.setToken(jwt);
+      logger.debug('Getting token: ', this.api.getToken());
       window.location.href = window.location.origin;
     }
   }
 
-  navbarLogout() {
-    document.cookie = 'token=;expires=Thu, 01 Jan 1970 00:00:01 GMT;';
-    this.loggedIn = false;
-    window.location.href = window.location.origin;
-  }
-
-  navbarLogin() {
-    this.api.authenticate();
+  navbarAction() {
+    if (this.action === 'Logout') {
+      this.api.removeToken();
+      this.action = 'Login';
+      window.location.href = window.location.origin;
+    } else {
+      this.api.authenticate();
+      this.action = 'Logout';
+    }
   }
 }
