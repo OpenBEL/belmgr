@@ -48,13 +48,11 @@ export class Citation {
     logger.debug('CitationChanged: ', this.evidence);
   }
 
-  citationIdChanged(value) {
-    this.collectPubmed();
-  }
-
   collectPubmed() {
-    logger.debug('Id: ', this.citationId);
-    logger.debug('Id: ', this.evidence.citation.type);
+    this.evidence.citation.id = this.citationId;
+
+    logger.debug('Id: ', this.evidence.citation.id, ' Type: ', this.evidence.citation.type);
+
     // Collect Pubmed data from service
     if (this.citationId && this.evidence.citation.type === 'PubMed') {
       this.pubmedService.getPubmed(this.citationId)

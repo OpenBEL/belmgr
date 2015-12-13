@@ -27,7 +27,7 @@ export class Edit {
     return activationStrategy.replace;
   }
 
-  constructor(Api, PubmedService, DialogService, Router) {
+  constructor(Api, DialogService, Router) {
     this.api = Api;
     this.dialogService = DialogService;
     this.router = Router;
@@ -175,7 +175,7 @@ export class Edit {
     })
     .then(location => {
       logger.debug('Loc: ', location);
-      let evidenceId = this.api.getEvidenceId(location);
+      let evidenceId = this.api.getIdFromUrl(location);
       logger.debug('Router: ', this.router);
       toastr.success('', 'Created New Evidence');
       this.router.navigateToRoute('edit', { id: evidenceId });

@@ -36,7 +36,7 @@ export class Context {
    * Add blank experiment content to end of experiment context
    */
   addBlank() {
-    if (this.evidence.experiment_context) {
+    if (this.evidence.experiment_context && this.evidence.experiment_context.length > 1) {
       let last_item_idx = this.evidence.experiment_context.length - 1;
       if (this.evidence.experiment_context[last_item_idx].value) {
         this.evidence.experiment_context.push({'name': '', 'value': ''});
