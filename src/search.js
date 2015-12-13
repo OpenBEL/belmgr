@@ -27,7 +27,7 @@ export class Search {
 
   activate() {
     // Get initial search results
-    return this.search();
+    this.search();  // returns a promise to get all of the data needed
   }
 
   search() {
@@ -47,29 +47,29 @@ export class Search {
     }
     logger.debug('Filters: ', filters);
 
-    this.api.search(this.searchStart, this.searchSize, this.searchFaceted, filters)
-    .then(data => {
-      this.evidences =  data.evidences;
-      this.facetSets = data.facets;
-      if (data.metadata) {
-        this.search_metadata = data.metadata.collection_paging;
-      }
+    return this.api.search(this.searchStart, this.searchSize, this.searchFaceted, filters)
+      .then(data => {
+        this.evidences =  data.evidences;
+        this.facetSets = data.facets;
+        if (data.metadata) {
+          this.search_metadata = data.metadata.collection_paging;
+        }
 
-      // Pagination setup
-      this.pagerPrevious = this.pagerNext = '';
-      if (this.search_metadata.current_page === 1) {this.pagerPrevious = 'disabled';}
-      if (this.search_metadata.current_page === this.search_metadata.total_pages) {this.pagerNext = 'disabled';}
-      this.searchStart = (Number(this.search_metadata.current_page) - 1) * Number(this.search_metadata.current_page_size) + 1;
-      this.searchResultsRange = `${this.searchStart} - ${Number(this.searchStart) + Number(this.search_metadata.current_page_size) - 1}`;
+        // Pagination setup
+        this.pagerPrevious = this.pagerNext = '';
+        if (this.search_metadata.current_page === 1) {this.pagerPrevious = 'disabled';}
+        if (this.search_metadata.current_page === this.search_metadata.total_pages) {this.pagerNext = 'disabled';}
+        this.searchStart = (Number(this.search_metadata.current_page) - 1) * Number(this.search_metadata.current_page_size) + 1;
+        this.searchResultsRange = `${this.searchStart} - ${Number(this.searchStart) + Number(this.search_metadata.current_page_size) - 1}`;
 
-      logger.debug("Search results: ", this.evidences);
-      logger.debug("Search facets: ", this.facetSets);
+        logger.debug("Search results: ", this.evidences);
+        logger.debug("Search facets: ", this.facetSets);
 
-      return data;
-    })
-    .catch(function(reason) {
-      logger.error('Search error ', reason);
-    });
+        return data;
+      })
+      .catch(function(reason) {
+        logger.error('Search error ', reason);
+      });
 
   }
 
