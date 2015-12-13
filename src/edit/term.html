@@ -1,14 +1,13 @@
 <template>
 
-  <input type="text" class="form-control fc-normal" name="context-type"
-    value.bind="term" change.trigger="filterTerms()" focus.bind="hasTermFocus"/>
+  <input ref='belinput' type="text" class="form-control fc-normal" name="context-type"
+    value.bind="bel" keyup.trigger="filterTerms($event) & debounce:500" focus.bind="hasTermFocus"/>
 
-  <ul show.bind="showTerm">
-    <li repeat.for="type of filteredTerms" click.delegate="selectTerm(term)">
+  <ul show.bind="showTerms">
+    <li repeat.for="item of filteredTerms" click.delegate="selectTerm(item)">
       <a href="#">
-        ${term}
+        ${item.term}
       </a>
     </li>
   </ul>
-
 </template>
