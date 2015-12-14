@@ -331,28 +331,6 @@ export class Api {
 
   // Get BEL term completions for the edit form typeahead
   getBelCompletions(query, cursor) {
-
-    let response = new Promise(function(resolve, reject) {
-      let payload = [
-        {term: 'abundance', cursor: 2},
-        {term: 'activity', cursor: 4}
-      ];
-
-      if (true) {
-        resolve(payload);
-      }
-      else {
-        reject(Error("It broke"));
-      }
-
-    });
-
-    return response;
-  }
-
-  // TODO test this!
-
-  getBelCompletions2(query, cursor) {
     return this.apiClient.fetch(`/expressions/${query}/completions?caret_position=${cursor}`)
       .then(response => {
         return response.json();
@@ -402,7 +380,7 @@ export class Api {
           }
 
 
-          logger.debug('F: ', front, ' B: ', back, ' BEL: ', bel, ' T: ', d.completion.type);
+          logger.debug('F: ', front, ' B: ', back, ' BEL: ', bel, ' T: ', d.completion.type, ' Label: ', d.completion.label, ' Val: ', d.completion.value);
         }
 
         let classType = '';
@@ -410,11 +388,13 @@ export class Api {
         else if (d.completion.type === 'namespace_identifier') {classType = 'nsid';}
         else if (d.completion.type === 'function') {classType = 'function';}
 
-        if (d.completion.label === d.completion.value) {
+        if (d.completion.label !== d.completion.value) {
           results.push({term: bel, type: classType, label: d.completion.label, value: d.completion.value});
+          logger.debug('Here not equal');
         }
         else {
           results.push({term: bel, type: classType, value: d.completion.value});
+          logger.debug('Here equal');
         }
 
       }
