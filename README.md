@@ -1,10 +1,10 @@
 # BEL Manager
 
-Website for managing BEL Evidences - based on Aurelia.  Requires the OpenBEL Platform for the backend API/storage.
+Website for managing BEL Evidences - based on Aurelia.  Requires the [OpenBEL API][OpenBEL API] for the backend API/storage.
 
-[OpenBEL Platform API Docs](http://next.belframework.org/)
+[OpenBEL API Docs][OpenBEL API Docs]
 
-[Demo OpenBEL Platform API](http://next.belframework.org/api)
+[Demo OpenBEL API][Demo OpenBEL API]
 
 ## Technical requirements
 
@@ -85,3 +85,7 @@ With NodeJS dependencies in your ``PATH``, build the BEL Manager with
         }   
     }   
 ```
+
+[OpenBEL API]:      https://github.com/OpenBEL/openbel-api
+[OpenBEL API Docs]: http://next.belframework.org/
+[Demo OpenBEL API]: http://next.belframework.org/api
