@@ -779,7 +779,8 @@ form>.form-group>.input-group>input.search-searchForm {
     color: #e4e5e7;
 }
 
-.form-control.btn-dlFiles:hover i {
+.form-control.btn-dlFiles:hover i,
+.form-control.btn-dlFiles:hover .ds-btnText {
     color: #e4e5e7;
 }
 
@@ -992,11 +993,43 @@ div.au-stagger {
         margin-top: 10px;
     }
 }
+/*label.ds-importFancy {
+    width: 80px;
+    height: 24px;
+    margin-top: 10px;
+    border-radius: 4px;
+    background-color: #FDC975;
+    display: block;
+    overflow: hidden;
+    cursor: pointer;
+    box-shadow: inset 0px 0px 10px rgba(50, 50, 50, .05);
+}
+label.ds-importFancy:hover,
+label.ds-importFancy:focus, 
+label.ds-importFancy:active {
+    box-shadow: inset 0px 0px 15px rgba(50, 50, 50, .1);
+}
+.ds-chosen {
+    display: none
+}
+label.ds-importFancy .ds-choose, 
+label.ds-importFancy .ds-chosen {
+    color: #474350;
+    padding: 0px 5px 5px 5px;
+    margin-top: 7px;
+    position: absolute;
+}
 
+label.ds-importFancy .ds-inputCall {
+    position: relative;
+    height: 100%;
+    width: auto;
+    opacity: 0;
+    -moz-opacity: 0;
+    filter:progid:DXImageTransform.Microsoft.Alpha(opacity=0);
+}*/
 .ds-inputCall {
-    white-space: normal;
-    /*margin: 10px 0px 20px 0px;*/
-    /*padding: 0px;*/
+    margin-top: 17px;
 }
 @media (max-width: 767px) {
     .ds-uploadDiv {

@@ -15,7 +15,14 @@
                   <h2 show.bind="loading"><i show.bind="loading" class="fa fa-refresh fa-spin"></i> Loading</h2>
                 </div>
                 <div class="ds-fileUploadDiv col-xs-12 col-sm-7">
-                    <input class="ds-inputCall col-xs-8 col-xs-offset-0 col-sm-12 col-md-8" type="file" files.bind="belFiles">
+                    <div class="col-xs-8 col-xs-offset-0 col-sm-12 col-md-8">
+                        <!-- <input id="uploadFile" placeholder="Choose File" disabled="disabled" />
+                        <div class="btn ds-importFancy">
+                            <h6 class="ds-choose">Select File:</h6>
+                            <h6 class="ds-chosen">File Chosen:</h6> -->
+                            <input class="ds-inputCall" type="file" files.bind="belFiles">
+                        <!-- </div> -->
+                    </div>
                     <div class="ds-uploadDiv col-xs-4 col-xs-offset-0 col-sm-12 col-md-4">
                         <button type="button" class="btn form-control btn-upload" name="submit" mousedown.trigger="upload()">Upload</button>
                     </div>
@@ -37,12 +44,12 @@
                             </div>
                             <div class="col-xs-3 col-sm-2">
 
-                                  <a href="${dataset._links.evidence_collection.href}?format=bel_script" class="btn form-control btn-dlFiles" role="button" title="Download BEL Script formatted file"><i class="ds-downloadIcon fa fa-download"></i> BEL</a>
+                                  <a href="${dataset._links.evidence_collection.href}?format=bel_script" class="btn form-control btn-dlFiles" role="button" title="Download BEL Script formatted file"><i class="ds-downloadIcon fa fa-download"></i><span class="ds-btnText"> BEL</span></a>
 
-                                  <a href="${dataset._links.evidence_collection.href}?format=json_evidence" class="btn form-control btn-dlFiles" role="button" title="Download JSON BEL formatted file"><i class="ds-downloadIcon fa fa-download"></i> JSON</a>
+                                  <a href="${dataset._links.evidence_collection.href}?format=json_evidence" class="btn form-control btn-dlFiles" role="button" title="Download JSON BEL formatted file"><i class="ds-downloadIcon fa fa-download"></i><span class="ds-btnText"> JSON</span></a>
 
                                   <a href="${dataset._links.evidence_collection.href}?format=xbel" class="btn form-control btn-dlFiles" role="button" title="Download XBEL formatted file">
-                                    <i class="ds-downloadIcon fa fa-download"></i> XBEL</a>
+                                    <i class="ds-downloadIcon fa fa-download"></i><span class="ds-btnText"> XBEL</span></a>
 
 
                             </div>
