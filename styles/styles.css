@@ -1507,10 +1507,10 @@ p.text-warning {
 .et-termlisting.et-function {
     color: #307787;
 }
-.et-termlisting.et-namespace_value {
+.et-termlisting.et-nsval {
     color: #474350;
 }
-.et-termlisting.et-namespace_identifier {
+.et-termlisting.et-nsid {
     color: #00A5BF;
 }
 
