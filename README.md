@@ -1,154 +1,87 @@
-# BELMgr
+# BEL Manager
+
 Website for managing BEL Evidences - based on Aurelia.  Requires the OpenBEL Platform for the backend API/storage.
 
 [OpenBEL Platform API Docs](http://next.belframework.org/)
 
 [Demo OpenBEL Platform API](http://next.belframework.org/api)
 
-## Configuration
+## Technical requirements
 
-1. Edit the src/AppConfig.js file to set the baseUrl
-  1. Optional: set the loglevel
-1. Edit the src/AuthConfig.js file to set the authentication information.  Please see [Aurelia-Auth](https://github.com/paulvanbladel/aurelia-auth) for details on what to configure.
+The BEL Manager is built using NodeJS and hosted by a web server.
 
+*System Requirements*
 
-## Running The App
+- NodeJS
 
-To run the app, follow these steps.
+## Getting up and Running
 
-1. Ensure that [NodeJS](http://nodejs.org/) is installed. This provides the platform on which the build tooling runs.
-2. From the project folder, execute the following command:
+### Installing Requirements
 
-  ```shell
-  npm install
-  ```
-3. Ensure that [Gulp](http://gulpjs.com/) is installed globally. If you need to install it, use the following command:
+- Install NodeJS from https://nodejs.org/en/.
+- Install NodeJS dependencies.
+- Install gulp and jspm.
 
-  ```shell
-  npm install -g gulp
-  ```
-  > **Note:** Gulp must be installed globally, but a local version will also be installed to ensure a compatible version is used for the project.
-4. Ensure that [jspm](http://jspm.io/) is installed globally. If you need to install it, use the following command:
+#### Example Installation
 
-  ```shell
-  npm install -g jspm
-  ```
-  > **Note:** jspm must be installed globally, but a local version will also be installed to ensure a compatible version is used for the project.
+With ``node`` and ``npm`` installed and in your ``PATH``, install NodeJS
+dependencies.
 
-  > **Note:** jspm queries GitHub to install semver packages, but GitHub has a rate limit on anonymous API requests. It is advised that you configure jspm with your GitHub credentials in order to avoid problems. You can do this by executing `jspm registry config github` and following the prompts. If you choose to authorize jspm by an access token instead of giving your password (see GitHub `Settings > Personal Access Tokens`), `public_repo` access for the token is required.
-5. Install the client-side dependencies with jspm:
+```bash
+# Change directory to the base of the BEL Manager
+cd belmgr
 
-  ```shell
-  jspm install -y
-  ```
-  >**Note:** Windows users, if you experience an error of "unknown command unzip" you can solve this problem by doing `npm install -g unzip` and then re-running `jspm install`.
-6. To run the app, execute the following command:
+# install NodeJS dependencies
+npm install
 
-  ```shell
-  gulp watch
-  ```
-7. Browse to [http://localhost:9000](http://localhost:9000) to see the app. You can make changes in the code found under `src` and the browser should auto-refresh itself as you save files.
+# install gulp and jspm
+npm install gulp jspm
 
-> The Skeleton App uses [BrowserSync](http://www.browsersync.io/) for automated page refreshes on code/markup changes concurrently across multiple browsers. If you prefer to disable the mirroring feature set the [ghostMode option](http://www.browsersync.io/docs/options/#option-ghostMode) to false
+# add node_modules binaries to your PATH
+PATH=$(pwd)/node_modules/.bin:$PATH
 
-## Running The App under Electron
-
-To run the app under [Electron](http://electron.atom.io), follow these steps.
-
-1. Install [Electron](http://electron.atom.io)
-
-  ```shell
-  npm install electron-prebuilt -g
-  ```
-2. To start the app, execute the following command:
-
-  ```shell
-  electron index.js
-  ```
->**Note:** If you use electron every time or are packaging and so-forth, Then change this line in package.json from
-`"main": "dist/main.js",` to `"main": "index.js",`
-Build the app (this will give you a dist directory)
-```shell
-gulp build
-```
-To start the app, execute the following command:
-```shell
-   electron .
+# install jspm packages
+jspm install -y
 ```
 
+### Configuring
 
-## Bundling
-Bundling is performed by [Aurelia Bundler](http://github.com/aurelia/bundler). A gulp task is already configured for that. Use the following command to bundle the app:
+- Edit ``src/AppConfig.js`` to set the ``baseUrl``.
+- Optionally set the ``logLevel``.
 
-  ```shell
-    gulp bundle
-  ```
+#### Example Configuration
 
-You can also unbundle using the command bellow:
+Configuration using an internally hosted OpenBEL API.
 
-  ```shell
-  gulp unbundle
-  ```
-#### Configuration
-The configuration is done by ```bundles.json``` file.
-##### Optional
-Under ```options``` of ```dist/aurelia``` add ```rev: true``` to add bundle file revision/version.
-
-## Running The Unit Tests (no significant tests implemented)
-
-To run the unit tests, first ensure that you have followed the steps above in order to install all dependencies and successfully build the library. Once you have done that, proceed with these additional steps:
-
-1. Ensure that the [Karma](http://karma-runner.github.io/) CLI is installed. If you need to install it, use the following command:
-
-  ```shell
-  npm install -g karma-cli
-  ```
-2. Install Aurelia libs for test visibility:
-
-```shell
-jspm install aurelia-framework
-jspm install aurelia-http-client
-jspm install aurelia-router
+```javascript
+var appconfig = {
+  'baseUrl': 'http://internal-openbel-api.domain.com/api',
+  'logLevel': LogManager.logLevel.debug
+}
 ```
-3. You can now run the tests with this command:
 
-  ```shell
-  karma start
-  ```
+### Building
 
-## Running The E2E Tests (no significant tests implemented)
-Integration tests are performed with [Protractor](http://angular.github.io/protractor/#/).
+With NodeJS dependencies in your ``PATH``, build the BEL Manager with
+``gulp build``.
 
-1. Place your E2E-Tests into the folder ```test/e2e/src```
-2. Run the tests
+### Deploying
 
-  ```shell
-  npm run e2e
-  ```
+- Host the BEL Manager static content from a web server.
 
-## Exporting bundled production version
-A gulp task is already configured for that. Use the following command to export the app:
+#### Nginx Example Deployment Configuration
 
-  ```shell
-    gulp export
-  ```
-The app will be exported into ```export``` directory preserving the directory structure.
-#### Configuration
-The configuration is done by ```bundles.json``` file.
-In addition, ```export.json``` file is available for including individual files.
+```
+    server {
+        listen          0.0.0.0:80;
+        server_name     internal-belmgr.domain.com;
+        access_log      /var/log/nginx/belmgr-access.log main;
+        error_log       /var/log/nginx/belmgr-error.log info;
 
-## Deploying
-
-Deploying the BEL Manager only requires serving the static content in your web
-server of choice. Simply add a location for the ``export`` directory above, and
-the BEL Manager is ready for use.
-
-Here's an example of the BEL Manager being served from the web root, in Nginx:
-
-  ```shell
-    location / {
-        alias       /opt/belmgr/export/;
-        index       index.html;
-    }
-  ```
-
+        location / { 
+            alias                       /opt/belmgr/;
+            index                       index.html;
+            add_header  Cache-Control   no-cache;
+        }   
+    }   
+```
