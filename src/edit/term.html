@@ -1,15 +1,15 @@
 <template>
-
-  <input ref='belinput' type="text" class="form-control fc-normal" name="context-type"
+<div class="et-termDiv">
+  <input ref='belinput' type="text" class="form-control ci-valListingInput" name="context-type"
     value.bind="bel" keyup.trigger="filterTerms($event) & debounce:500" focus.bind="hasTermFocus"/>
 
-  <div class="row">
-    <ul show.bind="showTerms">
-      <li repeat.for="item of filteredTerms" click.delegate="selectTerm(item)">
+  <!-- <div class="row"> -->
+    <ul class="et-termUl row" show.bind="showTerms">
+      <li class="et-termLi" repeat.for="item of filteredTerms" click.delegate="selectTerm(item)">
         <a href="#">
-          ${item.term}, ${item.label}, ${item.type}
+          <span class="et-termListing">${item.term}, ${item.label}, ${item.type}</span>
         </a>
       </li>
     </ul>
-  </div><!-- /.row -->
+  </div>
 </template>

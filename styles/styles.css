@@ -1190,7 +1190,7 @@ p.text-warning {
 }
 
 .form-group input {
-    height: 26px;
+    height: 35px;
     padding: 6px, 6px, 4px, 6px;
 }
 
@@ -1202,7 +1202,7 @@ p.text-warning {
 }*/
 
 .selectDrop {
-    height: 26px;
+    height: 35px;
     font-weight: 300;
     font-family: 'Lato';
     font-size: 16px;
@@ -1231,7 +1231,7 @@ p.text-warning {
 .edit-belStatementDivs,
 .edit-belStatementDivs .form-control,
 .selectDrop-relation {
-    height: 35px;
+    min-height: 35px;
     font-size: 16px;
     font-weight: 300;
 }
@@ -1355,6 +1355,11 @@ p.text-warning {
 .ci-aValLi:nth-child(1) {
     margin-top: 5px;
 }
+.ci-aNameLi:last-child,
+.ci-aValLi:last-child {
+    margin-bottom: 5px;
+}
+
 .ci-aNameLi,
 .ci-aValLi {
     margin-left: 20px;
@@ -1420,6 +1425,53 @@ p.text-warning {
 }
 
 /* END context-item (EDIT PAGE) */
+
+/* term (EDIT PAGE) */
+
+.et-termUl {
+    margin: 0px;
+    padding: 0px;
+    overflow: scroll;
+    background-color: #E4E5E7;
+    border-bottom-right-radius: 2px;
+    border-bottom-left-radius: 2px;
+}
+
+
+.et-termLi,
+.et-termLi a {
+    list-style-type: none;
+    text-decoration: none
+}
+
+.et-termLi:nth-child(1) {
+    margin-top: 5px;
+}
+.et-termLi:last-child {
+    margin-bottom: 5px;
+}
+
+.et-termLi {
+    margin-left: 20px;
+    width: calc(100% - 30px);
+    padding-left: 0px;
+    padding-right: 0px;
+}
+
+.et-termLi a:hover {
+    list-style-type: none;
+    text-shadow: 0px 0px 0px #0C91A5;
+    text-decoration: none
+}
+.et-termListing {
+    font-weight: 400;
+    color: #474350;
+    font-size: 14px;
+}
+
+
+
+/* END term (EDIT PAGE) */
 
 /* END EDIT PAGE */
 
