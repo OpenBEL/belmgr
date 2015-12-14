@@ -3,13 +3,13 @@
   <input ref='belinput' type="text" class="form-control ci-valListingInput" name="context-type"
     value.bind="bel" keyup.trigger="filterTerms($event) & debounce:500" focus.bind="hasTermFocus"/>
 
-  <!-- <div class="row"> -->
     <ul class="et-termUl row" show.bind="showTerms">
       <li class="et-termLi" repeat.for="item of filteredTerms" click.delegate="selectTerm(item)">
         <a href="#">
-          <span class="et-termListing">${item.term}, ${item.label}, ${item.type}</span>
+          <span class="et-termlisting et-${item.type}">${item.term} <span class="et-termlabel">${item.label}</span></span>
         </a>
       </li>
     </ul>
+
   </div>
 </template>

@@ -1468,6 +1468,7 @@ p.text-warning {
     background-color: #E4E5E7;
     border-bottom-right-radius: 2px;
     border-bottom-left-radius: 2px;
+    height: 230;
 }
 
 
@@ -1496,12 +1497,22 @@ p.text-warning {
     text-shadow: 0px 0px 0px #0C91A5;
     text-decoration: none
 }
-.et-termListing {
+.et-termlisting {
     font-weight: 400;
-    color: #474350;
     font-size: 14px;
 }
-
+.et-termlisting .et-termlabel {
+    font-style: oblique;
+}
+.et-termlisting.et-function {
+    color: #307787;
+}
+.et-termlisting.et-namespace_value {
+    color: #474350;
+}
+.et-termlisting.et-namespace_identifier {
+    color: #00A5BF;
+}
 
 
 /* END term (EDIT PAGE) */
