@@ -11,30 +11,33 @@ export class NavBar {
 
   constructor(api) {
     this.api = api;
-    let token = this.api.getToken();
-    if (token === null) {
-      this.action = 'Login';
-    } else {
-      this.action = 'Logout';
-    }
-    let tokens = window.location.search.split('?jwt=');
-    if (tokens.length > 1) {
-      let jwt = tokens[1];
-      logger.info('Logged in.');
-      this.api.setToken(jwt);
-      window.location.href = window.location.origin;
-    }
+
+    this.api.authEnabled().then(enabled => {
+      if (enabled) {
+        let token = this.api.getToken();
+        if (token === null) {
+          this.action = 'Login';
+        } else {
+          this.action = 'Logout';
+        }
+        let tokens = window.location.search.split('?jwt=');
+        if (tokens.length > 1) {
+          let jwt = tokens[1];
+          logger.info('Logged in.');
+          this.api.setToken(jwt);
+          window.location.href = window.location.origin;
+        }
+      }
+    }).catch(this.api.rejectErrors);
   }
 
   navbarAction() {
     if (this.action === 'Logout') {
       this.api.removeToken();
-      this.action = 'Login';
       logger.info('Logged out.');
       window.location.href = window.location.origin;
-    } else {
+    } else if (this.action === 'Login') {
       this.api.authenticate();
-      this.action = 'Logout';
     }
   }
 }

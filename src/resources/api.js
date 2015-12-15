@@ -127,6 +127,14 @@ export class Api {
     };
   }
 
+  authEnabled() {
+    let authEnabledAPI = '/authentication-enabled';
+    let promise = this.apiClient.fetch(authEnabledAPI);
+    promise = promise.then(this.toJSON);
+    promise = promise.then(data => data.enabled);
+    promise = promise.catch(this.logAsError);
+    return promise;
+  }
 
   /**
    * <p>Process facets from search</p>
