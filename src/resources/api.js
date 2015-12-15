@@ -337,9 +337,9 @@ export class Api {
       })
       .then(json => {
         let data = json.completion_collection;
-        logger.debug('Data: ', data);
+        // logger.debug('Data: ', data);
         let completions = this.processBelCompletions(query, data);
-        logger.debug('Completions: ', completions);
+        // logger.debug('Completions: ', completions);
         return completions;
       })
       .catch(reason => {
@@ -349,13 +349,14 @@ export class Api {
 
   processBelCompletions(query, data) {
     let results = [];
-    logger.debug('Data: ', data);
+    // logger.debug('Data: ', data);
     for (let d of data) {
-      logger.debug('d: ', d);
+      // logger.debug('d: ', d);
       let bel = query.slice(0);
+      let cursor = 0;
       if (d.completion.actions) {
         for (let action of d.completion.actions) {
-          logger.debug('Action: ', action);
+          // logger.debug('Action: ', action);
           let len = bel.length;
           let front = '';
           let back = '';
@@ -379,8 +380,11 @@ export class Api {
             bel = front + d.completion.value + back;
           }
 
+          if (action.move_cursor) {
+            cursor = action.move_cursor.position;
+          }
 
-          logger.debug('F: ', front, ' B: ', back, ' BEL: ', bel, ' T: ', d.completion.type, ' Label: ', d.completion.label, ' Val: ', d.completion.value);
+          // logger.debug('F: ', front, ' B: ', back, ' BEL: ', bel, ' T: ', d.completion.type, ' Label: ', d.completion.label, ' Val: ', d.completion.value);
         }
 
         let classType = '';
@@ -389,12 +393,10 @@ export class Api {
         else if (d.completion.type === 'function') {classType = 'function';}
 
         if (d.completion.label !== d.completion.value) {
-          results.push({term: bel, type: classType, label: d.completion.label, value: d.completion.value});
-          logger.debug('Here not equal');
+          results.push({term: bel, type: classType, label: d.completion.label, value: d.completion.value, cursor: cursor});
         }
         else {
-          results.push({term: bel, type: classType, value: d.completion.value});
-          logger.debug('Here equal');
+          results.push({term: bel, type: classType, value: d.completion.value, cursor: cursor});
         }
 
       }
