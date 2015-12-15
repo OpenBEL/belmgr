@@ -1,13 +1,16 @@
 <template>
-  <div class="et-termDiv">
+  <div class="et-termdiv">
 
-    <div class="input-group">
-      <input ref='belinput' type="text" class="form-control ci-valListingInput"
-      focus.trigger="hasFocus()" name="context-type"
-      value.bind="bel & debounce:400" blur.trigger="blurred()"/>
-      <span show.bind="loading" class="input-group-addon">
+    <div class="input-group et-input-group">
+
+      <span show.bind="loading" class="input-group-addon et-spinner">
         <i class="fa fa-refresh fa-spin"></i>
       </span>
+      <input ref='belinput' type="text" class="form-control et-statementfield"
+      focus.trigger="hasFocus()" name="context-type"
+      value.bind="bel & debounce:400" blur.trigger="blurred()"/>
+      
+      
     </div>
     <ul class="et-termUl row" show.bind="showTerms">
       <li class="et-termLi" repeat.for="item of filteredTerms" click.trigger="selectTerm(item)">
