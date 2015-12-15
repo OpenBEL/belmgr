@@ -14,16 +14,27 @@ export class Term {
   @bindable showResults = false;
   cursor;
   loading = false;
+  focused = false;
 
   constructor(Api, TaskQueue) {
     this.api = Api;
     this.taskQueue = TaskQueue;
   }
 
-  belChanged() {
-    logger.debug('BEL Term changing ', this.bel);
+  // hasFocusChanged(newValue) {
+  //   logger.debug('Focused: ', newValue);
+  //   this.focused = newValue;
+  // }
 
-    if (this.bel && this.bel.length >0) {
+  hasFocus() {
+    this.focused = true;
+  }
+
+  belChanged() {
+    // logger.debug('BEL Term changing ', this.bel);
+
+    if (this.focused && this.bel && this.bel.length > 0) {
+      this.cursor = this.belinput.selectionEnd;
       this.loading = true;
       this.api.getBelCompletions(this.bel, this.cursor)
       .then(results => {
@@ -39,8 +50,10 @@ export class Term {
   }
 
   blurred() {
+    // logger.debug("Blurred ");
     this.showTerms = false;
     this.loading = false;
+    this.focused = false;
   }
 
   // Update the BEL Term input field and set the cursor

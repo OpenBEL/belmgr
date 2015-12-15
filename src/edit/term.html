@@ -1,9 +1,13 @@
 <template>
   <div class="et-termDiv">
+
     <div class="input-group">
       <input ref='belinput' type="text" class="form-control ci-valListingInput"
-        name="context-type" value.bind="bel & debounce:400" blur.trigger="blurred"/>
-      <span show.bind="loading" class="input-group-addon"><i class="fa fa-refresh fa-spin"></i></span>
+      focus.trigger="hasFocus()" name="context-type"
+      value.bind="bel & debounce:400" blur.trigger="blurred()"/>
+      <span show.bind="loading" class="input-group-addon">
+        <i class="fa fa-refresh fa-spin"></i>
+      </span>
     </div>
     <ul class="et-termUl row" show.bind="showTerms">
       <li class="et-termLi" repeat.for="item of filteredTerms" click.trigger="selectTerm(item)">
