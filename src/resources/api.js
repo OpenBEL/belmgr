@@ -80,7 +80,8 @@ export class Api {
                 window.location.href = window.location.origin;
               }
               logger.debug(`Received ${resp.status} ${resp.url}`);
-              return resp; // you can return a modified Response
+              let rejection = Promise.reject(resp);
+              return rejection;
             }
         });
     });
