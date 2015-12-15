@@ -109,6 +109,22 @@ export class Api {
             }
         });
     });
+
+    // convert x to JSON
+    this.toJSON = x => x.json();
+
+    // rejects a promise logging the reason as an error
+    this.logAsError = reason => {
+      logger.error(reason);
+      let rejection = Promise.reject(reason);
+      return rejection;
+    };
+
+    // rejects a promise wrapping the reason
+    this.rejectErrors = reason => {
+      let rejection = Promise.reject(reason);
+      return rejection;
+    };
   }
 
 
@@ -470,21 +486,21 @@ export class Api {
   }
 
 
-  authenticate = function() {
+  authenticate() {
     let current = window.location.href;
     window.location.href = baseUrl + '/authenticate?state=' + current;
-  };
+  }
 
   setToken(token) {
     localStorage.setItem('belmgr-token', token);
-  };
+  }
 
   removeToken() {
     localStorage.removeItem('belmgr-token');
-  };
+  }
 
   getToken() {
     return localStorage.getItem('belmgr-token');
-  };
+  }
 
 }
