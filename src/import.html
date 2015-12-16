@@ -22,7 +22,11 @@
                             <!-- end alt. import labels/btns -->
                     </div>
                     <div class="ds-uploaddiv col-xs-5 col-sm-12 col-md-4">     
-                        <button type="button" class="form-control btn-upload" name="submit" mousedown.trigger="upload()">Upload <i class="ds-faloader fa fa-refresh fa-spin" show.bind="loading"></i></button>
+                        <button type="button" class="form-control btn-upload" name="submit" mousedown.trigger="upload()">Upload 
+                            <span show.bind="loading">
+                                <i class="fa fa-refresh fa-spin"></i>
+                            </span>
+                        </button>
                            
                     </div>
                     

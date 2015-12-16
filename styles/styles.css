@@ -353,9 +353,11 @@ footer {
 
 /*FORM/COMPONENT CONTROL*/
 
-.form-control {
+.form-control,
+.form-control i {
     color: #474350;
 }
+
 
 .form-control:not(.btn-bel):not(.btn-edit) {
     border-top: 1px solid rgba(240, 240, 240, .1);
