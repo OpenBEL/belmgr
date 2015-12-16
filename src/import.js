@@ -17,6 +17,7 @@ export class Import{
   belFiles;
   datasets;
   loading = false;  // todo set a spinner state while loading dataset
+  uploadFn = '';
 
   constructor(Api) {
     this.api = Api;
@@ -30,7 +31,7 @@ export class Import{
     .catch(function(reason) {
       logger.error(`GET import datasets Error: ${reason}`)
     });
-  }
+  } 
 
   upload() {
     this.loading = true;
@@ -73,4 +74,17 @@ export class Import{
     this.datasets.splice(idx, 1);
   }
 
+  belFilesChanged() {
+    logger.debug("belFilesChanged belfiles ", this.belFiles);
+    if (this.belFiles) {
+      this.uploadFn = this.belFiles[0].name;
+      logger.debug("fn: ", this.uploadFn);
+    }
+    else {
+      this.uploadFn = "select files:";
+      logger.debug('Upload file DB', this.uploadFn);
+    }
+  }
 }
+
+

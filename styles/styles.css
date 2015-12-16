@@ -65,6 +65,10 @@ textarea {
     cursor: pointer;
 }
 
+.oblique {
+    font-style: oblique;
+}
+
 /* WELCOME PAGE */
 
 .testingMsg {
@@ -803,7 +807,8 @@ form>.form-group>.input-group>input.search-searchForm {
 .form-control.btn-reset,
 .form-control.btn-signUp,
 .form-control.btn-logIn,
-.form-control.btn-upload {
+.form-control.btn-upload,
+.form-control.btn-import {
     border-bottom: 4px solid #FDC975 !important;
     line-height: 17px;
     font-size: 16px;
@@ -814,7 +819,8 @@ form>.form-group>.input-group>input.search-searchForm {
 .form-control.btn-reset:hover,
 .form-control.btn-signUp:hover,
 .form-control.btn-logIn:hover,
-.form-control.btn-upload:hover {
+.form-control.btn-upload:hover,
+.form-control.btn-import:hover {
     max-height: 34px;
     box-shadow: inset 0px 34px 0px #FDC975 !important;
     -webkit-transition: box-shadow .1s;
@@ -980,7 +986,7 @@ div.au-stagger {
 
 
 .ds-pgRow {
-    margin-top: ;
+    margin-top: 30px;
 }
 .ds-filediv {
     background-color: #E4E5E7;
@@ -998,38 +1004,97 @@ div.au-stagger {
 }
 
 @media (max-width: 767px) {
-    .ds-uploadDiv {
+    .ds-uploaddiv {
         margin-top: -10px;
     }
 }
 @media (min-width: 768px) and (max-width: 991px) {
-    .ds-uploadDiv {
+    .ds-uploaddiv {
         margin-top: 10px;
     }
 }
 @media (min-width: 991px) {
-    .ds-uploadDiv {
+    .ds-uploaddiv {
         margin-top: 5px;
         padding: 0px;
     }
 }
+@media (max-width: 768px) {
+    .ds-uploaddiv {
+        margin-top: 5px;
+        width: ;
+    }
+}
 
 
-.form-control.btn-upload {
+.ds-importdiv .form-control.btn-import,
+.ds-uploaddiv .form-control.btn-upload {
+    border-top: transparent;
+    border-right: transparent;
+    border-left: transparent;
+}
+@media (max-width: 768px) {
+    .ds-importdiv .form-control.btn-import,
+    .ds-uploaddiv .form-control.btn-upload,
+    .ds-importdiv .form-control.btn-import:hover,
+    .ds-uploaddiv .form-control.btn-upload:hover {
+        font-size: 14px;
+    }
+}
+.ds-uploaddiv .form-control.btn-upload {
     width: 100px;
+    right: 0px;
+    float: right;
 }
-
-@media (max-width: 767px) {
-    .form-control.btn-upload {
-        float: right;
-
+@media (max-width: 768px) {
+    .ds-uploaddiv .form-control.btn-upload {
+        width: 90px;
+        padding: 3px;
     }
 }
-@media (min-width: 991px) {
-    .form-control.btn-upload {
-        float: right;
-    }
+.ds-importdiv .form-control.btn-import {
+    text-align: center;
+    margin-top: 5px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+
 }
+
+
+/* DS IMPORT BUTTON FINAGLING */
+
+.inputfile {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+}
+.inputfile + label {
+    /*font-size: 1.25em;
+    font-weight: 700;
+    color: white;
+    background-color: black;
+    display: inline-block;*/
+    cursor: pointer;
+}
+
+.inputfile:focus + label,
+.inputfile + label:hover {
+    background-color: red;
+}
+.inputfile:focus + label {
+    outline: 1px dotted #000;
+    outline: -webkit-focus-ring-color auto 5px;
+}
+.inputfile + label * {
+    pointer-events: none;
+}
+
+
+/* END DS IMPORT BUTTON FINAGLING */
 
 /* DS EXPORT TABLE */
 .ds-table {
@@ -1097,6 +1162,7 @@ tr td div p.ds-dsDetail {
     /*line-height: 1;*/
     margin: 5px;
 }
+
 
 /* END DS EXPORT TABLE */
 
