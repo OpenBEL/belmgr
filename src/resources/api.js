@@ -1,4 +1,3 @@
-import {inject} from 'aurelia-framework';
 import {HttpClient} from 'aurelia-fetch-client';
 import 'fetch';
 import {LogManager} from 'aurelia-framework';
@@ -8,8 +7,6 @@ let logger = LogManager.getLogger('api');
 
 //let baseUrl = 'http://next.belframework.org/api';
 let baseUrl = Config.baseUrl;
-
-let parse = message => JSON.parse(message.response);
 
 // http://europepmc.org/RestfulWebService#search
 // http://www.ebi.ac.uk/europepmc/webservices/rest/search/resulttype=core&format=json&query=src:med ext_id:1945500
@@ -39,14 +36,14 @@ export class Api {
         .rejectErrorResponses()
         .withInterceptor({
           request(req) {
-              logger.debug(`Requesting ${req.method} ${req.url}`);
-              return req; // you can return a modified Request, or you can short-circuit the request by returning a
-              // Response
-            },
-            response(resp) {
-              logger.debug(`Received ${resp.status} ${resp.url}`);
-              return resp; // you can return a modified Response
-            }
+            logger.debug(`Requesting ${req.method} ${req.url}`);
+            return req; // you can return a modified Request, or you can short-circuit the request by returning a
+            // Response
+          },
+          response(resp) {
+            logger.debug(`Received ${resp.status} ${resp.url}`);
+            return resp; // you can return a modified Response
+          }
         });
     });
 
@@ -66,23 +63,23 @@ export class Api {
         .rejectErrorResponses()
         .withInterceptor({
           request(req) {
-              logger.debug(`Requesting ${req.method} ${req.url}`);
-              return req; // you can return a modified Request, or you can short-circuit the request by returning a
-              // Response
-            },
-            response(resp) {
-              logger.debug(`Received ${resp.status} ${resp.url}`);
-              return resp; // you can return a modified Response
-            },
-            responseError(resp) {
-              if (resp.status === 401) {
-                logger.info('Backend returned HTTP 401, redirecting to home.');
-                window.location.href = window.location.origin;
-              }
-              logger.debug(`Received ${resp.status} ${resp.url}`);
-              let rejection = Promise.reject(resp);
-              return rejection;
+            logger.debug(`Requesting ${req.method} ${req.url}`);
+            return req; // you can return a modified Request, or you can short-circuit the request by returning a
+            // Response
+          },
+          response(resp) {
+            logger.debug(`Received ${resp.status} ${resp.url}`);
+            return resp; // you can return a modified Response
+          },
+          responseError(resp) {
+            if (resp.status === 401) {
+              logger.info('Backend returned HTTP 401, redirecting to home.');
+              window.location.href = window.location.origin;
             }
+            logger.debug(`Received ${resp.status} ${resp.url}`);
+            let rejection = Promise.reject(resp);
+            return rejection;
+          }
         });
     });
 
@@ -99,14 +96,14 @@ export class Api {
         .rejectErrorResponses()
         .withInterceptor({
           request(req) {
-              logger.debug(`Requesting ${req.method} ${req.url}`);
-              return req; // you can return a modified Request, or you can short-circuit the request by returning a
-              // Response
-            },
-            response(resp) {
-              logger.debug(`Received ${resp.status} ${resp.url}`);
-              return resp; // you can return a modified Response
-            }
+            logger.debug(`Requesting ${req.method} ${req.url}`);
+            return req; // you can return a modified Request, or you can short-circuit the request by returning a
+            // Response
+          },
+          response(resp) {
+            logger.debug(`Received ${resp.status} ${resp.url}`);
+            return resp; // you can return a modified Response
+          }
         });
     });
 
@@ -183,8 +180,10 @@ export class Api {
    * @return {Promise} data - processed search results ready to display on the search results web page
    * */
   search(start = 0, size = 10, faceted = 'yes', filters) {
+    /* eslint-disable camelcase */
     let max_values_per_facet = 10;
     let getstring = `/evidence?start=${start}&size=${size}&faceted=${faceted}&max_values_per_facet=${max_values_per_facet}`;
+    /* eslint-enable camelcase */
     if (filters) {
       for (let filter of filters) {
         getstring += `&filter=${filter}`;
@@ -195,27 +194,28 @@ export class Api {
 
     return this.apiClient.fetch(getstring, {
       headers: {
-        Authorization: "Bearer " + this.getToken()
+        Authorization: 'Bearer ' + this.getToken()
       }
     })
       .then(response => response.json())
       .then(data => {
+        /* eslint-disable camelcase */
         let new_data = {};
         new_data.evidences = data.evidence_collection;
         new_data.facets = this.processFacets(data.facets);
         new_data.metadata = data.metadata;
         logger.debug('Search results: ', new_data);
         return new_data;
+        /* eslint-enable camelcase */
       })
       .catch(function(reason) {
         if (reason.status === 404) {
           return {
-            "evidences": null,
-            "facets": {}
+            'evidences': null,
+            'facets': {}
           };
-        } else {
-          logger.error("Search API Error: ", reason);
         }
+        logger.error('Search API Error: ', reason);
       });
   }
 
@@ -233,7 +233,7 @@ export class Api {
           return data.expression_components;
         })
         .catch(function(reason) {
-          logger.error(`GET BEL Components Error: ${reason}`)
+          logger.error(`GET BEL Components Error: ${reason}`);
         });
     }
     let comp = {};
@@ -241,14 +241,14 @@ export class Api {
   }
 
   getBelEvidence(id) {
-    return this.apiClient.fetch(`/evidence/${id}`, {headers:{Authorization: "Bearer " + this.getToken() }})
+    return this.apiClient.fetch(`/evidence/${id}`, { headers: { Authorization: 'Bearer ' + this.getToken() }})
       .then(response => response.json())
       .then(data => {
         let evidence = data.evidence;
         return evidence;
       })
       .catch(function(reason) {
-        logger.error(`GET BEL Evidence Error: ${reason}`)
+        logger.error(`GET BEL Evidence Error: ${reason}`);
       });
   }
 
@@ -262,32 +262,29 @@ export class Api {
     // Update Evidence given an Id
     if (id) {
       return this.apiClient.fetch(`/evidence/${id}`, {
-          method: 'put',
-          headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json; profile=http://next.belframework.org/schema/evidence.schema.json',
-            'Authorization': "Bearer " + this.getToken()
-          },
-          body: JSON.stringify(evidence)
-        })
-        .catch(response => {
-          logger.error('PUT Evidence error ', response);
-        });
-    } else {
-      // Create new Evidence
-      return this.apiClient.fetch(`/evidence`, {
-          method: 'post',
-          headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json; profile=http://next.belframework.org/schema/evidence.schema.json',
-            'Authorization': "Bearer " + this.getToken()
-          },
-          body: JSON.stringify(evidence)
-        })
-        .catch(response => {
-          logger.error('POST Evidence error ', response);
-        });
+        method: 'put',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json; profile=http://next.belframework.org/schema/evidence.schema.json',
+          'Authorization': 'Bearer ' + this.getToken()
+        },
+        body: JSON.stringify(evidence)
+      }).catch(response => {
+        logger.error('PUT Evidence error ', response);
+      });
     }
+    // Create new Evidence
+    return this.apiClient.fetch(`/evidence`, {
+      method: 'post',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json; profile=http://next.belframework.org/schema/evidence.schema.json',
+        'Authorization': 'Bearer ' + this.getToken()
+      },
+      body: JSON.stringify(evidence)
+    }).catch(response => {
+      logger.error('POST Evidence error ', response);
+    });
   }
 
   deleteBelEvidence(evidenceId) {
@@ -296,7 +293,7 @@ export class Api {
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json; profile=http://next.belframework.org/schema/evidence.schema.json',
-        'Authorization': "Bearer " + this.getToken()
+        'Authorization': 'Bearer ' + this.getToken()
       }
     })
     .catch(function(reason) {
@@ -311,7 +308,6 @@ export class Api {
    * @returns {*}
    */
   getPubmed(id) {
-
     let getstring = `/resulttype=core&format=json&query=ext_id:${id} src:med`;
 
     return this.pubmedClient.fetch(getstring)
@@ -330,12 +326,13 @@ export class Api {
       .then(response => response.json())
       .then(data => data.annotation_collection)
       .catch(function(reason) {
-        logger.error(`GET BEL Annotation Types Error: ${reason}`)
+        logger.error(`GET BEL Annotation Types Error: ${reason}`);
       });
   }
 
   // Get BEL Annotation values for the edit form typeahead
   //   the query string should be wildcarded on the OpenBEL API side (e.g. 'ho sap' -> 'ho* sap*')
+  /* eslint-disable camelcase */
   getBELAnnotationValues(query, annotation_type) {
     let numResults = 10;
     let query_string = '';
@@ -350,9 +347,10 @@ export class Api {
       .then(response => response.json())
       .then(data => data.annotation_value_collection)
       .catch(function(reason) {
-        logger.error(`GET BEL Annotation Values Error: ${reason}`)
+        logger.error(`GET BEL Annotation Values Error: ${reason}`);
       });
   }
+  /* eslint-enable camelcase */
 
   // Get BEL term completions for the edit form typeahead
   getBelCompletions(query, cursor) {
@@ -390,7 +388,7 @@ export class Api {
               front = bel.slice(0, action.delete.start_position);
             }
             if (action.delete.end_position < len) {
-              back = bel.slice(action.delete.end_position+1);
+              back = bel.slice(action.delete.end_position + 1);
             }
             bel = front + back;
           }
@@ -413,17 +411,19 @@ export class Api {
         }
 
         let classType = '';
-        if (d.completion.type === 'namespace_value') {classType = 'nsval';}
-        else if (d.completion.type === 'namespace_identifier') {classType = 'nsid';}
-        else if (d.completion.type === 'function') {classType = 'function';}
+        if (d.completion.type === 'namespace_value') {
+          classType = 'nsval';
+        } else if (d.completion.type === 'namespace_identifier') {
+          classType = 'nsid';
+        } else if (d.completion.type === 'function') {
+          classType = 'function';
+        }
 
         if (d.completion.label !== d.completion.value) {
           results.push({term: bel, type: classType, label: d.completion.label, value: d.completion.value, cursor: cursor});
-        }
-        else {
+        } else {
           results.push({term: bel, type: classType, value: d.completion.value, cursor: cursor});
         }
-
       }
     }
     return results;
@@ -443,7 +443,7 @@ export class Api {
       method: 'post',
       body: data,
       headers: {
-        Authorization: "Bearer " + this.getToken()
+        Authorization: 'Bearer ' + this.getToken()
       }
     });
   }
@@ -475,8 +475,8 @@ export class Api {
     return matches[1];
   }
 
-  getDatasets(){
-    return this.apiClient.fetch('/datasets', {headers:{Authorization: "Bearer " + this.getToken() }})
+  getDatasets() {
+    return this.apiClient.fetch('/datasets', { headers: { Authorization: 'Bearer ' + this.getToken() }})
       .then(response => response.json())
       .then(data => {return data.dataset_collection;})
       .catch(function(reason) {
@@ -486,9 +486,10 @@ export class Api {
 
   deleteDataset(url) {
     let dId = this.getIdFromUrl(url);
-    return this.apiClient.fetch(`/datasets/${dId}`, {method: 'DELETE', headers:{Authorization: "Bearer " + this.getToken() }})
-      .then(response => {return response})
-      .catch(function(reason) {
+    return this.apiClient.fetch(`/datasets/${dId}`, { method: 'DELETE', headers: { Authorization: 'Bearer ' + this.getToken() }})
+      .then(response => {
+        return response;
+      }).catch(function(reason) {
         logger.error('Delete Datasets Error: ', reason);
       });
   }
