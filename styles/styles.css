@@ -128,7 +128,12 @@ textarea {
 .fa-spin {
     color: #fdc975;
 }
-
+.fa-trash-o {
+    color: #B22D1E;
+}
+.fa-trash-o:hover {
+    text-shadow: 0px 0px 0px #B22D1E;
+}
 
 /*END MARGIN SHORTCUTS*/
 
@@ -1745,7 +1750,9 @@ input[type=checkbox]:checked:after {
 .table-showing {
     padding-top: 12px;
 }
-
+.table-display2.table-pgcountddown {
+    margin-top: 10px !important;
+}
 .table-totalResults {
     padding-top: 12px;
     margin-left: 5px;
@@ -1857,9 +1864,6 @@ tr td div p.table-expContext {
     .table-delete {
         margin-top: 10px;
     }
-}
-.table-delete:hover i {
-    color: #B22D1E;
 }
 
 .table-speciesIcon.mouse-icon {
