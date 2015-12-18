@@ -30,9 +30,12 @@ export class Search {
     this.search();  // returns a promise to get all of the data needed
   }
 
-  search() {
+  search(start) {
 //    logger.debug(JSON.stringify(this.selectedFacets, null, 2));
 //    logger.debug('Search terms: ', this.searchTerms);
+    if (typeof(start) != 'undefined') {
+        this.searchStart = start;
+    }
     let filters = []; // filters to send to api.search
     if (this.selectedFacets) {
       let keys = Object.keys(this.selectedFacets);
