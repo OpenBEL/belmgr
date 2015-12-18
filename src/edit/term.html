@@ -9,12 +9,11 @@
       <input ref='belinput' type="text" class="form-control et-statementfield"
       focus.trigger="hasFocus()" name="context-type"
       value.bind="bel & debounce:400" blur.trigger="blurred()"/>
-      
-      
     </div>
+
     <ul class="et-termUl row" show.bind="showTerms">
-      <li class="et-termLi" repeat.for="item of filteredTerms" click.trigger="selectTerm(item)">
-        <a href="#">
+      <li class="et-termLi" repeat.for="item of filteredTerms">
+        <a click.trigger="selectTerm(item)">
           <span class="et-termlisting et-${item.type}">${item.term} <span class="et-termlabel">${item.label}</span></span>
         </a>
       </li>

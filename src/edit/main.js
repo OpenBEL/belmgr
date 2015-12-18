@@ -48,10 +48,10 @@ export class Edit {
           return this.api.getBelComponents(this.evidence.bel_statement);
         })
         .then(comp => {
-          this.bel_subject = comp.subject;
-          this.bel_object = comp.object;
-          this.bel_relationship = comp.relationship;
-          logger.debug('Subj: ', this.bel_subject);
+          this.belsubject = comp.subject;
+          this.belobject = comp.object;
+          this.belrelationship = comp.relationship;
+          logger.debug('Subj: ', this.belsubject);
           return this.api.getBelAnnotationTypes();
         })
         .then(types => {
@@ -74,6 +74,10 @@ export class Edit {
     }
   }
 
+
+  belsubjectChanged() {
+    logger.debug('Main BEL Subject changed: ', this.belsubject);
+  }
   /**
    * Force the evidence object to be recreated for force an update of the nested
    * object binding in the View
@@ -85,8 +89,9 @@ export class Edit {
   }
 
   prepareEvidence() {
+    let submitEvidence = {};
     // Prepare BEL Statement
-    this.evidence.bel_statement = `${this.bel_subject} ${this.bel_relationship} ${this.bel_object}`;
+    this.evidence.bel_statement = `${this.belsubject} ${this.belrelationship} ${this.belobject}`;
 
     // Remove blank entries in evidence.experiment_context
     logger.debug('Cleaning evidence -- context items');
@@ -95,7 +100,8 @@ export class Edit {
     // Add to Metadata
     this.addFormMetadata();
 
-    this.submitEvidence = {'evidence': this.evidence};
+    submitEvidence = {'evidence': this.evidence};
+    return submitEvidence;
   }
 
   // Add to evidence Metadata
@@ -149,9 +155,10 @@ export class Edit {
 
   // TODO  Add notification of successful update or new evidence
   submitUpdate() {
-    this.prepareEvidence();
-    logger.debug('Update evidence', JSON.stringify(this.submitEvidence, null, 2));
-    this.api.loadBelEvidence(this.submitEvidence, this.evidenceId)
+    logger.debug('Prior to prepare update evidence', JSON.stringify(this.evidence, null, 2));
+    let submitEvidence = this.prepareEvidence();
+    logger.debug('Update evidence', JSON.stringify(submitEvidence, null, 2));
+    this.api.loadBelEvidence(submitEvidence, this.evidenceId)
     .then(response => {
       toastr.success('', 'Updated Evidence');
     })
@@ -166,10 +173,11 @@ export class Edit {
   }
 
   submitNew() {
-    this.prepareEvidence();
-    logger.debug('Submit new evidence', JSON.stringify(this.submitEvidence, null, 2));
+    logger.debug('Prior to prepare new evidence', JSON.stringify(this.evidence, null, 2));
+    let submitEvidence = this.prepareEvidence();
+    logger.debug('Submit new evidence', JSON.stringify(submitEvidence, null, 2));
 
-    this.api.loadBelEvidence(this.submitEvidence)
+    this.api.loadBelEvidence(submitEvidence)
     .then(response => {
       return response.headers.get('Location');
     })

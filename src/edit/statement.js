@@ -10,9 +10,9 @@ let logger = LogManager.getLogger('statement');
   defaultBindingMode: bindingMode.twoWay, //default binding mode used with the .bind command
   defaultValue: undefined //default value of the property, if not bound or set in HTML
 })
-@bindable({name:"belSubject", attribute:"bel-subject", defaultBindingMode: bindingMode.twoWay})
-@bindable({name:"belRelationship", attribute:"bel-relationship", defaultBindingMode: bindingMode.twoWay})
-@bindable({name:"belObject", attribute:"bel-object", defaultBindingMode: bindingMode.twoWay})
+@bindable({name:"belsubject", attribute:"belsubject", defaultBindingMode: bindingMode.twoWay})
+@bindable({name:"belrelationship", attribute:"belrelationship", defaultBindingMode: bindingMode.twoWay})
+@bindable({name:"belobject", attribute:"belobject", defaultBindingMode: bindingMode.twoWay})
 @customElement('statement')
 @inject(relationsList)
 export class Statement {
@@ -30,6 +30,10 @@ export class Statement {
 
   attached() {
 
+  }
+
+  belsubjectChanged(value) {
+    logger.debug('BELsubject changed: ', this.belsubject);
   }
 
   evidenceChanged(value) {

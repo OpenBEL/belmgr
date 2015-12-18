@@ -31,7 +31,7 @@ export class Term {
   }
 
   belChanged() {
-    // logger.debug('BEL Term changing ', this.bel);
+    logger.debug('BEL Term changing ', this.bel);
 
     if (this.focused && this.bel && this.bel.length > 0) {
       this.cursor = this.belinput.selectionEnd;
@@ -58,6 +58,8 @@ export class Term {
 
   // Update the BEL Term input field and set the cursor
   selectTerm(item) {
+    logger.debug('Item: ', item);
+
     this.cursor = item.cursor;
     this.bel = item.term;
 

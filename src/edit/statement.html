@@ -11,7 +11,7 @@
         <div class="form-group">
           <label class="sr-only" for="belsubject">BEL Source</label>
 
-          <term bel.two-way="bel_subject"></term>
+          <term bel.two-way="belsubject"></term>
 
 <!--           <input name="belsubject" id="belsubject" type="text" value.bind="bel_subject" class="form-control typeahead" placeholder="Subject" autocomplete="on" debounce></input> -->
 
@@ -24,7 +24,7 @@
 
       <div id="bel-relation-div" class="edit-belStatementDivs col-xs-2">
         <label class="sr-only" for="belrelation">BEL Relation</label>
-        <select class="form-control selectDrop selectDrop-relation" id="belrelation" value.bind="bel_relationship">
+        <select class="form-control selectDrop selectDrop-relation" id="belrelation" value.bind="belrelationship">
           <option>--Relation--</option>
           <option repeat.for="relation of relationsList" model.bind="relation.value">${relation.label}</option>
         </select>
@@ -34,7 +34,7 @@
         <div class="form-group input-block-level">
           <label class="sr-only" for="belobject">BEL Object</label>
 
-          <term bel.two-way="bel_object"></term>
+          <term bel.two-way="belobject"></term>
 
 <!--           <input name="belobject" id="belobject" type="text" value.bind="bel_object" class="form-control typeahead" placeholder="Object"
                  autocomplete="on" debounce></input> -->
