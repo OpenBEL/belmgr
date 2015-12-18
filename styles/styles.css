@@ -782,7 +782,12 @@ form>.form-group>.input-group>input.search-searchForm {
 @media (max-width: 500px) {
     .form-control.btn-dlFiles {
         padding: 6px 3px;
+    }
 }
+
+.form-control.btn-dlFiles i,
+.form-control.btn-dlFiles .ds-btnText {
+    color: #474350;
 }
 
 .form-control.btn-dlFiles:hover {
@@ -1122,6 +1127,7 @@ td.ds-td a {
     font-weight: 400;
     margin-top: 15px;
 }
+
 .ds-aDiv {
     padding-top: 3px;
 }
@@ -1672,7 +1678,7 @@ label.filter-boxlabel {
     margin-left: -20px;
     font-weight: 300;
 }
-
+/*
 input[type=checkbox] {
     position: relative;
     visibility: hidden;
@@ -1701,6 +1707,64 @@ input[type=checkbox]:hover:after {
 input[type=checkbox]:checked:after {
     content: '✓';
     color: #0C91A5;
+}
+*/
+/*CHECKBOX FINAGLING*/
+
+
+/*deactivates old version of checkboxes*/
+
+input[type=checkbox]:not(old),
+input[type=radio]:not(old) {
+    width: 25px;
+    height: 25px;
+    padding: 0;
+    margin-top: 0px;
+    font-size: 1em;
+    opacity: 0;
+}
+
+
+/*creates new underlying checkboxes*/
+
+input[type=checkbox]:not(old) + label,
+input[type=radio]:not(old) + label {
+    display: inline;
+    margin-left: -25px;
+    line-height: 15px;
+}
+
+input[type=checkbox]:not(old) + label > span,
+input[type=radio]:not(old) + label > span {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    margin: 4px 2px 0px 2px;
+    border: 1px solid #fdc975;
+    border-radius: 2px;
+    background: #FAFAFC;
+}
+
+input[type=checkbox]:not(old):hover + label > span,
+input[type=radio]:not(old):hover + label > span {
+    background:  #E4E5E7;
+}
+
+input[type=checkbox]:not(old):checked + label > span,
+input[type=radio]:not(old):checked + label > span {
+    background: #FAFAFC;
+}
+
+input[type=checkbox]:not(old):checked + label > span:before {
+    content: '✓';
+    display: block;
+    width: 5px;
+    color: #0C91A5;
+    font-size: 12px;
+    line-height: 12px;
+    text-align: center;
+    text-shadow: 1px rgb(115, 153, 77);
+    font-weight: bold;
 }
 
 
