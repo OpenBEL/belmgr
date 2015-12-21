@@ -9,6 +9,7 @@ export class App {
       { route: 'create',          moduleId: './edit/main',       name: 'create',    nav: true,  title: 'New BEL' },
       { route: 'import',          moduleId: './import',          name: 'import',    nav: true,  title: 'Datasets' },
       { route: 'about',           moduleId: './about',           name: 'about',     nav: true,  title: 'About' },
+      { route: 'help',            moduleId: './help',            name: 'help',      nav: true,  title: 'Help' },
       { route: 'signup',          moduleId: './user/signup',     name: 'signup',    nav: false, title: 'Signup' },
       { route: 'login',           moduleId: './user/login',      name: 'login',     nav: false, title: 'Login' },
       { route: 'logout',          moduleId: './user/logout',     name: 'logout',    nav: false, title: 'Logout' },
