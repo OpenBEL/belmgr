@@ -42,6 +42,9 @@ PATH=$(pwd)/node_modules/.bin:$PATH
 
 # install jspm packages
 jspm install -y
+
+# If you see 'github rate limit reached' - follow these instructions: 
+ #  http://stackoverflow.com/questions/30995040/jspm-saying-github-rate-limit-reached-how-to-fix
 ```
 
 ### Configuring
