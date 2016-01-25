@@ -23,8 +23,8 @@
 
     <div class="row">
       <template if.bind="facetSets">
-        <div class="search-filterFacets col-xs-3">
-          <div id="filtercolumn" if.bind="evidences">
+        <div class="search-filterFacets col-xs-3 heightct${searchResultsRange}">
+          <div class="search-filtercol" id="filtercolumn" if.bind="evidences">
             <!-- Loop through facet sets -->
             <div class="col-xs-12 filterbox"  repeat.for="facetSet of facetSets | keys">
               <h4 class="filter-facetTitle">${facetSet}</h4>
@@ -86,7 +86,7 @@
 
 
             <tbody>
-            <tr repeat.for="item of evidences">
+            <tr class="table-tr" repeat.for="item of evidences">
               <td class="table-td">
                 <div class="col-xs-2 col-sm-1 table-speciesHolder">
                   <div class="table-speciesIcon ${$parent.getSpecies(item)}"></div>
