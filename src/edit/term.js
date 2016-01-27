@@ -33,6 +33,12 @@ export class Term {
   belChanged() {
     logger.debug('BEL Term changing ', this.bel);
 
+    // Do not process change if change is due to selectTerm()
+    if (this.selectedTerm) {
+      this.selectedTerm = false;
+      return;
+    }
+
     if (this.focused && this.bel && this.bel.length > 0) {
       this.cursor = this.belinput.selectionEnd;
       this.loading = true;
@@ -60,17 +66,23 @@ export class Term {
   selectTerm(item) {
     logger.debug('Item: ', item);
 
-    this.cursor = item.cursor;
     this.bel = item.term;
+    this.cursor = this.bel.length;
+    logger.debug('BEL: ', this.bel, ' Cursor: ', this.cursor);
 
-    this.taskQueue.queueMicroTask(() => {
-      this.showTerms = false;
-    });
+    this.showTerms = false;
+    this.selectedTerm = true;
+    this.belinput.setSelectionRange(this.cursor, this.cursor);
+    this.belinput.focus();
 
-    this.taskQueue.queueMicroTask(() => {
-      this.belinput.focus();
-      this.belinput.setSelectionRange(this.cursor, this.cursor);
-    });
+    // this.taskQueue.queueMicroTask(() => {
+    //   this.showTerms = false;
+    // });
+
+    // this.taskQueue.queueMicroTask(() => {
+    //   this.belinput.focus();
+    //   this.belinput.setSelectionRange(this.cursor, this.cursor);
+    // });
   }
 
 }
