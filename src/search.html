@@ -89,7 +89,7 @@
             <tr class="table-tr" repeat.for="item of evidences">
               <td class="table-td">
                 <div class="col-xs-2 col-sm-1 table-speciesHolder">
-                  <div class="table-speciesIcon ${$parent.getSpecies(item)}"></div>
+                  <div class="table-speciesIcon ${$parent.getSpeciesIcon(item)}"></div>
                 </div>
                 <div class="col-xs-9 col-sm-10">
                   <a route-href="route: edit; params.bind: { id: api.getEvidenceId(item._links.self.href) }" target="editbel" a href="#" data-toggle="tooltip" title="${item.evidence.summary_text}">${item.evidence.bel_statement ? item.evidence.bel_statement : 'Missing BEL Statement'}

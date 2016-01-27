@@ -115,7 +115,7 @@ export class Search {
   //   return default_val;
   // }
 
-  getSpecies(item) {
+  getSpeciesIcon(item) {
     let organisms = {
       "Mus musculus": "mouse-icon",
       "10090": "mouse-icon",

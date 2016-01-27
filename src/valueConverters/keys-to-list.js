@@ -16,6 +16,6 @@ export class KeysValueConverter {
    * @return {array} list of keys
    */
   toView(object){
-    return Object.keys(object);
+    return Object.keys(object).sort();
   }
 }
