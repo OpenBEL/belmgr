@@ -12,3 +12,7 @@ src/components/typeahead-tmp.js
 
 src/.tern-port
 .tern-port
+test/e2e/dist/*
+test/e2e/dist
+test/e2e/dist/demo.spec.js
+test/e2e/dist/welcome.po.js
