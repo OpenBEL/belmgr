@@ -1,41 +1,32 @@
-import {PageObject_Welcome} from './welcome.po.js';
+import {PageObject_Search} from './search.po.js';
 import {PageObject_Skeleton} from './skeleton.po.js';
 
-describe('aurelia skeleton app', function() {
-  var po_welcome,
+describe('BELMgr', function() {
+  var po_search,
       po_skeleton;
 
   beforeEach( () => {
     po_skeleton = new PageObject_Skeleton();
-    po_welcome = new PageObject_Welcome();
+    po_search = new PageObject_Search();
 
     browser.loadAndWaitForAureliaPage("http://localhost:9000");
   });
 
   it('should load the page and display the initial page title', () => {
-    expect(po_skeleton.getCurrentPageTitle()).toBe('Welcome | Aurelia');
+    expect(po_skeleton.getCurrentPageTitle()).toBe('Welcome | BEL Manager');
   });
 
-  it('should display greeting', () => {
-    expect(po_welcome.getGreeting()).toBe('Welcome to the Aurelia Navigation App!');
-  });
-
-  it('should automatically write down the fullname', () => {
-    po_welcome.setFirstname('Rob');
-    po_welcome.setLastname('Eisenberg');
-
-    // For now there is a timing issue with the binding.
-    // Until resolved we will use a short sleep to overcome the issue.
+  it('should navigate to search page', () => {
+    po_skeleton.navigateTo('#/search');
     browser.sleep(200);
-    expect(po_welcome.getFullname()).toBe('ROB EISENBERG');
+    expect(po_skeleton.getCurrentPageTitle()).toBe('Search | BEL Manager');
   });
 
-  it('should show alert message when clicking submit button', () => {
-    expect(po_welcome.openAlertDialog()).toBe(true);
+  it('should search terms', () => {
+    let initialSearchCnt = po_search.getResultCnt();
+    po_search.setSearchterms('heart');
+    browser.sleep(2000);
+    expect(po_search.getResultCnt()).not.toBe(initialSearchCnt);
   });
 
-  it('should navigate to users page', () => {
-    po_skeleton.navigateTo('#/users');
-    expect(po_skeleton.getCurrentPageTitle()).toBe('Github Users | Aurelia');
-  });
 });
