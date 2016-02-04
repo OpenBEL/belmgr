@@ -4,15 +4,5 @@ dist
 bower_components
 .idea
 .DS_STORE
-build/reports
-esdoc
-src/components/lookahead.html
-src/components/lookahead.js
-src/components/typeahead-tmp.js
-
-src/.tern-port
 .tern-port
-test/e2e/dist/*
-test/e2e/dist
-test/e2e/dist/demo.spec.js
-test/e2e/dist/welcome.po.js
+
