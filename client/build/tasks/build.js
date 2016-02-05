@@ -8,6 +8,7 @@ var paths = require('../paths');
 var compilerOptions = require('../babel-options');
 var assign = Object.assign || require('object.assign');
 var notify = require("gulp-notify");
+var browserSync = require('browser-sync');
 
 // transpiles changed es6 files to SystemJS format
 // the plumber() call prevents 'pipe breaking' caused
@@ -15,7 +16,7 @@ var notify = require("gulp-notify");
 // https://www.npmjs.com/package/gulp-plumber
 gulp.task('build-system', function() {
   return gulp.src(paths.source)
-    .pipe(plumber({errorHandler: notify.onError("Error: <%= error.message %>")}))
+    .pipe(plumber({errorHandler: notify.onError('Error: <%= error.message %>')}))
     .pipe(changed(paths.output, {extension: '.js'}))
     .pipe(sourcemaps.init({loadMaps: true}))
     .pipe(to5(assign({}, compilerOptions, {modules: 'system'})))
@@ -34,33 +35,34 @@ gulp.task('build-html', function() {
 gulp.task('build-css', function() {
   return gulp.src(paths.css)
     .pipe(changed(paths.output, {extension: '.css'}))
-    .pipe(gulp.dest(paths.output));
+    .pipe(gulp.dest(paths.output))
+    .pipe(browserSync.stream());
 });
 
-// build plugin - bel-nanopub, bel-statement, etc
-gulp.task('build-plugin', function() {
-  // Use `spawn` to execute shell command using Node
-  var spawn = require('child_process').spawn;
+// // build plugin - bel-nanopub, bel-statement, etc
+// gulp.task('build-plugin', function() {
+//   // Use `spawn` to execute shell command using Node
+//   var spawn = require('child_process').spawn;
 
-  // The directory that contains the Gulpfile whose task needs to be run.
-  var path = '../plugin/build/tasks';
+//   // The directory that contains the Gulpfile whose task needs to be run.
+//   var path = '../plugin/build/tasks';
 
-  // Gulp tasks that need to be run.
-  var tasks = ['build']
+//   // Gulp tasks that need to be run.
+//   var tasks = ['build']
 
-  // `cd` into Gulpfile directory
-  process.chdir(path);
+//   // `cd` into Gulpfile directory
+//   process.chdir(path);
 
-  // Run `gulp` command
-  var child = spawn('gulp', tasks);
+//   // Run `gulp` command
+//   var child = spawn('gulp', tasks);
 
-  // Print output from Gulpfile
-  // child.stdout.on('data', function(data) {
-  //     if (data) {
-  //         console.log(data.toString())
-  //     }
-  // });
-});
+//   // Print output from Gulpfile
+//   // child.stdout.on('data', function(data) {
+//   //     if (data) {
+//   //         console.log(data.toString())
+//   //     }
+//   // });
+// });
 
 // this task calls the clean task (located
 // in ./clean.js), then runs the build-system
@@ -69,7 +71,7 @@ gulp.task('build-plugin', function() {
 gulp.task('build', function(callback) {
   return runSequence(
     'clean',
-    ['build-system', 'build-html', 'build-css', 'build-plugin'],
+    ['build-system', 'build-html', 'build-css'],
     callback
   );
 });

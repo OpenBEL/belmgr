@@ -1,5 +1,5 @@
 import {inject, customElement, bindable, bindingMode, LogManager} from 'aurelia-framework';
-import {relationsList} from '../resources/relationsList';
+import relationsList from './resources/relations-list';
 
 let logger = LogManager.getLogger('statement');
 
@@ -14,13 +14,12 @@ let logger = LogManager.getLogger('statement');
 @bindable({name:"belrelationship", attribute:"belrelationship", defaultBindingMode: bindingMode.twoWay})
 @bindable({name:"belobject", attribute:"belobject", defaultBindingMode: bindingMode.twoWay})
 @customElement('statement')
-@inject(relationsList)
 export class Statement {
 
   // TODO pull relationsList from OpenBEL API
-  constructor(relationsList) {
-    this.relationsList = relationsList;
-    // logger.debug('RL: ', relationsList);
+  // TODO test if relationsList can be used without injecting
+  constructor() {
+    logger.debug('RelationsList: ', relationsList);
   }
 
   // Pulling parent's context into scope

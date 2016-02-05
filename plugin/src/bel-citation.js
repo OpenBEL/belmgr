@@ -1,8 +1,9 @@
 import {inject, customElement, bindable, bindingMode, LogManager} from 'aurelia-framework';
-import {Api} from '../resources/api';
-import {PubmedService} from '../resources/PubmedService';
+import {EventAggregator} from 'aurelia-event-aggregator';
+import {OpenbelapiService} from './resources/openbelapi-service';
+import {PubmedService} from './resources/pubmed-service';
 
-let logger = LogManager.getLogger('citation');
+let logger = LogManager.getLogger('bel-citation');
 
 @bindable({
   name:'evidence', //name of the property on the class
@@ -12,18 +13,23 @@ let logger = LogManager.getLogger('citation');
   defaultValue: undefined //default value of the property, if not bound or set in HTML
 })
 @customElement('citation')
-@inject(Api, PubmedService)
+@inject(OpenbelapiService, PubmedService, EventAggregator)
 export class Citation {
   citationId;
 
-  constructor(Api, PubmedService) {
-    this.api = Api;
+  constructor(OpenbelapiService, PubmedService, EventAggregator) {
+    this.api = OpenbelapiService;
     this.pubmedService = PubmedService;
+    this.eventAggregator = eventAggregator;
   }
 
   // Pulling parent's context into scope
   bind(context) {
     this.$parent = context;
+  }
+
+  publish(payload) {
+    this.eventAggregator.publish('pubmed', payload);
   }
 
   attached() {
@@ -59,7 +65,7 @@ export class Citation {
           this.pubmed = pubmed;
           this.citationPubmedChecks();
           this.$parent.refreshEvidenceObjBinding();
-          this.$parent.pubmed = this.pubmed;
+
         })
         .catch(reason => {
           this.pubmed = {};

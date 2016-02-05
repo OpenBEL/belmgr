@@ -1,17 +1,23 @@
+import {LogManager} from 'aurelia-framework';
 import {HttpClient} from 'aurelia-fetch-client';
 import 'fetch';
+import {Authentication} from './authentication';
 import Config from '../AppConfig';
 
 let baseUrl = Config.baseUrl;
 let loginUrl = Config.loginUrl;
 
-export class ApiClient {
+let logger = LogManager.getLogger('openbelapi-client');
+
+export class OpenbelapiClient {
+
   client;
+
   static inject = [Authentication]
   constructor(Authentication) {
     this.auth = Authentication;
 
-    let apiClient = new HttpClient();
+    this.client = new HttpClient();
     this.client = http.configure(config => {
       config
         .withBaseUrl(baseUrl)

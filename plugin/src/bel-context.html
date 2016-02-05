@@ -1,8 +1,4 @@
 <template>
-  <require from="./context-item"></require>
-  <!-- <require from="./ci"></require> -->
-
-  <!-- <require from="./type-ahead"></require> -->
 
   <div id="context" class="edit-context ">
     <div class="row edit-belForm">
@@ -23,11 +19,8 @@
       <!--List Context-->
       <template repeat.for="context of evidence.experiment_context">
         <div class="row col-xs-12">
-          <context-item type.two-way="context.name" annotation.two-way="context.value" types.bind="types" index.bind="$index" last.bind="$last"></context-item>
-
-      <!--     <ci index.bind="$index" last.bind="$last"></ci>
- -->
-
+          <bel-context-item type.two-way="context.name" annotation.two-way="context.value" types.bind="types" index.bind="$index" last.bind="$last">
+          </bel-context-item>
         </div>
 
       </template>

@@ -1,9 +1,9 @@
 import {inject, bindable, bindingMode, LogManager, customElement} from 'aurelia-framework';
-import {Api} from '../resources/api';
+import {OpenbelapiService} from './resources/openbelapi-service';
 
 let logger = LogManager.getLogger('contextitem');
 
-@inject(Api)
+@inject(OpenbelapiService)
 @customElement('context-item')
 export class ContextItem {
   @bindable type;
@@ -16,8 +16,8 @@ export class ContextItem {
   @bindable hasAnnotationFocus = false;
   @bindable showResults = false;
 
-  constructor(Api, TaskQueue){
-    this.api = Api;
+  constructor(OpenbelapiService){
+    this.api = OpenbelapiService;
   }
 
   attached() {

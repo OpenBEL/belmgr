@@ -8,6 +8,7 @@ System.config({
 
   map: {
     "aurelia-dependency-injection": "npm:aurelia-dependency-injection@1.0.0-beta.1.1.2",
+    "aurelia-event-aggregator": "npm:aurelia-event-aggregator@1.0.0-beta.1.1.0",
     "aurelia-framework": "npm:aurelia-framework@1.0.0-beta.1.1.1",
     "traceur": "github:jmcriffey/bower-traceur@0.0.92",
     "traceur-runtime": "github:jmcriffey/bower-traceur-runtime@0.0.92",
@@ -37,6 +38,9 @@ System.config({
       "aurelia-metadata": "npm:aurelia-metadata@1.0.0-beta.1.1.3",
       "aurelia-pal": "npm:aurelia-pal@1.0.0-beta.1.1.1",
       "core-js": "npm:core-js@2.0.3"
+    },
+    "npm:aurelia-event-aggregator@1.0.0-beta.1.1.0": {
+      "aurelia-logging": "npm:aurelia-logging@1.0.0-beta.1.1.1"
     },
     "npm:aurelia-framework@1.0.0-beta.1.1.1": {
       "aurelia-binding": "npm:aurelia-binding@1.0.0-beta.1.1.1",

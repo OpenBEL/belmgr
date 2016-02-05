@@ -1,138 +1,19 @@
+import {LogManager} from 'aurelia-framework';
 import {HttpClient} from 'aurelia-fetch-client';
 import 'fetch';
-import {LogManager} from 'aurelia-framework';
 import Config from '../AppConfig';
-import {ApiClient} from './api-client';
+import {OpenbelapiClient} from './openbelapi-client';
 
-let logger = LogManager.getLogger('api');
+let logger = LogManager.getLogger('openbelapi');
 
-//let baseUrl = 'http://next.belframework.org/api';
 let baseUrl = Config.baseUrl;
-
-// http://europepmc.org/RestfulWebService#search
-// http://www.ebi.ac.uk/europepmc/webservices/rest/search/resulttype=core&format=json&query=src:med ext_id:1945500
-// http://next.belframework.org/europepmc/webservices/rest/search/resulttype=core&format=json&query=src:med  // proxied
-// to remove CORS issue
-// http://next.belframework.org/europepmc/webservices/rest/search/resulttype=core&format=json&query=src:med
-// ext_id:1945500 Using this technique to proxy http://oskarhane.com/avoid-cors-with-nginx-proxy_pass
-
-// let pubmedBaseUrl = 'http://next.belframework.org/europepmc/webservices/rest/search';
-// let pubmedBaseUrl = 'http://www.ebi.ac.uk/europepmc/webservices/rest/search';
 let pubmedBaseUrl = Config.pubmedBaseUrl;
 
+export class OpenbelapiService {
+  static inject = [OpenbelapiClient];
+  constructor(OpenbelapiClient) {
+    this.apiClient = OpenbelapiClient.client;
 
-export class Api {
-  static inject = [ApiClient];
-  constructor(apiClient) {
-    this.apiClient = apiClient.apiClient;
-    // Simple API Client - not preconfigured with BaseUrl
-    this.client = new HttpClient();
-    this.client = http.configure(config => {
-      config
-        .withDefaults({
-          headers: {
-            'Accept': 'application/json',
-            'X-Requested-With': 'Fetch'
-          }
-        })
-        .rejectErrorResponses()
-        .withInterceptor({
-          request(req) {
-            logger.debug(`Requesting ${req.method} ${req.url}`);
-            return req; // you can return a modified Request, or you can short-circuit the request by returning a
-            // Response
-          },
-          response(resp) {
-            logger.debug(`Received ${resp.status} ${resp.url}`);
-            return resp; // you can return a modified Response
-          }
-        });
-    });
-
-    // OpenBEL API Client - preconfigured with BaseUrl
-    this.apiClient = new HttpClient();
-    // this.apiClient.baseUrl = baseUrl;
-    this.apiClient.configure(config => {
-      config
-        .withBaseUrl(baseUrl)
-        .withDefaults({
-          credentials: 'same-origin',
-          headers: {
-            'Accept': 'application/json',
-            'X-Requested-With': 'Fetch'
-          }
-        })
-        .rejectErrorResponses()
-        .withInterceptor({
-          request(req) {
-            logger.debug(`Requesting ${req.method} ${req.url}`);
-            return req; // you can return a modified Request, or you can short-circuit the request by returning a
-            // Response
-          },
-          response(resp) {
-            logger.debug(`Received ${resp.status} ${resp.url}`);
-            return resp; // you can return a modified Response
-          },
-          responseError(resp) {
-            if (resp.status === 401) {
-              logger.info('Backend returned HTTP 401, redirecting to home.');
-              window.location.href = window.location.origin;
-            }
-            logger.debug(`Received ${resp.status} ${resp.url}`);
-            let rejection = Promise.reject(resp);
-            return rejection;
-          }
-        });
-    });
-
-    // Pubmed API Client - preconfigured with BaseUrl
-    this.pubmedClient = new HttpClient();
-    this.pubmedClient.configure(config => {
-      config
-        .withBaseUrl(pubmedBaseUrl)
-        .withDefaults({
-          headers: {
-            'Accept': 'application/json'
-          }
-        })
-        .rejectErrorResponses()
-        .withInterceptor({
-          request(req) {
-            logger.debug(`Requesting ${req.method} ${req.url}`);
-            return req; // you can return a modified Request, or you can short-circuit the request by returning a
-            // Response
-          },
-          response(resp) {
-            logger.debug(`Received ${resp.status} ${resp.url}`);
-            return resp; // you can return a modified Response
-          }
-        });
-    });
-
-    // convert x to JSON
-    this.toJSON = x => x.json();
-
-    // rejects a promise logging the reason as an error
-    this.logAsError = reason => {
-      logger.error(reason);
-      let rejection = Promise.reject(reason);
-      return rejection;
-    };
-
-    // rejects a promise wrapping the reason
-    this.rejectErrors = reason => {
-      let rejection = Promise.reject(reason);
-      return rejection;
-    };
-  }
-
-  authEnabled() {
-    let authEnabledAPI = '/authentication-enabled';
-    let promise = this.apiClient.fetch(authEnabledAPI);
-    promise = promise.then(this.toJSON);
-    promise = promise.then(data => data.enabled);
-    promise = promise.catch(this.logAsError);
-    return promise;
   }
 
   /**
@@ -478,4 +359,13 @@ export class Api {
       });
   }
 
+  // Does the API require authentication? - used to indicate whether to show login link
+  authEnabled() {
+    let authEnabledAPI = '/authentication-enabled';
+    return this.apiClient.fetch(authEnabledAPI)
+      .then(data => data.json())
+      .then(data => {
+        return data.enabled;
+      });
+  }
 }

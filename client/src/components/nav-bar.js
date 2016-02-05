@@ -1,16 +1,16 @@
 import {bindable, LogManager} from 'aurelia-framework';
 import {inject} from 'aurelia-framework';
-import {Api} from '../resources/api';
+import {OpenbelapiService} from '../resources/openbelapi-service';
 
 let logger = LogManager.getLogger('nav-bar');
 
-@inject(Api)
+@inject(OpenbelapiService)
 export class NavBar {
   @bindable router = null;
   @bindable loggedIn = false;
 
-  constructor(api) {
-    this.api = api;
+  constructor(OpenbelapiService) {
+    this.api = OpenbelapiService;
 
     this.api.authEnabled().then(enabled => {
       if (enabled) {
@@ -28,7 +28,10 @@ export class NavBar {
           window.location.href = window.location.origin;
         }
       }
-    }).catch(this.api.rejectErrors);
+    })
+    .catch(function(reason) {
+        logger.error('NavBar AuthEnabled Error: ', reason);
+    });
   }
 
   navbarAction() {

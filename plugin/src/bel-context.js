@@ -1,5 +1,5 @@
 import {inject, customElement, bindable, bindingMode, LogManager} from 'aurelia-framework';
-import {Api} from '../resources/api';
+import {OpenbelapiService} from './resources/openbelapi-service';
 
 let logger = LogManager.getLogger('context');
 
@@ -10,12 +10,12 @@ let logger = LogManager.getLogger('context');
   defaultBindingMode: bindingMode.twoWay //default binding mode used with the .bind command
 })
 @customElement('context')
-@inject(Api)
+@inject(OpenbelapiService)
 export class Context {
   @bindable types;
 
-  constructor(Api) {
-    this.api = Api;
+  constructor(OpenbelapiService) {
+    this.api = OpenbelapiService;
 
     logger.debug('Context evidence: ', this.evidence);
   }

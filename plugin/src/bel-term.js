@@ -1,9 +1,9 @@
 import {inject, bindable, bindingMode, LogManager, customElement} from 'aurelia-framework';
-import {Api} from '../resources/api';
+import {OpenbelapiService} from './resources/openbelapi-service';
 
 let logger = LogManager.getLogger('bel-completion');
 
-@inject(Api)
+@inject(OpenbelapiService)
 @customElement('term')
 export class Term {
   @bindable bel;
@@ -15,8 +15,8 @@ export class Term {
   loading = false;
   focused = false;
 
-  constructor(Api) {
-    this.api = Api;
+  constructor(OpenbelapiService) {
+    this.api = OpenbelapiService;
   }
 
   hasFocus() {

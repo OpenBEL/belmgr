@@ -2,12 +2,12 @@ import {inject, bindable, LogManager} from 'aurelia-framework';
 import {activationStrategy, Router} from 'aurelia-router';
 import * as toastr from "toastr";
 
-import {Api} from '../resources/api';
+import {OpenbelapiService} from './resources/openbelapi-service';
 
 let logger = LogManager.getLogger('edit');
 
 @bindable({name:"evidenceId", attribute:"evidence-id"})
-@inject(Api, Router)
+@inject(OpenbelapiService, Router)
 export class Edit {
 
     evidence = {};
@@ -23,12 +23,11 @@ export class Edit {
     return activationStrategy.replace;
   }
 
-  constructor(Api, DialogService, Router) {
-    this.api = Api;
+  constructor(OpenbelapiService, DialogService, Router) {
+    this.api = OpenbelapiService;
     this.router = Router;
 
     this.loadFormData();
-
   }
 
   loadFormData() {

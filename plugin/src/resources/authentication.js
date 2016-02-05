@@ -1,44 +1,22 @@
-import {inject, LogManager} from 'aurelia-framework';
+import Config from '../AppConfig';
 
-import {Api} from './resources/api';
-import Config from './AppConfig';
+let tokenStorageName = Config.tokenStorageName;
+let tokenHeaderName = Config.tokenHeaderName;
 
-let logger = LogManager.getLogger('authenticate');
-
-@inject(Api, AppConfig)
 export class Authentication {
-
-  constructor(Api, AppConfig) {
-    this.api = Api;
-    this.appconfig = AppConfig;
-    this.tokenName = this.appconfig.tokenName;
-  }
-
-  authEnabled() {
-    let authEnabledAPI = '/authentication-enabled';
-    let promise = this.apiClient.fetch(authEnabledAPI);
-    promise = promise.then(this.toJSON);
-    promise = promise.then(data => data.enabled);
-    promise = promise.catch(this.logAsError);
-    return promise;
-  }
-
-  authenticate() {
-    let next = window.location.href;
-    logger.debug('Next: ', next);
-    window.location.href = baseUrl + '/authenticate?state=' + next;
+  constructor () {
   }
 
   setToken(token) {
-    localStorage.setItem(this.tokenName, token);
+    localStorage.setItem(tokenStorageName, token);
   }
 
   getToken() {
-    return localStorage.getItem(this.tokenName);
+    return localStorage.getItem(tokenStorageName);
   }
 
   removeToken() {
-    localStorage.removeItem(this.tokenName);
+    localStorage.removeItem(tokenStorageName);
   }
 
   getPayload() {
@@ -83,8 +61,8 @@ export class Authentication {
     return new Promise((resolve, reject)=>{
       this.storage.remove(tokenName);
 
-      if (this.appconfig.logoutRedirect && !redirect) {
-        window.location.href = this.appconfig.logoutRedirect;
+      if (this.Config.logoutRedirect && !redirect) {
+        window.location.href = this.Config.logoutRedirect;
       }
       else if (this.isString(redirect)) {
         // window.location.href =redirect;
@@ -95,5 +73,4 @@ export class Authentication {
       resolve();
     });
   }
-
 }

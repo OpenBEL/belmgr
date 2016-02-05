@@ -51,6 +51,7 @@
     },
     "dependencies": {
       "aurelia-dependency-injection": "^1.0.0-beta.1.1.2",
+      "aurelia-event-aggregator": "^1.0.0-beta.1.1.0",
       "aurelia-framework": "^1.0.0-beta.1.1.1",
       "toastr": "github:CodeSeven/toastr@^2.1.2"
     },

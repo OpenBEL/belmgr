@@ -1,39 +1,24 @@
 <template>
-  <require from="./citation"></require>
-  <require from="local-plugin/statement"></require>
-  <require from="local-plugin/context"></require>
-  <require from="./metadata"></require>
-
   <div class="edit-html">
     <div class="col-xs-5 edit-belEditorTitle">
         <h1>BEL Editor</h1>
     </div>
 
-    <!-- PubMed content -->
-
+    <!-- PubMed Overview-->
+    <pubmed></pubmed>
 
     <div class="container">
       <div class="${pubmed.title ? 'col-xs-8 col-xs-offset-4 col-md-9 col-md-offset-3' : 'col-xs-11 col-xs-offset-1'}">
         <div name="newBelForm">
 
-<!--           <div class="row edit-editBtns">
-            <div class="col-xs-6 col-md-4" show.bind="evidenceId">
-              <button type="button" click.delegate="submit()" class="col-xs-10 btn-edit btn-saveUpdates btn form-control")>Update Current BEL</button>
-            </div>
-
-            <div class="${evidenceId ? 'col-xs-6 col-md-4 col-md-offset-4' : 'col-xs-6 col-xs-offset-6 col-sm-4 col-sm-offset-8'}">
-              <button type="button" click.delegate="submitNew()" class="col-xs-10 btn btn-edit btn-saveNew form-control">${evidenceId ? 'Save as New' : 'Save'}</button>
-            </div>
-          </div> -->
-
           <!-- Citation -->
-          <bel-citation evidence.bind="evidence"></bel-citation>
+          <bel-citation evidence.bind="evidence">
+          </bel-citation>
 
           <!-- BEL Statement -->
           <bel-statement evidence.bind="evidence"
             belsubject.bind="belsubject" belrelationship.bind="belrelationship"
             belobject.bind="belobject">
-
           </bel-statement>
 
           <!-- BEL SummaryText -->
@@ -71,11 +56,12 @@
           <!-- End BEL Evidence Notes -->
 
           <!-- Experiment Context -->
-          <bel-context evidence.bind="evidence" types.bind="types"></bel-context>
+          <bel-context evidence.bind="evidence" types.bind="types">
+          </bel-context>
 
           <!--Metadata-->
-          <bel-metadata evidence.two-way="evidence" metadata.two-way='metadata'></bel-metadata>
-
+          <bel-metadata evidence.two-way="evidence" metadata.two-way='metadata'>
+          </bel-metadata>
 
           <div class="row edit-editBtns">
 
@@ -91,7 +77,5 @@
       </div>
     </div>
   </div>
-
-  <!-- onclick="return confirm('Are you sure you would like to overwrite the current Bel statement with your changes?' -->
 
 </template>
