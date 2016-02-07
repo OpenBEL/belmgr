@@ -17,8 +17,7 @@ export class OpenbelapiClient {
   constructor(Authentication) {
     this.auth = Authentication;
 
-    this.client = new HttpClient();
-    this.client = http.configure(config => {
+    this.client = new HttpClient().configure(config => {
       config
         .withBaseUrl(baseUrl)
         .withDefaults({
