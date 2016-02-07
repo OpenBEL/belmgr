@@ -14,6 +14,8 @@ export class NavBar {
 
     this.api.authEnabled().then(enabled => {
       if (enabled) {
+    console.log(this.api)
+
         let token = this.api.getToken();
         if (token === null) {
           this.action = 'Login';

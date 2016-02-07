@@ -14,9 +14,9 @@ export class OpenbelapiClient {
   client;
 
   static inject = [Authentication]
-  constructor(Authentication) {
-    this.auth = Authentication;
-
+  constructor(auth) {
+    this.auth = auth;
+    let self = this;
     this.client = new HttpClient().configure(config => {
       config
         .withBaseUrl(baseUrl)
@@ -41,11 +41,12 @@ export class OpenbelapiClient {
               }, {});
 
             if (urlParams.id_token) {
-              this.auth.setToken(urlParams.id_token);
+              self.auth.setToken(urlParams.id_token);
             }
 
-            let token = this.auth.getToken();
-              request.headers.append(this.auth.tokenHeaderName, 'Bearer ' + token);
+            console.log(self.auth)
+            let token = self.auth.getToken();
+              req.headers.append(self.auth.tokenHeaderName, 'Bearer ' + token);
 
             return req; // you can return a modified Request, or you can short-circuit the request by returning a Response
           },

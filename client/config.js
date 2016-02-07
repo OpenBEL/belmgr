@@ -14,7 +14,9 @@ System.config({
     "*": "dist/*",
     "github:*": "jspm_packages/github/*",
     "npm:*": "jspm_packages/npm/*",
-    "local-plugin/*": "/dist/amd/*"
+    "resources/*": "dist/resources/*",
+    "local-plugin/*": "/dist/amd/*",
+    "value-converters/*": "/dist/value-converters/*"
   },
 
   map: {
