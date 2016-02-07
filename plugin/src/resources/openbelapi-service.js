@@ -76,9 +76,7 @@ export class OpenbelapiService {
     // logger.debug('Filters2: ', filters);
     logger.debug('Getstring: ', getstring);
 
-    console.log(this.apiClient)
     let token = this.auth.getToken();
-    console.log(token)
 
     return this.apiClient.fetch(getstring, {
       headers: {
@@ -131,7 +129,6 @@ export class OpenbelapiService {
   getBelEvidence(id) {
 
     let token = this.auth.getToken();
-    console.log(token)
 
     return this.apiClient.fetch(`/evidence/${id}`, { headers: { Authorization: 'Bearer ' + token }})
       .then(response => response.json())
@@ -153,7 +150,6 @@ export class OpenbelapiService {
   loadBelEvidence(evidence, id) {
 
     let token = this.auth.getToken();
-    console.log(token)
     // Update Evidence given an Id
     if (id) {
       return this.apiClient.fetch(`/evidence/${id}`, {
@@ -186,7 +182,6 @@ export class OpenbelapiService {
   deleteBelEvidence(evidenceId) {
 
     let token = this.auth.getToken();
-    console.log(token)
 
     return this.apiClient.fetch(`/evidence/${evidenceId}`, {
       method: 'delete',

@@ -16,7 +16,7 @@ gulp.task('watch', ['serve'], function() {
   gulp.watch(paths.html, ['build-html', browserSync.reload]).on('change', reportChange);
   gulp.watch(paths.css, ['build-css']).on('change', reportChange);
   gulp.watch(paths.pluginSource, ['build-plugin', browserSync.reload]).on('change', reportChange);
-  gulp.watch(paths.pluginHtml, ['build-plugin-html', browserSync.reload]).on('change', reportChange);
+  gulp.watch(paths.pluginHtml, ['build-plugin-html-amd', browserSync.reload]).on('change', reportChange);
   gulp.watch(paths.style, function() {
     return gulp.src(paths.style)
       .pipe(browserSync.stream());

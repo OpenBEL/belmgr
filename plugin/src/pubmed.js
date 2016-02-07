@@ -6,9 +6,9 @@ import {PubmedService} from './resources/pubmed-service';
 export class Pubmed {
   pubmed;
 
-  constructor(EventAggregator, PubmedService) {
+  constructor(eventAggregator, pubmedService) {
     this.eventAggregator = eventAggregator;
-    this.pubmedService = PubmedService;
+    this.pubmedService = pubmedService;
   }
 
   subscribe() {

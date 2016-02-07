@@ -4,8 +4,8 @@ import {OpenbelapiService} from './resources/openbelapi-service';
 let logger = LogManager.getLogger('bel-completion');
 
 @inject(OpenbelapiService)
-@customElement('term')
-export class Term {
+@customElement('bel-term')
+export class BelTerm {
   @bindable bel;
   @bindable debounceTime = 100;
   @bindable hasTermFocus = false;

@@ -44,9 +44,8 @@ export class OpenbelapiClient {
               self.auth.setToken(urlParams.id_token);
             }
 
-            console.log(self.auth)
             let token = self.auth.getToken();
-              req.headers.append(self.auth.tokenHeaderName, 'Bearer ' + token);
+            req.headers.append(self.auth.tokenHeaderName, 'Bearer ' + token);
 
             return req; // you can return a modified Request, or you can short-circuit the request by returning a Response
           },

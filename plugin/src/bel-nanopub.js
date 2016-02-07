@@ -8,7 +8,7 @@ let logger = LogManager.getLogger('edit');
 
 @bindable({name:"evidenceId", attribute:"evidence-id"})
 @inject(OpenbelapiService, Router)
-export class Edit {
+export class BelNanopub {
 
     evidence = {};
     metadata = {

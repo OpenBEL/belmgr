@@ -12,14 +12,14 @@ let logger = LogManager.getLogger('bel-citation');
   defaultBindingMode: bindingMode.twoWay, //default binding mode used with the .bind command
   defaultValue: undefined //default value of the property, if not bound or set in HTML
 })
-@customElement('citation')
+@customElement('bel-citation')
 @inject(OpenbelapiService, PubmedService, EventAggregator)
-export class Citation {
+export class BelCitation {
   citationId;
 
-  constructor(OpenbelapiService, PubmedService, EventAggregator) {
-    this.api = OpenbelapiService;
-    this.pubmedService = PubmedService;
+  constructor(openbelapiService, pubmedService, eventAggregator) {
+    this.api = openbelapiService;
+    this.pubmedService = pubmedService;
     this.eventAggregator = eventAggregator;
   }
 
@@ -33,7 +33,6 @@ export class Citation {
   }
 
   attached() {
-
     if (this.evidence.citation) {
       if (this.evidence.citation.id) {
         this.citationId = this.evidence.citation.id;
