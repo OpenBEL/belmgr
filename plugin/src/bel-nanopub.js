@@ -8,7 +8,7 @@ let logger = LogManager.getLogger('edit');
 
 @bindable({name:"evidenceId", attribute:"evidence-id"})
 @inject(OpenbelapiService, Router)
-export class Edit {
+export class BelNanopub {
 
     evidence = {};
     metadata = {
@@ -23,9 +23,9 @@ export class Edit {
     return activationStrategy.replace;
   }
 
-  constructor(OpenbelapiService, DialogService, Router) {
-    this.api = OpenbelapiService;
-    this.router = Router;
+  constructor(openbelapiService, router) {
+    this.api = openbelapiService;
+    this.router = router;
 
     this.loadFormData();
   }

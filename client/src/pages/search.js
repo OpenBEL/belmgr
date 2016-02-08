@@ -1,10 +1,10 @@
 import {inject} from 'aurelia-framework';
-import {Api} from './resources/api';
-
+import {OpenbelapiService} from 'local-plugin/resources/openbelapi-service';
 import {LogManager} from 'aurelia-framework';
+
 let logger = LogManager.getLogger('search');
 
-@inject(Api)
+@inject(OpenbelapiService)
 export class Search {
 
   constructor(api) {

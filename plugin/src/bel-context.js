@@ -9,9 +9,9 @@ let logger = LogManager.getLogger('context');
   changeHandler:'evidenceChanged', //name of the method to invoke when the property changes
   defaultBindingMode: bindingMode.twoWay //default binding mode used with the .bind command
 })
-@customElement('context')
+@customElement('bel-context')
 @inject(OpenbelapiService)
-export class Context {
+export class BelContext {
   @bindable types;
 
   constructor(OpenbelapiService) {

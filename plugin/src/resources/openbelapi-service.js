@@ -3,6 +3,7 @@ import {HttpClient} from 'aurelia-fetch-client';
 import 'fetch';
 import Config from '../AppConfig';
 import {OpenbelapiClient} from './openbelapi-client';
+import {Authentication} from './authentication';
 
 let logger = LogManager.getLogger('openbelapi');
 
@@ -10,10 +11,10 @@ let baseUrl = Config.baseUrl;
 let pubmedBaseUrl = Config.pubmedBaseUrl;
 
 export class OpenbelapiService {
-  static inject = [OpenbelapiClient];
-  constructor(OpenbelapiClient) {
-    this.apiClient = OpenbelapiClient.client;
-
+  static inject = [OpenbelapiClient, Authentication];
+  constructor(openbelapiClient, authentication) {
+    this.apiClient = openbelapiClient.client;
+    this.auth = authentication;
   }
 
   /**
@@ -75,9 +76,11 @@ export class OpenbelapiService {
     // logger.debug('Filters2: ', filters);
     logger.debug('Getstring: ', getstring);
 
+    let token = this.auth.getToken();
+
     return this.apiClient.fetch(getstring, {
       headers: {
-        Authorization: 'Bearer ' + this.getToken()
+        Authorization: 'Bearer ' + token
       }
     })
       .then(response => response.json())
@@ -124,7 +127,10 @@ export class OpenbelapiService {
   }
 
   getBelEvidence(id) {
-    return this.apiClient.fetch(`/evidence/${id}`, { headers: { Authorization: 'Bearer ' + this.getToken() }})
+
+    let token = this.auth.getToken();
+
+    return this.apiClient.fetch(`/evidence/${id}`, { headers: { Authorization: 'Bearer ' + token }})
       .then(response => response.json())
       .then(data => {
         let evidence = data.evidence;
@@ -142,6 +148,8 @@ export class OpenbelapiService {
    * @param evidence
    */
   loadBelEvidence(evidence, id) {
+
+    let token = this.auth.getToken();
     // Update Evidence given an Id
     if (id) {
       return this.apiClient.fetch(`/evidence/${id}`, {
@@ -149,20 +157,21 @@ export class OpenbelapiService {
         headers: {
           'Accept': 'application/json',
           'Content-Type': 'application/json; profile=http://next.belframework.org/schema/evidence.schema.json',
-          'Authorization': 'Bearer ' + this.getToken()
+          'Authorization': 'Bearer ' + token
         },
         body: JSON.stringify(evidence)
       }).catch(response => {
         logger.error('PUT Evidence error ', response);
       });
     }
+
     // Create new Evidence
     return this.apiClient.fetch(`/evidence`, {
       method: 'post',
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json; profile=http://next.belframework.org/schema/evidence.schema.json',
-        'Authorization': 'Bearer ' + this.getToken()
+        'Authorization': 'Bearer ' + token
       },
       body: JSON.stringify(evidence)
     }).catch(response => {
@@ -171,12 +180,15 @@ export class OpenbelapiService {
   }
 
   deleteBelEvidence(evidenceId) {
+
+    let token = this.auth.getToken();
+
     return this.apiClient.fetch(`/evidence/${evidenceId}`, {
       method: 'delete',
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json; profile=http://next.belframework.org/schema/evidence.schema.json',
-        'Authorization': 'Bearer ' + this.getToken()
+        'Authorization': 'Bearer ' + token
       }
     })
     .catch(function(reason) {
@@ -304,11 +316,13 @@ export class OpenbelapiService {
     let data = new FormData();
     data.append('file', file);
 
+    let token = this.auth.getToken();
+
     return this.apiClient.fetch('/datasets', {
       method: 'post',
       body: data,
       headers: {
-        Authorization: 'Bearer ' + this.getToken()
+        Authorization: 'Bearer ' + token
       }
     });
   }
@@ -341,7 +355,7 @@ export class OpenbelapiService {
   }
 
   getDatasets() {
-    return this.apiClient.fetch('/datasets', { headers: { Authorization: 'Bearer ' + this.getToken() }})
+    return this.apiClient.fetch('/datasets', { headers: { Authorization: 'Bearer ' + this.auth.getToken() }})
       .then(response => response.json())
       .then(data => {return data.dataset_collection;})
       .catch(function(reason) {
@@ -351,7 +365,7 @@ export class OpenbelapiService {
 
   deleteDataset(url) {
     let dId = this.getIdFromUrl(url);
-    return this.apiClient.fetch(`/datasets/${dId}`, { method: 'DELETE', headers: { Authorization: 'Bearer ' + this.getToken() }})
+    return this.apiClient.fetch(`/datasets/${dId}`, { method: 'DELETE', headers: { Authorization: 'Bearer ' + this.auth.getToken() }})
       .then(response => {
         return response;
       }).catch(function(reason) {

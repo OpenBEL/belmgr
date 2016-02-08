@@ -1,5 +1,5 @@
 <template>
-
+  <require from="./bel-term"></require>
   <div id="bel-statement" class="edit-belForm edit-belStatement edit-header">
     <div class="row col-xs-12">
       <h3>BEL Statement</h3>
@@ -30,9 +30,7 @@
       <div id="bel-target-div" class="edit-belStatementDivs col-xs-5">
         <div class="form-group input-block-level">
           <label class="sr-only" for="belobject">BEL Object</label>
-
           <bel-term bel.two-way="belobject"></bel-term>
-
         </div>
       </div>
     </div>

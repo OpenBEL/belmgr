@@ -13,8 +13,8 @@ let logger = LogManager.getLogger('statement');
 @bindable({name:"belsubject", attribute:"belsubject", defaultBindingMode: bindingMode.twoWay})
 @bindable({name:"belrelationship", attribute:"belrelationship", defaultBindingMode: bindingMode.twoWay})
 @bindable({name:"belobject", attribute:"belobject", defaultBindingMode: bindingMode.twoWay})
-@customElement('statement')
-export class Statement {
+@customElement('bel-statement')
+export class BelStatement {
 
   // TODO pull relationsList from OpenBEL API
   // TODO test if relationsList can be used without injecting

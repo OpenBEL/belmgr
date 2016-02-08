@@ -1,6 +1,6 @@
 import {bindable, LogManager} from 'aurelia-framework';
 import {inject} from 'aurelia-framework';
-import {OpenbelapiService} from '../resources/openbelapi-service';
+import {OpenbelapiService} from 'local-plugin/resources/openbelapi-service';
 
 let logger = LogManager.getLogger('nav-bar');
 
@@ -14,6 +14,7 @@ export class NavBar {
 
     this.api.authEnabled().then(enabled => {
       if (enabled) {
+
         let token = this.api.getToken();
         if (token === null) {
           this.action = 'Login';

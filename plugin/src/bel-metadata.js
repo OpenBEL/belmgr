@@ -9,8 +9,8 @@ let logger = LogManager.getLogger('metadata');
   defaultBindingMode: bindingMode.twoWay, //default binding mode used with the .bind command
   defaultValue: undefined //default value of the property, if not bound or set in HTML
 })
-@customElement('metadata')
-export class Metadata {
+@customElement('bel-metadata')
+export class BelMetadata {
   @bindable metadata;
 
   evidenceChanged(value) {
