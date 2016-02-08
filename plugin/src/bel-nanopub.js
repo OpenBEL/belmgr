@@ -2,7 +2,7 @@ import {inject, bindable, LogManager} from 'aurelia-framework';
 import {activationStrategy, Router} from 'aurelia-router';
 import * as toastr from "toastr";
 
-import {OpenbelapiService} from 'resources/openbelapi-service';
+import {OpenbelapiService} from './resources/openbelapi-service';
 
 let logger = LogManager.getLogger('edit');
 

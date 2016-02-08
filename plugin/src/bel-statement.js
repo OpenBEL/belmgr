@@ -1,5 +1,5 @@
 import {inject, customElement, bindable, bindingMode, LogManager} from 'aurelia-framework';
-import relationsList from 'resources/relations-list';
+import relationsList from './resources/relations-list';
 
 let logger = LogManager.getLogger('statement');
 

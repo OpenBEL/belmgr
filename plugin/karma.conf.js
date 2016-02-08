@@ -18,8 +18,7 @@ module.exports = function(config) {
       paths: {
         '*': '*.js',
         'github:*': 'jspm_packages/github/*.js',
-        'npm:*': 'jspm_packages/npm/*.js',
-        'resources/*': 'src/resources/*'
+        'npm:*': 'jspm_packages/npm/*.js'
       }
     },
 
