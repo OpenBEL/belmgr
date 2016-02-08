@@ -3,7 +3,7 @@ import {HttpClient} from 'aurelia-fetch-client';
 import 'fetch';
 import Config from '../AppConfig';
 import {OpenbelapiClient} from './openbelapi-client';
-import {Authentication} from 'local-plugin/resources/authentication';
+import {Authentication} from 'resources/authentication';
 
 let logger = LogManager.getLogger('openbelapi');
 

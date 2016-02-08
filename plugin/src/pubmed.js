@@ -1,6 +1,6 @@
 import {inject} from 'aurelia-framework';
 import {EventAggregator} from 'aurelia-event-aggregator';
-import {PubmedService} from './resources/pubmed-service';
+import {PubmedService} from 'resources/pubmed-service';
 
 @inject(EventAggregator, PubmedService)
 export class Pubmed {

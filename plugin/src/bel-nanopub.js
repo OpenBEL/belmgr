@@ -2,7 +2,7 @@ import {inject, bindable, LogManager} from 'aurelia-framework';
 import {activationStrategy, Router} from 'aurelia-router';
 import * as toastr from "toastr";
 
-import {OpenbelapiService} from './resources/openbelapi-service';
+import {OpenbelapiService} from 'resources/openbelapi-service';
 
 let logger = LogManager.getLogger('edit');
 
@@ -23,9 +23,9 @@ export class BelNanopub {
     return activationStrategy.replace;
   }
 
-  constructor(OpenbelapiService, DialogService, Router) {
-    this.api = OpenbelapiService;
-    this.router = Router;
+  constructor(openbelapiService, router) {
+    this.api = openbelapiService;
+    this.router = router;
 
     this.loadFormData();
   }

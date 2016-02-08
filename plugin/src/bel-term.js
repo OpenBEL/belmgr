@@ -1,5 +1,5 @@
 import {inject, bindable, bindingMode, LogManager, customElement} from 'aurelia-framework';
-import {OpenbelapiService} from './resources/openbelapi-service';
+import {OpenbelapiService} from 'resources/openbelapi-service';
 
 let logger = LogManager.getLogger('bel-completion');
 
