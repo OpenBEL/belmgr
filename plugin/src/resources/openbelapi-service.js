@@ -149,15 +149,14 @@ export class OpenbelapiService {
    */
   loadBelEvidence(evidence, id) {
 
-    let token = this.auth.getToken();
     // Update Evidence given an Id
     if (id) {
       return this.apiClient.fetch(`/evidence/${id}`, {
         method: 'put',
         headers: {
           'Accept': 'application/json',
-          'Content-Type': 'application/json; profile=http://next.belframework.org/schema/evidence.schema.json',
-          'Authorization': 'Bearer ' + token
+          'Content-Type': 'application/json; profile=http://next.belframework.org/schema/evidence.schema.json'
+
         },
         body: JSON.stringify(evidence)
       }).catch(response => {
@@ -170,8 +169,7 @@ export class OpenbelapiService {
       method: 'post',
       headers: {
         'Accept': 'application/json',
-        'Content-Type': 'application/json; profile=http://next.belframework.org/schema/evidence.schema.json',
-        'Authorization': 'Bearer ' + token
+        'Content-Type': 'application/json; profile=http://next.belframework.org/schema/evidence.schema.json'
       },
       body: JSON.stringify(evidence)
     }).catch(response => {
@@ -181,14 +179,11 @@ export class OpenbelapiService {
 
   deleteBelEvidence(evidenceId) {
 
-    let token = this.auth.getToken();
-
     return this.apiClient.fetch(`/evidence/${evidenceId}`, {
       method: 'delete',
       headers: {
         'Accept': 'application/json',
-        'Content-Type': 'application/json; profile=http://next.belframework.org/schema/evidence.schema.json',
-        'Authorization': 'Bearer ' + token
+        'Content-Type': 'application/json; profile=http://next.belframework.org/schema/evidence.schema.json'
       }
     })
     .catch(function(reason) {
@@ -316,14 +311,9 @@ export class OpenbelapiService {
     let data = new FormData();
     data.append('file', file);
 
-    let token = this.auth.getToken();
-
     return this.apiClient.fetch('/datasets', {
       method: 'post',
-      body: data,
-      headers: {
-        Authorization: 'Bearer ' + token
-      }
+      body: data
     });
   }
 
@@ -371,6 +361,13 @@ export class OpenbelapiService {
       }).catch(function(reason) {
         logger.error('Delete Datasets Error: ', reason);
       });
+  }
+
+  /*
+    this.api.authenticate(window.location.href, window.location.path)
+   */
+  authenticate(href, path) {
+    window.location.href = `${loginUrl}&redirect_uri=${href}&state=${path}`;
   }
 
   // Does the API require authentication? - used to indicate whether to show login link

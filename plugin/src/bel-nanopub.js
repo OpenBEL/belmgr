@@ -26,13 +26,16 @@ export class BelNanopub {
   constructor(openbelapiService, router) {
     this.api = openbelapiService;
     this.router = router;
+  }
 
+  bind() {
     this.loadFormData();
   }
 
   loadFormData() {
+    logger.debug('In load form data');
     if (this.evidenceId) {
-
+      logger.debug('Inside loadFormData -- EvidenceID: ', this.evidenceId);
       // Return Promise in activate to wait until all data is collected before building
       //   the page
       return this.api.getBelEvidence(this.evidenceId)

@@ -18,7 +18,7 @@ System.config({
     "babel": "npm:babel-core@5.8.35",
     "babel-runtime": "npm:babel-runtime@5.8.35",
     "core-js": "npm:core-js@2.0.3",
-    "fetch": "github:github/fetch@0.11.0",
+    "fetch": "npm:whatwg-fetch@0.11.0",
     "toastr": "github:CodeSeven/toastr@2.1.2",
     "traceur": "github:jmcriffey/bower-traceur@0.0.92",
     "traceur-runtime": "github:jmcriffey/bower-traceur-runtime@0.0.92",
