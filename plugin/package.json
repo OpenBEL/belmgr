@@ -59,7 +59,7 @@
       "aurelia-router": "^1.0.0-beta.1.1.0",
       "aurelia-templating": "^1.0.0-beta.1.1.0",
       "fetch": "whatwg-fetch@^0.11.0",
-      "toastr": "github:CodeSeven/toastr@^2.1.2"
+      "toastr": "^2.1.2"
     },
     "devDependencies": {
       "babel": "babel-core@^5.8.24",

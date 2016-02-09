@@ -19,13 +19,9 @@ System.config({
     "babel-runtime": "npm:babel-runtime@5.8.35",
     "core-js": "npm:core-js@2.0.3",
     "fetch": "npm:whatwg-fetch@0.11.0",
-    "toastr": "github:CodeSeven/toastr@2.1.2",
+    "toastr": "npm:toastr@2.1.2",
     "traceur": "github:jmcriffey/bower-traceur@0.0.92",
     "traceur-runtime": "github:jmcriffey/bower-traceur-runtime@0.0.92",
-    "github:CodeSeven/toastr@2.1.2": {
-      "css": "github:systemjs/plugin-css@0.1.20",
-      "jquery": "github:components/jquery@2.2.0"
-    },
     "github:jspm/nodelibs-assert@0.1.0": {
       "assert": "npm:assert@1.3.0"
     },
@@ -127,6 +123,9 @@ System.config({
     },
     "npm:process@0.11.2": {
       "assert": "github:jspm/nodelibs-assert@0.1.0"
+    },
+    "npm:toastr@2.1.2": {
+      "process": "github:jspm/nodelibs-process@0.1.2"
     },
     "npm:util@0.10.3": {
       "inherits": "npm:inherits@2.0.1",
