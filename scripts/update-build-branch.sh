@@ -14,9 +14,9 @@ rm -fr dist || exit 1
 
 current_rev=$(git rev-parse HEAD)
 git fetch origin || exit 1
-git checkout build || exit 1
+git checkout -b build || exit 1
 git pull origin build || exit 1
-git merge $current_rev || exit 1
+git merge $current_rev -m "OpenBEL Build Server automerge" || exit 1
 
 echo "Running 'gulp build'... "
 gulp build || exit 1
