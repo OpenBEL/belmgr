@@ -13,6 +13,7 @@ var change = require('gulp-change');
 function rewrite(content, done) {
   if (!process.env.BASE_URL) {
     done(null, content);
+    return;
   }
   var baseURL = process.env.BASE_URL;
   content = content.replace(/next\.belframework\.org\/api/g, baseURL);
