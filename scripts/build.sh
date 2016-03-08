@@ -8,12 +8,6 @@ echo "Running 'npm install'... "
 npm install
 export PATH=$(pwd)/node_modules/.bin:$PATH
 
-echo "Running 'npm install gulp'... "
-npm install gulp
-
-echo "Running 'npm install jspm'... "
-npm install jspm
-
 echo "Running 'jspm install -y'... "
 jspm install -y
 
