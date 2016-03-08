@@ -6,16 +6,19 @@ function extend(obj, src) {
 }
 
 var configForLocalDev = {
+  // XXX check baseUrl changes against gulp build (build.js) tasks
   'baseUrl' : 'http://next.belframework.org/api',
   'logLevel' : LogManager.logLevel.debug
 }
 
 var configForDevelopment = {
+  // XXX check baseUrl changes against gulp build (build.js) tasks
   'baseUrl': 'http://next.belframework.org/api',
   'logLevel' : LogManager.logLevel.debug
 }
 
 var configForProduction = {
+  // XXX check baseUrl changes against gulp build (build.js) tasks
   'baseUrl': 'http://next.belframework.org/api',
   'logLevel' : LogManager.logLevel.debug
 }

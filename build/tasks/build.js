@@ -8,6 +8,16 @@ var paths = require('../paths');
 var compilerOptions = require('../babel-options');
 var assign = Object.assign || require('object.assign');
 var notify = require("gulp-notify");
+var change = require('gulp-change');
+
+function rewrite(content, done) {
+  if (!process.env.BASE_URL) {
+    done(null, content);
+  }
+  var baseURL = process.env.BASE_URL;
+  content = content.replace('next.belframework.org', baseURL);
+  done(null, content);
+}
 
 // transpiles changed es6 files to SystemJS format
 // the plumber() call prevents 'pipe breaking' caused
@@ -17,6 +27,7 @@ gulp.task('build-system', function() {
   return gulp.src(paths.source)
     .pipe(plumber({errorHandler: notify.onError("Error: <%= error.message %>")}))
     .pipe(changed(paths.output, {extension: '.js'}))
+    .pipe(change(rewrite))
     .pipe(sourcemaps.init({loadMaps: true}))
     .pipe(to5(assign({}, compilerOptions, {modules: 'system'})))
     .pipe(sourcemaps.write({includeContent: true}))
