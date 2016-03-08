@@ -23,7 +23,8 @@ var configForProduction = {
   'logLevel' : LogManager.logLevel.debug
 }
 
-var appconfig ;
+// default appconfig to local dev
+var appconfig = configForLocalDev;
 
 if (window.location.hostname==='localhost' || window.location.hostname==='openbel.dev') {
   appconfig = configForLocalDev;
