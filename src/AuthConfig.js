@@ -25,7 +25,7 @@ var configForProduction = {
   'profileUrl'    : '/#user/me'
 }
 
-var config ;
+var config = configForLocalDev;
 
 if (window.location.hostname==='localhost' || window.location.hostname==='openbel.dev') {
   config = configForLocalDev;
