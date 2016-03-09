@@ -56,7 +56,7 @@ export class Api {
         .withDefaults({
           credentials: 'same-origin',
           headers: {
-            'Accept': 'application/json',
+            'Accept': 'application/hal+json',
             'X-Requested-With': 'Fetch'
           }
         })
