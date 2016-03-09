@@ -158,7 +158,7 @@ export class OpenbelapiService {
       return this.apiClient.fetch(`/evidence/${id}`, {
         method: 'put',
         headers: {
-          'Accept': 'application/json',
+          'Accept': 'application/hal+json',
           'Content-Type': 'application/json; profile=http://next.belframework.org/schema/evidence.schema.json'
 
         },
@@ -172,7 +172,7 @@ export class OpenbelapiService {
     return this.apiClient.fetch(`/evidence`, {
       method: 'post',
       headers: {
-        'Accept': 'application/json',
+        'Accept': 'application/hal+json',
         'Content-Type': 'application/json; profile=http://next.belframework.org/schema/evidence.schema.json'
       },
       body: JSON.stringify(evidence)
@@ -186,7 +186,7 @@ export class OpenbelapiService {
     return this.apiClient.fetch(`/evidence/${evidenceId}`, {
       method: 'delete',
       headers: {
-        'Accept': 'application/json',
+        'Accept': 'application/hal+json',
         'Content-Type': 'application/json; profile=http://next.belframework.org/schema/evidence.schema.json'
       }
     })
