@@ -16,7 +16,7 @@ function rewrite(content, done) {
     return;
   }
   var baseURL = process.env.BASE_URL;
-  content = content.replace(/next\.belframework\.org\/api/g, baseURL);
+  content = content.replace(/http:\/\/next\.belframework\.org\/api/g, baseURL);
   done(null, content);
 }
 
