@@ -10,14 +10,24 @@ var assign = Object.assign || require('object.assign');
 var notify = require("gulp-notify");
 var change = require('gulp-change');
 
-function rewrite(content, done) {
-  if (!process.env.BASE_URL) {
-    done(null, content);
-    return;
+function rewriteBaseURL(content) {
+  if (process.env.BASE_URL) {
+    var baseURL = process.env.BASE_URL;
+    content = content.replace(/http:\/\/next\.belframework\.org\/api/g, baseURL);
   }
-  var baseURL = process.env.BASE_URL;
-  content = content.replace(/http:\/\/next\.belframework\.org\/api/g, baseURL);
-  done(null, content);
+  return content;
+}
+
+function rewritePubMedURL(content) {
+  if (process.env.PUBMED_URL) {
+    var pubmedURL = process.env.PUBMED_URL;
+    content = content.replace(/http:\/\/www.ebi.ac.uk\/europepmc\/webservices\/rest\/search/g, pubmedURL);
+  }
+  return content;
+}
+
+function rewrite(content, done) {
+  done(null, rewriteBaseURL(rewritePubMedURL(content)));
 }
 
 // transpiles changed es6 files to SystemJS format
