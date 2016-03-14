@@ -1,5 +1,6 @@
 <template>
   <require from="valueConverters/keys-to-list"></require>
+  <require from="valueConverters/sort-array"></require>
 
   <div class="container margintop80 search-html">
     <div class="row">
@@ -26,7 +27,7 @@
         <div class="search-filterFacets col-xs-3 heightct${searchResultsRange}">
           <div class="search-filtercol" id="filtercolumn" if.bind="evidences">
             <!-- Loop through facet sets -->
-            <div class="col-xs-12 filterbox"  repeat.for="facetSet of facetSets | keys">
+            <div class="col-xs-12 filterbox"  repeat.for="facetSet of facetSets | keys | sort">
               <h4 class="filter-facetTitle">${facetSet}</h4>
               <div class="filter-boxcontent">
                 <!-- Loop through facet set values -->
