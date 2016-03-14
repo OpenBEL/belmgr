@@ -1,11 +1,11 @@
 import {LogManager} from 'aurelia-framework';
 import {HttpClient} from 'aurelia-fetch-client';
+import {Router} from 'aurelia-router';
 import 'fetch';
 import {Authentication} from './authentication';
 import Config from '../AppConfig';
 
 let baseUrl = Config.baseUrl;
-let loginUrl = Config.loginUrl;
 
 let logger = LogManager.getLogger('openbelapi-client');
 
@@ -13,9 +13,10 @@ export class OpenbelapiClient {
 
   client;
 
-  static inject = [Authentication]
-  constructor(auth) {
+  static inject = [Authentication, Router];
+  constructor(auth, router) {
     this.auth = auth;
+    this.router = router;
     let self = this;
     this.client = new HttpClient().configure(config => {
       config
@@ -33,25 +34,27 @@ export class OpenbelapiClient {
             logger.debug(`Requesting ${req.method} ${req.url}`);
 
             // If id_token exists as a query param - save it
-            let urlParams = location.search.split(/[?&]/).slice(1).map(function(paramPair) {
+            let urlParams = location.href.split(/[?&#]/).slice(1).map(function(paramPair) {
               return paramPair.split(/=(.+)?/).slice(0, 2);
               }).reduce(function (obj, pairArray) {
                 obj[pairArray[0]] = pairArray[1];
                 return obj;
               }, {});
 
+            logger.debug('UrlParams: ', urlParams);
+
             if (urlParams.id_token) {
               self.auth.setToken(urlParams.id_token);
+              logger.debug('Navigate to: ', urlParams.state);
+              if (!urlParams.state) {
+                logger.debug('urlParams.state is undefined');
+                urlParams.state = 'home';
+              }
+              setTimeout(() => {
+                self.router.navigateToRoute(urlParams.state);
+
+              },100);
             }
-            // Preceding should work to get querystring token but if not - try the
-            //   commented code below
-            // let tokens = window.location.search.split('?jwt=');
-            // if (tokens.length > 1) {
-            //   let jwt = tokens[1];
-            //   logger.info('Logged in.');
-            //   this.api.setToken(jwt);
-            //   window.location.href = window.location.origin;
-            // }
 
             let token = self.auth.getToken();
             req.headers.append(self.auth.tokenHeaderName, 'Bearer ' + token);
@@ -64,9 +67,9 @@ export class OpenbelapiClient {
           },
           responseError(resp) {
             if (resp.status === 401) {
-              logger.info('Backend returned HTTP 401, redirecting to home.');
+              logger.info('Backend returned HTTP 401, redirecting to loginUrl.');
               // window.location.href = window.location.origin;
-              this.api.authenticate(window.location.href, window.location.path);
+              self.auth.authenticate(window.location.protocol, window.location.host, window.location.pathname, window.location.hash);
             }
             logger.debug(`Received ${resp.status} ${resp.url}`);
             let rejection = Promise.reject(resp);

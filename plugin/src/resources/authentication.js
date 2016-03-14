@@ -1,10 +1,24 @@
+import {LogManager} from 'aurelia-framework';
 import Config from '../AppConfig';
+
+let logger = LogManager.getLogger('Authentication');
 
 let tokenStorageName = Config.tokenStorageName;
 let tokenHeaderName = Config.tokenHeaderName;
+let loginUrl = Config.loginUrl;
 
 export class Authentication {
   constructor () {
+  }
+
+  /*
+    this.auth.authenticate(window.location.href, window.location.hash)
+   */
+  authenticate(protocol, host, pathname, hash) {
+    let cleanHash = hash.replace('#/', '');
+    if (!cleanHash) {cleanHash = 'home';}
+    logger.debug('Protocol: ', protocol, ' Host: ', host, ' Pathname: ', pathname, ' State: ', cleanHash);
+    window.location.href = `${loginUrl}&redirect_uri=${protocol}//${host}${pathname}?state=${cleanHash}`;
   }
 
   setToken(token) {
@@ -19,6 +33,14 @@ export class Authentication {
     localStorage.removeItem(tokenStorageName);
   }
 
+  checkToken() {
+    let token = this.getToken();
+    if (!token) {
+      return false;
+    }
+    return true;
+  }
+
   getPayload() {
     let token = this.getToken();
 
@@ -27,6 +49,7 @@ export class Authentication {
       let base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
       return JSON.parse(decodeURIComponent(escape(window.atob(base64))));
     }
+    else {return false;}
   }
 
   // Will return true if token exists even though it is checking format and expiration

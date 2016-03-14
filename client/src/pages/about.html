@@ -13,14 +13,14 @@
               </li>
             </ul>
 
-            <h4 class="margintop10">with design and development support from ADS Consulting:</h4>
+            <h4 class="margintop10">with design and development support from:</h4>
           <ul class="li-nobullets" repeat.for="consultant of consultants">
             <li>
               <gravatar id="some-gravatar-element" class="avatar-frame"
                         credential.bind="consultant.email" size="50"
                         default-image="wavatar" is-secure="true" rating="g" >
               </gravatar>
-              ${consultant.name}
+              ${consultant.name} (${consultant.org})
             </li>
           </ul>
 

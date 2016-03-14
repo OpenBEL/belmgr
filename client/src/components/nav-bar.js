@@ -1,47 +1,43 @@
 import {bindable, LogManager} from 'aurelia-framework';
-import {inject} from 'aurelia-framework';
+import {Authentication} from 'local-plugin/resources/authentication';
+import {UserState} from '../UserState.js';
 import {OpenbelapiService} from 'local-plugin/resources/openbelapi-service';
 
 let logger = LogManager.getLogger('nav-bar');
 
-@inject(OpenbelapiService)
 export class NavBar {
-  @bindable router = null;
-  @bindable loggedIn = false;
+  @bindable router;
+  authEnabled;
 
-  constructor(OpenbelapiService) {
-    this.api = OpenbelapiService;
+  static inject=[OpenbelapiService, UserState, Authentication];
+  constructor(api, state, auth) {
+    this.api = api;
+    this.state = state;
+    this.auth = auth;
 
-    this.api.authEnabled().then(enabled => {
-      if (enabled) {
+    this.authEnabled = this.state.authEnabled;
 
-        let token = this.api.getToken();
-        if (token === null) {
-          this.action = 'Login';
-        } else {
-          this.action = 'Logout';
-        }
-        let tokens = window.location.search.split('?jwt=');
-        if (tokens.length > 1) {
-          let jwt = tokens[1];
-          logger.info('Logged in.');
-          this.api.setToken(jwt);
-          window.location.href = window.location.origin;
-        }
-      }
-    })
-    .catch(function(reason) {
-        logger.error('NavBar AuthEnabled Error: ', reason);
-    });
+    logger.debug('NavBar AuthEnabled: ', this.authEnabled);
+
+    if (this.authEnabled && this.auth.checkToken()) {
+      this.action = 'Logout';
+    }
+    else {
+      this.action = 'Login';
+    }
+  }
+
+  bind() {
+    // debugger;
   }
 
   navbarAction() {
     if (this.action === 'Logout') {
-      this.api.removeToken();
+      this.auth.removeToken();
       logger.info('Logged out.');
       window.location.href = window.location.origin;
     } else if (this.action === 'Login') {
-      this.api.authenticate();
+      this.auth.authenticate(window.location.protocol, window.location.host, window.location.pathname, window.location.hash);
     }
   }
 }

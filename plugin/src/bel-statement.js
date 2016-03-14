@@ -1,5 +1,5 @@
-import {inject, customElement, bindable, bindingMode, LogManager} from 'aurelia-framework';
-import relationsList from './resources/relations-list';
+import {customElement, bindable, bindingMode, LogManager} from 'aurelia-framework';
+import {relationsList} from './resources/relations-list';
 
 let logger = LogManager.getLogger('statement');
 
@@ -10,14 +10,13 @@ let logger = LogManager.getLogger('statement');
   defaultBindingMode: bindingMode.twoWay, //default binding mode used with the .bind command
   defaultValue: undefined //default value of the property, if not bound or set in HTML
 })
-@bindable({name:"belsubject", attribute:"belsubject", defaultBindingMode: bindingMode.twoWay})
-@bindable({name:"belrelationship", attribute:"belrelationship", defaultBindingMode: bindingMode.twoWay})
-@bindable({name:"belobject", attribute:"belobject", defaultBindingMode: bindingMode.twoWay})
+@bindable({name:"belSubject", attribute:"bel-subject", defaultBindingMode: bindingMode.twoWay})
+@bindable({name:"belRelationship", attribute:"bel-relationship", defaultBindingMode: bindingMode.twoWay})
+@bindable({name:"belObject", attribute:"bel-object", defaultBindingMode: bindingMode.twoWay})
 @customElement('bel-statement')
 export class BelStatement {
 
   // TODO pull relationsList from OpenBEL API
-  // TODO test if relationsList can be used without injecting
   constructor() {
     logger.debug('RelationsList: ', relationsList);
   }
@@ -27,11 +26,7 @@ export class BelStatement {
     this.$parent = context;
   }
 
-  attached() {
-
-  }
-
-  belsubjectChanged(value) {
+  belSubjectChanged(value) {
     logger.debug('BELsubject changed: ', this.belsubject);
   }
 

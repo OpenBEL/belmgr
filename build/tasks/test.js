@@ -29,8 +29,10 @@ gulp.task('cover', function(done) {
     singleRun: true,
     reporters: ['coverage'],
     preprocessors: {
-      'test/**/*.js': ['babel'],
-      'src/**/*.js': ['babel', 'coverage']
+      'client/test/**/*.js': ['babel'],
+      'client/src/**/*.js': ['babel', 'coverage'],
+      'plugin/test/**/*.js': ['babel'],
+      'plugin/src/**/*.js': ['babel', 'coverage']
     },
     coverageReporter: {
       includeAllSources: true,

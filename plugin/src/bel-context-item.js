@@ -28,8 +28,6 @@ export class ContextItem {
     logger.debug('Types: ', this.types);
   }
 
-  test() {}
-
   /*
    *  Annotation Types
    */

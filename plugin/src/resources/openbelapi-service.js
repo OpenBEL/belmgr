@@ -8,6 +8,7 @@ import {Authentication} from './authentication';
 let logger = LogManager.getLogger('openbelapi');
 
 let baseUrl = Config.baseUrl;
+let loginUrl = Config.loginUrl;
 let pubmedBaseUrl = Config.pubmedBaseUrl;
 
 export class OpenbelapiService {
@@ -363,13 +364,6 @@ export class OpenbelapiService {
       });
   }
 
-  /*
-    this.api.authenticate(window.location.href, window.location.path)
-   */
-  authenticate(href, path) {
-    window.location.href = `${loginUrl}&redirect_uri=${href}&state=${path}`;
-  }
-
   // Does the API require authentication? - used to indicate whether to show login link
   authEnabled() {
     let authEnabledAPI = '/authentication-enabled';
@@ -377,6 +371,8 @@ export class OpenbelapiService {
       .then(data => data.json())
       .then(data => {
         return data.enabled;
+      }).catch(function(reason) {
+        logger.error('authentication-enabled error: ', reason);
       });
   }
 }

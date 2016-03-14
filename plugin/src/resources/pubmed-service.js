@@ -18,7 +18,7 @@ export class PubmedService {
    * @returns {*}
    */
   getPubmed(id) {
-    let getstring = `/resulttype=core&format=json&query=ext_id:${id} src:med`;
+    let getstring = `?resulttype=core&format=json&query=ext_id:${id} src:med`;
 
     return this.client.fetch(getstring)
       .then(response => response.json())
@@ -26,7 +26,9 @@ export class PubmedService {
         return data.resultList.result[0];
       })
       .then(pubmed => {
-        pubmed = this.enhancePubmed(pubmed);
+        if (pubmed) {
+          pubmed = this.enhancePubmed(pubmed);
+        }
         return pubmed;
       })
       .catch(response => {

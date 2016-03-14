@@ -15,7 +15,7 @@
 
     <div class="collapse navbar-collapse" id="openBelNavbar">
       <div class="row navbar-userRow">
-        <div class="navbar-userDiv">
+        <div if.bind='authEnabled' class="navbar-userDiv">
           <a class="pointer" click.delegate="navbarAction()">${action}</a>
         </div>
 
@@ -24,16 +24,6 @@
           <a data-toggle="collapse" data-target="#openBelNavbar.in" href.bind="row.href">${row.title}</a>
         </li>
       </ul>
-
-      <!--<ul if.bind="!isAuthenticated" class="nav navbar-nav navbar-right">-->
-        <!--<li><a href="/#/login">Login</a></li>-->
-        <!--<li><a href="/#/signup">Sign up</a></li>-->
-      <!--</ul>-->
-
-      <!--<ul if.bind="isAuthenticated" class="nav navbar-nav navbar-right">-->
-        <!--<li><a href="/#/profile">Profile</a></li>-->
-        <!--<li><a href="/#/logout">Logout</a></li>-->
-      <!--</ul>-->
 
       <ul>
         <li class="loader navbar-loader" if.bind="router.isNavigating">
@@ -44,3 +34,5 @@
     </div>
   </nav>
 </template>
+
+

@@ -1,7 +1,9 @@
 import {HttpClient} from 'aurelia-fetch-client';
+import {LogManager} from 'aurelia-framework';
 import 'fetch';
 import Config from '../AppConfig';
-//
+
+let logger = LogManager.getLogger('pubmed-client');
 let pubmedBaseUrl = Config.pubmedBaseUrl;
 
 export class PubmedClient {

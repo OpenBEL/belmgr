@@ -9,21 +9,21 @@
         <h1>BEL Editor</h1>
     </div>
 
-    <!-- PubMed Overview-->
-    <pubmed></pubmed>
-
     <div class="container">
-      <div class="${pubmed.title ? 'col-xs-8 col-xs-offset-4 col-md-9 col-md-offset-3' : 'col-xs-11 col-xs-offset-1'}">
-        <div name="newBelForm">
+      <pubmed class="${showPubmed ? 'col-xs-4 col-md-3' : 'noShow'}"></pubmed>
+
+      <div class="${showPubmed ? 'col-xs-8 col-xs-offset-4 col-md-9 col-md-offset-3' : 'col-xs-11 col-xs-offset-1'}">
+
+        <!-- If.bind is used below to wait for evidence before allowing the subcomponents, bel-citation, etc to be instantiated. -->
+        <div name="newBelForm" if.bind="evidence">
 
           <!-- Citation -->
-          <bel-citation evidence.bind="evidence">
-          </bel-citation>
+          <bel-citation evidence.bind="evidence"> </bel-citation>
 
           <!-- BEL Statement -->
           <bel-statement evidence.bind="evidence"
-            belsubject.bind="belsubject" belrelationship.bind="belrelationship"
-            belobject.bind="belobject">
+            bel-subject.bind="belSubject" bel-relationship.bind="belRelationship"
+            bel-object.bind="belObject">
           </bel-statement>
 
           <!-- BEL SummaryText -->
@@ -61,12 +61,10 @@
           <!-- End BEL Evidence Notes -->
 
           <!-- Experiment Context -->
-          <bel-context evidence.bind="evidence" types.bind="types">
-          </bel-context>
+          <bel-context evidence.two-way="evidence" types.bind="types"> </bel-context>
 
           <!--Metadata-->
-          <bel-metadata evidence.two-way="evidence" metadata.two-way='metadata'>
-          </bel-metadata>
+          <bel-metadata evidence.two-way="evidence" metadata.two-way='metadata'> </bel-metadata>
 
           <div class="row edit-editBtns">
 

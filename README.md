@@ -20,7 +20,7 @@ The BEL Manager is built using NodeJS and hosted by a web server.
 
 - Install NodeJS from https://nodejs.org/en/.
 - Install NodeJS dependencies.
-- Install gulp and jspm
+- Install gulp and jspm.
 
 #### Example Installation
 
@@ -43,7 +43,7 @@ PATH=$(pwd)/node_modules/.bin:$PATH
 # install jspm packages
 jspm install -y
 
-# If you see 'github rate limit reached' - follow these instructions:
+# If you see 'github rate limit reached' - follow these instructions: 
  #  http://stackoverflow.com/questions/30995040/jspm-saying-github-rate-limit-reached-how-to-fix
 ```
 
@@ -81,12 +81,12 @@ With NodeJS dependencies in your ``PATH``, build the BEL Manager with
         access_log      /var/log/nginx/belmgr-access.log main;
         error_log       /var/log/nginx/belmgr-error.log info;
 
-        location / {
+        location / { 
             alias                       /opt/belmgr/;
             index                       index.html;
             add_header  Cache-Control   no-cache;
-        }
-    }
+        }   
+    }   
 ```
 
 [OpenBEL API]:      https://github.com/OpenBEL/openbel-api

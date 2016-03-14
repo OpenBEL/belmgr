@@ -10,8 +10,9 @@ export class About{
   ];
 
   consultants = [
-    {'name': 'Anselmo Di Fabio', 'email': 'adifabio@ads-llc.com'},
-    {'name': 'Grant Shih', 'email': 'gshih@ads-llc.com'}
+    {'name': 'Anselmo Di Fabio', 'email': 'adifabio@ads-llc.com', 'org': 'ADS Consulting'},
+    {'name': 'Grant Shih', 'email': 'gshih@ads-llc.com',  'org': 'ADS Consulting'},
+    {'name': 'Patrick Walters', 'email': 'patrickwaltersc21@gmail.com',  'org': 'Durandal Inc'}
   ];
 
 

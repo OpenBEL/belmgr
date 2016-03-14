@@ -14,7 +14,7 @@ module.exports = function(config) {
 
     jspm: {
       // Edit this to your needs
-      loadFiles: ['client/src/**/*.js', 'client/test/unit/**/*.js', 'plugin/src/**/*.js', 'plugin/test/unit/**/*.js'],
+      loadFiles: ['src/**/*.js', 'tests/**/*.js'],
       paths: {
         '*': '*.js',
         'github:*': 'jspm_packages/github/*.js',
@@ -35,14 +35,13 @@ module.exports = function(config) {
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
-      'client/test/**/*.js': ['babel'],
-      'client/src/**/*.js': ['babel'],
-      'plugin/test/**/*.js': ['babel'],
-      'plugin/src/**/*.js': ['babel']
+      'tests/**/*.js': ['babel'],
+      'src/**/*.js': ['babel']
     },
     'babelPreprocessor': {
       options: {
         sourceMap: 'inline',
+        modules: 'system',
         moduleIds: false,
         optional: [
           "es7.decorators",

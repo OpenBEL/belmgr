@@ -14,6 +14,6 @@ module.exports = {
   output: outputRoot,
   pluginOutput: pluginOutputRoot,
   doc: './doc',
-  e2eSpecsSrc: 'test/e2e/src/**/*.js',
-  e2eSpecsDist: 'test/e2e/dist/'
+  e2eSpecsSrc: ['client/test/e2e/src/**/*.js'],
+  e2eSpecsDist: ['client/test/e2e/dist/']
 };

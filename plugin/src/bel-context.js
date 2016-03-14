@@ -1,24 +1,11 @@
-import {inject, customElement, bindable, bindingMode, LogManager} from 'aurelia-framework';
-import {OpenbelapiService} from './resources/openbelapi-service';
+import {inject, customElement, bindable, LogManager} from 'aurelia-framework';
 
 let logger = LogManager.getLogger('context');
 
-@bindable({
-  name:'evidence', //name of the property on the class
-  attribute:'evidence', //name of the attribute in HTML e.g. x.bind=""
-  changeHandler:'evidenceChanged', //name of the method to invoke when the property changes
-  defaultBindingMode: bindingMode.twoWay //default binding mode used with the .bind command
-})
-@customElement('bel-context')
-@inject(OpenbelapiService)
+// custom element named:  bel-context
 export class BelContext {
   @bindable types;
-
-  constructor(OpenbelapiService) {
-    this.api = OpenbelapiService;
-
-    logger.debug('Context evidence: ', this.evidence);
-  }
+  @bindable evidence;
 
   attached() {
     // Add blank entry to end of experiment context to insert new form fields
@@ -27,6 +14,8 @@ export class BelContext {
 
   evidenceChanged(value) {
     logger.debug('Experiment Context changes: ', this.evidence.experiment_context);
+    this.experiment_context = this.evidence.experiment_context;
+    logger.debug('ExpCtxt: ', this.experiment_context);
   }
 
   /**

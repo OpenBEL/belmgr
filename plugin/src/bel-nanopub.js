@@ -1,16 +1,17 @@
 import {inject, bindable, LogManager} from 'aurelia-framework';
 import {activationStrategy, Router} from 'aurelia-router';
+import {EventAggregator} from 'aurelia-event-aggregator';
 import * as toastr from "toastr";
 
 import {OpenbelapiService} from './resources/openbelapi-service';
 
-let logger = LogManager.getLogger('edit');
+let logger = LogManager.getLogger('bel-nanopub');
 
 @bindable({name:"evidenceId", attribute:"evidence-id"})
-@inject(OpenbelapiService, Router)
+@inject(OpenbelapiService, Router, EventAggregator)
 export class BelNanopub {
 
-    evidence = {};
+    evidence;
     metadata = {
       'evidence_notes': '', 'evidence_status': '', 'author': '',
       'creation_date': '', 'reviewer': '', 'review_date': '',
@@ -23,14 +24,28 @@ export class BelNanopub {
     return activationStrategy.replace;
   }
 
-  constructor(openbelapiService, router) {
+  constructor(openbelapiService, router, eventAggregator) {
     this.api = openbelapiService;
     this.router = router;
+    this.ea = eventAggregator;
   }
 
   bind() {
     this.loadFormData();
   }
+
+  attached() {
+    this.subscription = this.ea.subscribe('pubmed', payload => {
+      logger.debug('Received payload: ', payload);
+      this.pubmed = payload;
+      this.showPubmed = true;
+    });
+  }
+
+  detached() {
+    this.subscription.dispose();
+  }
+
 
   loadFormData() {
     logger.debug('In load form data');
@@ -41,14 +56,15 @@ export class BelNanopub {
       return this.api.getBelEvidence(this.evidenceId)
         .then(evidence => {
           this.evidence = evidence;
+          logger.debug('Evidence: ', this.evidence);
           this.extractFormMetadata(); // depends on this.metadata and this.evidence
           return this.api.getBelComponents(this.evidence.bel_statement);
         })
         .then(comp => {
-          this.belsubject = comp.subject;
-          this.belobject = comp.object;
-          this.belrelationship = comp.relationship;
-          logger.debug('Subj: ', this.belsubject);
+          this.belSubject = comp.subject;
+          this.belObject = comp.object;
+          this.belRelationship = comp.relationship;
+          logger.debug('Subj: ', this.belSubject);
           return this.api.getBelAnnotationTypes();
         })
         .then(types => {
@@ -60,6 +76,8 @@ export class BelNanopub {
         });
     }
     else {
+      this.evidence = new Evidence();
+      // this.evidence = {};
       return this.api.getBelAnnotationTypes()
             .then(types => {
               this.types = types;
@@ -71,10 +89,6 @@ export class BelNanopub {
     }
   }
 
-
-  belsubjectChanged() {
-    logger.debug('Main BEL Subject changed: ', this.belsubject);
-  }
   /**
    * Force the evidence object to be recreated for force an update of the nested
    * object binding in the View
@@ -88,7 +102,7 @@ export class BelNanopub {
   prepareEvidence() {
     let submitEvidence = {};
     // Prepare BEL Statement
-    this.evidence.bel_statement = `${this.belsubject} ${this.belrelationship} ${this.belobject}`;
+    this.evidence.bel_statement = `${this.belSubject} ${this.belRelationship} ${this.belObject}`;
 
     // Remove blank entries in evidence.experiment_context
     logger.debug('Cleaning evidence -- context items');
@@ -174,4 +188,12 @@ export class BelNanopub {
     return true;
   }
 
+}
+
+// this.evidence = new Evidence(data);   // data = evidence from ApI call
+class Evidence {
+  citation;
+  constructor(data) { // { citation: 'blue', red: 'gray' }
+    Object.assign(this, data);
+  }
 }

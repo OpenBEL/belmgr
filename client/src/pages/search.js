@@ -7,8 +7,8 @@ let logger = LogManager.getLogger('search');
 @inject(OpenbelapiService)
 export class Search {
 
-  constructor(api) {
-    this.api = api;
+  constructor(openbelapiService) {
+    this.api = openbelapiService;
     this.results = null;
     this.selectedFacets = {};
     this.searchTerms = null;
