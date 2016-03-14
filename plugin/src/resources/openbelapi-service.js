@@ -32,12 +32,15 @@ export class OpenbelapiService {
 
     for (let facet of facets) {
       // logger.debug("Facet: ", facet);
-      if (facet.category === 'experiment_context' || facet.name === 'Status' || facet.category === 'citation') {
-        // logger.debug("Status Facet: ", facet);
+      if (facet.category === 'experiment_context' || facet.name === 'Status' || facet.category === 'citation' || facet.name === 'dataset') {
+        // logger.debug("Filtered Facet: ", facet);
         let facetName = facet.name;
 
         if (facet.category === 'citation') {
           facetName = 'Reference ID';
+        }
+        if (facet.name === 'dataset') {
+          facetName = 'Datasets';
         }
 
         newFacets[facetName] = [];
