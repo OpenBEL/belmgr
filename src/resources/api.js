@@ -147,7 +147,10 @@ export class Api {
 
     for (let facet of facets) {
       // logger.debug("Facet: ", facet);
-      if (facet.category === 'experiment_context' || facet.name === 'Status' || facet.category === 'citation') {
+      if (facet.category === 'experiment_context' ||
+            facet.name === 'Status' ||
+	    facet.category === 'citation' ||
+	    (facet.category === 'metadata' && facet.name === 'dataset')) {
         // logger.debug("Status Facet: ", facet);
         let facetName = facet.name;
 
