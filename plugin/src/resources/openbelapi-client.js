@@ -5,7 +5,7 @@ import 'fetch';
 import {Authentication} from './authentication';
 import Config from '../AppConfig';
 
-let baseUrl = Config.baseUrl;
+let openBELApiUrl = Config.openBELApiUrl;
 
 let logger = LogManager.getLogger('openbelapi-client');
 
