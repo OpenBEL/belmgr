@@ -17,8 +17,10 @@ let logger = LogManager.getLogger('statement');
 export class BelStatement {
 
   // TODO pull relationsList from OpenBEL API
-  constructor() {
-    logger.debug('RelationsList: ', relationsList);
+  static inject=[relationsList];
+  constructor(relationsList) {
+    this.relationsList = relationsList;
+    logger.debug('RelationsList: ', this.relationsList);
   }
 
   // Pulling parent's context into scope

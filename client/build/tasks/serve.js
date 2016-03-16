@@ -10,7 +10,7 @@ gulp.task('serve', ['build', 'unbundle'], function(done) {
     open: false,
     port: 9000,
     server: {
-      baseDir: ['.', './../plugin'],
+      baseDir: ['.', '../plugin'],
       middleware: function(req, res, next) {
         res.setHeader('Access-Control-Allow-Origin', '*');
         next();

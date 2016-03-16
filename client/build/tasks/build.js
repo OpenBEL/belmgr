@@ -39,30 +39,57 @@ gulp.task('build-css', function() {
     .pipe(browserSync.stream());
 });
 
-// // build plugin - bel-nanopub, bel-statement, etc
-// gulp.task('build-plugin', function() {
-//   // Use `spawn` to execute shell command using Node
-//   var spawn = require('child_process').spawn;
+gulp.task('build-plugin-html-es6', function () {
+  return gulp.src(paths.pluginHtml)
+    .pipe(gulp.dest(paths.output + 'es6'));
+});
 
-//   // The directory that contains the Gulpfile whose task needs to be run.
-//   var path = '../plugin/build/tasks';
+gulp.task('build-plugin-es6', ['build-plugin-html-es6'], function () {
+  return gulp.src(paths.pluginSource)
+    .pipe(gulp.dest(paths.output + 'es6'));
+});
 
-//   // Gulp tasks that need to be run.
-//   var tasks = ['build']
+gulp.task('build-plugin-html-commonjs', function () {
+  return gulp.src(paths.pluginHtml)
+    .pipe(gulp.dest(paths.output + 'commonjs'));
+});
 
-//   // `cd` into Gulpfile directory
-//   process.chdir(path);
+gulp.task('build-plugin-commonjs', ['build-plugin-html-commonjs'], function () {
+  return gulp.src(paths.pluginSource)
+    .pipe(to5(assign({}, compilerOptions, {modules:'common'})))
+    .pipe(gulp.dest(paths.output + 'commonjs'));
+});
 
-//   // Run `gulp` command
-//   var child = spawn('gulp', tasks);
+gulp.task('build-plugin-html-amd', function () {
+  return gulp.src(paths.pluginHtml)
+    .pipe(gulp.dest(paths.output + 'amd'));
+});
 
-//   // Print output from Gulpfile
-//   // child.stdout.on('data', function(data) {
-//   //     if (data) {
-//   //         console.log(data.toString())
-//   //     }
-//   // });
-// });
+gulp.task('build-plugin-amd', ['build-plugin-html-amd'], function () {
+  return gulp.src(paths.pluginSource)
+    .pipe(to5(assign({}, compilerOptions, {modules:'amd'})))
+    .pipe(gulp.dest(paths.output + 'amd'));
+});
+
+gulp.task('build-plugin-html-system', function () {
+  return gulp.src(paths.pluginHtml)
+    .pipe(gulp.dest(paths.output + 'system'));
+});
+
+gulp.task('build-plugin-system', ['build-plugin-html-system'], function () {
+  return gulp.src(paths.pluginSource)
+    .pipe(to5(assign({}, compilerOptions, {modules:'system'})))
+    .pipe(gulp.dest(paths.output + 'system'));
+});
+
+gulp.task('build-plugin', function(callback) {
+  return runSequence(
+    // 'plugin-clean',  // not needed in client build-plugin since it's
+    //                     using paths.output instead of paths.pluginOutput
+    ['build-plugin-es6', 'build-plugin-commonjs', 'build-plugin-amd', 'build-plugin-system'],
+    callback
+  );
+});
 
 // this task calls the clean task (located
 // in ./clean.js), then runs the build-system
@@ -71,7 +98,11 @@ gulp.task('build-css', function() {
 gulp.task('build', function(callback) {
   return runSequence(
     'clean',
-    ['build-system', 'build-html', 'build-css'],
+    ['build-system', 'build-plugin', 'build-html', 'build-css'],
     callback
   );
 });
+
+
+
+

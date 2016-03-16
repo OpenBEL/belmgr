@@ -1,9 +1,9 @@
 import {LogManager} from 'aurelia-framework';
 
 var Config = {
-  'baseUrl': 'https://thor.selventa.com/api',
-  // 'baseUrl' : 'http://next.belframework.org/api',
-  // 'baseUrl' : 'http://sitiyok:9292/api',
+  'OpenBELApiUrl': 'https://thor.selventa.com/api',
+  // 'OpenBELApiUrl' : 'http://next.belframework.org/api',
+  // 'OpenBELApiUrl' : 'http://sitiyok:9292/api',
   // http://www.ebi.ac.uk/europepmc/webservices/rest/search?resulttype=core&query=ext_id:26793686 src:med
   'pubmedBaseUrl' : 'http://www.ebi.ac.uk/europepmc/webservices/rest/search',
   // append to loginUrl:  &redirect_uri=http://belmgr.belframework.org&state=#/search'
