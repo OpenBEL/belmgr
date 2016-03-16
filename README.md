@@ -20,7 +20,6 @@ The BEL Manager is built using NodeJS and hosted by a web server.
 
 - Install NodeJS from https://nodejs.org/en/.
 - Install NodeJS dependencies.
-- Install gulp and jspm.
 
 #### Example Installation
 
@@ -33,9 +32,6 @@ cd belmgr
 
 # install NodeJS dependencies
 npm install
-
-# install gulp and jspm
-npm install gulp jspm
 
 # add node_modules binaries to your PATH
 PATH=$(pwd)/node_modules/.bin:$PATH
