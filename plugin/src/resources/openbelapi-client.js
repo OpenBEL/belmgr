@@ -20,7 +20,7 @@ export class OpenbelapiClient {
     let self = this;
     this.client = new HttpClient().configure(config => {
       config
-        .withBaseUrl(baseUrl)
+        .withBaseUrl(openBELApiUrl)
         .withDefaults({
           credentials: 'same-origin',
           headers: {

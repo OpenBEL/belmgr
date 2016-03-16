@@ -7,7 +7,7 @@ import {Authentication} from './authentication';
 
 let logger = LogManager.getLogger('openbelapi');
 
-let baseUrl = Config.baseUrl;
+let openBELApiUrl = Config.openBELApiUrl;
 let loginUrl = Config.loginUrl;
 let pubmedBaseUrl = Config.pubmedBaseUrl;
 

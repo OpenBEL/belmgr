@@ -1,12 +1,16 @@
 #!/usr/bin/env bash
 set -e  # exit on any errors
+<<<<<<< f565bc26ebbcbc83b73b74beb4bab6ddd43652bc
 
 export PATH=$(pwd)/client/node_modules/.bin:$PATH
 
+=======
+>>>>>>> Fixed openBelApiUrl references
 mydir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 topdir=$(dirname "${BASH_SOURCE[0]}")/../
 cd "$topdir"
 
+<<<<<<< f565bc26ebbcbc83b73b74beb4bab6ddd43652bc
 cd "$topdir/client"
 
 ln -s ./node_modules/.bin/gulp .
@@ -35,3 +39,15 @@ jspm install -y
 
 echo "Running 'gulp build' for plugin ... "
 gulp build
+=======
+echo "Running 'npm install'... "
+npm install
+export PATH=$(pwd)/node_modules/.bin:$PATH
+
+echo "Running 'jspm install -y'... "
+jspm install -y
+
+echo "Running 'gulp build'... "
+gulp build
+
+>>>>>>> Fixed openBelApiUrl references
