@@ -19,7 +19,7 @@ export class Pubmed {
 
   attached() {
       this.subscription = this.ea.subscribe('pubmed', payload => {
-      logger.debug('Received Payload: ', payload);
+      // logger.debug('Received Payload: ', payload);
       this.pubmed = payload;
       if (!this.pubmed.title) {
         this.pubmed = this.pubmedService.getPubMed(this.pubmed.id);

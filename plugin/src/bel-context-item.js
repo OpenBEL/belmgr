@@ -4,7 +4,7 @@ import {OpenbelapiService} from './resources/openbelapi-service';
 let logger = LogManager.getLogger('contextitem');
 
 @inject(OpenbelapiService)
-@customElement('context-item')
+@customElement('bel-context-item')
 export class ContextItem {
   @bindable type;
   @bindable annotation;

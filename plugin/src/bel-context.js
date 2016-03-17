@@ -15,7 +15,6 @@ export class BelContext {
   evidenceChanged(value) {
     logger.debug('Experiment Context changes: ', this.evidence.experiment_context);
     this.experiment_context = this.evidence.experiment_context;
-    logger.debug('ExpCtxt: ', this.experiment_context);
   }
 
   /**

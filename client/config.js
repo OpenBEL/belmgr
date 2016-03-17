@@ -224,4 +224,4 @@ System.config({
       "process": "github:jspm/nodelibs-process@0.1.2"
     }
   }
-});
+})

@@ -1,5 +1,5 @@
 <template>
-
+  <require from="./bel-context-item"></require>
   <div id="context" class="edit-context ">
     <div class="row edit-belForm">
       <div class="col-xs-12 edit-header">
@@ -17,7 +17,7 @@
       </div>
 
       <!--List Context-->
-      <template repeat.for="context of experiment_context">
+      <template repeat.for="context of evidence.experiment_context">
         <div class="row col-xs-12">
           <bel-context-item type.two-way="context.name" annotation.two-way="context.value" types.bind="types" index.bind="$index" last.bind="$last">
           </bel-context-item>

@@ -36,7 +36,7 @@ export class BelNanopub {
 
   attached() {
     this.subscription = this.ea.subscribe('pubmed', payload => {
-      logger.debug('Received payload: ', payload);
+      // logger.debug('Received payload: ', payload);
       this.pubmed = payload;
       this.showPubmed = true;
     });

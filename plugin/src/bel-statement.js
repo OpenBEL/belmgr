@@ -20,7 +20,7 @@ export class BelStatement {
   static inject=[relationsList];
   constructor(relationsList) {
     this.relationsList = relationsList;
-    logger.debug('RelationsList: ', this.relationsList);
+    // logger.debug('RelationsList: ', this.relationsList);
   }
 
   // Pulling parent's context into scope
