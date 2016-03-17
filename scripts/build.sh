@@ -1,21 +1,19 @@
 #!/usr/bin/env bash
 set -e  # exit on any errors
 
-mydir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-topdir=$(dirname "${BASH_SOURCE[0]}")/../
-cd "$topdir"
+DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"/../
+CLIENT_DIR="$DIR"/client
+PATH="$CLIENT_DIR"/node_modules/.bin:$PATH
 
-cd "$topdir/client"
-
-export PATH=$(pwd)/client/node_modules/.bin:$PATH
+cd "$CLIENT_DIR"
 
 if [ ! -L gulp ]; then
-    echo "Linking gulp command into \"$topdir/client\" ..."
+    echo "Linking gulp command into \"$CLIENT_DIR/client\" ..."
     ln -s ./node_modules/.bin/gulp .
 fi
 
 if [ ! -L jspm ]; then
-    echo "Linking jspm command into \"$topdir/client\" ..."
+    echo "Linking jspm command into \"$CLIENT_DIR/client\" ..."
     ln -s ./node_modules/.bin/jspm .
 fi
 
