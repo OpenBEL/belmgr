@@ -9,8 +9,15 @@ cd "$topdir/client"
 
 export PATH=$(pwd)/client/node_modules/.bin:$PATH
 
-ln -s ./node_modules/.bin/gulp .
-ln -s ./node_modules/.bin/jspm .
+if [ ! -L gulp ]; then
+    echo "Linking gulp command into \"$topdir/client\" ..."
+    ln -s ./node_modules/.bin/gulp .
+fi
+
+if [ ! -L jspm ]; then
+    echo "Linking jspm command into \"$topdir/client\" ..."
+    ln -s ./node_modules/.bin/jspm .
+fi
 
 echo "Running 'npm install' for BELMgr application ... "
 npm install
