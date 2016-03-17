@@ -30,24 +30,19 @@ dependencies.
 
 ```bash
 # Change directory to the base of the BEL Manager
+git clone https://github.com/OpenBEL/belmgr
 cd belmgr
 
-# add node_modules binaries to your PATH - to add local gulp and jspm commands
-PATH=$(pwd)/node_modules/.bin:$PATH
+./scripts/build.sh
 
-# install NodeJS and JSPM dependencies for BELMgr Application
-cd client
+# To re-build after initial installation of npm and jspm libraries handled by the build.sh script
+cd belmgr/client
+gulp build
 
-npm install
-jspm install -y
-
-# install NodeJS and JSPM dependencies for BELMgr Plugins if you are doing Plugin development
-#    not needed for BELMgr application deployment
-cd ../plugins
-npm install
-jspm install -y
-
+# You can run the following for development
+gulp watch  # will watch the source files for changes and reload after every change
 ```
+
 #### If you see 'github rate limit reached' - follow these instructions:
     Note: jspm queries GitHub to install semver packages, but GitHub has a rate limit on anonymous API requests. It is advised that you configure jspm with your GitHub credentials in order to avoid problems. You can do this by executing jspm registry config github and following the prompts. If you choose to authorize jspm by an access token instead of giving your password (see GitHub Settings > Personal Access Tokens), public_repo access for the token is required.
 
