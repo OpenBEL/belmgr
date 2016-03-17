@@ -6,13 +6,11 @@ bower_components
 .DS_STORE
 build/reports
 esdoc
-src/AppConfig.js
-src/components/lookahead.html
-src/components/lookahead.js
-src/components/typeahead-tmp.js
+AppConfig.js
 
 test/e2e/dist/*
 test/e2e/dist
 test/e2e/dist/demo.spec.js
 test/e2e/dist/welcome.po.js
 archive
+
