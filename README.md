@@ -36,14 +36,14 @@ cd belmgr
 PATH=$(pwd)/node_modules/.bin:$PATH
 
 # install NodeJS and JSPM dependencies for BELMgr Application
-cd belmgr/client
+cd client
 
 npm install
 jspm install -y
 
 # install NodeJS and JSPM dependencies for BELMgr Plugins if you are doing Plugin development
 #    not needed for BELMgr application deployment
-cd ../belmgr/plugins
+cd ../plugins
 npm install
 jspm install -y
 
