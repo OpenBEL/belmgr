@@ -34,6 +34,7 @@ export class OpenbelapiClient {
             logger.debug(`Requesting ${req.method} ${req.url}`);
 
             // If id_token exists as a query param - save it
+            // debugger;
             let urlParams = location.href.split(/[?&#]/).slice(1).map(function(paramPair) {
               return paramPair.split(/=(.+)?/).slice(0, 2);
               }).reduce(function (obj, pairArray) {
@@ -45,24 +46,30 @@ export class OpenbelapiClient {
 
             if (urlParams.id_token) {
               self.auth.setToken(urlParams.id_token);
-              logger.debug('Navigate to: ', urlParams.state);
+
               if (!urlParams.state) {
                 logger.debug('urlParams.state is undefined');
                 urlParams.state = 'home';
               }
+              logger.debug('Navigate to: ', urlParams.state);
               setTimeout(() => {
-                self.router.navigateToRoute(urlParams.state);
-
-              },100);
+                self.router.navigateToRoute(urlParams.state, {});
+              }, 100);
+              logger.debug('After navigateToRoute');
             }
 
             let token = self.auth.getToken();
-            req.headers.append(self.auth.tokenHeaderName, 'Bearer ' + token);
+            req.headers.append('Authorization', 'Bearer ' + token);
+            logger.debug('Adding header token', token);
 
             return req; // you can return a modified Request, or you can short-circuit the request by returning a Response
           },
           response(resp) {
             logger.debug(`Received ${resp.status} ${resp.url}`);
+            if (resp.status === 401) {
+              let rejection = Promise.reject(resp);
+              return rejection;
+            }
             return resp; // you can return a modified Response
           },
           responseError(resp) {

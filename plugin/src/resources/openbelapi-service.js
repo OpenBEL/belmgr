@@ -83,13 +83,7 @@ export class OpenbelapiService {
     // logger.debug('Filters2: ', filters);
     logger.debug('Getstring: ', getstring);
 
-    let token = this.auth.getToken();
-
-    return this.apiClient.fetch(getstring, {
-      headers: {
-        Authorization: 'Bearer ' + token
-      }
-    })
+    return this.apiClient.fetch(getstring)
       .then(response => response.json())
       .then(data => {
         /* eslint-disable camelcase */
@@ -107,6 +101,9 @@ export class OpenbelapiService {
             'evidences': null,
             'facets': {}
           };
+        }
+        if (reason.status === 401) {
+          logger.info('Unauthorized request');
         }
         logger.error('Search API Error: ', reason);
       });

@@ -2,9 +2,6 @@ import {LogManager} from 'aurelia-framework';
 import Config from '../AppConfig';
 
 let logger = LogManager.getLogger('Authentication');
-
-let tokenStorageName = Config.tokenStorageName;
-let tokenHeaderName = Config.tokenHeaderName;
 let loginUrl = Config.loginUrl;
 
 export class Authentication {
@@ -22,15 +19,15 @@ export class Authentication {
   }
 
   setToken(token) {
-    localStorage.setItem(tokenStorageName, token);
+    localStorage.setItem('BELMgrToken', token);
   }
 
   getToken() {
-    return localStorage.getItem(tokenStorageName);
+    return localStorage.getItem('BELMgrToken');
   }
 
   removeToken() {
-    localStorage.removeItem(tokenStorageName);
+    localStorage.removeItem('BELMgrToken');
   }
 
   checkToken() {
