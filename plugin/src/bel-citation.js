@@ -15,6 +15,7 @@ let logger = LogManager.getLogger('bel-citation');
 @customElement('bel-citation')
 export class BelCitation {
   citationId;
+  lastCitationId;
 
   static inject = [OpenbelapiService, PubmedService, EventAggregator];
   constructor(openbelapiService, pubmedService, eventAggregator) {
@@ -45,9 +46,14 @@ export class BelCitation {
       this.evidence.citation.type = 'PubMed';
     }
 
-    if (this.citationId) {
+    if (this.citationId && this.evidence.citation.type === 'PubMed') {
       this.collectPubmed();
     }
+  }
+
+  copyCitationId() {
+    this.lastCitationId = JSON.parse(JSON.stringify(this.citationId));
+    logger.debug('Copying CitationId to Last', this.lastCitationId);
   }
 
   evidenceChanged(value) {
@@ -57,14 +63,23 @@ export class BelCitation {
   collectPubmed() {
     this.evidence.citation.id = this.citationId;
 
-    logger.debug('Id: ', this.evidence.citation.id, ' Type: ', this.evidence.citation.type);
+    logger.debug('Id: ', this.citationId, 'Last', this.lastCitationId, ' Type: ', this.evidence.citation.type);
 
     // Collect Pubmed data from service
     if (this.citationId && this.evidence.citation.type === 'PubMed') {
+      logger.debug('Id2: ', this.citationId, 'Last2', this.lastCitationId, ' Type: ', this.evidence.citation.type);
       this.pubmedService.getPubmed(this.citationId)
         .then(pubmed => {
           this.pubmed = pubmed;
-          this.citationPubmedChecks();
+          if (this.citationId === this.lastCitationId) {
+            this.citationPubmedChecks();
+          }
+          else {  // replace citation data if new CitationId
+            this.evidence.citation.date = this.pubmed.journalInfo.printPublicationDate;
+            this.evidence.citation.authors = this.pubmed.bel.authors;
+            this.evidence.citation.name = this.pubmed.bel.refString;
+          }
+          this.copyCitationId();  // Track if the CitationId has changed
           this.$parent.refreshEvidenceObjBinding();
           this.publish(pubmed);
         })
@@ -77,6 +92,7 @@ export class BelCitation {
       this.pubmed = {};
       this.$parent.pubmed = {};
     }
+
   }
 
 

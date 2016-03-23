@@ -65,11 +65,7 @@ export class BelNanopub {
           this.belObject = comp.object;
           this.belRelationship = comp.relationship;
           logger.debug('Subj: ', this.belSubject);
-          return this.api.getBelAnnotationTypes();
-        })
-        .then(types => {
-          this.types = types;
-          logger.debug('AnnotationTypes: ', this.types);
+
         })
         .catch(reason => {
           logger.error('Process BEL Evidence Error: ', reason);

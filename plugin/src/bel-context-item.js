@@ -1,14 +1,14 @@
-import {inject, bindable, bindingMode, LogManager, customElement} from 'aurelia-framework';
+import {bindable, LogManager, customElement} from 'aurelia-framework';
+import {CompositionTransaction} from 'aurelia-framework';
 import {OpenbelapiService} from './resources/openbelapi-service';
+import {EventAggregator} from 'aurelia-event-aggregator';
 
 let logger = LogManager.getLogger('contextitem');
 
-@inject(OpenbelapiService)
 @customElement('bel-context-item')
-export class ContextItem {
+export class BelContextItem {
   @bindable type;
   @bindable annotation;
-  @bindable types;
   @bindable index;
   @bindable last;
   @bindable debounceTime = 100;
@@ -16,8 +16,28 @@ export class ContextItem {
   @bindable hasAnnotationFocus = false;
   @bindable showResults = false;
 
-  constructor(OpenbelapiService){
-    this.api = OpenbelapiService;
+  types;
+
+  static inject = [OpenbelapiService, CompositionTransaction, EventAggregator];
+  constructor(openbelapiService, compositionTransaction, eventAggregator){
+    this.api = openbelapiService;
+    this.compositionTransaction = compositionTransaction;
+    this.ea = eventAggregator;
+    this.compositionTransactionNotifier = null;
+  }
+
+  created() {
+    this.compositionTransactionNotifier = this.compositionTransaction.enlist();
+
+    this.api.getBelAnnotationTypes()
+      .then(types => {
+        this.types = types;
+        logger.debug('AnnotationTypes: ', this.types);
+        this.compositionTransactionNotifier.done();
+      })
+      .catch(function(reason) {
+        logger.error('GET AnnotationTypes Error: ', reason);
+      });
   }
 
   attached() {
@@ -26,6 +46,10 @@ export class ContextItem {
     logger.debug('Type ', this.type);
     logger.debug('Anno ', this.annotation);
     logger.debug('Types: ', this.types);
+  }
+
+  notifyAddBlank() {
+    this.ea.publish('addContextItemBlank');
   }
 
   /*

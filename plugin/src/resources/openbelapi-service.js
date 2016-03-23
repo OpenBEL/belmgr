@@ -134,7 +134,7 @@ export class OpenbelapiService {
 
     let token = this.auth.getToken();
 
-    return this.apiClient.fetch(`/evidence/${id}`, { headers: { Authorization: 'Bearer ' + token }})
+    return this.apiClient.fetch(`/evidence/${id}`)
       .then(response => response.json())
       .then(data => {
         let evidence = data.evidence;
@@ -359,7 +359,7 @@ export class OpenbelapiService {
 
   deleteDataset(url) {
     let dId = this.getIdFromUrl(url);
-    return this.apiClient.fetch(`/datasets/${dId}`, { method: 'DELETE', headers: { Authorization: 'Bearer ' + this.auth.getToken() }})
+    return this.apiClient.fetch(`/datasets/${dId}`, { method: 'DELETE'})
       .then(response => {
         return response;
       }).catch(function(reason) {

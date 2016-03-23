@@ -1,15 +1,29 @@
-import {inject, customElement, bindable, LogManager} from 'aurelia-framework';
+import {customElement, bindable, LogManager} from 'aurelia-framework';
+import {EventAggregator} from 'aurelia-event-aggregator';
 
 let logger = LogManager.getLogger('context');
 
 // custom element named:  bel-context
 export class BelContext {
-  @bindable types;
   @bindable evidence;
+
+  static inject = [EventAggregator];
+  constructor(eventAggregator) {
+    this.ea = eventAggregator;
+  }
 
   attached() {
     // Add blank entry to end of experiment context to insert new form fields
     this.addBlank();
+
+    this.subscription = this.ea.subscribe('addContextItemBlank', () => {
+      this.addBlank();
+      logger.debug('Checking to add Blank', this.evidence.experiment_context);
+    });
+  }
+
+  detached() {
+    this.subscription.dispose();
   }
 
   evidenceChanged(value) {

@@ -1,6 +1,7 @@
 import {LogManager} from 'aurelia-framework';
 import {HttpClient} from 'aurelia-fetch-client';
 import {Router} from 'aurelia-router';
+
 import 'fetch';
 import {Authentication} from './authentication';
 import Config from '../AppConfig';
@@ -34,7 +35,8 @@ export class OpenbelapiClient {
             logger.debug(`Requesting ${req.method} ${req.url}`);
 
             // If id_token exists as a query param - save it
-            // debugger;
+            // TODO - rework this to check for id_token first
+            // TODO - update the location directly instead of redirecting in Aurelia
             let urlParams = location.href.split(/[?&#]/).slice(1).map(function(paramPair) {
               return paramPair.split(/=(.+)?/).slice(0, 2);
               }).reduce(function (obj, pairArray) {
@@ -47,20 +49,16 @@ export class OpenbelapiClient {
             if (urlParams.id_token) {
               self.auth.setToken(urlParams.id_token);
 
-              if (!urlParams.state) {
-                logger.debug('urlParams.state is undefined');
-                urlParams.state = 'home';
-              }
-              logger.debug('Navigate to: ', urlParams.state);
-              setTimeout(() => {
-                self.router.navigateToRoute(urlParams.state, {});
-              }, 100);
-              logger.debug('After navigateToRoute');
+              // logger.debug('Navigate to: ', urlParams.state);
+              // //TODO test if we still need the setTimeout wrapper
+              // // setTimeout(() => {
+              //   let link = self.router.navigateToRoute(urlParams.state, {}, {replace: true});
+              //   logger.debug('Link: ', link);
+              // // }, 200);
             }
 
             let token = self.auth.getToken();
             req.headers.append('Authorization', 'Bearer ' + token);
-            logger.debug('Adding header token', token);
 
             return req; // you can return a modified Request, or you can short-circuit the request by returning a Response
           },

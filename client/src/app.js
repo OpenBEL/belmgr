@@ -30,17 +30,15 @@ export class App {
     ]);
 
     config.mapUnknownRoutes(instruction => {
-        router.navigateToRoute('home');
+      // logger.debug('mapUnknownRoutes instruction: ', instruction);
+      // TODO would be good to figure out how to handle redirects for authentication flow
+      router.navigateToRoute('home');
     });
-    logger.debug("Configured router", config);
 
     this.router = router;
-    logger.debug("After setting router");
-
   }
 
   activate(params, routeConfig, navigationInstruction) {
-    logger.debug('App Activation: ', params, routeConfig, navigationInstruction);
     return this.api.authEnabled().then(enabled => {
       this.state.authEnabled = enabled;
     });
