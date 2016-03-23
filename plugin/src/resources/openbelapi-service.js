@@ -349,7 +349,7 @@ export class OpenbelapiService {
   }
 
   getDatasets() {
-    return this.apiClient.fetch('/datasets', { headers: { Authorization: 'Bearer ' + this.auth.getToken() }})
+    return this.apiClient.fetch('/datasets')
       .then(response => response.json())
       .then(data => {return data.dataset_collection;})
       .catch(function(reason) {
