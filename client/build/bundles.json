@@ -2,9 +2,19 @@
   "bundles": {
     "dist/app-build": {
       "includes": [
-        "[*.js]",
+        "[**.js]",
         "*.html!text",
-        "*.css!text"
+        "*.css!text",
+        "toastr",
+        "aurelia-gravatar",
+        "bootstrap",
+        "bootstrap/css/bootstrap.css!text",
+        "font-awesome",
+        "jquery"
+      ],
+      "excludes": [
+        "plugin/AppConfig",
+        "plugin/AppConfig.example"
       ],
       "options": {
         "inject": true,
@@ -16,6 +26,7 @@
     "dist/aurelia": {
       "includes": [
         "aurelia-framework",
+        "aurelia-dependency-injection",
         "aurelia-bootstrapper",
         "aurelia-fetch-client",
         "aurelia-router",
@@ -26,13 +37,14 @@
         "aurelia-loader-default",
         "aurelia-history-browser",
         "aurelia-logging-console",
-        "bootstrap",
-        "bootstrap/css/bootstrap.css!text"
+        "aurelia-event-aggregator",
+        "fetch"
       ],
       "options": {
         "inject": true,
-        "minify": false,
-        "rev": true
+        "minify": true,
+        "rev": true,
+        "depCache": true
       }
     }
   }

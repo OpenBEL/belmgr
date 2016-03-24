@@ -24,9 +24,14 @@ export class BelCitation {
     this.ea = eventAggregator;
   }
 
-  // Pulling parent's context into scope
-  bind(context) {
-    this.$parent = context;
+  /**
+   * Force the evidence object to be recreated for force an update of the nested
+   * object binding in the View
+   */
+  refreshEvidenceObjBinding () {
+    let temp = this.evidence;
+    this.evidence = {};
+    this.evidence = temp;
   }
 
   publish(payload) {
@@ -80,7 +85,7 @@ export class BelCitation {
             this.evidence.citation.name = this.pubmed.bel.refString;
           }
           this.copyCitationId();  // Track if the CitationId has changed
-          this.$parent.refreshEvidenceObjBinding();
+          this.refreshEvidenceObjBinding();
           this.publish(pubmed);
         })
         .catch(reason => {

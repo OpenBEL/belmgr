@@ -14,3 +14,8 @@ test/e2e/dist/demo.spec.js
 test/e2e/dist/welcome.po.js
 archive
 
+client/export
+client/export/config.js
+client/export/favicon.ico
+client/export/index.html
+client/export/styles/styles.css

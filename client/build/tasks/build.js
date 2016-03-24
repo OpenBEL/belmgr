@@ -39,54 +39,23 @@ gulp.task('build-css', function() {
     .pipe(browserSync.stream());
 });
 
-gulp.task('build-plugin-html-es6', function () {
-  return gulp.src(paths.pluginHtml)
-    .pipe(gulp.dest(paths.output + 'es6'));
-});
-
-gulp.task('build-plugin-es6', ['build-plugin-html-es6'], function () {
-  return gulp.src(paths.pluginSource)
-    .pipe(gulp.dest(paths.output + 'es6'));
-});
-
-gulp.task('build-plugin-html-commonjs', function () {
-  return gulp.src(paths.pluginHtml)
-    .pipe(gulp.dest(paths.output + 'commonjs'));
-});
-
-gulp.task('build-plugin-commonjs', ['build-plugin-html-commonjs'], function () {
-  return gulp.src(paths.pluginSource)
-    .pipe(to5(assign({}, compilerOptions, {modules:'common'})))
-    .pipe(gulp.dest(paths.output + 'commonjs'));
-});
-
-gulp.task('build-plugin-html-amd', function () {
-  return gulp.src(paths.pluginHtml)
-    .pipe(gulp.dest(paths.output + 'amd'));
-});
-
-gulp.task('build-plugin-amd', ['build-plugin-html-amd'], function () {
-  return gulp.src(paths.pluginSource)
-    .pipe(to5(assign({}, compilerOptions, {modules:'amd'})))
-    .pipe(gulp.dest(paths.output + 'amd'));
-});
 
 gulp.task('build-plugin-html-system', function () {
   return gulp.src(paths.pluginHtml)
-    .pipe(gulp.dest(paths.output + 'system'));
+    .pipe(gulp.dest(paths.output + 'plugin'));
 });
 
 gulp.task('build-plugin-system', ['build-plugin-html-system'], function () {
   return gulp.src(paths.pluginSource)
     .pipe(to5(assign({}, compilerOptions, {modules:'system'})))
-    .pipe(gulp.dest(paths.output + 'system'));
+    .pipe(gulp.dest(paths.output + 'plugin'));
 });
 
 gulp.task('build-plugin', function(callback) {
   return runSequence(
     // 'plugin-clean',  // not needed in client build-plugin since it's
     //                     using paths.output instead of paths.pluginOutput
-    ['build-plugin-es6', 'build-plugin-commonjs', 'build-plugin-amd', 'build-plugin-system'],
+    ['build-plugin-system'],
     callback
   );
 });
