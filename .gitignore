@@ -6,13 +6,16 @@ bower_components
 .DS_STORE
 build/reports
 esdoc
-src/components/lookahead.html
-src/components/lookahead.js
-src/components/typeahead-tmp.js
+AppConfig.js
 
-src/.tern-port
-.tern-port
 test/e2e/dist/*
 test/e2e/dist
 test/e2e/dist/demo.spec.js
 test/e2e/dist/welcome.po.js
+archive
+
+client/export
+client/export/config.js
+client/export/favicon.ico
+client/export/index.html
+client/export/styles/styles.css

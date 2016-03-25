@@ -1,0 +1,38 @@
+<template>
+  <require from="./bel-term"></require>
+  <div id="bel-statement" class="edit-belForm edit-belStatement edit-header">
+    <div class="row col-xs-12">
+      <h3>BEL Statement</h3>
+    </div>
+    <!-- .col-xs-12 -->
+    <div class="row">
+      <div id="bel-source-div" class="edit-belStatementDivs col-xs-5">
+        <div class="form-group">
+          <label class="sr-only" for="belSubject">BEL Source</label>
+
+          <bel-term bel.two-way="belSubject"></bel-term>
+
+        </div>
+
+        <div id="source-searchbox" class="search-box" style="display: none;">
+          <h3>Entity Search</h3>
+        </div>
+      </div>
+
+      <div id="bel-relation-div" class="edit-belStatementDivs col-xs-2">
+        <label class="sr-only" for="belRelation">BEL Relation</label>
+        <select class="form-control selectDrop selectDrop-relation" id="belrelation" value.bind="belRelationship">
+          <option>--Relation--</option>
+          <option repeat.for="relation of relationsList" model.bind="relation.value">${relation.label}</option>
+        </select>
+      </div>
+
+      <div id="bel-target-div" class="edit-belStatementDivs col-xs-5">
+        <div class="form-group input-block-level">
+          <label class="sr-only" for="belObject">BEL Object</label>
+          <bel-term bel.two-way="belObject"></bel-term>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
