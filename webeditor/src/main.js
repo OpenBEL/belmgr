@@ -10,7 +10,7 @@ export function configure(aurelia) {
     .standardConfiguration()
     .plugin('aurelia-gravatar')
     .plugin('aurelia-animator-css')
-    .plugin('belmgr-plugins')
+    .plugin('belmgr-plugin')
     .plugin('aurelia-configuration');
 
   aurelia.start().then(a => a.setRoot());

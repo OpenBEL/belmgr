@@ -6,7 +6,7 @@ form via this plugin.
 
 ## Installing the plugins
 
-`jspm install belmgr-plugins`
+`jspm install belmgr-plugin`
 
 
 ## Using the plugins

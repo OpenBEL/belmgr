@@ -26,12 +26,12 @@ gulp build;
 cd ${BELHOME}/webeditor
 npm install;
 jspm install -y;
-if [ ! -d ${BELHOME}/webeditor/jspm_packages/npm/belmgr-plugins\@$PLUGIN_VERSION ]; then
+if [ ! -d ${BELHOME}/webeditor/jspm_packages/npm/belmgr-plugin\@$PLUGIN_VERSION ]; then
   echo "Cannot find belmgr-plugin package - please check the Plugin Version number"
   exit
 fi
-rm -r ${BELHOME}/webeditor/jspm_packages/npm/belmgr-plugins\@$PLUGIN_VERSION
-ln -s ${BELHOME}/plugin/dist/system jspm_packages/npm/belmgr-plugins\@$PLUGIN_VERSION
+rm -r ${BELHOME}/webeditor/jspm_packages/npm/belmgr-plugin\@$PLUGIN_VERSION
+ln -s ${BELHOME}/plugin/dist/system jspm_packages/npm/belmgr-plugin\@$PLUGIN_VERSION
 gulp build;
 
 

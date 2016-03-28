@@ -104,15 +104,16 @@ export class BelContextItem {
     }
   }
 
-  async filterAnnotations(){
-    try {
-      if (this.annotation.length > 1) {
-        this.filteredAnnotations = await this.api.getBELAnnotationValues(this.annotation, this.type)
-        logger.debug('FA: ', this.filteredAnnotations);
-      }
-    }
-    catch (err) {
-      logger.error('Filter annotations error: ', err);
+  filterAnnotations(){
+    if (this.annotation.length > 1) {
+      this.api.getBELAnnotationValues(this.annotation, this.type)
+        .then(data => {
+          this.filteredAnnotations = data;
+          this.compositionTransactionNotifier.done();
+        })
+        .catch(function(reason) {
+          logger.error('Filter annotations error: ', reason);
+      });
     }
   }
 

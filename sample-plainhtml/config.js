@@ -38,7 +38,7 @@ System.config({
     "aurelia-task-queue": "npm:aurelia-task-queue@1.0.0-beta.1.2.0",
     "babel": "npm:babel-core@5.8.38",
     "babel-runtime": "npm:babel-runtime@5.8.38",
-    "belmgr-plugins": "npm:belmgr-plugins@0.1.6",
+    "belmgr-plugin": "npm:belmgr-plugin@0.1.6",
     "bootstrap": "github:twbs/bootstrap@3.3.6",
     "clean-css": "npm:clean-css@3.4.10",
     "core-js": "npm:core-js@1.2.6",

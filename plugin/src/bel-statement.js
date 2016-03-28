@@ -16,6 +16,8 @@ let logger = LogManager.getLogger('statement');
 @customElement('bel-statement')
 export class BelStatement {
 
+  @bindable evidence;
+
   // TODO pull relationsList from OpenBEL API
   static inject=[relationsList];
   constructor(relationsList) {

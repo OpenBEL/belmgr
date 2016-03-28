@@ -1,5 +1,5 @@
 import {inject} from 'aurelia-framework';
-import {OpenbelapiService} from 'belmgr-plugins/resources/openbelapi-service';
+import {OpenbelapiService} from 'belmgr-plugin/resources/openbelapi-service';
 import {LogManager} from 'aurelia-framework';
 
 let logger = LogManager.getLogger('search');

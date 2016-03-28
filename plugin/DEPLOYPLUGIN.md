@@ -4,7 +4,7 @@ Instructions are found here: https://gist.github.com/coolaj86/1318304
 
 Prepare to publish:
 * Set you NPM author info and add your user to npmjs.com
-* Make sure you are added as a collaborator to belmgr-plugins by contacting one of the collaborators (e.g. `npm owner add`)
+* Make sure you are added as a collaborator to belmgr-plugin by contacting one of the collaborators (e.g. `npm owner add`)
 
 * CD to plugin directory
 * `npm version 1.1.1`  (insert correct version number - this will )
@@ -14,7 +14,7 @@ Prepare to publish:
 
 ## Adding to JSPM registry
 
-Already done, but this was accomplished by doing a Pull Request on https://github.com/jspm/registry/blob/master/registry.json and adding `"belmgr-plugins": "npm:belmgr-plugins",`
+Already done, but this was accomplished by doing a Pull Request on https://github.com/jspm/registry/blob/master/registry.json and adding `"belmgr-plugin": "npm:belmgr-plugin",`
 
 ## Adding to Aurelia registry
 

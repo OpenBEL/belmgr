@@ -7,7 +7,7 @@ let logger = LogManager.getLogger('bel-completion');
 @customElement('bel-term')
 export class BelTerm {
   @bindable bel;
-  @bindable debounceTime = 100;
+  @bindable debounceTime = 400;  // TODO using a constant in the View template - change to use this value
   @bindable hasTermFocus = false;
   @bindable hasAnnotationFocus = false;
   @bindable showResults = false;

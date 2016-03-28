@@ -1,6 +1,6 @@
 import {LogManager} from 'aurelia-framework';
 import {UserState} from '../UserState';
-import {Authentication} from 'belmgr-plugins/resources/authentication';
+import {Authentication} from 'belmgr-plugin/resources/authentication';
 
 let logger = LogManager.getLogger('edit');
 
