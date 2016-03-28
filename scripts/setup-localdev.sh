@@ -6,8 +6,8 @@
 
 set -e  # exit on any errors
 
-# DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"/../
-# EDITOR_DIR="$DIR"/webeditor
+PLUGIN_VERSION=0.1.7
+BELHOME=`pwd`
 PATH=node_modules/.bin:$PATH
 
 if [ ! -d 'webeditor' ]; then
@@ -16,24 +16,26 @@ if [ ! -d 'webeditor' ]; then
 fi
 
 # Setup plugin
-cd plugin;
+cd ${BELHOME}/plugin;
 npm install;
 jspm install -y;
 gulp build;
+
 
 # Setup webeditor
-cd ../webeditor;
+cd ${BELHOME}/webeditor
 npm install;
 jspm install -y;
+if [ ! -d ${BELHOME}/webeditor/jspm_packages/npm/belmgr-plugins\@$PLUGIN_VERSION ]; then
+  echo "Cannot find belmgr-plugin package - please check the Plugin Version number"
+  exit
+fi
+rm -r ${BELHOME}/webeditor/jspm_packages/npm/belmgr-plugins\@$PLUGIN_VERSION
+ln -s ${BELHOME}/plugin/dist/system jspm_packages/npm/belmgr-plugins\@$PLUGIN_VERSION
 gulp build;
 
-# Setup plugin aurelia example
-cd ../sample-aureliaplugin;
-npm install;
-jspm install -y;
-gulp build;
 
 # Setup plugin plain web page example
-cd ../sample-plainhtml
-ln -s ../webeditor/jspm_packages aurelia-cdn
-ln -s ../plugin/dist/amd plugin-cdn
+cd ${BELHOME}/sample-plainhtml
+ln -s ${BELHOME}/webeditor/jspm_packages aurelia-cdn
+ln -s ${BELHOME}/plugin/dist/amd plugin-cdn

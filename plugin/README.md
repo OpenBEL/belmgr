@@ -11,6 +11,17 @@ form via this plugin.
 
 ## Using the plugins
 
-There are examples of how to use this code at https://github.com/OpenBEL/belmgr-plugin-examples.
+There are examples of how to use this plugin in this repo in the sample* directories
+
+
+## Updating the NPM package
+
+Select the semantic portion to update using the `npm version` command
+
+    npm version {patch minor major}
+    npm publish
+
+
+
 
 
