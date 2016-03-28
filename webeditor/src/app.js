@@ -1,5 +1,5 @@
 import {LogManager} from 'aurelia-framework';
-import {OpenbelapiService} from 'local-plugin/resources/openbelapi-service';
+import {OpenbelapiService} from 'belmgr-plugins/resources/openbelapi-service';
 import {UserState} from './UserState';
 import {Router} from 'aurelia-router';
 

@@ -1,7 +1,8 @@
 import {LogManager} from 'aurelia-framework';
-import Config from 'local-plugin/AppConfig';
 
-LogManager.setLevel(Config.logLevel);
+LogManager.setLevel(LogManager.logLevel.debug);
+
+let logger = LogManager.getLogger('webeditor-main');
 
 export function configure(aurelia) {
   aurelia.use
@@ -9,7 +10,8 @@ export function configure(aurelia) {
     .standardConfiguration()
     .plugin('aurelia-gravatar')
     .plugin('aurelia-animator-css')
-    .feature('local-plugin');
+    .plugin('belmgr-plugins')
+    .plugin('aurelia-configuration');
 
   aurelia.start().then(a => a.setRoot());
 }

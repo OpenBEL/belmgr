@@ -1,5 +1,6 @@
 var gulp = require('gulp');
 var browserSync = require('browser-sync');
+var runSequence = require('run-sequence');
 
 // this task utilizes the browsersync plugin
 // to create a dev server instance
@@ -20,8 +21,7 @@ gulp.task('serve-bundle', function() {
   });
 });
 
-
-gulp.task('serve', ['build', 'unbundle'], function(done) {
+gulp.task('browser-sync', function(done) {
   browserSync({
     online: false,
     open: false,
@@ -34,4 +34,12 @@ gulp.task('serve', ['build', 'unbundle'], function(done) {
       }
     }
   }, done);
+});
+
+gulp.task('serve', function() {
+  return runSequence(
+    'unbundle',
+    'build',
+    'browser-sync'
+  );
 });

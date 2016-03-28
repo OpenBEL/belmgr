@@ -1,15 +1,10 @@
 import {LogManager} from 'aurelia-framework';
 import {HttpClient} from 'aurelia-fetch-client';
 import 'fetch';
-import Config from '../AppConfig';
 import {OpenbelapiClient} from './openbelapi-client';
 import {Authentication} from './authentication';
 
 let logger = LogManager.getLogger('openbelapi');
-
-let openBELApiUrl = Config.openBELApiUrl;
-let loginUrl = Config.loginUrl;
-let pubmedBaseUrl = Config.pubmedBaseUrl;
 
 export class OpenbelapiService {
   static inject = [OpenbelapiClient, Authentication];

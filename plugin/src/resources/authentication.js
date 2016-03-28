@@ -1,11 +1,19 @@
 import {LogManager} from 'aurelia-framework';
-import Config from '../AppConfig';
+// import Config from '../AppConfig';
+import {Configure} from 'aurelia-configuration';
 
 let logger = LogManager.getLogger('Authentication');
-let loginUrl = Config.loginUrl;
+// let loginUrl = Config.loginUrl;
 
 export class Authentication {
-  constructor () {
+
+  loginUrl;
+
+  static inject = [Configure];
+  constructor (config) {
+    this.config = config;
+    this.loginUrl = this.config.get('loginUrl');
+    logger.debug('LoginUrl: ', this.loginUrl);
   }
 
   /*
@@ -15,7 +23,7 @@ export class Authentication {
     let cleanHash = hash.replace('#/', '');
     if (!cleanHash) {cleanHash = 'home';}
     logger.debug('Protocol: ', protocol, ' Host: ', host, ' Pathname: ', pathname, ' State: ', cleanHash);
-    window.location.href = `${loginUrl}&redirect_uri=${protocol}//${host}${pathname}?state=${cleanHash}`;
+    window.location.href = `${this.loginUrl}&redirect_uri=${protocol}//${host}${pathname}?state=${cleanHash}`;
   }
 
   setToken(token) {

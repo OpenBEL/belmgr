@@ -1,7 +1,7 @@
 import {bindable, LogManager} from 'aurelia-framework';
-import {Authentication} from 'local-plugin/resources/authentication';
+import {Authentication} from 'belmgr-plugins/resources/authentication';
 import {UserState} from '../UserState.js';
-import {OpenbelapiService} from 'local-plugin/resources/openbelapi-service';
+import {OpenbelapiService} from 'belmgr-plugins/resources/openbelapi-service';
 
 let logger = LogManager.getLogger('nav-bar');
 

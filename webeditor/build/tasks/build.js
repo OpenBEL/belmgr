@@ -1,4 +1,5 @@
 var gulp = require('gulp');
+var exec = require('child_process').exec;
 var runSequence = require('run-sequence');
 var changed = require('gulp-changed');
 var plumber = require('gulp-plumber');
@@ -39,36 +40,29 @@ gulp.task('build-css', function() {
     .pipe(browserSync.stream());
 });
 
-
-gulp.task('build-plugin-html-system', function () {
-  return gulp.src(paths.pluginHtml)
-    .pipe(gulp.dest(paths.output + 'plugin'));
+gulp.task('build-config', function() {
+  return gulp.src(paths.config)
+    .pipe(gulp.dest(paths.output + 'config'))
 });
 
-gulp.task('build-plugin-system', ['build-plugin-html-system'], function () {
-  return gulp.src(paths.pluginSource)
-    .pipe(to5(assign({}, compilerOptions, {modules:'system'})))
-    .pipe(gulp.dest(paths.output + 'plugin'));
-});
-
+// TODO Not working correctly yet
 gulp.task('build-plugin', function(callback) {
-  return runSequence(
-    // 'plugin-clean',  // not needed in client build-plugin since it's
-    //                     using paths.output instead of paths.pluginOutput
-    ['build-plugin-system'],
+  return exec('cd ../plugin; gulp build; cd ../webeditor', function (err, stdout, stderr) {
+    console.log(stdout);
+    console.log(stderr);
     callback
-  );
+  });
 });
 
 // this task calls the clean task (located
 // in ./clean.js), then runs the build-system
 // and build-html tasks in parallel
 // https://www.npmjs.com/package/gulp-run-sequence
-gulp.task('build', function(callback) {
+gulp.task('build', function() {
   return runSequence(
     'clean',
-    ['build-system', 'build-plugin', 'build-html', 'build-css'],
-    callback
+    // 'build-plugin',
+    ['build-system',  'build-html', 'build-css', 'build-config']
   );
 });
 

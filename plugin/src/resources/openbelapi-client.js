@@ -4,24 +4,31 @@ import {Router} from 'aurelia-router';
 
 import 'fetch';
 import {Authentication} from './authentication';
-import Config from '../AppConfig';
+// import Config from '../AppConfig';
+import {Configure} from 'aurelia-configuration';
 
-let openBELApiUrl = Config.openBELApiUrl;
+// let openBELApiUrl = Config.openBELApiUrl;
 
 let logger = LogManager.getLogger('openbelapi-client');
 
 export class OpenbelapiClient {
 
   client;
+  openBELApiUrl;
 
-  static inject = [Authentication, Router];
-  constructor(auth, router) {
+  static inject = [Authentication, Router, Configure];
+  constructor(auth, router, config) {
     this.auth = auth;
     this.router = router;
+
+    this.config = config;
+    this.openBELApiUrl = this.config.get('openBELApiUrl');
+    logger.debug('api url: ', this.openBELApiUrl);
+
     let self = this;
     this.client = new HttpClient().configure(config => {
       config
-        .withBaseUrl(openBELApiUrl)
+        .withBaseUrl(self.openBELApiUrl)
         .withDefaults({
           credentials: 'same-origin',
           headers: {

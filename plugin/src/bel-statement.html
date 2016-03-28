@@ -21,7 +21,7 @@
 
       <div id="bel-relation-div" class="edit-belStatementDivs col-xs-2">
         <label class="sr-only" for="belRelation">BEL Relation</label>
-        <select class="form-control selectDrop selectDrop-relation" id="belrelation" value.bind="belRelationship">
+        <select class="form-control selectDrop selectDrop-relation" id="bel-relation" value.bind="belRelationship">
           <option>--Relation--</option>
           <option repeat.for="relation of relationsList" model.bind="relation.value">${relation.label}</option>
         </select>
