@@ -1,4 +1,5 @@
 {
+  "extends": "./node_modules/aurelia-tools/.eslintrc",
   "rules": {
     "no-alert": 0,
     "camelcase": [2, {"properties": "always"}]
