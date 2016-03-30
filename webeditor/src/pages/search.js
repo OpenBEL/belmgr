@@ -7,6 +7,8 @@ let logger = LogManager.getLogger('search');
 @inject(OpenbelapiService)
 export class Search {
 
+  searchQuery = "https://thor.selventa.com/api/evidence?start=0&size=10&faceted=1&max_values_per_facet=10&filter=%7B%22category%22:%22experiment_context%22,%22name%22:%22Anatomy%22,%22value%22:%22heart%22%7D&filter=%7B%22category%22:%22experiment_context%22,%22name%22:%22Cell%22,%22value%22:%22fibroblast%22";
+  
   constructor(openbelapiService) {
     this.api = openbelapiService;
     this.results = null;
@@ -36,6 +38,7 @@ export class Search {
     if (typeof(start) != 'undefined') {
         this.searchStart = start;
     }
+
     let filters = []; // filters to send to api.search
     if (this.selectedFacets) {
       let keys = Object.keys(this.selectedFacets);
@@ -45,6 +48,7 @@ export class Search {
         }
       }
     }
+    
     if (this.searchTerms) {
       filters.push(`{"category":"fts","name":"search","value":"${this.searchTerms}"}`);
     }

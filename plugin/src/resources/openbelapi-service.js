@@ -65,16 +65,23 @@ export class OpenbelapiService {
    * @param {Integer} faceted - facet results if equals 1 (default = 1)
    * @return {Promise} data - processed search results ready to display on the search results web page
    * */
-  search(start = 0, size = 10, faceted = 'yes', filters) {
+  search(start = 0, size = 10, faceted = 'yes', format = null, filters) {
     /* eslint-disable camelcase */
     let max_values_per_facet = 10;
     let getstring = `/evidence?start=${start}&size=${size}&faceted=${faceted}&max_values_per_facet=${max_values_per_facet}`;
-    /* eslint-enable camelcase */
+    /* eslint-enable camelcase */ 
+
+
     if (filters) {
       for (let filter of filters) {
         getstring += `&filter=${filter}`;
       }
     }
+    
+    if (format) {
+      getstring += `&format=${format}`;
+    }
+
     // logger.debug('Filters2: ', filters);
     logger.debug('Getstring: ', getstring);
 

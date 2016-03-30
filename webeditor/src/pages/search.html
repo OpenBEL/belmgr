@@ -1,6 +1,7 @@
 <template>
   <require from="valueConverters/keys-to-list"></require>
   <require from="valueConverters/sort-array"></require>
+  <require from='../components/search-export'></require>
 
   <div class="container margintop80 search-html">
     <div class="row">
@@ -74,9 +75,12 @@
 
                 </div>
               </div>
-              <!-- <a type="button" class="table-item2 btn btn-export btn-edit" href="#" onClick="return confirm('Not implemented yet.')">Export <i class="fa fa-download fa-lg"></i></a> -->
 
-                <!--  ${searchResultsRange} -->
+              <search-export filters.bind="searchQuery"></search-export>
+
+              <!--  ${searchResultsRange} -->
+
+
           <!-- todo: finagle file type selection -->
 
               <nav class="table-item3 paddingNone">
@@ -110,22 +114,24 @@
             </tbody>
           </table>
         </template>
+
+
         <template if.bind="! evidences">
           <p>No search results</p>
         </template>
 
-            <div class="marginrt10" if.bind="evidences">
+          <div class="marginrt10" if.bind="evidences">
 
-                <nav class="search-bottomPager">
-                  <ul class="col-xs-12 paddingNone pager pager-top">
-                    <li class="col-xs-2 paddingNone previous ${pagerPrevious}"><a href="#" class="pagerArrow paddingNone" click.delegate="pageSearchResults(-1)"><span aria-hidden="true"><i class="fa fa-angle-left fa-2x"></i></a></li>
-                    <p class="search-pageCount col-xs-8 paddingNone ">${searchResultsRange}</p>
-                    <li class="col-xs-2 paddingNone next ${pagerNext}"><a href="#" class="pagerArrow paddingNone" click.delegate="pageSearchResults(1)"><i class="fa fa-angle-right fa-2x"></i></a></li>
-                  </ul>
-                </nav>
+              <nav class="search-bottomPager">
+                <ul class="col-xs-12 paddingNone pager pager-top">
+                  <li class="col-xs-2 paddingNone previous ${pagerPrevious}"><a href="#" class="pagerArrow paddingNone" click.delegate="pageSearchResults(-1)"><span aria-hidden="true"><i class="fa fa-angle-left fa-2x"></i></a></li>
+                  <p class="search-pageCount col-xs-8 paddingNone ">${searchResultsRange}</p>
+                  <li class="col-xs-2 paddingNone next ${pagerNext}"><a href="#" class="pagerArrow paddingNone" click.delegate="pageSearchResults(1)"><i class="fa fa-angle-right fa-2x"></i></a></li>
+                </ul>
+              </nav>
 
 
-            </div>
+          </div>
     </div>
   </div>
 </template>

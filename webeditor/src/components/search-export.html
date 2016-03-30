@@ -1,0 +1,14 @@
+<template>
+    <div class="btn-group">
+        <button type="button" class="btn btn-Standard" click.trigger="exportSearch()">${ dataType ? "Export " + dataType.name : "Select Export Data Type" }</button>
+        <button type="button" class="btn btn-Standard dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <span class="caret"></span>
+            <span class="sr-only">Toggle Dropdown</span>
+        </button>
+        <ul class="dropdown-menu" dataType.bind="type.id">
+            <li repeat.for="type of dataTypes" click.trigger="setDataType(type)">${type.name}</li>
+        </ul>
+    </div>
+</template>
+<!-- Pre-styled Export button - styling components can be reused. -->
+<!-- <a type="button" class="table-item2 btn btn-export btn-edit" href="#" onClick="return confirm('Not implemented yet.')">Export <i class="fa fa-download fa-lg"></i></a> -->
