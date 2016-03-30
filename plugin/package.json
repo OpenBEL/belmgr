@@ -42,6 +42,7 @@
     "vinyl-paths": "^1.0.0",
     "yargs": "^2.1.1"
   },
+  "jspmNodeConversion": false,
   "jspm": {
     "registry": "npm",
     "main": "index",
