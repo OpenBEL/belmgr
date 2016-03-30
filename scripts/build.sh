@@ -28,5 +28,4 @@ echo "Running 'gulp build' for BELMgr application ... "
 gulp build
 
 echo "Enter webeditor directory and run 'gulp serve' to test application"
-echo " or 'gulp watch' for local development"
-echo " or 'gulp export' for a distributable version of the application"
+
