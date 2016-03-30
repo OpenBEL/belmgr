@@ -4,9 +4,6 @@
 #  this script will setup the site for local development
 #  by arranging plugin to be symlinked to the webeditor and sample sites
 
-set -e  # exit on any errors
-
-PLUGIN_VERSION=0.1.7
 BELHOME=`pwd`
 PATH=node_modules/.bin:$PATH
 
@@ -26,13 +23,12 @@ gulp build;
 cd ${BELHOME}/webeditor
 npm install;
 jspm install -y;
-if [ ! -d ${BELHOME}/webeditor/jspm_packages/npm/belmgr-plugin\@$PLUGIN_VERSION ]; then
-  echo "Cannot find belmgr-plugin package - please check the Plugin Version number"
-  exit
-fi
-rm -r ${BELHOME}/webeditor/jspm_packages/npm/belmgr-plugin\@$PLUGIN_VERSION
-ln -s ${BELHOME}/plugin/dist/system jspm_packages/npm/belmgr-plugin\@$PLUGIN_VERSION
+jspm install belmgr-plugin -o {jspmNodeConversion: false}
 gulp build;
+
+echo "!!! Remove the ${BELHOME}/webeditor/jspm_packages/npm/belmgr-plugin\@{Version}"
+echo "directory and link it to ${BELHOME}/plugin/dist/system in order "
+echo "to do local development of the webeditor and the belmgr-plugin"
 
 
 # Setup plugin plain web page example

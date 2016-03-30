@@ -91,6 +91,11 @@
       "traceur-runtime": "github:jmcriffey/bower-traceur-runtime@0.0.92",
       "–latest": "npm:babel-core@^5.8.24",
       "–latest-runtime": "npm:babel-runtime@^5.8.24"
+    },
+    "overrides": {
+      "npm:belmgr-plugin@0.1.8": {
+        "jspmNodeConversion": false
+      }
     }
   }
 }

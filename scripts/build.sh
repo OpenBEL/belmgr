@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-set -e  # exit on any errors
+# set -e  # exit on any errors (jspm install errors on the belmgr-plugin install)
 
 DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"/../
 EDITOR_DIR="$DIR"/webeditor
@@ -22,6 +22,7 @@ npm install
 
 echo "Running 'jspm install -y' for BELMgr application ... "
 jspm install -y
+jspm install belmgr-plugin -o {jspmNodeConversion: false}
 
 echo "Running 'gulp build' for BELMgr application ... "
 gulp build
