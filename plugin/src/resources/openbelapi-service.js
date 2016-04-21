@@ -27,10 +27,13 @@ export class OpenbelapiService {
 
     for (let facet of facets) {
       // logger.debug("Facet: ", facet);
-      if (facet.category === 'experiment_context' ||
-            facet.name === 'Status' ||
-	    facet.category === 'citation' ||
-	    facet.name === 'dataset') {
+      if (
+        facet.category === 'experiment_context' ||
+        facet.name === 'Status' ||
+        facet.category === 'citation' ||
+        facet.name === 'dataset' ||
+        facet.name === 'evidence_status'
+      ) {
         // logger.debug("Filtered Facet: ", facet);
         let facetName = facet.name;
 
@@ -39,6 +42,9 @@ export class OpenbelapiService {
         }
         if (facet.name === 'dataset') {
           facetName = 'Datasets';
+        }
+        if (facet.name === 'evidence_status') {
+          facetName = 'Nanopub Status';
         }
 
         newFacets[facetName] = [];
@@ -65,11 +71,11 @@ export class OpenbelapiService {
    * @param {Integer} faceted - facet results if equals 1 (default = 1)
    * @return {Promise} data - processed search results ready to display on the search results web page
    * */
-  search(start = 0, size = 10, faceted = 'yes', format = null, filters) {
+  search(start = 0, size = 10, faceted = 'yes', filters) {
     /* eslint-disable camelcase */
     let max_values_per_facet = 10;
     let getstring = `/evidence?start=${start}&size=${size}&faceted=${faceted}&max_values_per_facet=${max_values_per_facet}`;
-    /* eslint-enable camelcase */ 
+    /* eslint-enable camelcase */
 
 
     if (filters) {
@@ -77,25 +83,20 @@ export class OpenbelapiService {
         getstring += `&filter=${filter}`;
       }
     }
-    
-    if (format) {
-      getstring += `&format=${format}`;
-    }
 
     // logger.debug('Filters2: ', filters);
-    logger.debug('Getstring: ', getstring);
+    logger.debug('Getstring1: ', getstring);
 
     return this.apiClient.fetch(getstring)
       .then(response => response.json())
       .then(data => {
-        /* eslint-disable camelcase */
-        let new_data = {};
-        new_data.evidences = data.evidence_collection;
-        new_data.facets = this.processFacets(data.facets);
-        new_data.metadata = data.metadata;
-        logger.debug('Search results: ', new_data);
-        return new_data;
-        /* eslint-enable camelcase */
+        logger.debug('Data: ', data);
+        let newData = {};
+        newData.evidences = data.evidence_collection;
+        newData.facets = this.processFacets(data.facets);
+        newData.metadata = data.metadata;
+        newData.searchUrl = data._links.self.href;
+        return newData;
       })
       .catch(function(reason) {
         if (reason.status === 404) {
