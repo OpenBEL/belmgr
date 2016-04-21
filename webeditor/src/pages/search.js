@@ -7,8 +7,10 @@ let logger = LogManager.getLogger('search');
 @inject(OpenbelapiService)
 export class Search {
 
-  searchQuery = "https://thor.selventa.com/api/evidence?start=0&size=10&faceted=1&max_values_per_facet=10&filter=%7B%22category%22:%22experiment_context%22,%22name%22:%22Anatomy%22,%22value%22:%22heart%22%7D&filter=%7B%22category%22:%22experiment_context%22,%22name%22:%22Cell%22,%22value%22:%22fibroblast%22";
-  
+  filters;
+  searchUrl = null;
+  searching = false;
+
   constructor(openbelapiService) {
     this.api = openbelapiService;
     this.results = null;
@@ -39,23 +41,26 @@ export class Search {
         this.searchStart = start;
     }
 
-    let filters = []; // filters to send to api.search
+    this.filters = []; // filters to send to api.search
     if (this.selectedFacets) {
       let keys = Object.keys(this.selectedFacets);
       for (let key of keys) {
           if (this.selectedFacets[key]) {
-          filters.push(key);
+          this.filters.push(key);
         }
       }
     }
-    
-    if (this.searchTerms) {
-      filters.push(`{"category":"fts","name":"search","value":"${this.searchTerms}"}`);
-    }
-    logger.debug('Filters: ', filters);
 
-    return this.api.search(this.searchStart, this.searchSize, this.searchFaceted, filters)
+    if (this.searchTerms) {
+      this.filters.push(`{"category":"fts","name":"search","value":"${this.searchTerms}"}`);
+    }
+    logger.debug('Filters: ', this.filters);
+
+    this.searching = true;
+    return this.api.search(this.searchStart, this.searchSize, this.searchFaceted, this.filters)
       .then(data => {
+        logger.debug('Search result data: ', data);
+        this.searchUrl = data.searchUrl;
         this.evidences =  data.evidences;
         this.facetSets = data.facets;
         if (data.metadata) {
@@ -72,6 +77,7 @@ export class Search {
         logger.debug("Search results: ", this.evidences);
         logger.debug("Search facets: ", this.facetSets);
 
+        this.searching = false;
         return data;
       })
       .catch(function(reason) {

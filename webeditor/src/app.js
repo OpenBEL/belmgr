@@ -13,6 +13,8 @@ export class App {
     this.state = state;
     logger.debug('Router: ', router);
 
+    this.state.authEnabled = this.api.authEnabled();
+
     // router.addRoute({ route: 'test', moduleId: './test', name: 'access_token', nav:false, title: 'testing'});
   }
 

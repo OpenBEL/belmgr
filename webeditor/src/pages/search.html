@@ -5,6 +5,9 @@
 
   <div class="container margintop80 search-html">
     <div class="row">
+      <h2><i show.bind="searching" class="fa fa-spinner fa-pulse fa-3x fa-fw margin-bottom" aria-hidden="true"></i></h2>
+    </div><!-- /.row -->
+    <div class="row">
 
 
       <div id="dportalsearchbar" class="col-xs-3 paddingNone">
@@ -26,11 +29,6 @@
     <div class="row">
       <template if.bind="facetSets">
         <div class="search-filterFacets col-xs-3 heightct${searchResultsRange}">
-        
-          <div class="search-filterselected" >
-            <input class="">
-            <label for="option" class="filter-boxlabel"><span><span></span></span> ${facet.name} (${facet.count})</label>
-          </div>
           <div class="search-filtercol" id="filtercolumn" if.bind="evidences">
             <!-- Loop through facet sets -->
             <div class="col-xs-12 filterbox"  repeat.for="facetSet of facetSets | keys | sort">
@@ -76,7 +74,7 @@
                 </div>
               </div>
 
-              <search-export filters.bind="searchQuery"></search-export>
+              <search-export search-url.bind="searchUrl"></search-export>
 
               <!--  ${searchResultsRange} -->
 
