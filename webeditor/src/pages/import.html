@@ -12,7 +12,7 @@
             <h3 class="col-xs-12 col-sm-5">Import Files</h3>
 
             <div class="ds-fileUploadDiv col-xs-12 col-sm-7">
-                 
+
                 <div class="ds-importdiv col-xs-7 col-sm-12 col-md-8">
                         <input type="file" name="file" id="file" class="inputfile" files.bind="belFiles" change.trigger="belFilesChanged()" >
                         <!-- alt. import labels/btns -->
@@ -20,15 +20,15 @@
                         <label class="form-control btn-import ${uploadFn} ${uploadFn ? ' ' : 'noShow'}" for="file"><i class="fa fa-upload"></i> ${uploadFn}</label>
                         <!-- end alt. import labels/btns -->
                 </div>
-                <div class="ds-uploaddiv col-xs-5 col-sm-12 col-md-4">     
-                    <button type="button" class="form-control btn-upload" name="submit" mousedown.trigger="upload()">Upload 
+                <div class="ds-uploaddiv col-xs-5 col-sm-12 col-md-4">
+                    <button type="button" class="form-control btn-upload" name="submit" mousedown.trigger="upload()">Upload
                         <span show.bind="loading">
                             <i class="fa fa-refresh fa-spin"></i>
                         </span>
                     </button>
-                       
+
                 </div>
-                
+
             </div>
         </div>
         <table class="ds-table col-xs-12">
@@ -47,11 +47,11 @@
                             <p class="ds-dsDetail">${dataset.dataset.description}</p>
                         </div>
                         <div class="col-xs-3 col-sm-2">
-                              <a href="${dataset._links.evidence_collection.href}?format=bel_script" class="btn form-control btn-dlFiles" role="button" title="Download BEL Script formatted file"><i class="ds-downloadIcon fa fa-download"></i><span class="ds-btnText"> BEL</span></a>
+                              <a href="${dataset._links.evidence_collection.href}?format=bel_script${tokenParam}" class="btn form-control btn-dlFiles" role="button" title="Download BEL Script formatted file"><i class="ds-downloadIcon fa fa-download"></i><span class="ds-btnText"> BEL</span></a>
 
-                              <a href="${dataset._links.evidence_collection.href}?format=json_evidence" class="btn form-control btn-dlFiles" role="button" title="Download JSON BEL formatted file"><i class="ds-downloadIcon fa fa-download"></i><span class="ds-btnText"> JSON</span></a>
+                              <a href="${dataset._links.evidence_collection.href}?format=json_evidence${tokenParam}" class="btn form-control btn-dlFiles" role="button" title="Download JSON BEL formatted file"><i class="ds-downloadIcon fa fa-download"></i><span class="ds-btnText"> JSON</span></a>
 
-                              <a href="${dataset._links.evidence_collection.href}?format=xbel" class="btn form-control btn-dlFiles" role="button" title="Download XBEL formatted file">
+                              <a href="${dataset._links.evidence_collection.href}?format=xbel${tokenParam}" class="btn form-control btn-dlFiles" role="button" title="Download XBEL formatted file">
                                 <i class="ds-downloadIcon fa fa-download"></i><span class="ds-btnText"> XBEL</span></a>
                         </div>
 

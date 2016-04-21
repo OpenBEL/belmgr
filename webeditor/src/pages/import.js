@@ -1,5 +1,6 @@
-import {inject, LogManager} from 'aurelia-framework';
+import {LogManager} from 'aurelia-framework';
 import {OpenbelapiService} from 'belmgr-plugin/resources/openbelapi-service';
+import {Authentication} from 'belmgr-plugin/resources/authentication';
 import * as toastr from "toastr";
 
 let logger = LogManager.getLogger('import');
@@ -10,20 +11,28 @@ let logger = LogManager.getLogger('import');
 //    http://www.petermorlion.com/file-upload-with-aurelia/
 
 
-@inject(OpenbelapiService)
 export class Import{
   heading = 'Upload your BEL Script into the BEL Evidence Repository';
 
   belFiles;
   datasets;
+  tokenParam;
   loading = false;  // todo set a spinner state while loading dataset
   uploadFn = '';
 
-  constructor(openbelapiService) {
+  static inject = [OpenbelapiService, Authentication];
+  constructor(openbelapiService, authentication) {
     this.api = openbelapiService;
+    this.auth = authentication;
   }
 
+  // TODO test authenticated download of datasets
   activate() {
+    let token = this.auth.getToken();
+    if (token) {
+      this.tokenParam = '&token=' + token;
+    }
+
     return this.api.getDatasets().then(data => {
       this.datasets = data;
       logger.debug('Datasets: ', this.datasets);
