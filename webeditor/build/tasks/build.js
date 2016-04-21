@@ -45,12 +45,11 @@ gulp.task('build-config', function() {
     .pipe(gulp.dest(paths.output + 'config'))
 });
 
-// TODO Not working correctly yet
 gulp.task('build-plugin', function(callback) {
   return exec('cd ../plugin; gulp build; cd ../webeditor', function (err, stdout, stderr) {
-    console.log(stdout);
-    console.log(stderr);
-    callback
+    // console.log('Building plugin', stdout);
+    // console.log(stderr);
+    callback(err);
   });
 });
 
@@ -62,7 +61,7 @@ gulp.task('build', function() {
   return runSequence(
     'clean',
     // 'build-plugin',
-    ['build-system',  'build-html', 'build-css', 'build-config']
+    ['build-system',  'build-html', 'build-css', 'build-config', 'build-plugin']
   );
 });
 

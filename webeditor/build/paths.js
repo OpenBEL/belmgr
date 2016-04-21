@@ -5,6 +5,8 @@ var exportSrvRoot = 'export/';
 module.exports = {
   root: appRoot,
   source: appRoot + '**/*.js',
+  pluginSource: '../plugin/src/**/*.js',
+  pluginHtml: '../plugin/src/**/.html',
   html: appRoot + '**/*.html',
   css: appRoot + '**/*.css',
   style: 'styles/**/*.css',

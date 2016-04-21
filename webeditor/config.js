@@ -37,7 +37,7 @@ System.config({
     "belmgr-plugin": "npm:belmgr-plugin@0.1.8",
     "bootstrap": "github:twbs/bootstrap@3.3.6",
     "clean-css": "npm:clean-css@3.4.10",
-    "core-js": "npm:core-js@1.2.6",
+    "core-js": "npm:core-js@2.2.1",
     "fetch": "github:github/fetch@0.10.1",
     "font-awesome": "npm:font-awesome@4.5.0",
     "jquery": "github:components/jquery@2.2.1",
@@ -286,7 +286,7 @@ System.config({
       "path": "github:jspm/nodelibs-path@0.1.0",
       "process": "github:jspm/nodelibs-process@0.1.2"
     },
-    "npm:core-js@1.2.6": {
+    "npm:core-js@2.2.1": {
       "fs": "github:jspm/nodelibs-fs@0.1.2",
       "path": "github:jspm/nodelibs-path@0.1.0",
       "process": "github:jspm/nodelibs-process@0.1.2",
