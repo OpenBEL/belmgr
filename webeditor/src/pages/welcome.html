@@ -1,5 +1,5 @@
 <template>
-    <div class="container au-animate welcome-html">     
+    <div class="container au-animate welcome-html">
         <div class="row">
             <div class="col-xs-12 margintop30">
                 <h2>${heading}</h2>
@@ -12,10 +12,15 @@
                 </div>
 
 
-            
-            <p class="">You can search the BEL Evidence repository for BEL Evidences. You can also create or edit BEL Evidences using the BEL Manager.</p>
-            <p class="">What is a BEL Evidence? It is the BEL Statement, Citation information, Summary Text and Metadata associated with a BEL Statement.</p>
-            <p class="">How can I edit a BEL Statement? By searching for it in the search page and then selecting it to open up the Edit page (which mysteriously isn't available in the NavBar Menu up top).</p>
+
+              <p class="">You can search the BEL Evidence repository for BEL Evidences. You can also create or edit BEL Evidences using the BEL Manager.</p>
+              <p class="">What is a BEL Evidence? It is the BEL Statement, Citation information, Summary Text and Metadata associated with a BEL Statement.</p>
+              <p class="">How can I edit a BEL Statement? By searching for it in the search page and then selecting it to open up the Edit page (which mysteriously isn't available in the NavBar Menu up top).</p>
+              <div class="col-xs-12">
+                <button click.trigger="submit()">Open Modal</button>
+                <button style="position: absolute; top: 100px; left: 50px;" click.trigger="positionManually($event)">Open Next To Me</button>
+              </div>
+
             </div>
         </div>
     </div>
