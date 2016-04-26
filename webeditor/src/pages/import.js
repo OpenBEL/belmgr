@@ -78,9 +78,10 @@ export class Import{
   }
 
   delete(url, idx) {
-
     this.api.deleteDataset(url);
-    this.datasets.splice(idx, 1);
+    this.datasets.splice(idx, 1)
+    var deleteModal = document.getElementById("deleter");
+    deleteModal.setAttribute("class", "modal fade");
   }
 
   belFilesChanged() {
@@ -94,6 +95,17 @@ export class Import{
       logger.debug('Upload file DB', this.uploadFn);
     }
   }
-}
 
+
+  deleteConfiramtion() {
+    var deleteModal = document.getElementById("deleter");
+    console.log(deleteModal.innerHTML);
+    // alert("you clicked it!");
+    deleteModal.setAttribute("class", "modal fade in");
+  };
+  closeDeleter() {
+    var deleteModal = document.getElementById("deleter");
+    deleteModal.setAttribute("class", "modal fade");
+  };
+}
 

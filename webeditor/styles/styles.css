@@ -47,6 +47,12 @@ a:hover {
 textarea {
     max-width: 100%;
 }
+@media (min-width: 1200px) {
+  .container-fluid {
+    max-width: 1170px;
+  }
+}
+
 
 .search-html,
 .about-html,
@@ -68,6 +74,25 @@ textarea {
 .oblique {
     font-style: oblique;
 }
+
+/* DELETION MODALS */
+
+.delete-confirmation {
+  cursor: zoom-in;
+  min-width: 60%;
+  max-width: 100%;
+}
+
+.delete-confirmation:hover {
+  background-color: #E6E6E6;
+  border-radius: 4px;
+}
+
+.modal.fade.in {
+  display: block;
+}
+
+/* END DELETION MODALS */
 
 /* WELCOME PAGE */
 
@@ -207,6 +232,20 @@ textarea {
     font-weight: 300;
     width: 90px;
 }
+@media (max-width: 767px) {
+  .navbar-collapse .navbar-userRow .navbar-title {
+      width: 90vw;
+      left: 0;
+      margin-left: 5vw;
+  }
+  .navbar-collapse .navbar-userRow .navbar-title>a {
+      width: 100%;
+      left: 0;
+      right: 0;
+  }
+}
+
+
 
 .navbar-headerTitle {
     font-family: 'Lato', sans-serif;
@@ -234,6 +273,16 @@ textarea {
 .navbar-collapse {
     margin-left: 20px;
     margin-right: 20px;
+}
+@media(max-width: 767px) {
+  .navbar-collapse .navbar-userRow {
+      background-color: #fff;
+      width: 100vw;
+      left: 0;
+      margin-top: 20px;
+      margin-left: 0px;
+      box-shadow: 1px 1px rgba(20, 20, 20, .15);
+  }
 }
 
 .navbar.navbar-fixed-top {
@@ -281,6 +330,11 @@ textarea {
     color: #0C91A5;
     float: right;
     font-size: 12px;
+}
+@media(max-width: 767px) {
+  .navbar-userDiv a {
+    margin-right: -30px;
+  }
 }
 
 .navbar-userDiv a:hover,
@@ -339,7 +393,7 @@ footer {
 .footerUl li a {
     color: #E4E5E7;
     font-family: 'Lato', sans-serif;
-    font-weight: 400;
+    font-weight: 300;
     font-size: 16px;
 }
 
@@ -1126,6 +1180,8 @@ td.ds-td a {
     font-size: 14px;
     font-weight: 400;
     margin-top: 15px;
+    cursor: pointer;
+    padding: 20px 20px 20px 0px;
 }
 
 .ds-aDiv {
@@ -1261,6 +1317,7 @@ p.text-warning {
 
 .form-group label {
     margin: 10px 0px 5px 0px;
+    min-width: 100px;
 }
 
 .form-group input {
@@ -1593,6 +1650,13 @@ p.text-warning {
 
 
 /*SEARCH PAGE*/
+.search-spinner {
+  position: absolute;
+  margin-top: 30vh;
+  margin-left: calc(50vw - 1em);
+  font-size: 2em;
+  z-index: 1000;
+}
 
 .search-searchForm {
     /*border-color: #46676E;*/

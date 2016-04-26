@@ -56,12 +56,33 @@
                         </div>
 
                         <div class="col-xs-1">
-                            <a class="ds-delete" href="#" click.trigger="delete(dataset._links.self.href, $index)"> <i class="fa fa-trash-o fa-lg"></i></a>
+                            <a class="ds-delete"> <i class="fa fa-trash-o fa-lg" click.trigger="deleteConfiramtion()"></i></a>
+                        </div>
+                         <!-- DELETION MODAL SNIPPIT -->
+    
+                        <div class="modal fade" id="deleter" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true" click.trigger="closeDeleter()">×</button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <h3>Are you sure you'd like to delete that bad boy?</h3>
+                                        <button href="#" click.trigger="delete(dataset._links.self.href, $index)" type="button">Yup.</button>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </td>
                 </tr>
             </tbody>
         </table>
     </div>
-    </div>
+
+    <!-- END MODAL SNIPPIT -->
+    <!-- DELETION MODAL JS  -->
+       
+    <!-- END DELETION MODAL JS  -->
+    
+    
 </template>

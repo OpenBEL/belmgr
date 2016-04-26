@@ -3,10 +3,8 @@
   <require from="valueConverters/sort-array"></require>
   <require from='../components/search-export'></require>
 
+<i show.bind="searching" class="search-spinner fa fa-circle-o-notch fa-spin" aria-hidden="true"></i>
   <div class="container margintop80 search-html">
-    <div class="row">
-      <h2><i show.bind="searching" class="fa fa-spinner fa-pulse fa-3x fa-fw margin-bottom" aria-hidden="true"></i></h2>
-    </div><!-- /.row -->
     <div class="row">
 
 
@@ -132,4 +130,5 @@
           </div>
     </div>
   </div>
+
 </template>
