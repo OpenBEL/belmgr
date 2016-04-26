@@ -92,6 +92,12 @@ System.config({
     "github:twbs/bootstrap@3.3.6": {
       "jquery": "npm:jquery@2.2.3"
     },
+    "github:vheissu/aurelia-configuration@1.0.7": {
+      "aurelia-dependency-injection": "npm:aurelia-dependency-injection@1.0.0-beta.1.2.0",
+      "aurelia-loader-default": "npm:aurelia-loader-default@1.0.0-beta.1.2.1",
+      "aurelia-path": "npm:aurelia-path@1.0.0-beta.1.2.1",
+      "deep-extend": "npm:deep-extend@0.4.1"
+    },
     "github:wshayes/aurelia-gravatar@0.1.0": {
       "aurelia-framework": "npm:aurelia-framework@1.0.0-beta.1.2.2",
       "md5": "github:blueimp/JavaScript-MD5@1.1.1"
@@ -237,6 +243,7 @@ System.config({
     "npm:belmgr-plugin@0.1.8": {
       "aurelia-animator-css": "npm:aurelia-animator-css@1.0.0-beta.1.2.0",
       "aurelia-bootstrapper": "npm:aurelia-bootstrapper@1.0.0-beta.1.2.0",
+      "aurelia-configuration": "github:vheissu/aurelia-configuration@1.0.7",
       "aurelia-dependency-injection": "npm:aurelia-dependency-injection@1.0.0-beta.1.2.0",
       "aurelia-event-aggregator": "npm:aurelia-event-aggregator@1.0.0-beta.1.2.0",
       "aurelia-fetch-client": "npm:aurelia-fetch-client@1.0.0-beta.1.2.1",

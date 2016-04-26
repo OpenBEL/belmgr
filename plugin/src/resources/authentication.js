@@ -12,7 +12,7 @@ export class Authentication {
   static inject = [Configure];
   constructor (config) {
     this.config = config;
-    this.loginUrl = this.config.get('loginUrl');
+    this.loginUrl = this.config.loginUrl;
     logger.debug('LoginUrl: ', this.loginUrl);
   }
 
