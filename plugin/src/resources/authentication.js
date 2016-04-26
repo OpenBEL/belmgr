@@ -1,6 +1,6 @@
 import {LogManager} from 'aurelia-framework';
-// import Config from '../AppConfig';
-import {Configure} from 'aurelia-configuration';
+import Configure from '../AppConfig';
+// import {Configure} from 'aurelia-configuration';
 
 let logger = LogManager.getLogger('Authentication');
 // let loginUrl = Config.loginUrl;

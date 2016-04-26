@@ -11,7 +11,7 @@ export function configure(aurelia) {
     .plugin('aurelia-gravatar')
     .plugin('aurelia-animator-css')
     .plugin('belmgr-plugin')
-    .plugin('aurelia-configuration')
+    // .plugin('aurelia-configuration')
     .plugin('aurelia-dialog', config => {
       config.useDefaults();
       config.settings.lock = true;

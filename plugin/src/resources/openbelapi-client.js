@@ -4,8 +4,8 @@ import {Router} from 'aurelia-router';
 
 import 'fetch';
 import {Authentication} from './authentication';
-// import Config from '../AppConfig';
-import {Configure} from 'aurelia-configuration';
+import Configure from '../AppConfig';
+// import {Configure} from 'aurelia-configuration';
 
 // let openBELApiUrl = Config.openBELApiUrl;
 
