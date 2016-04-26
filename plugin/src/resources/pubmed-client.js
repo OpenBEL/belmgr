@@ -15,7 +15,7 @@ export class PubmedClient {
   static inject = [Configure];
   constructor (config) {
     this.config = config;
-    this.pubmedBaseUrl = this.config.get('pubmedBaseUrl');
+    this.pubmedBaseUrl = this.config.pubmedBaseUrl;
 
     this.client = new HttpClient();
     this.client.configure(config => {

@@ -22,7 +22,7 @@ export class OpenbelapiClient {
     this.router = router;
 
     this.config = config;
-    this.openBELApiUrl = this.config.get('openBELApiUrl');
+    this.openBELApiUrl = this.config.openBELApiUrl;
     logger.debug('api url: ', this.openBELApiUrl);
 
     let self = this;
