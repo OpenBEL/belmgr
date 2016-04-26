@@ -99,8 +99,6 @@ export class Import{
 
   deleteConfiramtion() {
     var deleteModal = document.getElementById("deleter");
-    console.log(deleteModal.innerHTML);
-    // alert("you clicked it!");
     deleteModal.setAttribute("class", "modal fade in");
   };
   closeDeleter() {
