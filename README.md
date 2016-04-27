@@ -33,14 +33,14 @@ dependencies.
 git clone https://github.com/OpenBEL/belmgr
 cd belmgr
 
-# Run one of the scripts below - first one to build the BELMgr, the second one to do local
-#     development -- see note about github rate limit reached below
+# Run one of the scripts below
+
+# Build the BELMgr for deployment
 # ./scripts/build.sh
+
+# Set up local development for plugin and webeditor
 # ./scripts/setup-localdev.sh
 
-# For rebuilding and serving the BELMgr after making changes to the plugin during development
-cd webeditor
-../scripts/rebuild-belmgr-localdev.sh  # builds plugin, then webeditor, then serves it
 ```
 
 #### If you see 'github rate limit reached' - follow these instructions:
@@ -67,11 +67,6 @@ Configuration - this goes into src/config/config.json when building or /config/c
 
 ```
 
-### Building
-
-With NodeJS dependencies in your ``PATH``, build the BEL Manager with
-- ``cd belmgr/webeditor``
-- ``gulp build``.
 
 ### Deploying
 

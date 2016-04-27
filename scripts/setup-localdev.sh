@@ -29,7 +29,8 @@ gulp build;
 echo "!!! Remove the ${BELHOME}/webeditor/jspm_packages/npm/belmgr-plugin\@{Version}"
 echo "directory and link it to ${BELHOME}/plugin/dist/system in order "
 echo "to do local development of the webeditor and the belmgr-plugin"
-
+echo "\ne.g. '\rm -r belmgr-plugin@<version>'  (do not remove the belmgr-plugin@<version>.js file)"
+echo "'ln -s ../../../plugin/dist/system belmgr-plugin@<version>"
 
 # Setup plugin plain web page example
 cd ${BELHOME}/sample-plainhtml
