@@ -1,0 +1,61 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/usr/local/bin/node',
+1 verbose cli   '/usr/local/bin/npm',
+1 verbose cli   'install',
+1 verbose cli   'aurelia-configuration=github:vheissu/aurelia-configuration@1.0.4' ]
+2 info using npm@2.15.1
+3 info using node@v4.4.3
+4 verbose install initial load of /Users/kelly/projects/belmgr3/plugin/package.json
+5 verbose installManyTop reading scoped package data from /Users/kelly/projects/belmgr3/plugin/node_modules/aurelia-tools/package.json
+6 verbose installManyTop reading scoped package data from /Users/kelly/projects/belmgr3/plugin/node_modules/babel-eslint/package.json
+7 verbose installManyTop reading scoped package data from /Users/kelly/projects/belmgr3/plugin/node_modules/conventional-changelog/package.json
+8 verbose installManyTop reading scoped package data from /Users/kelly/projects/belmgr3/plugin/node_modules/del/package.json
+9 verbose installManyTop reading scoped package data from /Users/kelly/projects/belmgr3/plugin/node_modules/gulp/package.json
+10 verbose installManyTop reading scoped package data from /Users/kelly/projects/belmgr3/plugin/node_modules/gulp-babel/package.json
+11 verbose installManyTop reading scoped package data from /Users/kelly/projects/belmgr3/plugin/node_modules/gulp-bump/package.json
+12 verbose installManyTop reading scoped package data from /Users/kelly/projects/belmgr3/plugin/node_modules/gulp-eslint/package.json
+13 verbose installManyTop reading scoped package data from /Users/kelly/projects/belmgr3/plugin/node_modules/gulp-yuidoc/package.json
+14 verbose installManyTop reading scoped package data from /Users/kelly/projects/belmgr3/plugin/node_modules/jasmine-core/package.json
+15 verbose installManyTop reading scoped package data from /Users/kelly/projects/belmgr3/plugin/node_modules/jspm/package.json
+16 verbose installManyTop reading scoped package data from /Users/kelly/projects/belmgr3/plugin/node_modules/karma/package.json
+17 verbose installManyTop reading scoped package data from /Users/kelly/projects/belmgr3/plugin/node_modules/karma-babel-preprocessor/package.json
+18 verbose installManyTop reading scoped package data from /Users/kelly/projects/belmgr3/plugin/node_modules/karma-chrome-launcher/package.json
+19 verbose installManyTop reading scoped package data from /Users/kelly/projects/belmgr3/plugin/node_modules/karma-coverage/package.json
+20 verbose installManyTop reading scoped package data from /Users/kelly/projects/belmgr3/plugin/node_modules/karma-jasmine/package.json
+21 verbose installManyTop reading scoped package data from /Users/kelly/projects/belmgr3/plugin/node_modules/karma-jspm/package.json
+22 verbose installManyTop reading scoped package data from /Users/kelly/projects/belmgr3/plugin/node_modules/object.assign/package.json
+23 verbose installManyTop reading scoped package data from /Users/kelly/projects/belmgr3/plugin/node_modules/require-dir/package.json
+24 verbose installManyTop reading scoped package data from /Users/kelly/projects/belmgr3/plugin/node_modules/run-sequence/package.json
+25 verbose installManyTop reading scoped package data from /Users/kelly/projects/belmgr3/plugin/node_modules/vinyl-paths/package.json
+26 verbose installManyTop reading scoped package data from /Users/kelly/projects/belmgr3/plugin/node_modules/yargs/package.json
+27 info package.json conventional-changelog@0.0.11 license should be a valid SPDX license expression
+28 info package.json gulp-bump@0.1.13 No license field.
+29 info package.json require-dir@0.1.0 No license field.
+30 info package.json yargs@2.3.0 license should be a valid SPDX license expression
+31 verbose readDependencies loading dependencies from /Users/kelly/projects/belmgr3/plugin/package.json
+32 silly cache add args [ 'aurelia-configuration=github:vheissu/aurelia-configuration@1.0.4',
+32 silly cache add   null ]
+33 verbose cache add spec aurelia-configuration=github:vheissu/aurelia-configuration@1.0.4
+34 silly cache add parsed spec Result {
+34 silly cache add   raw: 'aurelia-configuration=github:vheissu/aurelia-configuration@1.0.4',
+34 silly cache add   scope: null,
+34 silly cache add   name: null,
+34 silly cache add   rawSpec: 'aurelia-configuration=github:vheissu/aurelia-configuration@1.0.4',
+34 silly cache add   spec: '/Users/kelly/projects/belmgr3/plugin/aurelia-configuration=github:vheissu/aurelia-configuration@1.0.4',
+34 silly cache add   type: 'local' }
+35 error addLocal Could not install /Users/kelly/projects/belmgr3/plugin/aurelia-configuration=github:vheissu/aurelia-configuration@1.0.4
+36 verbose stack Error: ENOENT: no such file or directory, open '/Users/kelly/projects/belmgr3/plugin/aurelia-configuration=github:vheissu/aurelia-configuration@1.0.4'
+36 verbose stack     at Error (native)
+37 verbose cwd /Users/kelly/projects/belmgr3/plugin
+38 error Darwin 15.0.0
+39 error argv "/usr/local/bin/node" "/usr/local/bin/npm" "install" "aurelia-configuration=github:vheissu/aurelia-configuration@1.0.4"
+40 error node v4.4.3
+41 error npm  v2.15.1
+42 error path /Users/kelly/projects/belmgr3/plugin/aurelia-configuration=github:vheissu/aurelia-configuration@1.0.4
+43 error code ENOENT
+44 error errno -2
+45 error syscall open
+46 error enoent ENOENT: no such file or directory, open '/Users/kelly/projects/belmgr3/plugin/aurelia-configuration=github:vheissu/aurelia-configuration@1.0.4'
+46 error enoent This is most likely not a problem with npm itself
+46 error enoent and is related to npm not being able to find a file.
+47 verbose exit [ -2, true ]
