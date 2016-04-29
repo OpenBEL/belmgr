@@ -34,7 +34,7 @@
               <div class="filter-boxcontent">
                 <!-- Loop through facet set values -->
                 <div class="row filter-facetRow" repeat.for="facet of facetSets[facetSet]">
-                  <input class="searchcheckbox filterboxcheck col-xs-1" id="option" type="checkbox" name="field" value="facet" change.delegate="search(0)">
+                  <input class="searchcheckbox filterboxcheck col-xs-1" id="option" type="checkbox" name="field" value="facet" change.delegate="search()">
 
                   <label for="option" class="filter-boxlabel"><span><span></span></span> ${facet.name} (${facet.count})</label>
                 </div>
