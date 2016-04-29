@@ -12,7 +12,12 @@ export class SearchExport {
 
   exportUrl;
   authEnabled;
-  dataType = 'json_evidence';
+  dataType =  {
+    id: 'json_evidence',
+    name: 'JSON Evidence',
+    media_type: 'application / json',
+    extension: 'json'
+  }
 
   dataTypes = [{
     id: 'bel',
