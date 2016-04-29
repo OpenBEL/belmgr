@@ -108,8 +108,18 @@ export class Search {
     let evidenceId = this.api.getEvidenceId(evidenceUrl);
     this.api.deleteBelEvidence(evidenceId);
     this.evidences.splice(idx, 1);
+    var deleteModal = document.getElementById("deleter");
+    deleteModal.setAttribute("class", "modal fade");
   }
 
+  deleteConfiramtion() {
+    var deleteModal = document.getElementById("deleter");
+    deleteModal.setAttribute("class", "modal fade in");
+  };
+  closeDeleter() {
+    var deleteModal = document.getElementById("deleter");
+    deleteModal.setAttribute("class", "modal fade");
+  };
   /**
    * Get Species from Evidence Experiment Context
    * @param evidence

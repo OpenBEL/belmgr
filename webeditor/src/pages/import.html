@@ -39,11 +39,15 @@
                     </tr>
                 </thead>
                 <tr repeat.for="dataset of datasets">
+
                     <td class="ds-td col-xs-12">
                         <div class="ds-aDiv col-xs-8 col-sm-9">
                             <a href="${dataset._links.evidence_collection.href}">
                                 <span class="ds-title">${dataset.dataset.title} </span>
                             </a>
+                           
+                              <li>${datasets.indexOf(dataset)}</li>
+                            
                             <p class="ds-dsDetail">${dataset.dataset.description}</p>
                         </div>
                         <div class="col-xs-3 col-sm-2">
@@ -56,7 +60,8 @@
                         </div>
 
                         <div class="col-xs-1">
-                            <a class="ds-delete"> <i class="fa fa-trash-o fa-lg" click.trigger="deleteConfiramtion()"></i></a>
+                            <a class="ds-delete"> <i class="fa fa-trash-o fa-lg" id="" click.trigger="deleteConfiramtion()"></i></a>
+                            <!-- ${datasets.indexOf(dataset)} -->
                         </div>
                          <!-- DELETION MODAL SNIPPIT -->
     
@@ -64,11 +69,12 @@
                             <div class="modal-dialog">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true" click.trigger="closeDeleter()">×</button>
+                                        <button type="button" class="close" aria-hidden="true" click.trigger="closeDeleter()">×</button>
                                     </div>
                                     <div class="modal-body">
-                                        <h3>Are you sure you'd like to delete that bad boy?</h3>
-                                        <button href="#" click.trigger="delete(dataset._links.self.href, $index)" type="button">Yup.</button>
+                                        <p>Are you sure you'd like to delete <strong>${dataset.dataset.title}?</strong></p>
+                                        <button class="deleter-btn deleter-confirm-btn" href="#" click.trigger="delete(dataset._links.self.href, $index)" type="button">Yes, delete</button>
+                                        <button type="button" class="deleter-btn deleter-close-btn" aria-hidden="true" click.trigger="closeDeleter()">Do not delete</button>
                                     </div>
                                 </div>
                             </div>

@@ -92,6 +92,56 @@ textarea {
   display: block;
 }
 
+.modal-header .close {
+  color: #0C91A5;
+  opacity: 1;
+  text-shadow: 0px 0px 10px rgba(100, 100, 100, .5);
+}
+
+.modal-dialog {
+  margin: 30vh auto;
+}
+.deleter.modal-content p {
+  font-size: 16px;
+}
+
+.deleter-btn {
+  color: #474350;
+  border-radius: 4px;
+  border: none;
+  height: 34px;
+  padding: 10px;
+  font-weight: 400;
+  background-color: #E4E5E7;
+  font-size: 16px;
+  margin: 10px;
+}
+.deleter-btn:hover {
+  max-height: 34px;
+  -webkit-transition: box-shadow .1s;
+  -webkit-transition-timing-function: ease-out;
+}
+
+.deleter-confirm-btn {
+  border-bottom: 4px solid #B22D1E !important;
+  line-height: 17px;
+  font-size: 16px;
+}
+.deleter-confirm-btn:hover {
+  box-shadow: inset 0px 34px 0px #B22D1E !important;
+  color: #fff;
+}
+
+.deleter-close-btn {
+  border-bottom: 4px solid #FDC975 !important;
+  line-height: 17px;
+  font-size: 16px;
+}
+.deleter-close-btn:hover {
+  box-shadow: inset 0px 34px 0px #FDC975 !important;
+  color: #474350;
+}
+
 /* END DELETION MODALS */
 
 /* WELCOME PAGE */
@@ -179,6 +229,8 @@ textarea {
 
 /*NAVBAR*/
 
+
+
 .navbar-default .navbar-collapse,
 .navbar-default .navbar-form {
     border: none;
@@ -246,13 +298,26 @@ textarea {
 }
 
 
-
-.navbar-headerTitle {
+@media(min-width: 992px) {
+  .navbar-header-title-sm {
+    display: none;
+  }
+}
+@media(max-width: 991px) {
+  .navbar-header-title-big {
+    display: none;
+  }
+}
+.navbar-header-title-big,
+.navbar-header-title-sm {
     font-family: 'Lato', sans-serif;
     font-size: 28px;
     margin-left: 80px;
     color: #0C91A5;
     font-weight: 300;
+}
+.navbar-header-title-sm {
+  margin-left: 65px;
 }
 
 .navbar-title {
@@ -294,7 +359,7 @@ textarea {
 }
 
 .navbar-right {
-    margin-right: 120px;
+    margin-right: 70px;
     margin-top: 10px;
 }
 
@@ -372,6 +437,7 @@ footer {
     margin-top: 0px;
     margin-bottom: -160px;
     color: #E4E5E7;
+    z-index: 1000;
     background: -webkit-linear-gradient(180deg, #5a5565, #474350);
     /* For Safari 5.1 to 6.0 */
     background: -o-linear-gradient(180deg, #5a5565, #474350);
@@ -418,7 +484,8 @@ footer {
 }
 
 
-.form-control:not(.btn-bel):not(.btn-edit) {
+.form-control:not(.btn-bel):not(.btn-edit),
+.btn-search-export {
     border-top: 1px solid rgba(240, 240, 240, .1);
     border-right: 1px solid rgba(240, 240, 240, .1);
     border-left: 1px solid rgba(240, 240, 240, .1);
@@ -874,7 +941,8 @@ form>.form-group>.input-group>input.search-searchForm {
 .form-control.btn-signUp,
 .form-control.btn-logIn,
 .form-control.btn-upload,
-.form-control.btn-import {
+.form-control.btn-import,
+.btn-search-export {
     border-bottom: 4px solid #FDC975 !important;
     line-height: 17px;
     font-size: 16px;
@@ -886,7 +954,8 @@ form>.form-group>.input-group>input.search-searchForm {
 .form-control.btn-signUp:hover,
 .form-control.btn-logIn:hover,
 .form-control.btn-upload:hover,
-.form-control.btn-import:hover {
+.form-control.btn-import:hover,
+.btn-search-export:hover {
     max-height: 34px;
     box-shadow: inset 0px 34px 0px #FDC975 !important;
     -webkit-transition: box-shadow .1s;
@@ -898,6 +967,9 @@ form>.form-group>.input-group>input.search-searchForm {
     float: right;
 }
 
+.btn-search-export {
+  margin-top: 9px;
+}
 
 /*END BUTTONS*/
 
@@ -1167,7 +1239,7 @@ div.au-stagger {
     margin: 10px 0px 30px 0px;
 }
 .ds-exportTitle {
-    padding: 0px
+    padding: 0 0 0 15px;
 }
 td.ds-td {
     border-top: none;
@@ -1657,10 +1729,21 @@ p.text-warning {
   font-size: 2em;
   z-index: 1000;
 }
+.search-background-overlay {
+  width: 100%;
+  height: 100%;
+  background-color: rgba(230, 230, 230, .4);
+  z-index: 999;
+  position: fixed;
+}
 
 .search-searchForm {
     /*border-color: #46676E;*/
     bottom: 0;
+}
+
+search-export {
+  order: 2;
 }
 
 .search-show {

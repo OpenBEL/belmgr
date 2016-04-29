@@ -36,6 +36,10 @@
                 <div class="row filter-facetRow" repeat.for="facet of facetSets[facetSet]">
                   <input class="searchcheckbox filterboxcheck col-xs-1" id="option" type="checkbox" name="field" value="facet" change.delegate="search(0)">
 
+                  
+
+                  <!-- class="col-xs-11 filterboxtext" -->
+
                   <label for="option" class="filter-boxlabel"><span><span></span></span> ${facet.name} (${facet.count})</label>
                 </div>
               </div>
@@ -51,6 +55,9 @@
               <th class="table-range tableTopSpacer">
                 <div class="paddingNone table-item1">
                   <div class="table-displayFlex">
+                    <!-- <h4 class="search-resultsLabel paddingNone ">PageSize: </h4>
+                    <h4 class="search-resultsLabel paddingNone ">Results: ${search_metadata.total_filtered} of ${search_metadata.total}</h4>
+                    <h4 class="search-resultsLabel paddingNone ">Page: ${search_metadata.current_page} of ${search_metadata.total_pages}</h4> -->
 
                     <h5 class="table-display1 table-showing">Showing </h5>
                     <select class="table-display2 table-pgcountddown paddingNone form-control fc-normal selectDrop" id="search_size" value.bind="searchSize" change.delegate="saveSearchSize()">
@@ -63,7 +70,10 @@
                   </div>
                 </div>
 
-               <search-export search-url.bind="searchUrl" class=""></search-export>
+                <search-export search-url.bind="searchUrl"></search-export>
+
+                <!--  ${searchResultsRange} -->
+                <!-- todo: finagle file type selection -->
 
                 <nav class="table-item3 paddingNone">
                   <ul class="paddingNone pager pager-top">
@@ -74,9 +84,6 @@
                         </span>
                       </a>
                     </li>
-
-                    
-
                     <p class="search-pageCount col-xs-10 paddingNone ">${searchResultsRange}</p>
                     <li class="col-xs-1 paddingNone next ${pagerNext}">
                       <a href="#" class="pagerArrow paddingNone" click.delegate="pageSearchResults(1)">
@@ -108,7 +115,7 @@
                     <i class="fa fa-trash-o fa-lg" click.trigger="deleteConfiramtion()"></i>
                     <!-- DELETION MODAL SNIPPIT -->
     
-                    <div class="modal fade" id="deleter" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                  <div class="modal fade" id="deleter" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                       <div class="deleter modal-dialog">
                           <div class="modal-content">
                               <div class="modal-header">
@@ -122,8 +129,7 @@
                               </div>
                           </div>
                       </div>
-                    </div>
-
+                  </div>
                   </a>
                 </td>
               </tr>
