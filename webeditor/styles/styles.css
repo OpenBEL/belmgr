@@ -972,6 +972,7 @@ form>.form-group>.input-group>input.search-searchForm {
     font-size: 12px;
     padding: 2px;
     margin-top: 19px;
+    max-width: 130px
 }
 
 /*END BUTTONS*/
@@ -1997,12 +1998,6 @@ input[type=checkbox]:not(old):checked + label > span:before {
     margin-left: 5px;
 }
 
-@media (max-width: 622px) {
-    .table-totalResults {
-        margin-top: 0px;
-    }
-}
-
 .table-range {
     padding-left: 6px;
 }
@@ -2011,7 +2006,15 @@ input[type=checkbox]:not(old):checked + label > span:before {
     height: 65px;
     margin-top: 0px;
 }
-
+@media(max-width: 768px) {
+  .table-showing {
+    display: none;
+  }
+  .table-totalResults {
+    font-size: 12px;
+    padding-top: 5px;
+  }
+}
 th.table-range,
 th.table-range:hover {
     display: flex;
