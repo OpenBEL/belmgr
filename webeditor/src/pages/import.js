@@ -28,7 +28,11 @@ export class Import {
 
     // TODO test authenticated download of datasets
     activate() {
-        let token = this.auth.getToken();
+        let token = null;
+        if (this.auth) {
+          token = this.auth.getToken();
+        }
+
         if (token) {
             this.tokenParam = '&token=' + token;
         }

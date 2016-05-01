@@ -26,6 +26,7 @@ export class OpenbelApiClient {
   }
 
   configureClient(selectedOpenbelApiUrl){
+    let self = this;
     let client = new HttpClient().configure(config => {
       config
         .withBaseUrl(selectedOpenbelApiUrl.api)
