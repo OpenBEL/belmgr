@@ -23,7 +23,7 @@
         <label class="sr-only" for="belRelation">BEL Relation</label>
         <select class="form-control selectDrop selectDrop-relation" id="bel-relation" value.bind="belRelationship">
           <option>--Relation--</option>
-          <option repeat.for="relation of relationsList" model.bind="relation.value">${relation.label}</option>
+          <option repeat.for="relation of relationships" model.bind="relation.relation.long_form">${relation.relation.long_form}</option>
         </select>
       </div>
 

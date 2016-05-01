@@ -47,8 +47,8 @@ gulp.task('build-config', function() {
 
 gulp.task('build-plugin', function(callback) {
   return exec('cd ../plugin; gulp build; cd ../webeditor', function (err, stdout, stderr) {
-    // console.log('Building plugin', stdout);
-    // console.log(stderr);
+    console.log('Building plugin', stdout);
+    console.log(stderr);
     callback(err);
   });
 });

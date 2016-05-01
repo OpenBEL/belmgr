@@ -1,5 +1,9 @@
 {
-    "openBELApiUrl": "https://thor.selventa.com/api",
     "pubmedBaseUrl": "http://www.ebi.ac.uk/europepmc/webservices/rest/search",
-    "loginUrl": "https://openbel.auth0.com/login?client=K4oAPUaROjbWWTCoAhf0nKYfTGsZWbHE&protocol=oauth2&response_type=token&scope=openid%20profile"
+    "loginUrl": "https://openbel.auth0.com/login?client=K4oAPUaROjbWWTCoAhf0nKYfTGsZWbHE&protocol=oauth2&response_type=token&scope=openid%20profile",
+    "openbelApiUrls": [
+      {"api": "http://openbel.dev/api", "name": "Local Dev OpenBEL API"},
+      {"api": "https://thor.selventa.com/api", "name": "Internal Selventa - Full KB"},
+      {"api": "https://next.belframework.org/api", "name": "Demo OpenBEL API"}
+    ]
 }

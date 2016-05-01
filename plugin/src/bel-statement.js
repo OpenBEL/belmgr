@@ -1,5 +1,6 @@
 import {customElement, bindable, bindingMode, LogManager} from 'aurelia-framework';
-import {relationsList} from './resources/relations-list';
+import {CompositionTransaction} from 'aurelia-framework';
+import {OpenbelapiService} from './resources/openbelapi-service';
 
 let logger = LogManager.getLogger('statement');
 
@@ -17,12 +18,25 @@ let logger = LogManager.getLogger('statement');
 export class BelStatement {
 
   @bindable evidence;
+  relationships = [];
 
-  // TODO pull relationsList from OpenBEL API
-  static inject=[relationsList];
-  constructor(relationsList) {
-    this.relationsList = relationsList;
-    // logger.debug('RelationsList: ', this.relationsList);
+  static inject=[OpenbelapiService, CompositionTransaction];
+  constructor(openbelapiService, compositionTransaction) {
+    this.api = openbelapiService;
+    this.compositionTransaction = compositionTransaction;
+  }
+
+  created() {
+    this.compositionTransactionNotifier = this.compositionTransaction.enlist();
+    this.api.getRelationships()
+      .then(relationships => {
+        this.relationships = relationships;
+        logger.debug('Relationships: ', this.relationships);
+        this.compositionTransactionNotifier.done();
+      })
+      .catch(function(reason) {
+        logger.error('GET Relationships Error: ', reason);
+      });
   }
 
   // Pulling parent's context into scope

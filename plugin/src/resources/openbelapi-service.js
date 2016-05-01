@@ -1,16 +1,28 @@
 import {LogManager} from 'aurelia-framework';
 import {HttpClient} from 'aurelia-fetch-client';
 import 'fetch';
-import {OpenbelapiClient} from './openbelapi-client';
+import {OpenbelApiClient} from './openbelapi-client';
 import {Authentication} from './authentication';
+import {EventAggregator} from 'aurelia-event-aggregator';
 
-let logger = LogManager.getLogger('openbelapi');
+let logger = LogManager.getLogger('openbelApi');
 
 export class OpenbelapiService {
-  static inject = [OpenbelapiClient, Authentication];
-  constructor(openbelapiClient, authentication) {
-    this.apiClient = openbelapiClient.client;
+  static inject = [OpenbelApiClient, Authentication, EventAggregator];
+  constructor(openbelApiClient, authentication, ea) {
+    this.openbelApiClient = openbelApiClient;
+    this.apiClient = this.openbelApiClient.client;
     this.auth = authentication;
+    this.ea = ea;
+    this.ea.subscribe('selectedOpenbelApiUrl', obj => {this.updateClient(obj)});
+  }
+
+  /**
+   *  Update client with new Openbel API Url
+   */
+  updateClient(selectedOpenbelApiUrl) {
+    this.apiClient = this.openbelApiClient.configureClient(selectedOpenbelApiUrl);
+    logger.debug('Client: ', this.apiClient);
   }
 
   /**
@@ -357,6 +369,18 @@ export class OpenbelapiService {
       .then(data => {return data.dataset_collection;})
       .catch(function(reason) {
         logger.error('GET Datasets Error: ', reason);
+      });
+  }
+
+  getRelationships() {
+    return this.apiClient.fetch('/relationships')
+      .then(response => response.json())
+      .then(data => {
+        logger.debug('Relationships: ', data.relationship_collection);
+        return data.relationship_collection;
+      })
+      .catch(function(reason) {
+        logger.error('GET Relationships Error: ', reason);
       });
   }
 

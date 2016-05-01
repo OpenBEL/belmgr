@@ -1,0 +1,45 @@
+<template>
+    <div class="container au-animate welcome-html">
+        <div class="row">
+            <div class="col-xs-12 margintop30">
+                <h2>Select your API Endpoint</h2>
+            </div>
+            <div class="col-xs-12">
+                <div class="testingMsg">
+                    <p>Select the OpenBEL API endpoint you want to use with the BEL Manager</p>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-5">
+                <input type="text" value.bind="addUrl" class="form-control" placeholder="Enter OpenBEL API Url" />
+
+            </div><!-- /.col-md-4 -->
+            <div class="col-md-5">
+                <input type="text" value.bind="addUrlName" class="form-control" placeholder="Enter OpenBEL API Endpoint name" />
+            </div><!-- /.col-md-4 -->
+            <div class="col-md-2">
+                <button type="button" class="btn btn-primary" click.trigger="addUserOpenbelApiUrl()">Add</button>
+            </div><!-- /.col-md-2 -->
+        </div><!-- /.row -->
+        <div class="row" if.bind="userOpenbelApiUrls">
+            <h3>User entered OpenBEL API endpoints</h3>
+        </div><!-- /.row -->
+        <div class="row" repeat.for="apiobj of userOpenbelApiUrls">
+            <div class="col-md-1 col-md-offset-1"><i click.trigger="setSelected(apiobj.api, apiobj.name)" class="fa ${apiobj.selected ? 'fa-check-square' : 'fa-square-o'} fa-2x" aria-hidden="true"></i></div>
+            <div class="col-md-4">${apiobj.api}</div><!-- /.col-md-4 -->
+            <div class="col-md-4">${apiobj.name}</div><!-- /.col-md-4 -->
+            <div class="col-md-2 pull-right"><i class="fa fa-trash fa-2x" aria-hidden="true" click.trigger="removeUserOpenbelApiUrl($index)"></i></div><!-- /.col-md-4 -->
+        </div><!-- /.row -->
+
+        <div class="row">
+            <h3>BELMgr default OpenBEL API endpoints</h3>
+        </div><!-- /.row -->
+        <div class="row" repeat.for="apiobj of presetOpenbelApiUrls">
+            <div class="col-md-1 col-md-offset-1"><i click.trigger="setSelected(apiobj.api, apiobj.name)" class="fa ${apiobj.selected ? 'fa-check-square' : 'fa-square-o'} fa-2x" aria-hidden="true"></i></div>
+            <div class="col-md-4">${apiobj.api}</div><!-- /.col-md-4 -->
+            <div class="col-md-4">${apiobj.name}</div><!-- /.col-md-4 -->
+
+        </div><!-- /.row -->
+    </div>
+</template>

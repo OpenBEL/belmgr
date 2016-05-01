@@ -2,19 +2,18 @@ import {LogManager} from 'aurelia-framework';
 import {HttpClient} from 'aurelia-fetch-client';
 import {Router} from 'aurelia-router';
 
-import 'fetch';
-import {Authentication} from './authentication';
-// import Config from '../AppConfig';
 import {Configure} from 'aurelia-configuration';
 
-// let openBELApiUrl = Config.openBELApiUrl;
+import 'fetch';
+import {Authentication} from './authentication';
+
 
 let logger = LogManager.getLogger('openbelapi-client');
 
-export class OpenbelapiClient {
+export class OpenbelApiClient {
 
   client;
-  openBELApiUrl;
+  openbelApiUrl;
 
   static inject = [Authentication, Router, Configure];
   constructor(auth, router, config) {
@@ -22,13 +21,17 @@ export class OpenbelapiClient {
     this.router = router;
 
     this.config = config;
-    this.openBELApiUrl = this.config.get('openBELApiUrl');
-    logger.debug('api url: ', this.openBELApiUrl);
+    this.selectedOpenbelApiUrl = this.getApiUrl();
+    logger.debug('Api Url: ', this.selectedOpenbelApiUrl);
+    this.client = this.configureClient(this.selectedOpenbelApiUrl);
+  }
 
-    let self = this;
-    this.client = new HttpClient().configure(config => {
+  configureClient(selectedOpenbelApiUrl){
+    logger.debug('self: ', selectedOpenbelApiUrl, selectedOpenbelApiUrl.api);
+
+    let client = new HttpClient().configure(config => {
       config
-        .withBaseUrl(self.openBELApiUrl)
+        .withBaseUrl(selectedOpenbelApiUrl.api)
         .withDefaults({
           credentials: 'same-origin',
           headers: {
@@ -50,8 +53,6 @@ export class OpenbelapiClient {
                 obj[pairArray[0]] = pairArray[1];
                 return obj;
               }, {});
-
-            logger.debug('UrlParams: ', urlParams);
 
             if (urlParams.id_token) {
               self.auth.setToken(urlParams.id_token);
@@ -89,6 +90,20 @@ export class OpenbelapiClient {
           }
         });
     });
+
+    return client;
+  }
+
+  getApiUrl() {
+    let openbelApiUrls = this.config.get('openbelApiUrls');
+    logger.debug('Urls: ', openbelApiUrls);
+    let selectedOpenbelApiUrl = JSON.parse(localStorage.getItem('selectedOpenbelApiUrl'));
+    logger.debug('Url: ', selectedOpenbelApiUrl);
+    if (! selectedOpenbelApiUrl) {
+      localStorage.setItem('selectedOpenbelApiUrl', JSON.stringify(openbelApiUrls[0]));
+      return openbelApiUrls[0];
+    }
+    return selectedOpenbelApiUrl;
   }
 }
 

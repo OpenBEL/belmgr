@@ -17,7 +17,7 @@ export class SearchExport {
     name: 'JSON Evidence',
     media_type: 'application / json',
     extension: 'json'
-  }
+  };
 
   dataTypes = [{
     id: 'bel',
@@ -60,7 +60,6 @@ export class SearchExport {
     logger.debug("AuthEnabled: ", this.authEnabled);
   }
 
-
   updateExportUrl() {
     this.exportUrl = this.updateQueryString(this.exportUrl, 'format', this.dataType.id);
 
@@ -69,7 +68,7 @@ export class SearchExport {
     }
   }
 
-  searchUrlChanged(newvalue) {
+  searchChanged(newvalue) {
     logger.debug('1 searchUrl: ', this.searchUrl);
     this.exportUrl = JSON.parse(JSON.stringify(this.searchUrl));
 
