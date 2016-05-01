@@ -22,7 +22,6 @@ export class OpenbelapiService {
    */
   updateClient(selectedOpenbelApiUrl) {
     this.apiClient = this.openbelApiClient.configureClient(selectedOpenbelApiUrl);
-    logger.debug('Client: ', this.apiClient);
   }
 
   /**
@@ -38,7 +37,6 @@ export class OpenbelapiService {
     let newFacets = {};
 
     for (let facet of facets) {
-      // logger.debug("Facet: ", facet);
       if (
         facet.category === 'experiment_context' ||
         facet.name === 'Status' ||
@@ -46,7 +44,6 @@ export class OpenbelapiService {
         facet.name === 'dataset' ||
         facet.name === 'evidence_status'
       ) {
-        // logger.debug("Filtered Facet: ", facet);
         let facetName = facet.name;
 
         if (facet.category === 'citation') {

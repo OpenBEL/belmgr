@@ -22,13 +22,10 @@ export class OpenbelApiClient {
 
     this.config = config;
     this.selectedOpenbelApiUrl = this.getApiUrl();
-    logger.debug('Api Url: ', this.selectedOpenbelApiUrl);
     this.client = this.configureClient(this.selectedOpenbelApiUrl);
   }
 
   configureClient(selectedOpenbelApiUrl){
-    logger.debug('self: ', selectedOpenbelApiUrl, selectedOpenbelApiUrl.api);
-
     let client = new HttpClient().configure(config => {
       config
         .withBaseUrl(selectedOpenbelApiUrl.api)
@@ -96,9 +93,7 @@ export class OpenbelApiClient {
 
   getApiUrl() {
     let openbelApiUrls = this.config.get('openbelApiUrls');
-    logger.debug('Urls: ', openbelApiUrls);
     let selectedOpenbelApiUrl = JSON.parse(localStorage.getItem('selectedOpenbelApiUrl'));
-    logger.debug('Url: ', selectedOpenbelApiUrl);
     if (! selectedOpenbelApiUrl) {
       localStorage.setItem('selectedOpenbelApiUrl', JSON.stringify(openbelApiUrls[0]));
       return openbelApiUrls[0];
