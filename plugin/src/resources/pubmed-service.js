@@ -47,8 +47,8 @@ export class PubmedService {
     }
     pubmed.bel.refString += ` p:${pubmed.pageInfo}`;
 
-    // Adjust authors string to the BEL Evidence format - convert ',' to '|'
-    // pubmed.bel.authors = pubmed.authorString.replace(/,/g , '|').replace(/\.$/, '');  old version - authors in BEL Evidence is now an array
+    // Adjust authors string to the BEL Nanopub format - convert ',' to '|'
+    // pubmed.bel.authors = pubmed.authorString.replace(/,/g , '|').replace(/\.$/, '');  old version - authors in BEL Nanopub is now an array
     pubmed.bel.authors = pubmed.authorList.author.map(obj => {return obj.fullName;});
 
     return pubmed;

@@ -42,20 +42,20 @@
 
                     <td class="ds-td col-xs-12">
                         <div class="ds-aDiv col-xs-8 col-sm-9">
-                            <a href="${dataset._links.evidence_collection.href}">
+                            <a href="${dataset._links.nanopub_collection.href}">
                                 <span class="ds-title">${dataset.dataset.title} </span>
                             </a>
                            <!-- HOW TO INDEX FOR MODAL -->
                               <!-- <li>${datasets.indexOf(dataset)}</li> -->
-                            
+
                             <p class="ds-dsDetail">${dataset.dataset.description}</p>
                         </div>
                         <div class="col-xs-3 col-sm-2">
-                              <a href="${dataset._links.evidence_collection.href}?format=bel_script${tokenParam}" class="btn form-control btn-dlFiles" role="button" title="Download BEL Script formatted file"><i class="ds-downloadIcon fa fa-download"></i><span class="ds-btnText"> BEL</span></a>
+                              <a href="${dataset._links.nanopub_collection.href}?format=bel_script${tokenParam}" class="btn form-control btn-dlFiles" role="button" title="Download BEL Script formatted file"><i class="ds-downloadIcon fa fa-download"></i><span class="ds-btnText"> BEL</span></a>
 
-                              <a href="${dataset._links.evidence_collection.href}?format=json_evidence${tokenParam}" class="btn form-control btn-dlFiles" role="button" title="Download JSON BEL formatted file"><i class="ds-downloadIcon fa fa-download"></i><span class="ds-btnText"> JSON</span></a>
+                              <a href="${dataset._links.nanopub_collection.href}?format=json_nanopub${tokenParam}" class="btn form-control btn-dlFiles" role="button" title="Download JSON BEL formatted file"><i class="ds-downloadIcon fa fa-download"></i><span class="ds-btnText"> JSON</span></a>
 
-                              <a href="${dataset._links.evidence_collection.href}?format=xbel${tokenParam}" class="btn form-control btn-dlFiles" role="button" title="Download XBEL formatted file">
+                              <a href="${dataset._links.nanopub_collection.href}?format=xbel${tokenParam}" class="btn form-control btn-dlFiles" role="button" title="Download XBEL formatted file">
                                 <i class="ds-downloadIcon fa fa-download"></i><span class="ds-btnText"> XBEL</span></a>
                         </div>
 
@@ -64,7 +64,7 @@
                             <!-- ${datasets.indexOf(dataset)} -->
                         </div>
                          <!-- DELETION MODAL SNIPPIT -->
-    
+
                         <div class="modal fade" id="deleter" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                             <div class="modal-dialog">
                                 <div class="modal-content">
@@ -87,8 +87,8 @@
 
     <!-- END MODAL SNIPPIT -->
     <!-- DELETION MODAL JS  -->
-       
+
     <!-- END DELETION MODAL JS  -->
-    
-    
+
+
 </template>

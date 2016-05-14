@@ -25,7 +25,7 @@ export class Search {
     }
     this.searchFaceted = 1;
 
-    this.evidences = [];
+    this.nanopubs = [];
     this.facetSets = {};
   }
 
@@ -61,7 +61,7 @@ export class Search {
       .then(data => {
         logger.debug('Search result data: ', data);
         this.searchUrl = data.searchUrl;
-        this.evidences =  data.evidences;
+        this.nanopubs =  data.nanopubs;
         this.facetSets = data.facets;
         if (data.metadata) {
           this.search_metadata = data.metadata.collection_paging;
@@ -74,7 +74,7 @@ export class Search {
         this.searchStart = (Number(this.search_metadata.current_page) - 1) * Number(this.search_metadata.current_page_size) + 1;
         this.searchResultsRange = `${this.searchStart} - ${Number(this.searchStart) + Number(this.search_metadata.current_page_size) - 1}`;
 
-        logger.debug("Search results: ", this.evidences);
+        logger.debug("Search results: ", this.nanopubs);
         logger.debug("Search facets: ", this.facetSets);
 
         this.searching = false;
@@ -104,10 +104,10 @@ export class Search {
   }
 
 
-  deleteEvidence(evidenceUrl, idx) {
-    let evidenceId = this.api.getEvidenceId(evidenceUrl);
-    this.api.deleteBelEvidence(evidenceId);
-    this.evidences.splice(idx, 1);
+  deleteNanopub(nanopubUrl, idx) {
+    let nanopubId = this.api.getNanopubId(nanopubUrl);
+    this.api.deleteBelNanopub(nanopubId);
+    this.nanopubs.splice(idx, 1);
     var deleteModal = document.getElementById("deleter");
     deleteModal.setAttribute("class", "modal fade");
   }
@@ -121,14 +121,14 @@ export class Search {
     deleteModal.setAttribute("class", "modal fade");
   };
   /**
-   * Get Species from Evidence Experiment Context
-   * @param evidence
+   * Get Species from Nanopub Experiment Context
+   * @param nanopub
    * @returns 'Genus species'
    */
 
-  // getSpecies(evidence) {
+  // getSpecies(nanopub) {
   //   let default_val = 'Unknown';
-  //   let item = evidence.experiment_context.find(x => x.name === 'Ncbi Taxonomy');
+  //   let item = nanopub.experiment_context.find(x => x.name === 'Ncbi Taxonomy');
   //   if (item) {
   //     return item.value;
   //   }
@@ -145,7 +145,7 @@ export class Search {
       "9606": "human-icon",
       "Unknown": "unknown-icon"
     }
-    let result = item.evidence.experiment_context.find(x => x.name === 'Species');
+    let result = item.nanopub.experiment_context.find(x => x.name === 'Species');
     if (result) {
       return organisms[result.value];
     }
@@ -154,11 +154,11 @@ export class Search {
 
   /**
    * Creates array of experiment_context values without the Ncbi Taxonomy item
-   * @param evidence
+   * @param nanopub
    * @returns array of experiment_context values
    */
-  getExperimentContextItems(evidence) {
-    let items = evidence.experiment_context.filter(x => x.name !== 'Ncbi Taxonomy').map(x => `${x.name}::${x.value}`);
+  getExperimentContextItems(nanopub) {
+    let items = nanopub.experiment_context.filter(x => x.name !== 'Ncbi Taxonomy').map(x => `${x.name}::${x.value}`);
     return items;
   }
 

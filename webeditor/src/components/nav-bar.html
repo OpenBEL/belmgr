@@ -16,7 +16,7 @@
 
     <div class="collapse navbar-collapse" id="openBelNavbar">
       <div class="row navbar-userRow">
-        <div class="col-md-2 col-md-offset-5">BEL Version: XXX</div>
+        <div class="col-md-2 col-md-offset-5">BEL Version: ${userData.belVersion}</div>
         <div class="col-md-3"><a route-href="route: apilist">API Endpoint: ${endpointName}</a></div>
         <div if.bind='authEnabled' class="col-md-1 navbar-userDiv">
           <a class="pointer" click.delegate="navbarAction()">${action}</a>

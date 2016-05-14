@@ -7,16 +7,16 @@ import {OpenbelapiService} from './resources/openbelapi-service';
 
 let logger = LogManager.getLogger('bel-nanopub');
 
-@bindable({name:"evidenceId", attribute:"evidence-id"})
+@bindable({name:"nanopubId", attribute:"nanopub-id"})
 @inject(OpenbelapiService, Router, EventAggregator)
 export class BelNanopub {
 
-    evidence;
+    nanopub;
     metadata = {
-      'evidence_notes': '', 'evidence_status': '', 'author': '',
+      'nanopub_notes': '', 'nanopub_status': '', 'author': '',
       'creation_date': '', 'reviewer': '', 'review_date': '',
-      'evidence_source': ''};
-    submitEvidence = {};  // add back the top-level 'evidence' key, value prior to submission
+      'nanopub_source': ''};
+    submitNanopub = {};  // add back the top-level 'nanopub' key, value prior to submission
     annotations = [];
 
   // Needed to allow New BEL menu item to refresh the form
@@ -49,16 +49,16 @@ export class BelNanopub {
 
   loadFormData() {
     logger.debug('In load form data');
-    if (this.evidenceId) {
-      logger.debug('Inside loadFormData -- EvidenceID: ', this.evidenceId);
+    if (this.nanopubId) {
+      logger.debug('Inside loadFormData -- NanopubID: ', this.nanopubId);
       // Return Promise in activate to wait until all data is collected before building
       //   the page
-      return this.api.getBelEvidence(this.evidenceId)
-        .then(evidence => {
-          this.evidence = evidence;
-          logger.debug('Evidence: ', this.evidence);
-          this.extractFormMetadata(); // depends on this.metadata and this.evidence
-          return this.api.getBelComponents(this.evidence.bel_statement);
+      return this.api.getBelNanopub(this.nanopubId)
+        .then(nanopub => {
+          this.nanopub = nanopub;
+          logger.debug('Nanopub: ', this.nanopub);
+          this.extractFormMetadata(); // depends on this.metadata and this.nanopub
+          return this.api.getBelComponents(this.nanopub.bel_statement);
         })
         .then(comp => {
           this.belSubject = comp.subject;
@@ -68,12 +68,12 @@ export class BelNanopub {
 
         })
         .catch(reason => {
-          logger.error('Process BEL Evidence Error: ', reason);
+          logger.error('Process BEL Nanopub Error: ', reason);
         });
     }
     else {
-      this.evidence = new Evidence();
-      // this.evidence = {};
+      this.nanopub = new Nanopub();
+      // this.nanopub = {};
       return this.api.getBelAnnotationTypes()
             .then(types => {
               this.types = types;
@@ -86,42 +86,42 @@ export class BelNanopub {
   }
 
   /**
-   * Force the evidence object to be recreated for force an update of the nested
+   * Force the nanopub object to be recreated for force an update of the nested
    * object binding in the View
    */
-  refreshEvidenceObjBinding () {
-    let temp = this.evidence;
-    this.evidence = {};
-    this.evidence = temp;
+  refreshNanopubObjBinding () {
+    let temp = this.nanopub;
+    this.nanopub = {};
+    this.nanopub = temp;
   }
 
-  prepareEvidence() {
-    let submitEvidence = {};
+  prepareNanopub() {
+    let submitNanopub = {};
     // Prepare BEL Statement
-    this.evidence.bel_statement = `${this.belSubject} ${this.belRelationship} ${this.belObject}`;
+    this.nanopub.bel_statement = `${this.belSubject} ${this.belRelationship} ${this.belObject}`;
 
-    // Remove blank entries in evidence.experiment_context
-    logger.debug('Cleaning evidence -- context items');
-    this.evidence.experiment_context = this.evidence.experiment_context.filter(obj => obj.value);
+    // Remove blank entries in nanopub.experiment_context
+    logger.debug('Cleaning nanopub -- context items');
+    this.nanopub.experiment_context = this.nanopub.experiment_context.filter(obj => obj.value);
 
     // Add to Metadata
     this.addFormMetadata();
 
-    submitEvidence = {'evidence': this.evidence};
-    return submitEvidence;
+    submitNanopub = {'nanopub': this.nanopub};
+    return submitNanopub;
   }
 
-  // Add to evidence Metadata
+  // Add to nanopub Metadata
   //   Note - this is only for adding strings
   //   TODO - support adding objects as values
   addFormMetadata() {
-    if (this.evidence.metadata) {
+    if (this.nanopub.metadata) {
       for (let key in this.metadata) {
-        let idx = this.evidence.metadata.findIndex(obj => obj.name === key);
+        let idx = this.nanopub.metadata.findIndex(obj => obj.name === key);
         if (idx >= 0) {
-          this.evidence.metadata[idx].value += this.metadata.key;
+          this.nanopub.metadata[idx].value += this.metadata.key;
         } else {
-          this.evidence.metadata.push(
+          this.nanopub.metadata.push(
             {
               'name' : key,
               'value': this.metadata[key]
@@ -133,52 +133,52 @@ export class BelNanopub {
 
   extractFormMetadata() {
     for (let k in this.metadata) {
-      let idx = this.evidence.metadata.findIndex(obj => obj.name === k);
+      let idx = this.nanopub.metadata.findIndex(obj => obj.name === k);
       if (idx >= 0) {
-        this.metadata[k] = this.evidence.metadata[idx].value;
+        this.metadata[k] = this.nanopub.metadata[idx].value;
       }
     }
   }
 
   submitUpdate() {
-    logger.debug('Prior to prepare update evidence', JSON.stringify(this.evidence, null, 2));
-    let submitEvidence = this.prepareEvidence();
-    logger.debug('Update evidence', JSON.stringify(submitEvidence, null, 2));
-    this.api.loadBelEvidence(submitEvidence, this.evidenceId)
+    logger.debug('Prior to prepare update nanopub', JSON.stringify(this.nanopub, null, 2));
+    let submitNanopub = this.prepareNanopub();
+    logger.debug('Update nanopub', JSON.stringify(submitNanopub, null, 2));
+    this.api.loadBelNanopub(submitNanopub, this.nanopubId)
     .then(response => {
-      toastr.success('', 'Updated Evidence');
+      toastr.success('', 'Updated Nanopub');
     })
     .catch(function(reason) {
       toastr.options = {"timeOut": "15000"};
-      toastr.error('', 'Cannot update Evidence');
+      toastr.error('', 'Cannot update Nanopub');
       toastr.options = {"timeOut": "5000"};
-      logger.error('Problem updating Evidence ', reason);
+      logger.error('Problem updating Nanopub ', reason);
     });
 
     return true;
   }
 
   submitNew() {
-    logger.debug('Prior to prepare new evidence', JSON.stringify(this.evidence, null, 2));
-    let submitEvidence = this.prepareEvidence();
-    logger.debug('Submit new evidence', JSON.stringify(submitEvidence, null, 2));
+    logger.debug('Prior to prepare new nanopub', JSON.stringify(this.nanopub, null, 2));
+    let submitNanopub = this.prepareNanopub();
+    logger.debug('Submit new nanopub', JSON.stringify(submitNanopub, null, 2));
 
-    this.api.loadBelEvidence(submitEvidence)
+    this.api.loadBelNanopub(submitNanopub)
     .then(response => {
       return response.headers.get('Location');
     })
     .then(location => {
       logger.debug('Loc: ', location);
-      let evidenceId = this.api.getIdFromUrl(location);
+      let nanopubId = this.api.getIdFromUrl(location);
       logger.debug('Router: ', this.router);
-      toastr.success('', 'Created New Evidence');
-      this.router.navigateToRoute('edit', { id: evidenceId });
+      toastr.success('', 'Created New Nanopub');
+      this.router.navigateToRoute('edit', { id: nanopubId });
     })
     .catch(function(reason) {
       toastr.options = {"timeOut": "15000"};
-      toastr.error('', 'Cannot create new Evidence');
+      toastr.error('', 'Cannot create new Nanopub');
       toastr.options = {"timeOut": "5000"};
-      logger.error('Problem creating Evidence ', reason);
+      logger.error('Problem creating Nanopub ', reason);
     });
 
     return true;
@@ -186,8 +186,8 @@ export class BelNanopub {
 
 }
 
-// this.evidence = new Evidence(data);   // data = evidence from ApI call
-class Evidence {
+// this.nanopub = new Nanopub(data);   // data = nanopub from ApI call
+class Nanopub {
   citation;
   constructor(data) { // { citation: 'blue', red: 'gray' }
     Object.assign(this, data);

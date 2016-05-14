@@ -1,7 +1,7 @@
 import {bindable} from 'aurelia-framework';
 import {OpenbelapiService} from 'belmgr-plugin/resources/openbelapi-service';
 import {Authentication} from 'belmgr-plugin/resources/authentication';
-import {UserState} from '../UserState';
+import {User} from 'belmgr-plugin/User';
 
 import {LogManager} from 'aurelia-framework';
 
@@ -13,8 +13,8 @@ export class SearchExport {
   exportUrl;
   authEnabled;
   dataType =  {
-    id: 'json_evidence',
-    name: 'JSON Evidence',
+    id: 'json_nanopub',
+    name: 'JSON Nanopub',
     media_type: 'application / json',
     extension: 'json'
   };
@@ -30,8 +30,8 @@ export class SearchExport {
     media_type: 'application / xml',
     extension: 'xbel'
   }, {
-    id: 'json_evidence',
-    name: 'JSON Evidence',
+    id: 'json_nanopub',
+    name: 'JSON Nanopub',
     media_type: 'application / json',
     extension: 'json'
   }, {
@@ -51,12 +51,12 @@ export class SearchExport {
     extension: 'ttl'
   }];
 
-  static inject = [OpenbelapiService, Authentication, UserState];
-  constructor(openbelapiService, authentication, userstate) {
+  static inject = [OpenbelapiService, Authentication, User];
+  constructor(openbelapiService, authentication, user) {
     this.openbelapiService = openbelapiService;
     this.auth = authentication;
-    this.state = userstate;
-    this.authEnabled = this.state.authEnabled;
+    this.userData = user;
+    this.authEnabled = this.userData.authEnabled;
     logger.debug("AuthEnabled: ", this.authEnabled);
   }
 

@@ -6,9 +6,9 @@ import {PubmedService} from './resources/pubmed-service';
 let logger = LogManager.getLogger('bel-citation');
 
 @bindable({
-  name:'evidence', //name of the property on the class
-  attribute:'evidence', //name of the attribute in HTML e.g. x.bind=""
-  changeHandler:'evidenceChanged', //name of the method to invoke when the property changes
+  name:'nanopub', //name of the property on the class
+  attribute:'nanopub', //name of the attribute in HTML e.g. x.bind=""
+  changeHandler:'nanopubChanged', //name of the method to invoke when the property changes
   defaultBindingMode: bindingMode.twoWay, //default binding mode used with the .bind command
   defaultValue: undefined //default value of the property, if not bound or set in HTML
 })
@@ -25,13 +25,13 @@ export class BelCitation {
   }
 
   /**
-   * Force the evidence object to be recreated for force an update of the nested
+   * Force the nanopub object to be recreated for force an update of the nested
    * object binding in the View
    */
-  refreshEvidenceObjBinding () {
-    let temp = this.evidence;
-    this.evidence = {};
-    this.evidence = temp;
+  refreshNanopubObjBinding () {
+    let temp = this.nanopub;
+    this.nanopub = {};
+    this.nanopub = temp;
   }
 
   publish(payload) {
@@ -40,18 +40,18 @@ export class BelCitation {
   }
 
   attached() {
-    logger.debug('Evidence: ', this.evidence);
-    if (this.evidence.citation) {
-      if (this.evidence.citation.id) {
-        this.citationId = this.evidence.citation.id;
+    logger.debug('Nanopub: ', this.nanopub);
+    if (this.nanopub.citation) {
+      if (this.nanopub.citation.id) {
+        this.citationId = this.nanopub.citation.id;
       }
     }
     else {
-      this.evidence.citation = {};
-      this.evidence.citation.type = 'PubMed';
+      this.nanopub.citation = {};
+      this.nanopub.citation.type = 'PubMed';
     }
 
-    if (this.citationId && this.evidence.citation.type === 'PubMed') {
+    if (this.citationId && this.nanopub.citation.type === 'PubMed') {
       this.collectPubmed();
     }
   }
@@ -61,18 +61,18 @@ export class BelCitation {
     logger.debug('Copying CitationId to Last', this.lastCitationId);
   }
 
-  evidenceChanged(value) {
-    logger.debug('CitationChanged: ', this.evidence);
+  nanopubChanged(value) {
+    logger.debug('CitationChanged: ', this.nanopub);
   }
 
   collectPubmed() {
-    this.evidence.citation.id = this.citationId;
+    this.nanopub.citation.id = this.citationId;
 
-    logger.debug('Id: ', this.citationId, 'Last', this.lastCitationId, ' Type: ', this.evidence.citation.type);
+    logger.debug('Id: ', this.citationId, 'Last', this.lastCitationId, ' Type: ', this.nanopub.citation.type);
 
     // Collect Pubmed data from service
-    if (this.citationId && this.evidence.citation.type === 'PubMed') {
-      logger.debug('Id2: ', this.citationId, 'Last2', this.lastCitationId, ' Type: ', this.evidence.citation.type);
+    if (this.citationId && this.nanopub.citation.type === 'PubMed') {
+      logger.debug('Id2: ', this.citationId, 'Last2', this.lastCitationId, ' Type: ', this.nanopub.citation.type);
       this.pubmedService.getPubmed(this.citationId)
         .then(pubmed => {
           this.pubmed = pubmed;
@@ -80,12 +80,12 @@ export class BelCitation {
             this.citationPubmedChecks();
           }
           else {  // replace citation data if new CitationId
-            this.evidence.citation.date = this.pubmed.journalInfo.printPublicationDate;
-            this.evidence.citation.authors = this.pubmed.bel.authors;
-            this.evidence.citation.name = this.pubmed.bel.refString;
+            this.nanopub.citation.date = this.pubmed.journalInfo.printPublicationDate;
+            this.nanopub.citation.authors = this.pubmed.bel.authors;
+            this.nanopub.citation.name = this.pubmed.bel.refString;
           }
           this.copyCitationId();  // Track if the CitationId has changed
-          this.refreshEvidenceObjBinding();
+          this.refreshNanopubObjBinding();
           this.publish(pubmed);
         })
         .catch(reason => {
@@ -104,29 +104,29 @@ export class BelCitation {
   /**
    * Check for citation information mismatch or missing information for Pubmed entries
    *
-   * Add Pubmed data to evidence.citation if evidence.citation information is missing
+   * Add Pubmed data to nanopub.citation if nanopub.citation information is missing
    */
   citationPubmedChecks() {
-    if (this.evidence.citation.type === 'PubMed') {
+    if (this.nanopub.citation.type === 'PubMed') {
       // Check date
-      if (!this.evidence.citation.date) {
-        this.evidence.citation.date = this.pubmed.journalInfo.printPublicationDate;
+      if (!this.nanopub.citation.date) {
+        this.nanopub.citation.date = this.pubmed.journalInfo.printPublicationDate;
       }
-      else if (this.evidence.citation.date !== this.pubmed.journalInfo.printPublicationDate) {
+      else if (this.nanopub.citation.date !== this.pubmed.journalInfo.printPublicationDate) {
         this.pubmed.bel.mismatch.date = true;
       }
       // Check authors
-      if (!this.evidence.citation.authors) {
-        this.evidence.citation.authors = this.pubmed.bel.authors;
+      if (!this.nanopub.citation.authors) {
+        this.nanopub.citation.authors = this.pubmed.bel.authors;
       }
-      else if (this.evidence.citation.authors !== this.pubmed.bel.authors) {
+      else if (this.nanopub.citation.authors !== this.pubmed.bel.authors) {
         this.pubmed.bel.mismatch.authors = true;
       }
       // Check refString
-      if (!this.evidence.citation.name) {
-        this.evidence.citation.name = this.pubmed.bel.refString;
+      if (!this.nanopub.citation.name) {
+        this.nanopub.citation.name = this.pubmed.bel.refString;
       }
-      else if (this.evidence.citation.name !== this.pubmed.bel.refString) {
+      else if (this.nanopub.citation.name !== this.pubmed.bel.refString) {
         this.pubmed.bel.mismatch.refString = true;
       }
     }
@@ -135,33 +135,33 @@ export class BelCitation {
   // Todo: convert replace* methods with getter/setters after making sure they will update the View correctly
 
   /**
-   * Replace evidence citation date with newval
+   * Replace nanopub citation date with newval
    * @param newval
    */
   replaceCitationDate(newval) {
-    this.evidence.citation.date = newval;
+    this.nanopub.citation.date = newval;
     this.pubmed.bel.mismatch.date = false;
-    this.refreshEvidenceObjBinding();
+    this.refreshNanopubObjBinding();
   }
 
   /**
-   * Replace evidence citation date with newval
+   * Replace nanopub citation date with newval
    * @param newval
    */
   replaceCitationName(newval) {
-    this.evidence.citation.name = newval;
+    this.nanopub.citation.name = newval;
     this.pubmed.bel.mismatch.refString = false;
-    this.refreshEvidenceObjBinding();
+    this.refreshNanopubObjBinding();
   }
 
   /**
-   * Replace evidence citation date with newval
+   * Replace nanopub citation date with newval
    * @param newval
    */
   replaceCitationAuthors(newval) {
-    this.evidence.citation.authors = newval;
+    this.nanopub.citation.authors = newval;
     this.pubmed.bel.mismatch.authors = false;
-    this.refreshEvidenceObjBinding();
+    this.refreshNanopubObjBinding();
   }
 
 }

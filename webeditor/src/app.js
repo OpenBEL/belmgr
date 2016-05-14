@@ -1,19 +1,17 @@
 import {LogManager} from 'aurelia-framework';
 import {OpenbelapiService} from 'belmgr-plugin/resources/openbelapi-service';
-import {UserState} from './UserState';
+import {User} from 'belmgr-plugin/User';
 import {Router} from 'aurelia-router';
 
 let logger = LogManager.getLogger('app');
 
 export class App {
 
-  static inject=[OpenbelapiService, UserState, Router];
-  constructor(api, state, router) {
+  static inject=[OpenbelapiService, User, Router];
+  constructor(api, user, router) {
     this.api = api;
-    this.state = state;
+    this.userData = user;
     logger.debug('Router: ', router);
-
-    this.state.authEnabled = this.api.authEnabled();
 
     // router.addRoute({ route: 'test', moduleId: './test', name: 'access_token', nav:false, title: 'testing'});
   }
@@ -42,8 +40,9 @@ export class App {
   }
 
   activate(params, routeConfig, navigationInstruction) {
-    return this.api.authEnabled().then(enabled => {
-      this.state.authEnabled = enabled;
-    });
+    return Promise.all([
+                         this.api.authEnabled().then(enabled => {this.userData.authEnabled = enabled;}),
+                         this.api.getBelVersion().then(version => {this.userData.belVersion = version;})
+                       ]);
   }
 }

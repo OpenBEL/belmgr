@@ -1,27 +1,27 @@
 import {LogManager} from 'aurelia-framework';
-import {UserState} from '../UserState';
+import {User} from 'belmgr-plugin/User';
 import {Authentication} from 'belmgr-plugin/resources/authentication';
 
 let logger = LogManager.getLogger('edit');
 
 export class Edit{
 
-  evidenceId = null;
+  nanopubId = null;
   authEnabled = false;
-  static inject = [UserState, Authentication];
-  constructor (state, auth) {
-    this.state = state;
+  static inject = [User, Authentication];
+  constructor (user, auth) {
+    this.userData = user;
     this.auth = auth;
 
     // Authenticate if needed so user doesn't create a new bel nanopub and lose it when OpenBEL API requires authentication
-    if (this.state.authEnabled && !this.auth.checkToken()) {
+    if (this.userData.authEnabled && !this.auth.checkToken()) {
       this.auth.authenticate(window.location.protocol, window.location.host, window.location.pathname, window.location.hash);
     }
   }
 
   activate(params) {
     if (params.id) {
-      this.evidenceId = params.id;
+      this.nanopubId = params.id;
     }
   }
 }

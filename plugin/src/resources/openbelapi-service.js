@@ -42,7 +42,7 @@ export class OpenbelapiService {
         facet.name === 'Status' ||
         facet.category === 'citation' ||
         facet.name === 'dataset' ||
-        facet.name === 'evidence_status'
+        facet.name === 'nanopub_status'
       ) {
         let facetName = facet.name;
 
@@ -52,7 +52,7 @@ export class OpenbelapiService {
         if (facet.name === 'dataset') {
           facetName = 'Datasets';
         }
-        if (facet.name === 'evidence_status') {
+        if (facet.name === 'nanopub_status') {
           facetName = 'Nanopub Status';
         }
 
@@ -83,7 +83,7 @@ export class OpenbelapiService {
   search(start = 0, size = 10, faceted = 'yes', filters) {
     /* eslint-disable camelcase */
     let max_values_per_facet = 10;
-    let getstring = `/evidence?start=${start}&size=${size}&faceted=${faceted}&max_values_per_facet=${max_values_per_facet}`;
+    let getstring = `/nanopub?start=${start}&size=${size}&faceted=${faceted}&max_values_per_facet=${max_values_per_facet}`;
     /* eslint-enable camelcase */
 
 
@@ -101,7 +101,7 @@ export class OpenbelapiService {
       .then(data => {
         logger.debug('Data: ', data);
         let newData = {};
-        newData.evidences = data.evidence_collection;
+        newData.nanopubs = data.nanopub_collection;
         newData.facets = this.processFacets(data.facets);
         newData.metadata = data.metadata;
         newData.searchUrl = data._links.self.href;
@@ -110,7 +110,7 @@ export class OpenbelapiService {
       .catch(function(reason) {
         if (reason.status === 404) {
           return {
-            'evidences': null,
+            'nanopubs': null,
             'facets': {}
           };
         }
@@ -131,7 +131,7 @@ export class OpenbelapiService {
       return this.apiClient.fetch(`/expressions/${belStatement}/components?flatten=1`)
         .then(response => response.json())
         .then(data => {
-          // logger.debug('BEL Evidence: ', data);
+          // logger.debug('BEL Nanopub: ', data);
           return data.expression_components;
         })
         .catch(function(reason) {
@@ -142,68 +142,68 @@ export class OpenbelapiService {
     return comp;
   }
 
-  getBelEvidence(id) {
+  getBelNanopub(id) {
 
     let token = this.auth.getToken();
 
-    return this.apiClient.fetch(`/evidence/${id}`)
+    return this.apiClient.fetch(`/nanopub/${id}`)
       .then(response => response.json())
       .then(data => {
-        let evidence = data.evidence;
-        return evidence;
+        let nanopub = data.nanopub;
+        return nanopub;
       })
       .catch(function(reason) {
-        logger.error(`GET BEL Evidence Error: ${reason}`);
+        logger.error(`GET BEL Nanopub Error: ${reason}`);
       });
   }
 
   /**
-   * Load BEL Evidence (POST or PUT)
+   * Load BEL Nanopub (POST or PUT)
    *
    * @param id
-   * @param evidence
+   * @param nanopub
    */
-  loadBelEvidence(evidence, id) {
+  loadBelNanopub(nanopub, id) {
 
-    // Update Evidence given an Id
+    // Update Nanopub given an Id
     if (id) {
-      return this.apiClient.fetch(`/evidence/${id}`, {
+      return this.apiClient.fetch(`/nanopub/${id}`, {
         method: 'put',
         headers: {
           'Accept': 'application/hal+json',
-          'Content-Type': 'application/json; profile=http://next.belframework.org/schema/evidence.schema.json'
+          'Content-Type': 'application/json; profile=http://next.belframework.org/schema/nanopub.schema.json'
 
         },
-        body: JSON.stringify(evidence)
+        body: JSON.stringify(nanopub)
       }).catch(response => {
-        logger.error('PUT Evidence error ', response);
+        logger.error('PUT Nanopub error ', response);
       });
     }
 
-    // Create new Evidence
-    return this.apiClient.fetch(`/evidence`, {
+    // Create new Nanopub
+    return this.apiClient.fetch(`/nanopub`, {
       method: 'post',
       headers: {
         'Accept': 'application/hal+json',
-        'Content-Type': 'application/json; profile=http://next.belframework.org/schema/evidence.schema.json'
+        'Content-Type': 'application/json; profile=http://next.belframework.org/schema/nanopub.schema.json'
       },
-      body: JSON.stringify(evidence)
+      body: JSON.stringify(nanopub)
     }).catch(response => {
-      logger.error('POST Evidence error ', response);
+      logger.error('POST Nanopub error ', response);
     });
   }
 
-  deleteBelEvidence(evidenceId) {
+  deleteBelNanopub(nanopubId) {
 
-    return this.apiClient.fetch(`/evidence/${evidenceId}`, {
+    return this.apiClient.fetch(`/nanopub/${nanopubId}`, {
       method: 'delete',
       headers: {
         'Accept': 'application/hal+json',
-        'Content-Type': 'application/json; profile=http://next.belframework.org/schema/evidence.schema.json'
+        'Content-Type': 'application/json; profile=http://next.belframework.org/schema/nanopub.schema.json'
       }
     })
     .catch(function(reason) {
-      logger.error(`DELETE BEL Evidence Error: `, reason);
+      logger.error(`DELETE BEL Nanopub Error: `, reason);
     });
   }
 
@@ -317,7 +317,7 @@ export class OpenbelapiService {
     return results;
   }
 
-  // Upload BEL Script to OpenBEL Evidence Store
+  // Upload BEL Script to OpenBEL Nanopub Store
   // Notes:
   //    https://github.com/github/fetch
   //    http://blog.gospodarets.com/fetch_in_action/
@@ -333,15 +333,15 @@ export class OpenbelapiService {
     });
   }
 
-  // TODO remove getEvidenceId in favor of getIdFromUrl
+  // TODO remove getNanopubId in favor of getIdFromUrl
   //
   /**
-   * Get Evidence ID from self link href in evidence object
+   * Get Nanopub ID from self link href in nanopub object
    *
    * @param url
-   * @returns evidenceID
+   * @returns nanopubID
    */
-  getEvidenceId(url) {
+  getNanopubId(url) {
     let matches = url.match(/\/(\w+?)$/);
     // logger.debug('Matches: ', matches[1]);
     return matches[1];
@@ -370,7 +370,7 @@ export class OpenbelapiService {
   }
 
   getRelationships() {
-    return this.apiClient.fetch('/relationships')
+    return this.apiClient.fetch('/language/relationships')
       .then(response => response.json())
       .then(data => {
         logger.debug('Relationships: ', data.relationship_collection);
@@ -378,6 +378,17 @@ export class OpenbelapiService {
       })
       .catch(function(reason) {
         logger.error('GET Relationships Error: ', reason);
+      });
+  }
+
+  getBelVersion() {
+    return this.apiClient.fetch('/language/version')
+      .then(response => response.json())
+      .then(data => {
+        return data.bel_version.string;
+      })
+      .catch(function(reason) {
+        logger.error('GET BEL Version Error: ', reason);
       });
   }
 

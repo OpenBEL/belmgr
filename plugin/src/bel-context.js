@@ -5,7 +5,7 @@ let logger = LogManager.getLogger('context');
 
 // custom element named:  bel-context
 export class BelContext {
-  @bindable evidence;
+  @bindable nanopub;
 
   static inject = [EventAggregator];
   constructor(eventAggregator) {
@@ -18,7 +18,7 @@ export class BelContext {
 
     this.subscription = this.ea.subscribe('addContextItemBlank', () => {
       this.addBlank();
-      logger.debug('Checking to add Blank', this.evidence.experiment_context);
+      logger.debug('Checking to add Blank', this.nanopub.experiment_context);
     });
   }
 
@@ -26,34 +26,34 @@ export class BelContext {
     this.subscription.dispose();
   }
 
-  evidenceChanged(value) {
-    logger.debug('Experiment Context changes: ', this.evidence.experiment_context);
-    this.experiment_context = this.evidence.experiment_context;
+  nanopubChanged(value) {
+    logger.debug('Experiment Context changes: ', this.nanopub.experiment_context);
+    this.experiment_context = this.nanopub.experiment_context;
   }
 
   /**
    * Add blank experiment content to end of experiment context
    */
   addBlank() {
-    if (this.evidence.experiment_context && this.evidence.experiment_context.length > 0) {
-      let last_item_idx = this.evidence.experiment_context.length - 1;
-      if (this.evidence.experiment_context[last_item_idx].value) {
-        this.evidence.experiment_context.push({'name': '', 'value': ''});
+    if (this.nanopub.experiment_context && this.nanopub.experiment_context.length > 0) {
+      let last_item_idx = this.nanopub.experiment_context.length - 1;
+      if (this.nanopub.experiment_context[last_item_idx].value) {
+        this.nanopub.experiment_context.push({'name': '', 'value': ''});
       }
     }
     else {
-      this.evidence.experiment_context = [];
-      this.evidence.experiment_context.push({'name': '', 'value': ''});
+      this.nanopub.experiment_context = [];
+      this.nanopub.experiment_context.push({'name': '', 'value': ''});
     }
   }
 
   /**
-   * Allow deletion of Evidence Experiment Context
+   * Allow deletion of Nanopub Experiment Context
    *
    * @param idx
    */
   removeItem(idx) {
-    this.evidence.experiment_context.splice(idx, 1);
+    this.nanopub.experiment_context.splice(idx, 1);
   }
 
 }

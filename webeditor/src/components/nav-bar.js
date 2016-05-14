@@ -1,7 +1,7 @@
 import {bindable, LogManager} from 'aurelia-framework';
 import {EventAggregator} from 'aurelia-event-aggregator';
 import {Authentication} from 'belmgr-plugin/resources/authentication';
-import {UserState} from '../UserState.js';
+import {User} from 'belmgr-plugin/User';
 import {OpenbelapiService} from 'belmgr-plugin/resources/openbelapi-service';
 
 let logger = LogManager.getLogger('nav-bar');
@@ -11,15 +11,16 @@ export class NavBar {
   authEnabled;
   selectedOpenbelApiUrl;
   endpointName;
+  belVersion;
 
-  static inject=[OpenbelapiService, UserState, Authentication, EventAggregator];
-  constructor(api, state, auth, ea) {
+  static inject=[OpenbelapiService, User, Authentication, EventAggregator];
+  constructor(api, user, auth, ea) {
     this.api = api;
-    this.state = state;
+    this.userData = user;
     this.auth = auth;
     this.ea = ea;
 
-    this.authEnabled = this.state.authEnabled;
+    this.authEnabled = this.userData.authEnabled;
 
     logger.debug('NavBar AuthEnabled: ', this.authEnabled);
 
@@ -30,6 +31,7 @@ export class NavBar {
       this.action = 'Login';
     }
     this.getSelectedOpenbelApiUrl();
+    this.belVersion = this.api.getBelVersion().then(version => {return version});
   }
 
   attached() {
@@ -50,4 +52,5 @@ export class NavBar {
     this.selectedOpenbelApiUrl = JSON.parse(localStorage.getItem('selectedOpenbelApiUrl'));
     this.endpointName = this.selectedOpenbelApiUrl.name;
   }
+
 }

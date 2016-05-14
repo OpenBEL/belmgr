@@ -5,9 +5,9 @@ import {OpenbelapiService} from './resources/openbelapi-service';
 let logger = LogManager.getLogger('statement');
 
 @bindable({
-  name:'evidence', //name of the property on the class
-  attribute:'evidence', //name of the attribute in HTML e.g. x.bind=""
-  changeHandler:'evidenceChanged', //name of the method to invoke when the property changes
+  name:'nanopub', //name of the property on the class
+  attribute:'nanopub', //name of the attribute in HTML e.g. x.bind=""
+  changeHandler:'nanopubChanged', //name of the method to invoke when the property changes
   defaultBindingMode: bindingMode.twoWay, //default binding mode used with the .bind command
   defaultValue: undefined //default value of the property, if not bound or set in HTML
 })
@@ -17,7 +17,7 @@ let logger = LogManager.getLogger('statement');
 @customElement('bel-statement')
 export class BelStatement {
 
-  @bindable evidence;
+  @bindable nanopub;
   relationships = [];
 
   static inject=[OpenbelapiService, CompositionTransaction];
@@ -48,8 +48,8 @@ export class BelStatement {
     logger.debug('BELsubject changed: ', this.belsubject);
   }
 
-  evidenceChanged(value) {
-    logger.debug('StatementChanged: ', this.evidence);
+  nanopubChanged(value) {
+    logger.debug('StatementChanged: ', this.nanopub);
   }
 
 }

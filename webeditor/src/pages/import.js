@@ -12,7 +12,7 @@ let logger = LogManager.getLogger('import');
 
 
 export class Import {
-    heading = 'Upload your BEL Script into the BEL Evidence Repository';
+    heading = 'Upload your BEL Script into the BEL Nanopub Repository';
 
     belFiles;
     datasets;

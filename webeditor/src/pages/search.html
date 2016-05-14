@@ -30,7 +30,7 @@
     <div class="row">
       <template if.bind="facetSets">
         <div class="search-filterFacets col-xs-3 heightct${searchResultsRange}">
-          <div class="search-filtercol" id="filtercolumn" if.bind="evidences">
+          <div class="search-filtercol" id="filtercolumn" if.bind="nanopubs">
             <!-- Loop through facet sets -->
             <div class="col-xs-12 filterbox"  repeat.for="facetSet of facetSets | keys | sort">
               <h4 class="filter-facetTitle">${facetSet}</h4>
@@ -48,7 +48,7 @@
       </template>
 
       <div class="col-xs-9 paddingNone" id="resultscolumn">
-        <template if.bind="evidences">
+        <template if.bind="nanopubs">
           <table class="table table-hover">
             <tr>
               <th class="table-range tableTopSpacer">
@@ -100,19 +100,19 @@
 
 
             <tbody>
-            <tr class="table-tr" repeat.for="item of evidences">
+            <tr class="table-tr" repeat.for="item of nanopubs">
               <td class="table-td">
                 <div class="col-xs-2 col-sm-1 table-speciesHolder">
                   <div class="table-speciesIcon ${$parent.getSpeciesIcon(item)}"></div>
                 </div>
                 <div class="col-xs-9 col-sm-10">
-                  <a route-href="route: edit; params.bind: { id: api.getEvidenceId(item._links.self.href) }" target="editbel" a href="#" data-toggle="tooltip" title="${item.evidence.summary_text}">${item.evidence.bel_statement ? item.evidence.bel_statement : 'Missing BEL Statement'}
+                  <a route-href="route: edit; params.bind: { id: api.getNanopubId(item._links.self.href) }" target="editbel" a href="#" data-toggle="tooltip" title="${item.nanopub.summary_text}">${item.nanopub.bel_statement ? item.nanopub.bel_statement : 'Missing BEL Statement'}
                   </a>
                   <div class="table-expContextDiv">
-                    <p class="table-expContext value" repeat.for="value of $parent.getExperimentContextItems(item.evidence)">${value}</p>
+                    <p class="table-expContext value" repeat.for="value of $parent.getExperimentContextItems(item.nanopub)">${value}</p>
                   </div>
                 </div>
-                <a class="col-xs-1 table-delete" href="#" click.delegate="deleteEvidence(item._links.self.href, $index)"> <i class="fa fa-trash-o fa-lg"></i></a>
+                <a class="col-xs-1 table-delete" href="#" click.delegate="deleteNanopub(item._links.self.href, $index)"> <i class="fa fa-trash-o fa-lg"></i></a>
               </td>
             </tr>
             </tbody>
@@ -120,11 +120,11 @@
         </template>
 
 
-        <template if.bind="! evidences">
+        <template if.bind="! nanopubs">
           <p>No search results</p>
         </template>
 
-          <div class="marginrt10" if.bind="evidences">
+          <div class="marginrt10" if.bind="nanopubs">
 
               <nav class="search-bottomPager">
                 <ul class="col-xs-12 paddingNone pager pager-top">
