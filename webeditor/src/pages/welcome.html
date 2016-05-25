@@ -1,21 +1,69 @@
-<template>
-    <div class="container au-animate welcome-html">
+<template class="welcome-html">
+    <div class="container au-animate">
         <div class="row">
-            <div class="col-xs-12 margintop30">
-                <h2>${heading}</h2>
+            <div class="col-xs-12 nocaps margintop60">
+                <h2>Welcome to the BEL Manager Demo Site.</h2>
             </div>
-
-            <div class="col-xs-12">
-                <div class="testingMsg">
-                    <h3>Note: Demo site!  You can deploy your own production BELMgr or wait for our public server (planned for May 2016).</h3>
+            <div class="col-xs-12 margintop20">
+                <div class="col-xs-7 testing-msg">
+                    <h4 class="col-xs-12"><em>Note: This is a demo site. You can deploy your own production BELMgr or wait for our public server, which is planned for release in May 2016.</em></h4>
                     <h5>- The Bel Manager Development Team</h5>
                 </div>
-
-
-
-            <p class="">You can search the BEL Nanopub repository for BEL Nanopubs. You can also create or edit BEL Nanopubs using the BEL Manager.</p>
-            <p class="">What is a BEL Nanopub? It is the BEL Statement, Citation information, Summary Text and Metadata associated with a BEL Statement.</p>
-            <p class="">How can I edit a BEL Statement? By searching for it in the search page and then selecting it to open up the Edit page (which mysteriously isn't available in the NavBar Menu up top).</p>
+                <div class="col-xs-4 col-xs-offset-1">
+                    <h2 class="nocaps">Resources:</h2>
+                    <ul>
+                        <li><a target="_blank" href="/help/BEL-Manager-User-Guide.html">User Guide</a></li>
+                        <li><a target="_blank" href="/help/BEL-Manager-User-Guide.pdf">User Guide (pdf)</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-xs-10 col-xs-offset-1 margintop30">
+                <ul>
+                    <li>Use the BEL Nanopub repository to search for BEL Nanopubs</li>
+                    <li>Create or edit BEL Nanopubs using the BEL Manager</li>
+                    <li class="">What is a BEL Nanopub?
+                        <ul>
+                            <li>It is the BEL Statement, Citation information, Summary Text and Metadata associated with a BEL Statement
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="">How can I edit a BEL Statement?
+                        <ul>
+                            <li>By searching for it in the search page and then selecting it to open up the Compose page</li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="welcome-about margintop40">
+        <div class="container">
+            <div class="row">
+                <h1 class="col-xs-12 nocaps">About the Project</h1>
+                <div class="col-xs-6">
+                    <h4 class="">built by:</h4>
+                    <ul class="li-nobullets" repeat.for="builder of builders">
+                        <li>
+                            <gravatar id="some-gravatar-element" class="avatar-frame" credential.bind="builder.email" size="50" default-image="wavatar" is-secure="true" rating="g">
+                            </gravatar>
+                            ${builder.name}
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-xs-6">
+                    <h4 class="margintop10">with support from:</h4>
+                    <ul class="li-nobullets" repeat.for="consultant of consultants">
+                        <li>
+                            <gravatar id="some-gravatar-element" class="avatar-frame" credential.bind="consultant.email" size="50" default-image="wavatar" is-secure="true" rating="g">
+                            </gravatar>
+                            ${consultant.name} (${consultant.org})
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-xs-12">
+                    <h4 class="margintop30 nocaps"><em>...and a special thanks to our users and their pointed comments. </em><i class="fa fa-smile-o"></i></h4>
+                    <p class="margintop10">The application is built using Aurelia as a SPA front-end (Single Page Application) with a REST API backend supported by the OpenBEL Platform (https://github.com/OpenBEL/openbel-server)</p>
+                </div>
             </div>
         </div>
     </div>

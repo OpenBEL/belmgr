@@ -23,11 +23,11 @@ export class App {
       { route: ['', 'welcome'],   moduleId: './pages/welcome',         name: 'home',      nav: true,  title: 'Welcome' },
       { route: 'search',          moduleId: './pages/search',          name: 'search',    nav: true,  title: 'Search' },
       { route: 'edit/:id',        moduleId: './pages/edit',            name: 'edit',      activationStrategy: 'replace', nav: false, title: 'Edit BEL' },
-      { route: 'create',          moduleId: './pages/edit',            name: 'create',    activationStrategy: 'replace', nav: true,  title: 'New BEL' },
+      { route: 'create',          moduleId: './pages/edit',            name: 'create',    activationStrategy: 'replace', nav: true,  title: 'Compose' },
       { route: 'import',          moduleId: './pages/import',          name: 'import',    nav: true,  title: 'Datasets' },
       { route: 'apilist',         moduleId: './pages/apilist',         name: 'apilist',   nav: false,  title: 'API Endpoints' },
-      { route: 'about',           moduleId: './pages/about',           name: 'about',     nav: true,  title: 'About' },
-      { route: 'help',            moduleId: './pages/help',            name: 'help',      nav: true,  title: 'Help' }
+      // { route: 'about',           moduleId: './pages/about',           name: 'about',     nav: true,  title: 'About' },
+      // { route: 'help',            moduleId: './pages/help',            name: 'help',      nav: true,  title: 'Help' }
     ]);
 
     config.mapUnknownRoutes(instruction => {

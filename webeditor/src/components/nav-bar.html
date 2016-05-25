@@ -1,5 +1,5 @@
 <template>
-    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <nav class="navbar navbar-default navbar-fixed-top" role="navigation" id="nav-stick">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#openBelNavbar">
                 <span class="sr-only">Toggle Navigation</span>
@@ -9,30 +9,50 @@
             </button>
             <a class="navbar-brand" href="#">
                 <img class="navbar-logo" src="../../media/bel300x.png">
-                <span class="navbar-header-title-big">BEL Manager</span>
-                <span class="navbar-header-title-sm">BELmgr</span>
+                <span class="navbar-header-title">Manager</span>
             </a>
+            <!-- <div class="nav-apisettings">
+                <div class="nav-belversion">BEL Version: ${userData.belVersion}</div>
+                <div class="nav-apiendpt ${ endpointName ? 'testing' : 'disp-none' } ">
+                    <a route-href="route: apilist">API Endpoint: ${endpointName}</a>
+                </div>
+        
+            </div> -->
         </div>
         <div class="collapse navbar-collapse" id="openBelNavbar">
-            <div class="row navbar-userRow">
-                <div class="nav-topsettings">
-                    <div class="nav-belversion">BEL Version: ${userData.belVersion}</div>
-                    <div class="nav-apiendpt ${ endpointName != '' ? 'testing' : 'disp-none' } "><a route-href="route: apilist">API Endpoint: ${endpointName}</a></div>
-                    <div if.bind='authEnabled' class="col-md-1 navbar-userDiv">
-                        <a class="pointer" click.delegate="navbarAction()">${action}</a>
-                    </div>
-                </div>
-                <ul class="nav navbar-nav navbar-right">
+            <!-- <div class="navbar-links"> -->
+                <ul class="nav navbar-nav">
                     <li repeat.for="row of router.navigation" class="navbar-title ${row.isActive ? 'active' : ''}">
                         <a data-toggle="collapse" data-target="#openBelNavbar.in" href.bind="row.href">${row.title}</a>
                     </li>
                 </ul>
-                <ul>
-                    <li class="loader navbar-loader" if.bind="router.isNavigating">
-                        <i class="fa fa-circle-o-notch fa-spin"></i>
-                    </li>
-                </ul>
+            <!-- </div> -->
+            <div class="navbar-user-box">
+                <div class="col-xs-12 col-md-12 navbar-ub-item ub-auth">
+                    <div if.bind='authEnabled' class="navbar-userdiv">
+                        <a class="pointer" click.delegate="navbarAction()">${action}</a>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-md-12 navbar-ub-item ub-version">
+                    <!-- <div class="nav-apisettings"> -->
+                        <div class="nav-belversion">BEL Version: ${userData.belVersion}</div>
+                    <!-- </div> -->
+                </div>
+                <div class="col-xs-12 navbar-ub-item ub-api">
+                    <!-- <div class="nav-apiendpt ${ endpointName ? 'testing' : 'disp-none' } "> -->
+                        <a route-href="route: apilist">
+                        API Endpoint: 
+                        <br>
+                        ${endpointName}</a>
+                    <!-- </div> -->
+                </div>
             </div>
+            <!-- <ul>
+                <li class="loader navbar-loader" if.bind="router.isNavigating">
+                    <i class="fa fa-circle-o-notch fa-spin"></i>
+                </li>
+            </ul> -->
         </div>
     </nav>
+
 </template>

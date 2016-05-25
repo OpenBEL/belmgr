@@ -12,6 +12,8 @@ export class NavBar {
   selectedOpenbelApiUrl;
   endpointName;
   belVersion;
+  navStick;
+  window;
 
   static inject=[OpenbelapiService, User, Authentication, EventAggregator];
   constructor(api, user, auth, ea) {
@@ -52,5 +54,6 @@ export class NavBar {
     this.selectedOpenbelApiUrl = JSON.parse(localStorage.getItem('selectedOpenbelApiUrl'));
     this.endpointName = this.selectedOpenbelApiUrl.name;
   }
+
 
 }
