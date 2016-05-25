@@ -83,7 +83,7 @@ export class OpenbelapiService {
   search(start = 0, size = 10, faceted = 'yes', filters) {
     /* eslint-disable camelcase */
     let max_values_per_facet = 10;
-    let getstring = `/nanopub?start=${start}&size=${size}&faceted=${faceted}&max_values_per_facet=${max_values_per_facet}`;
+    let getstring = `/nanopubs?start=${start}&size=${size}&faceted=${faceted}&max_values_per_facet=${max_values_per_facet}`;
     /* eslint-enable camelcase */
 
 
@@ -146,7 +146,7 @@ export class OpenbelapiService {
 
     let token = this.auth.getToken();
 
-    return this.apiClient.fetch(`/nanopub/${id}`)
+    return this.apiClient.fetch(`/nanopubs/${id}`)
       .then(response => response.json())
       .then(data => {
         let nanopub = data.nanopub;
@@ -167,7 +167,7 @@ export class OpenbelapiService {
 
     // Update Nanopub given an Id
     if (id) {
-      return this.apiClient.fetch(`/nanopub/${id}`, {
+      return this.apiClient.fetch(`/nanopubs/${id}`, {
         method: 'put',
         headers: {
           'Accept': 'application/hal+json',
@@ -181,7 +181,7 @@ export class OpenbelapiService {
     }
 
     // Create new Nanopub
-    return this.apiClient.fetch(`/nanopub`, {
+    return this.apiClient.fetch(`/nanopubs`, {
       method: 'post',
       headers: {
         'Accept': 'application/hal+json',
@@ -195,7 +195,7 @@ export class OpenbelapiService {
 
   deleteBelNanopub(nanopubId) {
 
-    return this.apiClient.fetch(`/nanopub/${nanopubId}`, {
+    return this.apiClient.fetch(`/nanopubs/${nanopubId}`, {
       method: 'delete',
       headers: {
         'Accept': 'application/hal+json',
