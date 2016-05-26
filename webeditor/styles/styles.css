@@ -117,7 +117,7 @@ textarea {
 }
 
 .deleter-btn {
-    color: #474350;
+    color: #353535;
     border-radius: 4px;
     border: none;
     height: 34px;
@@ -153,7 +153,7 @@ textarea {
 
 .deleter-close-btn:hover {
     box-shadow: inset 0px 34px 0px #FDC975 !important;
-    color: #474350;
+    color: #353535;
 }
 
 
@@ -283,7 +283,7 @@ textarea {
 
 .navbar-default .navbar-nav>.active>a:hover,
 .navbar-default .navbar-nav>.open>a:hover {
-    color: #474350 !important;
+    color: #353535 !important;
     box-shadow: inset 0px 50px 0px #eeeeee !important;
 }
 
@@ -354,7 +354,7 @@ textarea {
 
 
 .nav-belversion a {
-  color: #474350;
+  color: #353535;
 }
 
 
@@ -442,7 +442,7 @@ textarea {
 .ub-version,
 .ub-api {
     height: 18px;
-    border-bottom: 1px dotted #474350;
+    border-bottom: 1px dotted #353535;
     text-align: center;
     font-size: 12px;
 }
@@ -465,19 +465,19 @@ footer {
     position: relative;
     bottom: 0;
     height: 160px;
-    background: #474350;
+    background: #353535;
     width: 100%;
     margin-top: 0px;
     margin-bottom: -160px;
     color: #E4E5E7;
     z-index: 1000;
-    background: -webkit-linear-gradient(180deg, #5a5565, #474350);
+    background: -webkit-linear-gradient(180deg, #5a5565, #353535);
     /* For Safari 5.1 to 6.0 */
-    background: -o-linear-gradient(180deg, #5a5565, #474350);
+    background: -o-linear-gradient(180deg, #5a5565, #353535);
     /* For Opera 11.1 to 12.0 */
-    background: -moz-linear-gradient(180deg, #5a5565, #474350);
+    background: -moz-linear-gradient(180deg, #5a5565, #353535);
     /* For Firefox 3.6 to 15 */
-    background: linear-gradient(180deg, #5a5565, #474350);
+    background: linear-gradient(180deg, #5a5565, #353535);
     /* Standard syntax */
     background-image: url("../../media/footer_lodyas/footer_lodyas.png")
 }
@@ -514,7 +514,7 @@ footer {
 
 .form-control,
 .form-control i {
-    color: #474350;
+    color: #353535;
 }
 
 .form-control:not(.btn-bel):not(.btn-edit),
@@ -577,25 +577,25 @@ footer {
 /*FORM PLACEHOLDERS*/
 
 .form-control::-webkit-input-placeholder {
-    color: #474350;
+    color: #353535;
     text-transform: ;
     font-family: 'Open Sans', sans-serif;
 }
 
 FF 4-18 .form-control:-moz-placeholder {
-    color: #474350;
+    color: #353535;
     text-transform: ;
     font-family: 'Open Sans', sans-serif;
 }
 
 FF 19+ .form-control::-moz-placeholder {
-    color: #474350;
+    color: #353535;
     text-transform: ;
     font-family: 'Open Sans', sans-serif;
 }
 
 IE 10+ .form-control:-ms-input-placeholder {
-    color: #474350;
+    color: #353535;
     text-transform: ;
     font-family: 'Open Sans', sans-serif;
 }
@@ -709,12 +709,12 @@ section {
 .btn-bel,
 .btn-search {
     border-radius: 4px;
-    background-color: #474350;
+    background-color: #353535;
     color: #E4E5E7;
 }
 
 .pager li > .btn-bel {
-    color: #474350;
+    color: #353535;
     background-color: transparent;
     border-radius: 4px;
 }
@@ -731,7 +731,7 @@ form>.form-group>.input-group>input.search-searchForm {
 
 .btn-bel:hover,
 .btn-bel:focus {
-    background-color: #474350;
+    background-color: #353535;
     color: #0C91A5;
     box-shadow: 1px 1px 2px rgba(71, 67, 80, .4);
 }
@@ -787,7 +787,7 @@ form>.form-group>.input-group>input.search-searchForm {
 .btn-remove:hover,
 .btn-remove:focus {
     background-color: #B22D1E;
-    color: #474350;
+    color: #353535;
 }
 
 .btn-search {
@@ -808,7 +808,7 @@ form>.form-group>.input-group>input.search-searchForm {
     font-size: 14px;
     font-weight: 400;
     width: 110px;
-    color: #474350;
+    color: #353535;
     right: 0px;
 }
 
@@ -872,7 +872,7 @@ form>.form-group>.input-group>input.search-searchForm {
     background-color: rgba(228, 229, 231, .75);
     /*box-shadow: inset 0px 35px 0px #E4E5E7;*/
     border-bottom: 2px solid rgba(228, 229, 231, .9);
-    color: #474350;
+    color: #353535;
     font-size: 600;
     border-top-right-radius: 0;
     border-top-left-radius: 0;
@@ -947,7 +947,7 @@ form>.form-group>.input-group>input.search-searchForm {
 
 .form-control.btn-dlFiles i,
 .form-control.btn-dlFiles .ds-btnText {
-    color: #474350;
+    color: #353535;
 }
 
 .form-control.btn-dlFiles:hover {
@@ -972,7 +972,7 @@ form>.form-group>.input-group>input.search-searchForm {
     box-shadow: inset 0px 34px 0px #fdc975;
     -webkit-transition: box-shadow .1s;
     -webkit-transition-timing-function: ease-out;
-    color: #474350;
+    color: #353535;
 }
 
 .form-control.btn-profileUpdate,
@@ -998,7 +998,7 @@ form>.form-group>.input-group>input.search-searchForm {
     box-shadow: inset 0px 34px 0px #FDC975 !important;
     -webkit-transition: box-shadow .1s;
     -webkit-transition-timing-function: ease-out;
-    color: #474350;
+    color: #353535;
 }
 
 .form-control.btn-profileUpdate {
@@ -1180,7 +1180,7 @@ div.au-stagger {
 /* API LIST PAGE */
 
 .api-api-item {
-  border-bottom: 1px solid #474350;
+  border-bottom: 1px solid #353535;
   border-bottom: 1px solid rgba(71, 67, 80, .2);
   min-height: 30px;
   padding-top: 5px;
@@ -1423,7 +1423,7 @@ tr td div p.ds-dsDetail {
 }
 
 .pubmedContent {
-    background-color: rgba(90, 85, 101, 1);
+    background-color: rgba(53, 53, 53, 1);
     height: calc(100% - 300px);
     min-height: 550px;
     color: #e4e5e7;
@@ -1604,6 +1604,7 @@ p.text-warning {
 
 .edit-acTitle>a:hover {
     text-decoration: none;
+    border-bottom: none;
 }
 
 .edit-acTitle>a {
@@ -1623,6 +1624,7 @@ p.text-warning {
 .accordionTitle,
 .accordionArrow {
     padding: 0px;
+    border-bottom: none;
 }
 
 .accordionArrow {
@@ -1735,7 +1737,7 @@ p.text-warning {
 
 .ci-valListing {
     font-weight: 400;
-    color: #474350;
+    color: #353535;
 }
 
 
@@ -1804,7 +1806,7 @@ p.text-warning {
 }
 
 .et-termlisting.et-nsval {
-    color: #474350;
+    color: #353535;
 }
 
 .et-termlisting.et-nsid {
@@ -1933,7 +1935,7 @@ search-export {
 
 .fa-angle-right,
 .fa-angle-left {
-    color: #474350;
+    color: #353535;
 }
 
 .fa-angle-right:hover,
@@ -2194,7 +2196,7 @@ td.table-td {
 }
 
 td.table-td a {
-    color: #474350;
+    color: #353535;
     font-size: 14px;
     font-weight: 400;
 }
