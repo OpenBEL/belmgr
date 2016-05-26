@@ -31,9 +31,6 @@ h5 {
     font-family: 'Open Sans', 'Helvetica Neue' sans-serif;
     text-transform: uppercase;
 }
-.nocaps {
-    text-transform: none;
-}
 
 .conversational {
     text-transform: none;
@@ -409,6 +406,7 @@ textarea {
     padding: 0;
     margin-left: 1vw;
     top: -5px;
+    border-bottom: none !important;
 }
 
 .navbar-logo {
