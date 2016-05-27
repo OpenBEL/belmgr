@@ -1648,6 +1648,8 @@ p.text-warning {
     background-color: #E4E5E7;
     border-bottom-right-radius: 2px;
     border-bottom-left-radius: 2px;
+    position: absolute;
+    z-index: 1000;
 }
 
 .ci-aNameLi,
@@ -1763,6 +1765,9 @@ p.text-warning {
     border-bottom-right-radius: 2px;
     border-bottom-left-radius: 2px;
     height: 230px;
+    position: absolute;
+    z-index: 1000;
+    width: 85%;
 }
 
 .et-termLi,
