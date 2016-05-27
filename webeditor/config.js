@@ -38,7 +38,7 @@ System.config({
     "babel-runtime": "npm:babel-runtime@5.8.38",
     "belmgr-plugin": "npm:belmgr-plugin@0.2.2",
     "bootstrap": "github:twbs/bootstrap@3.3.6",
-    "clean-css": "npm:clean-css@3.4.12",
+    "clean-css": "npm:clean-css@3.4.13",
     "core-js": "npm:core-js@2.4.0",
     "fetch": "github:github/fetch@0.10.1",
     "font-awesome": "npm:font-awesome@4.6.3",
@@ -281,7 +281,7 @@ System.config({
       "isarray": "npm:isarray@1.0.0",
       "process": "github:jspm/nodelibs-process@0.1.2"
     },
-    "npm:clean-css@3.4.12": {
+    "npm:clean-css@3.4.13": {
       "buffer": "github:jspm/nodelibs-buffer@0.1.0",
       "commander": "npm:commander@2.8.1",
       "fs": "github:jspm/nodelibs-fs@0.1.2",
