@@ -1377,7 +1377,9 @@ td.ds-td:active a:not(.ds-delete) {
     /*font-weight: 500;*/
     text-decoration: none;
 }
-
+.ds-delete:hover {
+  border-bottom: none;
+}
 .ds-delete i {
     margin-top: 45px;
 }

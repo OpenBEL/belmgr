@@ -22,7 +22,7 @@
                         <p>Filetypes: BEL Script and XBEL</p>
                 </div>
                 <div class="ds-uploaddiv col-xs-5 col-sm-12 col-md-4">
-                    <button type="button" class="form-control btn-upload" name="submit" mousedown.trigger="upload()">Upload
+                    <button type="button" class="form-control btn-upload ${uploadFn} ${uploadFn ? ' ' : 'noShow'}" name="submit" mousedown.trigger="upload()">Upload
                         <span show.bind="loading">
                             <i class="fa fa-refresh fa-spin"></i>
                         </span>
