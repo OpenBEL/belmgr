@@ -40,6 +40,10 @@
         <div class="container">
             <div class="row">
                 <h1 class="col-xs-12 conversational">About the Project</h1>
+
+                <div class="col-xs-12">
+                    <p class="margintop10">The application is built using Aurelia as a SPA front-end (Single Page Application) with a REST API backend supported by the OpenBEL Platform (https://github.com/OpenBEL/openbel-server)</p>
+                </div>
                 <div class="col-xs-6">
                     <h4 class="">built by:</h4>
                     <ul class="li-nobullets" repeat.for="builder of builders">
@@ -51,7 +55,7 @@
                     </ul>
                 </div>
                 <div class="col-xs-6">
-                    <h4 class="margintop10">with support from:</h4>
+                    <h4 class="margintop10">and:</h4>
                     <ul class="li-nobullets" repeat.for="consultant of consultants">
                         <li>
                             <gravatar id="some-gravatar-element" class="avatar-frame" credential.bind="consultant.email" size="50" default-image="wavatar" is-secure="true" rating="g">
@@ -60,9 +64,8 @@
                         </li>
                     </ul>
                 </div>
-                <div class="col-xs-12">
-                    <h4 class="margintop30 conversational"><em>...and a special thanks to our users and their pointed comments. </em><i class="fa fa-smile-o"></i></h4>
-                    <p class="margintop10">The application is built using Aurelia as a SPA front-end (Single Page Application) with a REST API backend supported by the OpenBEL Platform (https://github.com/OpenBEL/openbel-server)</p>
+                <div class="col-xs-offset-1 col-xs-10">
+                    <h4 class="margintop30 conversational"><em>...and a special thanks to our users and their feedback. </em><i class="fa fa-smile-o"></i></h4>
                 </div>
             </div>
         </div>
