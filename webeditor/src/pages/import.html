@@ -16,9 +16,10 @@
                 <div class="ds-importdiv col-xs-7 col-sm-12 col-md-8">
                         <input type="file" name="file" id="file" class="inputfile" files.bind="belFiles" change.trigger="belFilesChanged()" >
                         <!-- alt. import labels/btns -->
-                        <label class="form-control btn-import ${uploadFn} ${uploadFn ? 'noShow' : ' '}" for="file"><i class="fa fa-upload"></i> Upload Files</label>
+                        <label class="form-control btn-import ${uploadFn} ${uploadFn ? 'noShow' : ' '}" for="file"><i class="fa fa-upload"></i> Select Files</label>
                         <label class="form-control btn-import ${uploadFn} ${uploadFn ? ' ' : 'noShow'}" for="file"><i class="fa fa-upload"></i> ${uploadFn}</label>
                         <!-- end alt. import labels/btns -->
+                        <p>Filetypes: BEL Script and XBEL</p>
                 </div>
                 <div class="ds-uploaddiv col-xs-5 col-sm-12 col-md-4">
                     <button type="button" class="form-control btn-upload" name="submit" mousedown.trigger="upload()">Upload
@@ -30,6 +31,7 @@
                 </div>
 
             </div>
+
         </div>
         <table class="ds-table col-xs-12">
             <tbody>
