@@ -73,7 +73,7 @@ export class SearchExport {
     }
   }
 
-  searchChanged(newvalue) {
+  searchUrlChanged(newvalue) {
     logger.debug('1 searchUrl: ', this.searchUrl);
     this.exportUrl = JSON.parse(JSON.stringify(this.searchUrl));
 
