@@ -92,3 +92,12 @@ Configuration - this goes into src/config/config.json when building or /config/c
 [OpenBEL API]:      https://github.com/OpenBEL/openbel-api
 [OpenBEL API Docs]: http://next.belframework.org/
 [Demo OpenBEL API]: http://next.belframework.org/api
+
+### Local development
+
+Including the BELMgr plugin for local development of the BEL Mgr Webeditor requires some unpleasant manipulations.  Whenever one updates the BELMgr plugin using jspm install or jspm update, you have to follow the instructions below to get the plugin build files (e.g. Babel transpiled from ES2016 to ES5) linked to the right place in the webeditor jspm_packages directory.  Someone should probably write a script to do this in a more automated fashion.  
+
+Remove the ${BELHOME}/webeditor/jspm_packages/npm/belmgr-plugin\@{Version} directory
+
+    rm -r belmgr-plugin@<version>  # do not remove the belmgr-plugin@<version>.js file!!!!
+    ln -s ../../../plugin/dist/system belmgr-plugin@<version>
