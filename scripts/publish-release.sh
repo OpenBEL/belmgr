@@ -54,13 +54,13 @@ github-release release \
     --repo belmgr \
     --tag $BELMGR_VERSION \
     --name "$BELMGR_NAME" \
-    --description "$desc"
+    --description "$desc" || _exit 1
 
 github-release upload \
     --user OpenBEL \
     --repo belmgr \
     --tag $BELMGR_VERSION \
     --name "$BELMGR_NAME" \
-    --file "$release_archive"
+    --file "$release_archive" || _exit 1
 
 _exit 0
