@@ -60,7 +60,7 @@ github-release upload \
     --user OpenBEL \
     --repo belmgr \
     --tag $BELMGR_VERSION \
-    --name "$BELMGR_NAME" \
+    --name "$(basename $release_archive)" \
     --file "$release_archive" || _exit 1
 
 _exit 0
