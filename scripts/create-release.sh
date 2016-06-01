@@ -1,5 +1,4 @@
 #!/bin/bash
-set -x
 # Normal script execution starts here.
 dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 cd "$dir" || exit 1
