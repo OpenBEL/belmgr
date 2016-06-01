@@ -10,6 +10,9 @@ assert-source "$CUSTOM_ENV_SH" || return 1
 default DIR             "$DIR"
 default CUSTOM_ENV_SH   "$DIR/env.sh.custom"
 
+### BEL MANAGER ENV VARS ###
+default BELMGR_VERSION  "1.0"
+
 ### THE GO SHELL ###
 default GOSH_SCRIPTS    "$DIR"/gosh-scripts
 
