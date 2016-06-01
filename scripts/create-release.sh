@@ -10,7 +10,7 @@ vrun-or-die "$(pwd)/build.sh"
 cd .. || exit 1
 output_dir="belmgr-$BELMGR_VERSION"
 if [ -n "${bamboo_buildNumber}" ]; then
-    output_dir+="${bamboo_buildNumber}"
+    output_dir+="-b${bamboo_buildNumber}"
 fi
 echo "BEL Manager version: $output_dir"
 output_archive="$output_dir.tar.bz2"
