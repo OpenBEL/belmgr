@@ -47,6 +47,7 @@ for tag in "${BELMGR_VERSION}" latest; do
 done
 git push "$temp_remote_repo" "$cur_branch" --tags || _exit 1
 
+export RELEASE_TAG_NAME="$BELMGR_VERSION"
 vrun-or-die "$(pwd)/create-github-release"
 vrun-or-die "$(pwd)/upload-github-release-asset"
 
