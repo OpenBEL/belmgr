@@ -2,7 +2,7 @@
 # Normal script execution starts here.
 dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 cd "$dir" || exit 1
-source ".gosh.sh" || exit 1
+source "env.sh" || exit 1
 
 assert-env-or-die GITHUB_TOKEN || exit 1
 assert-env-or-die BELMGR_VERSION || exit 1
