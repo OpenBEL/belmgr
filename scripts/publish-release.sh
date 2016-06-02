@@ -48,19 +48,4 @@ for tag in "${BELMGR_VERSION}" latest; do
 done
 git push "$temp_remote_repo" "$cur_branch" --tags || _exit 1
 
-desc="BEL Manager version $BELMGR_VERSION"
-github-release release \
-    --user OpenBEL \
-    --repo belmgr \
-    --tag $BELMGR_VERSION \
-    --name "$BELMGR_NAME" \
-    --description "$desc" || _exit 1
-
-github-release upload \
-    --user OpenBEL \
-    --repo belmgr \
-    --tag $BELMGR_VERSION \
-    --name "$(basename $release_archive)" \
-    --file "$release_archive" || _exit 1
-
 _exit 0
