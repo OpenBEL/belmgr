@@ -7,11 +7,11 @@ source "env.sh" || exit 1
 assert-env-or-die GITHUB_TOKEN || exit 1
 assert-env-or-die BELMGR_VERSION || exit 1
 
-release_archive="../belmgr-$BELMGR_VERSION.tar.bz2"
-if [ ! -r "$release_archive" ]; then
-    echo "$release_archive: No such file"
-    exit 1
+release_archive="../belmgr-$BELMGR_VERSION"
+if [ -n "${bamboo_buildNumber}" ]; then
+    release_archive+="-b${bamboo_buildNumber}"
 fi
+release_archive+=".tar.bz2"
 
 cur_branch="$(git rev-parse --abbrev-ref HEAD)"
 temp_remote_repo=$(basename "$0")
