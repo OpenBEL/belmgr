@@ -1,0 +1,118 @@
+#!/usr/bin/env bash
+# Copyright (c) 2016 Nick Bargnesi
+#
+# Permission is hereby granted, free of charge, to any person
+# obtaining a copy of this software and associated documentation
+# files (the "Software"), to deal in the Software without
+# restriction, including without limitation the rights to use,
+# copy, modify, merge, publish, distribute, sublicense, and/or sell
+# copies of the Software, and to permit persons to whom the
+# Software is furnished to do so, subject to the following
+# conditions:
+#
+# The above copyright notice and this permission notice shall be
+# included in all copies or substantial portions of the Software.
+#
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+# EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
+# OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+# NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
+# HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+# WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+# FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
+# OTHER DEALINGS IN THE SOFTWARE.
+#
+# This script automates uploading release assets on GitHub using the v3 API.
+# It requires bash version 4 or higher.
+#
+# Required environment variables:
+#   GITHUB_USER: GitHub user used for authenticating
+#   GITHUB_TOKEN: Personal access token for authenticating
+#   GITHUB_OWNER: GitHub user/organization
+#   GITHUB_REPOSITORY: GitHub repository
+#   RELEASE_TAG_NAME: The name of the tag
+#   RELEASE_ASSET: The file to upload
+#
+# Optional environment variables:
+#   RELEASE_ASSET_DESCRIPTION: Short description of the asset
+#   HTTPIE_OPTIONS: Options passed to HTTPie
+#
+# Required commands:
+#   which https://carlowood.github.io/which
+#   http https://github.com/jkbrzt/httpie
+#   jq https://stedolan.github.io/jq/
+#   sed https://www.gnu.org/software/sed/
+#   basename http://www.gnu.org/software/coreutils/coreutils.html
+#
+
+# Sanity check bash version
+if ((BASH_VERSINFO[0] < 4)); then
+    echo "Unsupported bash version: ${BASH_VERSINFO[@]}"
+    exit 1
+fi
+
+# Assert the http command is available or die trying to execute it
+_=$(which "http" >/dev/null 2>&1) || http || exit 1
+
+function _varunset {
+    local var="$1"
+    if [[ ! ${!var} && ${!var-unset} ]]; then
+        return 0
+    fi
+    return 1
+}
+
+for var in GITHUB_USER \
+           GITHUB_TOKEN \
+           GITHUB_OWNER \
+           GITHUB_REPOSITORY \
+           RELEASE_TAG_NAME \
+           RELEASE_ASSET \
+           ; do
+    if _varunset "$var"; then
+        echo "$var is not set"
+        exit 1
+    fi
+done
+
+asset_name="$(basename "$RELEASE_ASSET")" || exit 1
+
+scheme="https"
+host="api.github.com"
+path="/repos/$GITHUB_OWNER/$GITHUB_REPOSITORY/releases/tags/$RELEASE_TAG_NAME"
+get_url="$scheme://$host:$path"
+auth="$GITHUB_USER:$GITHUB_TOKEN"
+
+if [ -z "$HTTPIE_OPTIONS" ]; then
+    HTTPIE_OPTIONS="--pretty=format"
+fi
+
+get_response="$(http \
+              --auth "$auth" \
+              GET \
+              "$get_url" \
+              "$HTTPIE_OPTIONS")"
+
+upload_url="$(echo $get_response \
+              | jq '.upload_url' \
+              | sed 's/{.*}//g' \
+              | sed 's/"//g')"
+
+if [ "$upload_url" == "null" ]; then
+    echo "$get_response" >&2
+    exit 1
+fi
+
+
+query_params="?name=\"$asset_name\""
+if [ -n "$RELEASE_ASSET_DESCRIPTION" ]; then
+    query_params+="&label=$RELEASE_ASSET_DESCRIPTION"
+fi
+upload_url="$upload_url$query_params"
+echo $upload_url
+
+http \
+    --auth "$auth" \
+    "$upload_url" \
+    "$HTTPIE_OPTIONS" \
+    < "$RELEASE_ASSET"
