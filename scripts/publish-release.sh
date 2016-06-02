@@ -6,7 +6,6 @@ source "env.sh" || exit 1
 
 assert-env-or-die GITHUB_TOKEN || exit 1
 assert-env-or-die BELMGR_VERSION || exit 1
-assert-env-or-die BELMGR_NAME || exit 1
 
 release_archive="../belmgr-$BELMGR_VERSION.tar.bz2"
 if [ ! -r "$release_archive" ]; then
