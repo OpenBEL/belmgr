@@ -75,11 +75,13 @@ export class SearchExport {
 
   searchUrlChanged(newvalue) {
     logger.debug('1 searchUrl: ', this.searchUrl);
-    this.exportUrl = JSON.parse(JSON.stringify(this.searchUrl));
+    if (!!this.searchUrl) {
+      this.exportUrl = JSON.parse(JSON.stringify(this.searchUrl));
+      this.updateExportUrl();
+      logger.debug('1 ExportUrl: ', this.exportUrl);
+    }
+    logger.debug('Missing searchUrl')
 
-    this.updateExportUrl();
-
-    logger.debug('1 ExportUrl: ', this.exportUrl);
   }
 
   setDataType(type) {

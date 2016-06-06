@@ -69,10 +69,16 @@ export class Search {
 
         // Pagination setup
         this.pagerPrevious = this.pagerNext = '';
-        if (this.search_metadata.current_page === 1) {this.pagerPrevious = 'disabled';}
-        if (this.search_metadata.current_page === this.search_metadata.total_pages) {this.pagerNext = 'disabled';}
-        this.searchStart = (Number(this.search_metadata.current_page) - 1) * Number(this.search_metadata.current_page_size) + 1;
-        this.searchResultsRange = `${this.searchStart} - ${Number(this.searchStart) + Number(this.search_metadata.current_page_size) - 1}`;
+        if (!!this.search_metadata) {
+          if (this.search_metadata.current_page === 1) {this.pagerPrevious = 'disabled';}
+          if (this.search_metadata.current_page === this.search_metadata.total_pages) {this.pagerNext = 'disabled';}
+          this.searchStart = (Number(this.search_metadata.current_page) - 1) * Number(this.search_metadata.current_page_size) + 1;
+          this.searchResultsRange = `${this.searchStart} - ${Number(this.searchStart) + Number(this.search_metadata.current_page_size) - 1}`;
+        }
+        else {
+          this.searching = false;
+          return data = {};
+        }
 
         logger.debug("Search results: ", this.nanopubs);
         logger.debug("Search facets: ", this.facetSets);
