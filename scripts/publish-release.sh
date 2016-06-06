@@ -2,17 +2,16 @@
 # Normal script execution starts here.
 dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 cd "$dir" || exit 1
-source ".gosh.sh" || exit 1
+source "env.sh" || exit 1
 
 assert-env-or-die GITHUB_TOKEN || exit 1
 assert-env-or-die BELMGR_VERSION || exit 1
-assert-env-or-die BELMGR_NAME || exit 1
 
-release_archive="../belmgr-$BELMGR_VERSION.tar.bz2"
-if [ ! -r "$release_archive" ]; then
-    echo "$release_archive: No such file"
-    exit 1
+release_archive="../belmgr-$BELMGR_VERSION"
+if [ -n "${bamboo_buildNumber}" ]; then
+    release_archive+="-b${bamboo_buildNumber}"
 fi
+release_archive+=".tar.bz2"
 
 cur_branch="$(git rev-parse --abbrev-ref HEAD)"
 temp_remote_repo=$(basename "$0")
@@ -48,19 +47,8 @@ for tag in "${BELMGR_VERSION}" latest; do
 done
 git push "$temp_remote_repo" "$cur_branch" --tags || _exit 1
 
-desc="BEL Manager version $BELMGR_VERSION"
-github-release release \
-    --user OpenBEL \
-    --repo belmgr \
-    --tag $BELMGR_VERSION \
-    --name "$BELMGR_NAME" \
-    --description "$desc" || _exit 1
-
-github-release upload \
-    --user OpenBEL \
-    --repo belmgr \
-    --tag $BELMGR_VERSION \
-    --name "$(basename $release_archive)" \
-    --file "$release_archive" || _exit 1
+export RELEASE_TAG_NAME="$BELMGR_VERSION"
+vrun-or-die "$(pwd)/create-github-release"
+vrun-or-die "$(pwd)/upload-github-release-asset"
 
 _exit 0

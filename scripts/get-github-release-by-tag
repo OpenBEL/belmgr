@@ -1,0 +1,86 @@
+#!/usr/bin/env bash
+# Copyright (c) 2016 Nick Bargnesi
+#
+# Permission is hereby granted, free of charge, to any person
+# obtaining a copy of this software and associated documentation
+# files (the "Software"), to deal in the Software without
+# restriction, including without limitation the rights to use,
+# copy, modify, merge, publish, distribute, sublicense, and/or sell
+# copies of the Software, and to permit persons to whom the
+# Software is furnished to do so, subject to the following
+# conditions:
+#
+# The above copyright notice and this permission notice shall be
+# included in all copies or substantial portions of the Software.
+#
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+# EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
+# OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+# NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
+# HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+# WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+# FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
+# OTHER DEALINGS IN THE SOFTWARE.
+#
+# This script automates retrieving a release by tag from the GitHub v3 API.
+# It requires bash version 4 or higher.
+#
+# Required environment variables:
+#   GITHUB_USER: GitHub user used for authenticating
+#   GITHUB_TOKEN: Personal access token for authenticating
+#   GITHUB_OWNER: GitHub user/organization
+#   GITHUB_REPOSITORY: GitHub repository
+#   RELEASE_TAG_NAME: The name of the tag
+#
+# Optional environment variables:
+#   HTTPIE_OPTIONS: Options passed to HTTPie
+#
+# Required commands:
+#   which https://carlowood.github.io/which
+#   http https://github.com/jkbrzt/httpie
+#
+
+# Sanity check bash version
+if ((BASH_VERSINFO[0] < 4)); then
+    echo "Unsupported bash version: ${BASH_VERSINFO[@]}"
+    exit 1
+fi
+
+# Assert the http command is available or die trying to execute it
+_=$(which "http" >/dev/null 2>&1) || http || exit 1
+
+function _varunset {
+    local var="$1"
+    if [[ ! ${!var} && ${!var-unset} ]]; then
+        return 0
+    fi
+    return 1
+}
+
+for var in GITHUB_USER \
+           GITHUB_TOKEN \
+           GITHUB_OWNER \
+           GITHUB_REPOSITORY \
+           RELEASE_TAG_NAME \
+           ; do
+    if _varunset "$var"; then
+        echo "$var is not set"
+        exit 1
+    fi
+done
+
+scheme="https"
+host="api.github.com"
+path="/repos/$GITHUB_OWNER/$GITHUB_REPOSITORY/releases/tags/$RELEASE_TAG_NAME"
+url="$scheme://$host:$path"
+auth="$GITHUB_USER:$GITHUB_TOKEN"
+
+if [ -z "$HTTPIE_OPTIONS" ]; then
+    HTTPIE_OPTIONS="--pretty=format"
+fi
+
+http \
+    --auth "$auth" \
+    GET \
+    "$url" \
+    "$HTTPIE_OPTIONS"

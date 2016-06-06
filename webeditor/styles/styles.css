@@ -64,7 +64,7 @@ textarea {
 }
 
 .search-html,
-.about-html,
+.api-html,
 .edit-html,
 .welcome-html,
 .ds-html,
@@ -1185,6 +1185,13 @@ div.au-stagger {
   min-height: 30px;
   padding-top: 5px;
 }
+.api-api-item > .table-delete {
+  margin-top: 0;
+}
+
+.api-api-listitem {
+  margin-top: 3px;
+}
 
 .api-api-item:nth-child(odd) {
   background-color: rgba(71, 67, 80, .05);
@@ -1696,6 +1703,7 @@ p.text-warning {
 .ci-deleteBtn:hover {
     text-shadow: 0px 0px 0px #B22D1E;
     color: #B22D1E;
+    border-bottom: none;
 }
 
 .ci-deleteBtn i {
@@ -2056,6 +2064,7 @@ input[type=radio]:not(old) + label > span {
     border: 1px solid #fdc975;
     border-radius: 2px;
     background: #FAFAFC;
+    float: left;
 }
 
 input[type=checkbox]:not(old):hover + label > span,
@@ -2070,7 +2079,9 @@ input[type=radio].selected:not(old) + label > span {
     background: #FAFAFC;
 }
 
+input[type=radio]:not(old):checked + label > span:before,
 input[type=checkbox]:not(old):checked + label > span:before,
+input[type=radio].selected:not(old) + label > span:before,
 input[type=checkbox].selected:not(old) + label > span:before {
     content: '✓';
     display: block;
@@ -2244,6 +2255,9 @@ tr td div p.table-expContext {
 
 .table-delete {
     float: right;
+}
+.table-delete:hover {
+    border-bottom: none;
 }
 
 @media (max-width: 991px) {
