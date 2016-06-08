@@ -479,7 +479,7 @@ footer {
     /* For Firefox 3.6 to 15 */
     background: linear-gradient(180deg, #5a5565, #353535);
     /* Standard syntax */
-    background-image: url("../../media/footer_lodyas/footer_lodyas.png")
+    background-image: url("../media/footer_lodyas/footer_lodyas.png")
 }
 
 .footer-body {
