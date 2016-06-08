@@ -11,5 +11,6 @@ AppConfig.js
 test/e2e/dist
 archive
 webeditor/export
+webeditor/src/config/config.json
 sample-plainhtml/aurelia-cdn
 sample-plainhtml/plugin-cdn

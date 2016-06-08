@@ -60,10 +60,15 @@ Configuration - this goes into src/config/config.json when building or /config/c
 
 ```javascript
 {
-    "openBELApiUrl": "https://thor.selventa.com/api",
     "pubmedBaseUrl": "http://www.ebi.ac.uk/europepmc/webservices/rest/search",
-    "loginUrl": "https://openbel.auth0.com/login?client=K4oAPUaROjbWWTCoAhf0nKYfTGsZWbHE&protocol=oauth2&response_type=token&scope=openid%20profile"
+    "loginUrl": "https://openbel.auth0.com/login?client=K4oAPUaROjbWWTCoAhf0nKYfTGsZWbHE&protocol=oauth2&response_type=token&scope=openid%20profile",
+    "openbelApiUrls": [
+      {"api": "http://bel2.demo.openbel.org/api", "name": "Demo BEL 2.0 API"},
+      {"api": "http://bel1.demo.openbel.org/api", "name": "Demo BEL 1.0 API"},
+      {"api": "http://localhost:9000", "name": "Local Dev OpenBEL API"}
+    ]
 }
+
 
 ```
 
@@ -95,7 +100,7 @@ Configuration - this goes into src/config/config.json when building or /config/c
 
 ### Local development
 
-Including the BELMgr plugin for local development of the BEL Mgr Webeditor requires some unpleasant manipulations.  Whenever one updates the BELMgr plugin using jspm install or jspm update, you have to follow the instructions below to get the plugin build files (e.g. Babel transpiled from ES2016 to ES5) linked to the right place in the webeditor jspm_packages directory.  Someone should probably write a script to do this in a more automated fashion.  
+Including the BELMgr plugin for local development of the BEL Mgr Webeditor requires some unpleasant manipulations.  Whenever one updates the BELMgr plugin using jspm install or jspm update, you have to follow the instructions below to get the plugin build files (e.g. Babel transpiled from ES2016 to ES5) linked to the right place in the webeditor jspm_packages directory.  Someone should probably write a script to do this in a more automated fashion.
 
 Remove the ${BELHOME}/webeditor/jspm_packages/npm/belmgr-plugin\@{Version} directory
 
