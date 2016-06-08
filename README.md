@@ -60,9 +60,13 @@ Configuration - this goes into src/config/config.json when building or /config/c
 
 ```javascript
 {
-    "openBELApiUrl": "https://thor.selventa.com/api",
     "pubmedBaseUrl": "http://www.ebi.ac.uk/europepmc/webservices/rest/search",
-    "loginUrl": "https://openbel.auth0.com/login?client=K4oAPUaROjbWWTCoAhf0nKYfTGsZWbHE&protocol=oauth2&response_type=token&scope=openid%20profile"
+    "loginUrl": "https://openbel.auth0.com/login?client=K4oAPUaROjbWWTCoAhf0nKYfTGsZWbHE&protocol=oauth2&response_type=token&scope=openid%20profile",
+    "openbelApiUrls": [
+      {"api": "http://localhost:9000", "name": "Local Dev OpenBEL API"},
+      {"api": "http://bel1.demo.openbel.org/api", "name": "Demo BEL 1.0 API"},
+      {"api": "http://bel2.demo.openbel.org/api", "name": "Demo BEL 2.0 API"}
+    ]
 }
 
 ```
