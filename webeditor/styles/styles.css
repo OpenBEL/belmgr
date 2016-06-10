@@ -2053,6 +2053,7 @@ input[type=radio]:not(old) + label {
     display: inline;
     margin-left: -25px;
     line-height: 15px;
+    float: left;
 }
 
 input[type=checkbox]:not(old) + label > span,
