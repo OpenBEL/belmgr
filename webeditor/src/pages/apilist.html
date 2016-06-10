@@ -22,7 +22,7 @@
         </div>
         <div class="row api-api-item" repeat.for="apiobj of userOpenbelApiUrls">
             <div class="col-xs-10">
-                <input id="user-${apiobj.api}" name="field" class="col-xs-1" type="radio" checked.trigger="setSelected(apiobj.api, apiobj.name)" aria-hidden="true">
+                <input id="user-${apiobj.api}" name="field" class="col-xs-1" type="radio" checked.bind="setSelected(apiobj.api, apiobj.name)" aria-hidden="true">
                 <label for="user-${apiobj.api}" class="col-xs-12 ">
                     <span><span></span></span>
                     <div class="col-xs-5 api-api-listitem">${apiobj.api}</div>
@@ -38,7 +38,7 @@
         </div>
         <div class="row api-api-item" repeat.for="apiobj of presetOpenbelApiUrls">
             <div class="col-xs-12">
-                <input id="present-${apiobj.api}" name="field" class="col-xs-1" type="radio" checked.trigger="setSelected(apiobj.api, apiobj.name)" aria-hidden="true">
+                <input id="present-${apiobj.api}" name="field" class="col-xs-1" type="radio" checked.bind="setSelected(apiobj.api, apiobj.name)" aria-hidden="true">
                 <label for="present-${apiobj.api}" class="col-xs-10">
                     <span><span></span></span>
                     <div class="col-xs-7 api-api-listitem">${apiobj.api}</div>
