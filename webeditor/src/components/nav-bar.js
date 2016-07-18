@@ -36,8 +36,16 @@ export class NavBar {
     this.belVersion = this.api.getBelVersion().then(version => {return version});
   }
 
+  /* called when the view is attached to the dom */
   attached() {
-    this.ea.subscribe('selectedOpenbelApiUrl', obj => {this.endpointName = obj.name;});
+    var cb = obj => {
+      this.endpointName = obj.name;
+    };
+    this.subscription = this.ea.subscribe('selectedOpenbelApiUrl', cb);
+  }
+
+  detached() {
+    this.subscription.dispose();
   }
 
   navbarAction() {
