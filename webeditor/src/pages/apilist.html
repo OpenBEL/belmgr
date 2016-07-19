@@ -8,38 +8,52 @@
         </div>
         <div class="row">
             <div class="col-xs-12 col-md-5">
-                <input type="text" value.bind="addUrl" class="form-control fc-normal" placeholder="Enter OpenBEL API Url" />
+                <input type="text" value.bind="userEnteredURL" class="form-control fc-normal" placeholder="Enter OpenBEL API Url" />
             </div>
             <div class="col-xs-12 col-md-5">
-                <input type="text" value.bind="addUrlName" class="form-control fc-normal" placeholder="Enter OpenBEL API Endpoint name" />
+                <input type="text" value.bind="userEnteredAPIName" class="form-control fc-normal" placeholder="Enter OpenBEL API Endpoint name" />
             </div>
             <div class="col-xs-4 col-xs-offset-8 col-sm-3 col-sm-offset-9 col-md-2 col-md-offset-0">
-                <button type="button" class="btn btn-edit btn-progress form-control" click.trigger="addUserOpenbelApiUrl()">Add</button>
+                <button type="button" class="btn btn-edit btn-progress form-control" click.trigger="addUserAPI()">Add</button>
             </div>
         </div>
-        <div class="row margintop20" if.bind="userOpenbelApiUrls">
+        <div class="row margintop20" if.bind="userAPIs">
             <h3>User entered OpenBEL API endpoints</h3>
         </div>
-        <div class="row api-api-item" repeat.for="apiobj of userOpenbelApiUrls">
+        <div class="row api-api-item" repeat.for="apiobj of userAPIs">
             <div class="col-xs-10">
-                <input id="user-${apiobj.api}" name="field" class="col-xs-1" type="radio" checked.bind="setSelected(apiobj.api, apiobj.name)" aria-hidden="true">
+                <input id="user-${apiobj.api}"
+                       name="field"
+                       class="col-xs-1"
+                       type="radio"
+                       model.bind="apiobj"
+                       checked.bind="$parent.selectedAPI"
+                       change.delegate="changedAPI(apiobj)"
+                       aria-hidden="true">
                 <label for="user-${apiobj.api}" class="col-xs-12 ">
                     <span><span></span></span>
                     <div class="col-xs-5 api-api-listitem">${apiobj.api}</div>
                     <div class="col-xs-5 api-api-listitem"> ${apiobj.name}</div>
                 </label>
             </div>
-            <a class="col-xs-2 table-delete" href="#" click.trigger="removeUserOpenbelApiUrl($index)">
+            <a class="col-xs-2 table-delete" href="#" click.trigger="removeUserAPI($index)">
                 <i class="fa fa-trash-o fa-lg"></i>
             </a>
         </div>
         <div class="row margintop20">
             <h3>BELMgr default OpenBEL API endpoints</h3>
         </div>
-        <div class="row api-api-item" repeat.for="apiobj of presetOpenbelApiUrls">
+        <div class="row api-api-item" repeat.for="apiobj of presetAPIs">
             <div class="col-xs-12">
-                <input id="present-${apiobj.api}" name="field" class="col-xs-1" type="radio" checked.bind="setSelected(apiobj.api, apiobj.name)" aria-hidden="true">
-                <label for="present-${apiobj.api}" class="col-xs-10">
+                <input id="preset-${apiobj.api}"
+                       name="field"
+                       class="col-xs-1"
+                       type="radio"
+                       model.bind="apiobj"
+                       checked.bind="$parent.selectedAPI"
+                       change.delegate="changedAPI(apiobj)"
+                       aria-hidden="true">
+                <label for="preset-${apiobj.api}" class="col-xs-10">
                     <span><span></span></span>
                     <div class="col-xs-7 api-api-listitem">${apiobj.api}</div>
                     <div class="col-xs-4 api-api-listitem"> ${apiobj.name}</div>

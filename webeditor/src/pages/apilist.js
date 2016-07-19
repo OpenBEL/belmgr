@@ -1,92 +1,86 @@
 import {Configure} from 'aurelia-configuration';
-import {LogManager} from 'aurelia-framework';
+import {LogManager, BindingEngine} from 'aurelia-framework';
 import {EventAggregator} from 'aurelia-event-aggregator';
 
 let logger = LogManager.getLogger('apilist');
 
 export class ApiList{
+  presetAPIs;
+  userAPIs;
+  selectedAPI;
 
-  selectedOpenbelApiUrl
-  userOpenbelApiUrls;
-  addUrl;
-  addUrlName;
-  selectedUrl;
-  selectedUrlName;
+  userEnteredURL;
+  userEnteredAPIName;
 
   static inject = [Configure, EventAggregator];
   constructor(config, ea) {
     this.config = config;
     this.ea = ea;
 
-    this.getApiUrls();
-  }
-
-  storeUserApiUrls() {
-    localStorage.setItem('userOpenbelApiUrls', JSON.stringify(this.userOpenbelApiUrls));
-  }
-
-  storeSelectedApiUrl() {
-    localStorage.setItem('selectedOpenbelApiUrl', JSON.stringify(this.selectedOpenbelApiUrl));
-  }
-
-  addUserOpenbelApiUrl() {
-    this.userOpenbelApiUrls.push({'api': this.addUrl, 'name': this.addUrlName});
-    this.storeUserApiUrls();
-    this.addUrl = '';
-    this.addUrlName = '';
-  }
-
-  getApiUrls() {
-    this.presetOpenbelApiUrls = this.config.get('openbelApiUrls');
-    this.selectedOpenbelApiUrl = JSON.parse(localStorage.getItem('selectedOpenbelApiUrl'));
-    this.userOpenbelApiUrls = JSON.parse(localStorage.getItem('userOpenbelApiUrls')) || [];
-
-    if (! this.selectedOpenbelApiUrl) {
-      this.selectedOpenbelApiUrl = this.presetOpenbelApiUrls[0];
-    }
-    this.updateSelectedFlag(this.selectedOpenbelApiUrl);
-  }
-
-  removeUserOpenbelApiUrl(index) {
-    this.userOpenbelApiUrls.splice(index, 1);
-    this.storeUserApiUrls();
-  }
-
-  setSelected(selectedUrl, selectedUrlName) {
-    this.selectedOpenbelApiUrl = {'api': selectedUrl, 'name': selectedUrlName, 'selected': true};
-    this.updateSelectedFlag(this.selectedOpenbelApiUrl);
-    this.storeUserApiUrls();
-    this.storeSelectedApiUrl();
-    this.ea.publish('selectedOpenbelApiUrl', this.selectedOpenbelApiUrl);
-  }
-
-  updateSelectedFlag(selectedOpenbelApiUrl) {
-    let flag = false;  // Found selected api index in user or preset endpoints
-
-    this.userOpenbelApiUrls = this.userOpenbelApiUrls.map(function(e) {
-      if (e) {
-        e.selected = false;
-        if (selectedOpenbelApiUrl.api == e.api) {e.selected = true; flag = true;}
-        return e;
+    this.presetAPIs = this.config.get('openbelApiUrls');
+    this.userAPIs = [];
+    var storedUserAPIs = localStorage.getItem('userAPIs');
+    if (storedUserAPIs) {
+      try {
+          this.userAPIs = JSON.parse(storedUserAPIs);
+      } catch (e) {
+          // couldn't parse as JSON, remove it
+          localStorage.removeItem('userAPIs');
       }
-    });
+    }
 
-    if (!flag) {
-      this.presetOpenbelApiUrls = this.presetOpenbelApiUrls.map(function(e) {
-        if (e) {
-          e.selected = false;
-          if (selectedOpenbelApiUrl.api == e.api) {e.selected = true; flag = true;}
-          return e;
+    var storedSelectedAPIJSON = localStorage.getItem('selectedAPI');
+    var storedSelectedAPI = null;
+    if (storedSelectedAPIJSON) {
+      try {
+        storedSelectedAPI = JSON.parse(storedSelectedAPIJSON);
+      } catch (e) {
+          // couldn't parse as JSON, remove it
+          localStorage.removeItem('selectedAPI');
+      }
+    }
+
+    if (storedSelectedAPI === null) {
+      // set a default
+      this.selectedAPI = this.presetAPIs[0];
+    } else {
+      // is the stored selected API still valid?
+      let selectedName = storedSelectedAPI.name;
+      let selectedURL = storedSelectedAPI.api;
+      for (const apiobj of [...this.presetAPIs, ...this.userAPIs]) {
+        let aoName = apiobj.name;
+        let aoURL = apiobj.api;
+        if (aoName == selectedName && aoURL == selectedURL) {
+          // found it, restore the selection
+          this.selectedAPI = apiobj;
+          break;
         }
-      });
+      }
     }
-    if (!flag) {
-      this.selectedOpenbelApiUrl.selected = true;
-      this.userOpenbelApiUrls.push(this.selectedOpenbelApiUrl);
-    }
+    this.store();
+  }
 
-    this.storeUserApiUrls();
+  changedAPI(apiobj) {
+    this.store();
+    this.ea.publish('selectedOpenbelApiUrl', apiobj.api);
+  }
+
+  addUserAPI() {
+    var api = {api: this.userEnteredURL, name: this.userEnteredAPIName};
+    this.userAPIs.push(api);
+    this.store();
+    this.userEnteredURL = '';
+    this.userEnteredAPIName = '';
+  }
+
+  removeUserAPI(index) {
+    this.userAPIs.splice(index, 1);
+    this.store();
+  }
+
+  store() {
+    localStorage.setItem('userAPIs', JSON.stringify(this.userAPIs));
+    localStorage.setItem('selectedAPI', JSON.stringify(this.selectedAPI));
   }
 
 }
-
