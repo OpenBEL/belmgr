@@ -2257,7 +2257,9 @@ tr td div p.table-expContext {
 .table-delete {
     float: right;
 }
-.table-delete:hover {
+.table-delete,
+.table-delete:hover,
+.table-delete:focus {
     border-bottom: none;
 }
 

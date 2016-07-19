@@ -14,3 +14,5 @@ webeditor/export
 webeditor/src/config/config.json
 sample-plainhtml/aurelia-cdn
 sample-plainhtml/plugin-cdn
+/webeditor/jspm
+/webeditor/gulp
