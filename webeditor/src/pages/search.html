@@ -112,7 +112,7 @@
                       <p class="table-expContext value" repeat.for="value of $parent.getExperimentContextItems(item.nanopub)">${value}</p>
                     </div>
                   </div>
-                  <a class="col-xs-1 table-delete" data-toggle="mdoal" data-target="#deleter"> <i class="fa fa-trash-o fa-lg"></i></a>
+                  <a class="col-xs-1 table-delete" data-toggle="modal" data-target="#deleter"> <i class="fa fa-trash-o fa-lg"></i></a>
 
                   <!-- deletion js call: click.delegate="deleteNanopub(item._links.self.href, $index)" -->
 
@@ -122,14 +122,18 @@
                       <div class="modal-content">
                         <div class="modal-header">
                           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                          <h4 class="modal-title">Ya sure?</h4>
+                          <h4 class="modal-title">Delete Endpoint?</h4>
                         </div>
                         <div class="modal-body">
-                          <p>No going back after you delete this guy.. </p>
+                          <p>Are you sure you would like to delete this endpoint?</p>
                         </div>
                         <div class="modal-footer">
-                          <button type="button" class="btn btn-default" data-dismiss="modal">Nevermind</button>
-                          <button type="button" click.delegate="deleteNanopub(item._links.self.href, $index) class="btn btn-danger">Yass dood. Delete it!</button>
+                          <div class="delete-endpt-btn col-xs-6 col-sm-4 col-sm-offset-4">
+                            <button type="button" click.delegate="deleteNanopub(item._links.self.href, $index)" class="btn form-control btn-saveUpdates" data-dismiss="modal">Confirm Deletion</button>
+                          </div>
+                          <div class="delete-endpt-btn col-xs-6 col-sm-4 ">
+                            <button type="button" class="btn form-control btn-reset" data-dismiss="modal">Cancel</button>
+                          </div>
                         </div>
                       </div><!-- /.modal-content -->
                     </div><!-- /.modal-dialog -->

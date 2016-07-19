@@ -120,11 +120,15 @@ export class Search {
 
   deleteConfiramtion() {
     var deleteModal = document.getElementById("deleter");
+    var modalFade = document.getElementByClassName("modal-backdrop");
     deleteModal.setAttribute("class", "modal fade in");
+    modalFade.setAttribute("class", "modal-backdrop fade");
   };
   closeDeleter() {
     var deleteModal = document.getElementById("deleter");
+    var modalFade = document.getElementByClassName("modal-backdrop");
     deleteModal.setAttribute("class", "modal fade");
+    odalFade.setAttribute("class", "modal-backdrop fade");
   };
   /**
    * Get Species from Nanopub Experiment Context
