@@ -33,19 +33,28 @@ export class NavBar {
       this.action = 'Login';
     }
     this.getSelectedOpenbelApiUrl();
-    this.belVersion = this.api.getBelVersion().then(version => {return version});
+    this.api.getBelVersion().then(version => {
+        this.belVersion = version;
+    });
   }
 
   /* called when the view is attached to the dom */
   attached() {
-    var cb = obj => {
+    var selectedCB = obj => {
       this.endpointName = obj.name;
     };
-    this.subscription = this.ea.subscribe('selectedOpenbelApiUrl', cb);
+    this.subscription1 = this.ea.subscribe('selectedOpenbelApiUrl', selectedCB);
+    var updatedClientCB = obj => {
+      this.api.getBelVersion().then(version => {
+        this.belVersion = version;
+      });
+    };
+    this.subscription2 = this.ea.subscribe('updatedAPIClient', updatedClientCB);
   }
 
   detached() {
-    this.subscription.dispose();
+    this.subscription1.dispose();
+    this.subscription2.dispose();
   }
 
   navbarAction() {

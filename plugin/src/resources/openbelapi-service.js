@@ -14,7 +14,10 @@ export class OpenbelapiService {
     this.apiClient = this.openbelApiClient.client;
     this.auth = authentication;
     this.ea = ea;
-    this.ea.subscribe('selectedOpenbelApiUrl', obj => {this.updateClient(obj)});
+    this.ea.subscribe('selectedOpenbelApiUrl', obj => {
+        this.updateClient(obj)
+        this.ea.publish('updatedAPIClient');
+    });
   }
 
   /**
