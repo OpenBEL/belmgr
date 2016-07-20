@@ -62,7 +62,7 @@ export class ApiList{
 
   changedAPI(apiobj) {
     this.store();
-    this.ea.publish('selectedOpenbelApiUrl', apiobj.api);
+    this.ea.publish('selectedOpenbelApiUrl', apiobj);
   }
 
   addUserAPI() {
