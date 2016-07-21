@@ -30,24 +30,25 @@ export class SearchExport {
     media_type: 'application / xml',
     extension: 'xbel'
   },
+  {
+    id: 'json_nanopub',
+    name: 'JSON Nanopub',
+    media_type: 'application / json',
+    extension: 'json'
+  }, {
+    id: 'nquads',
+    name: 'N-quads RDF',
+    media_type: 'application / n - quads',
+    extension: 'nq'
+  },
 
-  // Hiding until these formats are available again
+  // Hiding this until it is available again
   // {
   //   id: 'json_nanopub',
   //   name: 'JSON Nanopub',
   //   media_type: 'application / json',
   //   extension: 'json'
   // }, {
-  //   id: 'jgf',
-  //   name: 'JSON Graph Format',
-  //   media_type: 'application / vnd.jgf + json',
-  //   extension: 'jgf.json'
-  // }, {
-  //   id: 'nquads',
-  //   name: 'N-quads RDF',
-  //   media_type: 'application / n - quads',
-  //   extension: 'nq'
-  // },
 
   {
     id: 'turtle',
