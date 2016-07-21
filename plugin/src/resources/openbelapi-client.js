@@ -94,9 +94,9 @@ export class OpenbelApiClient {
 
   getApiUrl() {
     let openbelApiUrls = this.config.get('openbelApiUrls');
-    let selectedOpenbelApiUrl = JSON.parse(localStorage.getItem('selectedOpenbelApiUrl'));
+    let selectedOpenbelApiUrl = JSON.parse(localStorage.getItem('selectedAPI'));
     if (! selectedOpenbelApiUrl) {
-      localStorage.setItem('selectedOpenbelApiUrl', JSON.stringify(openbelApiUrls[0]));
+      localStorage.setItem('selectedAPI', JSON.stringify(openbelApiUrls[0]));
       return openbelApiUrls[0];
     }
     return selectedOpenbelApiUrl;

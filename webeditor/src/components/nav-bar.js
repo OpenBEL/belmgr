@@ -68,7 +68,7 @@ export class NavBar {
   }
 
   getSelectedOpenbelApiUrl() {
-    this.selectedOpenbelApiUrl = JSON.parse(localStorage.getItem('selectedOpenbelApiUrl'));
+    this.selectedOpenbelApiUrl = JSON.parse(localStorage.getItem('selectedAPI'));
     this.endpointName = this.selectedOpenbelApiUrl.name;
   }
 
