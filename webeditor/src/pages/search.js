@@ -63,9 +63,9 @@ export class Search {
         this.searchUrl = data.searchUrl;
         this.nanopubs =  data.nanopubs;
         this.facetSets = data.facets;
-        if (data.metadata) {
-          this.search_metadata = data.metadata.collection_paging;
-        }
+        this.search_metadata = data.metadata.collection_paging;
+        let start_page = this.search_metadata.current_page;
+        let end_page = this.search_metadata.total_pages;
 
         // Pagination setup
         this.pagerPrevious = this.pagerNext = '';
@@ -73,7 +73,7 @@ export class Search {
           if (this.search_metadata.current_page === 1) {this.pagerPrevious = 'disabled';}
           if (this.search_metadata.current_page === this.search_metadata.total_pages) {this.pagerNext = 'disabled';}
           this.searchStart = (Number(this.search_metadata.current_page) - 1) * Number(this.search_metadata.current_page_size) + 1;
-          this.searchResultsRange = `${this.searchStart} - ${Number(this.searchStart) + Number(this.search_metadata.current_page_size) - 1}`;
+          this.searchResultsRange = `${start_page} of ${end_page}`;
         }
         else {
           this.searching = false;
