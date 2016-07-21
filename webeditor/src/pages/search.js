@@ -96,7 +96,9 @@ export class Search {
    * Save Search results size in local storage
    */
   saveSearchSize() {
-    localStorage.setItem('belMgrSearchSize', this.searchSize.toString());
+    if (this.searchSize <= 100) {
+      localStorage.setItem('belMgrSearchSize', this.searchSize.toString());
+    }
     this.search();
   }
 
