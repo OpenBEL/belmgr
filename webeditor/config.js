@@ -36,7 +36,7 @@ System.config({
     "aurelia-templating-router": "npm:aurelia-templating-router@1.0.0-rc.1.0.1",
     "babel": "npm:babel-core@5.8.38",
     "babel-runtime": "npm:babel-runtime@5.8.38",
-    "belmgr-plugin": "npm:belmgr-plugin@0.2.4",
+    "belmgr-plugin": "npm:belmgr-plugin@0.2.5",
     "bootstrap": "github:twbs/bootstrap@3.3.6",
     "clean-css": "npm:clean-css@3.4.18",
     "core-js": "npm:core-js@2.4.1",
@@ -247,7 +247,7 @@ System.config({
     "npm:babel-runtime@5.8.38": {
       "process": "github:jspm/nodelibs-process@0.1.2"
     },
-    "npm:belmgr-plugin@0.2.4": {
+    "npm:belmgr-plugin@0.2.5": {
       "aurelia-animator-css": "npm:aurelia-animator-css@1.0.0-rc.1.0.0",
       "aurelia-binding": "npm:aurelia-binding@1.0.0-rc.1.0.3",
       "aurelia-bootstrapper": "npm:aurelia-bootstrapper@1.0.0-rc.1.0.1",
