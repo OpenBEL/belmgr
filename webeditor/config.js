@@ -17,6 +17,7 @@ System.config({
     "resources/*": "dist/resources/*",
     "value-converters/*": "dist/value-converters/*"
   },
+
   map: {
     "aurelia-animator-css": "npm:aurelia-animator-css@1.0.0-rc.1.0.0",
     "aurelia-bootstrapper": "npm:aurelia-bootstrapper@1.0.0-rc.1.0.1",
@@ -35,10 +36,10 @@ System.config({
     "aurelia-templating-router": "npm:aurelia-templating-router@1.0.0-rc.1.0.1",
     "babel": "npm:babel-core@5.8.38",
     "babel-runtime": "npm:babel-runtime@5.8.38",
-    "belmgr-plugin": "npm:belmgr-plugin@0.2.3",
+    "belmgr-plugin": "npm:belmgr-plugin@0.2.4",
     "bootstrap": "github:twbs/bootstrap@3.3.6",
-    "clean-css": "npm:clean-css@3.4.13",
-    "core-js": "npm:core-js@2.4.0",
+    "clean-css": "npm:clean-css@3.4.18",
+    "core-js": "npm:core-js@2.4.1",
     "fetch": "github:github/fetch@0.10.1",
     "font-awesome": "npm:font-awesome@4.6.3",
     "jquery": "github:components/jquery@2.2.4",
@@ -151,8 +152,8 @@ System.config({
     },
     "npm:aurelia-dialog@0.5.10": {
       "aurelia-dependency-injection": "npm:aurelia-dependency-injection@1.0.0-rc.1.0.1",
-      "aurelia-metadata": "npm:aurelia-metadata@1.0.0-beta.1.2.1",
-      "aurelia-pal": "npm:aurelia-pal@1.0.0-beta.1.2.2",
+      "aurelia-metadata": "npm:aurelia-metadata@1.0.0-rc.1.0.1",
+      "aurelia-pal": "npm:aurelia-pal@1.0.0-rc.1.0.0",
       "aurelia-templating": "npm:aurelia-templating@1.0.0-rc.1.0.1"
     },
     "npm:aurelia-event-aggregator@1.0.0-rc.1.0.0": {
@@ -184,9 +185,6 @@ System.config({
     },
     "npm:aurelia-logging-console@1.0.0-rc.1.0.0": {
       "aurelia-logging": "npm:aurelia-logging@1.0.0-rc.1.0.1"
-    },
-    "npm:aurelia-metadata@1.0.0-beta.1.2.1": {
-      "aurelia-pal": "npm:aurelia-pal@1.0.0-beta.1.2.2"
     },
     "npm:aurelia-metadata@1.0.0-rc.1.0.1": {
       "aurelia-pal": "npm:aurelia-pal@1.0.0-rc.1.0.0"
@@ -249,7 +247,7 @@ System.config({
     "npm:babel-runtime@5.8.38": {
       "process": "github:jspm/nodelibs-process@0.1.2"
     },
-    "npm:belmgr-plugin@0.2.3": {
+    "npm:belmgr-plugin@0.2.4": {
       "aurelia-animator-css": "npm:aurelia-animator-css@1.0.0-rc.1.0.0",
       "aurelia-binding": "npm:aurelia-binding@1.0.0-rc.1.0.3",
       "aurelia-bootstrapper": "npm:aurelia-bootstrapper@1.0.0-rc.1.0.1",
@@ -282,7 +280,7 @@ System.config({
       "isarray": "npm:isarray@1.0.0",
       "process": "github:jspm/nodelibs-process@0.1.2"
     },
-    "npm:clean-css@3.4.13": {
+    "npm:clean-css@3.4.18": {
       "buffer": "github:jspm/nodelibs-buffer@0.1.0",
       "commander": "npm:commander@2.8.1",
       "fs": "github:jspm/nodelibs-fs@0.1.2",
@@ -303,7 +301,7 @@ System.config({
       "path": "github:jspm/nodelibs-path@0.1.0",
       "process": "github:jspm/nodelibs-process@0.1.2"
     },
-    "npm:core-js@2.4.0": {
+    "npm:core-js@2.4.1": {
       "fs": "github:jspm/nodelibs-fs@0.1.2",
       "path": "github:jspm/nodelibs-path@0.1.0",
       "process": "github:jspm/nodelibs-process@0.1.2",
