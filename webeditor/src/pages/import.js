@@ -74,6 +74,8 @@ export class Import {
                     toastr.options = { "timeOut": "5000" };
                 } else {
                     logger.error('Problem loading dataset ', response);
+                    let json = response.json();
+                    toastr.error(json.msg, 'Failed to upload dataset (status ' + response.status + ')');
                 }
                 this.loading = false;
             });
