@@ -1,4 +1,6 @@
-import {computedFrom} from 'aurelia-framework';
+import {LogManager} from 'aurelia-framework';
+let logger = LogManager.getLogger('welcomepage');
+logger.debug('In welcome.js');
 
 export class Welcome{
   builders = [

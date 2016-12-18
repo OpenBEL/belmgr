@@ -1,6 +1,5 @@
 import {LogManager} from 'aurelia-framework';
 import {HttpClient} from 'aurelia-fetch-client';
-import 'fetch';
 import {OpenbelApiClient} from './openbelapi-client';
 import {Authentication} from './authentication';
 import {EventAggregator} from 'aurelia-event-aggregator';

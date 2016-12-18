@@ -1,0 +1,20 @@
+<template>
+  <div class="container">
+      <div class="row">
+        <section class="pubmedContent ${pubmed.title ? 'col-xs-4 col-md-3' : 'noShow'}">
+            <div class="row">
+              <div class="col-xs-6 btn-euPMC-pubmed-div">
+                <a href="http://europepmc.org/abstract/MED/${pubmed.id}" class="col-xs-12 btn btn-bel btn-euPMC-pubmed form-control" role="button" target="_blank"><img class="euPMC-pubmed-logo" src="./media/EuropePMC.png" alt=""></a>
+              </div>
+              <div class="col-xs-6 btn-euPMC-pubmed-div">
+                <a href="http://www.ncbi.nlm.nih.gov/pubmed/?term=${pubmed.id}[uid]" class="col-xs-12 btn btn-bel btn-euPMC-pubmed form-control" role="button" target="_blank"><img class="euPMC-pubmed-logo" src="./media/pubmed-logo.png" alt=""></a>
+              </div>
+            </div>
+            <h3 class="col-xs-12">Pubmed Title</h3>
+            <p class="col-xs-12">${pubmed.title}</p>
+            <h3 class="col-xs-12">Abstract</h3>
+            <p class="col-xs-12">${pubmed.abstractText}</p>
+        </section>
+      </div>
+    </div>
+</template>

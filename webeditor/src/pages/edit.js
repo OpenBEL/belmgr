@@ -1,14 +1,15 @@
 import {LogManager} from 'aurelia-framework';
-import {User} from 'belmgr-plugin/User';
-import {Authentication} from 'belmgr-plugin/resources/authentication';
+import {User} from '../components/User';
+import {Authentication} from '../resources/authentication';
 
 let logger = LogManager.getLogger('edit');
+logger.debug('In edit.js');
 
 export class Edit{
 
   nanopubId = null;
   authEnabled = false;
-  static inject = [User, Authentication];
+  static inject() { return [User, Authentication]; }
   constructor (user, auth) {
     this.userData = user;
     this.auth = auth;

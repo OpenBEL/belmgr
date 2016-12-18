@@ -1,15 +1,18 @@
 import {LogManager} from 'aurelia-framework';
-import {OpenbelapiService} from 'belmgr-plugin/resources/openbelapi-service';
-import {User} from 'belmgr-plugin/User';
+import {OpenbelapiService} from './resources/openbelapi-service';
+import {User} from './components/User';
 import {Router} from 'aurelia-router';
 
 let logger = LogManager.getLogger('app');
 
 export class App {
 
-  static inject=[OpenbelapiService, User, Router];
-  constructor(api, user, router) {
-    this.api = api;
+  // static inject=[OpenbelapiService, User, Router];
+  // constructor(api, user, router) {
+  //   this.api = api;
+
+  static inject=[User, Router];
+  constructor(user, router) {
     this.userData = user;
     logger.debug('Router: ', router);
 
@@ -39,10 +42,10 @@ export class App {
     this.router = router;
   }
 
-  activate(params, routeConfig, navigationInstruction) {
-    return Promise.all([
-                         this.api.authEnabled().then(enabled => {this.userData.authEnabled = enabled;}),
-                         this.api.getBelVersion().then(version => {this.userData.belVersion = version;})
-                       ]);
-  }
+  // activate(params, routeConfig, navigationInstruction) {
+  //   return Promise.all([
+  //                        this.api.authEnabled().then(enabled => {this.userData.authEnabled = enabled;}),
+  //                        this.api.getBelVersion().then(version => {this.userData.belVersion = version;})
+  //                      ]);
+  // }
 }

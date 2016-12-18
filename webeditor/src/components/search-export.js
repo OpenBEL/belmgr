@@ -1,7 +1,7 @@
 import {bindable} from 'aurelia-framework';
-import {OpenbelapiService} from 'belmgr-plugin/resources/openbelapi-service';
-import {Authentication} from 'belmgr-plugin/resources/authentication';
-import {User} from 'belmgr-plugin/User';
+import {OpenbelapiService} from '../resources/openbelapi-service';
+import {Authentication} from '../resources/authentication';
+import {User} from './User';
 
 import {LogManager} from 'aurelia-framework';
 
@@ -57,7 +57,7 @@ export class SearchExport {
     extension: 'ttl'
   }];
 
-  static inject = [OpenbelapiService, Authentication, User];
+  static inject() { return [OpenbelapiService, Authentication, User]; }
   constructor(openbelapiService, authentication, user) {
     this.openbelapiService = openbelapiService;
     this.auth = authentication;

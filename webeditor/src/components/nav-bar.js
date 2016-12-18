@@ -1,10 +1,12 @@
 import {bindable, LogManager} from 'aurelia-framework';
 import {EventAggregator} from 'aurelia-event-aggregator';
-import {Authentication} from 'belmgr-plugin/resources/authentication';
-import {User} from 'belmgr-plugin/User';
-import {OpenbelapiService} from 'belmgr-plugin/resources/openbelapi-service';
+import {Authentication} from '../resources/authentication';
+import {User} from './User';
+import {OpenbelapiService} from '../resources/openbelapi-service';
 
 let logger = LogManager.getLogger('nav-bar');
+
+logger.debug('In nav-bar.js');
 
 export class NavBar {
   @bindable router;
@@ -15,8 +17,9 @@ export class NavBar {
   navStick;
   window;
 
-  static inject=[OpenbelapiService, User, Authentication, EventAggregator];
+  static inject() { return [OpenbelapiService, User, Authentication, EventAggregator]; }
   constructor(api, user, auth, ea) {
+
     this.api = api;
     this.userData = user;
     this.auth = auth;

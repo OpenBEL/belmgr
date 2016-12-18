@@ -2,9 +2,8 @@ import {LogManager} from 'aurelia-framework';
 import {HttpClient} from 'aurelia-fetch-client';
 import {Router} from 'aurelia-router';
 
-import {Configure} from 'aurelia-configuration';
+import {AureliaConfiguration} from 'aurelia-configuration';
 
-import 'fetch';
 import {Authentication} from './authentication';
 
 
@@ -15,7 +14,7 @@ export class OpenbelApiClient {
   client;
   openbelApiUrl;
 
-  static inject = [Authentication, Router, Configure];
+  static inject = [Authentication, Router, AureliaConfiguration];
   constructor(auth, router, config) {
     this.auth = auth;
     this.router = router;

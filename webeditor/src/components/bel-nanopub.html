@@ -1,0 +1,83 @@
+<template>
+  <require from="./pubmed"></require>
+  <require from="./bel-statement"></require>
+  <require from="./bel-citation"></require>
+  <require from="./bel-context"></require>
+  <require from="./bel-metadata"></require>
+  <div class="edit-html">
+    <div class="col-xs-5 edit-belEditorTitle">
+        <h1>BEL Nanopub Editor</h1>
+    </div>
+
+    <div class="container-fluid">
+      <pubmed class="${showPubmed ? 'col-xs-4 col-md-3' : 'noShow'}"></pubmed>
+
+      <div class="${showPubmed ? 'col-xs-8 col-xs-offset-4 col-md-9 col-md-offset-3' : 'col-xs-11 col-xs-offset-1'}">
+
+        <!-- If.bind is used below to wait for nanopub before allowing the subcomponents, bel-citation, etc to be instantiated. -->
+        <div name="newBelForm" if.bind="nanopub">
+
+          <!-- Citation -->
+          <bel-citation nanopub.bind="nanopub"> </bel-citation>
+
+          <!-- BEL Statement -->
+          <bel-statement nanopub.bind="nanopub"
+            bel-subject.bind="belSubject" bel-relationship.bind="belRelationship"
+            bel-object.bind="belObject">
+          </bel-statement>
+
+          <!-- BEL Support -->
+          <div id="bel-support" class="row edit-belForm">
+            <div id="support">
+              <div class="col-xs-12 edit-header">
+                <h3>Support</h3>
+              </div>
+              <!-- .col-xs-12 -->
+
+              <div class="col-xs-12">
+                <div class="form-group">
+                  <textarea class="form-control fc-normal textBlocks" value.bind="nanopub.support" id="summary-text-textarea" rows="3" placeholder="Extract from source text supporting this BEL Statement"></textarea>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- End BEL Support -->
+
+          <!-- BEL Nanopub Notes -->
+          <div id="bel-nanopub-notes" class="row edit-belForm">
+            <div id="nanopub-notes">
+              <div class="col-xs-12 edit-header">
+                <h3>Nanopub Notes</h3>
+              </div>
+              <div class="col-xs-12">
+                <div class="form-group">
+                  <textarea rows="3" class="form-control fc-normal textBlocks" id="nanopub-notes-textarea" value.bind="metadata.nanopub_notes"></textarea>
+                </div>
+                <!-- .form-group -->
+              </div>
+              <!-- .col-xs-12 -->
+            </div>
+          </div>
+          <!-- End BEL Nanopub Notes -->
+
+          <!-- Experiment Context -->
+          <bel-context nanopub.two-way="nanopub"> </bel-context>
+
+          <!--Metadata-->
+          <bel-metadata nanopub.two-way="nanopub" metadata.two-way='metadata'> </bel-metadata>
+
+          <div class="row edit-editBtns">
+
+            <div class="col-xs-6 col-md-4" show.bind="nanopubId">
+              <button type="button" click.trigger="submitUpdate()" class="col-xs-10 btn-edit btn-saveUpdates btn form-control")>Update Current BEL</button>
+            </div>
+
+            <div class="${nanopubId ? 'col-xs-6 col-md-4 col-md-offset-4' : 'col-xs-6 col-xs-offset-6 col-sm-4 col-sm-offset-8'}">
+              <button type="button" click.trigger="submitNew()" class="col-xs-10 btn btn-edit btn-progress form-control">${nanopubId ? 'Save as New' : 'Save'}</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>

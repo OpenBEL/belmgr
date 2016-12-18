@@ -1,10 +1,10 @@
 import { LogManager } from 'aurelia-framework';
-import { OpenbelapiService } from 'belmgr-plugin/resources/openbelapi-service';
-import { Authentication } from 'belmgr-plugin/resources/authentication';
+import { OpenbelapiService } from '../resources/openbelapi-service';
+import { Authentication } from '../resources/authentication';
 import * as toastr from "toastr";
 
 let logger = LogManager.getLogger('import');
-
+logger.debug('In import.js');
 // Notes:
 //    https://github.com/github/fetch
 //    http://blog.gospodarets.com/fetch_in_action/
@@ -20,7 +20,7 @@ export class Import {
     loading = false; // todo set a spinner state while loading dataset
     uploadFn = '';
 
-    static inject = [OpenbelapiService, Authentication];
+    static inject() { return [OpenbelapiService, Authentication]; }
     constructor(openbelapiService, authentication) {
         this.api = openbelapiService;
         this.auth = authentication;

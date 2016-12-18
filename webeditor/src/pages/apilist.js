@@ -3,6 +3,7 @@ import {LogManager, BindingEngine} from 'aurelia-framework';
 import {EventAggregator} from 'aurelia-event-aggregator';
 
 let logger = LogManager.getLogger('apilist');
+logger.debug('In apilist.js');
 
 export class ApiList{
   presetAPIs;

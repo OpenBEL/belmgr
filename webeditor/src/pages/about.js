@@ -1,4 +1,6 @@
-
+import {LogManager} from 'aurelia-framework';
+let logger = LogManager.getLogger('aboutuspage');
+logger.debug('In about.js');
 
 export class About{
 

@@ -1,0 +1,8 @@
+{
+    "pubmedBaseUrl": "http://www.ebi.ac.uk/europepmc/webservices/rest/search",
+    "loginUrl": "https://openbel.auth0.com/login?client=K4oAPUaROjbWWTCoAhf0nKYfTGsZWbHE&protocol=oauth2&response_type=token&scope=openid%20profile",
+    "openbelApiUrls": [
+        {"api": "http://localhost:9292/api", "name": "Local Dev"},
+        {"api": "https://pmi-openbel.sbvimprover.com:9292/api", "name": "PMI Dev OpenBEL API"}
+    ]
+}

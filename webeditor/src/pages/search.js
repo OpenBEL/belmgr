@@ -1,15 +1,16 @@
-import {inject} from 'aurelia-framework';
-import {OpenbelapiService} from 'belmgr-plugin/resources/openbelapi-service';
+import {OpenbelapiService} from '../resources/openbelapi-service';
 import {LogManager} from 'aurelia-framework';
 
 let logger = LogManager.getLogger('search');
+logger.debug('In search.js');
 
-@inject(OpenbelapiService)
 export class Search {
 
   filters;
   searchUrl = null;
   searching = false;
+
+  static inject() { return [OpenbelapiService]; }
 
   constructor(openbelapiService) {
     this.api = openbelapiService;
