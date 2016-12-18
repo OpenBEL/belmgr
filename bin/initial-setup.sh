@@ -9,7 +9,13 @@ hash npm 2>/dev/null || { echo >&2 "I require nodejs. Please install.  Aborting.
 hash jspm 2>/dev/null || { echo >&2 "I require jspm.   Please install.  Aborting."; exit 1; }
 hash gulp 2>/dev/null || { echo >&2 "I require gulp.   Please install.  Aborting."; exit 1; }
 
-git clone git@github.com:OpenBEL/belmgr.git
+if [ ! -d "belmgr" ]; then
+    git clone git@github.com:OpenBEL/belmgr.git
+else
+    cd belmgr;
+    git pull;
+    cd ..;
+fi
 
 cd belmgr
 HOME=$(pwd)
@@ -37,5 +43,6 @@ npm link belmgr-plugin
 
 gulp build
 
-cp
+cp $HOME/webeditor/src/config/config.json.example $HOME/webeditor/src/config/config.json
+
 echo 'Change directory to belmgr/webeditor and run "gulp watch"'
