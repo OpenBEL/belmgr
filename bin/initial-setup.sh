@@ -2,7 +2,7 @@
 #
 # Setup new dev environment for the belmgr
 #
-# run via 'bash <(curl -s https://github.com/OpenBEL/belmgr/tree/master/bin/initial-setup.sh)''
+# run via 'bash <(curl -s https://raw.githubusercontent.com/OpenBEL/belmgr/master/bin/initial-setup.sh)''
 #
 
 hash npm 2>/dev/null || { echo >&2 "I require nodejs. Please install.  Aborting."; exit 1; }
@@ -18,6 +18,7 @@ echo $HOME
 cd $HOME/plugin
 npm install
 jspm install
+sleep 5
 jspm install
 gulp build
 
@@ -26,7 +27,9 @@ npm link
 
 cd $HOME/webeditor
 npm install
+
 jspm install
+sleep 10  # jspm isn't installing completely the first time for some reason
 jspm install
 
 # use local npm linked belmgr-plugin for webeditor development
@@ -34,4 +37,5 @@ npm link belmgr-plugin
 
 gulp build
 
+cp
 echo 'Change directory to belmgr/webeditor and run "gulp watch"'

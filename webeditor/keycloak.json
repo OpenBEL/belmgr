@@ -1,0 +1,7 @@
+{
+  "realm": "OpenBEL",
+  "auth-server-url": "https://pmi-keycloak.sbvimprover.com/auth",
+  "ssl-required": "external",
+  "resource": "belmgr",
+  "public-client": true
+}

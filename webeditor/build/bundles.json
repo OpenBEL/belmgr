@@ -2,19 +2,16 @@
   "bundles": {
     "dist/app-build": {
       "includes": [
-        "[**.js]",
-        "*.html!text",
-        "*.css!text",
+        "[**/*.js]",
+        "**/*.html!text",
+        "**/*.css!text",
         "toastr",
         "aurelia-gravatar",
         "bootstrap",
         "bootstrap/css/bootstrap.css!text",
         "font-awesome",
-        "jquery"
-      ],
-      "excludes": [
-        "plugin/AppConfig",
-        "plugin/AppConfig.example"
+        "jquery",
+        "belmgr-plugin"
       ],
       "options": {
         "inject": true,
@@ -38,7 +35,8 @@
         "aurelia-history-browser",
         "aurelia-logging-console",
         "aurelia-event-aggregator",
-        "fetch"
+        "fetch",
+        "polymer/mutationobservers"
       ],
       "options": {
         "inject": true,
