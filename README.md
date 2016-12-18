@@ -2,7 +2,6 @@
 
 Website for managing BEL Nanopubs - based on Aurelia.  Requires the [OpenBEL API][OpenBEL API] for the backend API/storage.
 
-
 ## Table of contents
 
 * [Getting Started](#getting_started)
@@ -91,7 +90,7 @@ This plugin provides BEL Mgr BEL Editing functionality (http://openbel.org).
 You can deploy the entire BEL Nanopub edit form or subcomponents of the edit
 form via this plugin.
 
-## Technical requirements
+### Technical requirements
 
 *System Requirements*
 
@@ -101,60 +100,27 @@ form via this plugin.
 
 ### Installation Requirements
 
-Install the latest version of NodeJS:
-https://nodejs.org/en/download/
-
-Install the latest version of Git including Git Bash:
-https://git-scm.com/downloads
-
-Install Gulp globally:
-Run CMD as administrator
-npm install -g gulp
-
-Install JSPM globally:
-Run CMD as administrator
-npm install -g jspm
-NOTE: Older versions of NodeJS, Git and Gulp might require an upgrade.
-
+1. Install the latest version of NodeJS: https://nodejs.org/en/download/
+1. Install the latest version of Git including Git Bash: https://git-scm.com/downloads
+1. Install Gulp globally: (sudo?) npm install -g gulp
+1. Install JSPM globally: (sudo?) npm install -g jspm
 
 ### Installing the plugin
 
 jspm install belmgr-plugin
 
-
 ### Using the plugin
 
 There are examples of how to use this plugin in this repo in the sample* directories
 
-### Updating the NPM package
+### Updating the belmgr-plugin NPM package
 
-Select the semantic portion to update using the `npm version` command
+Assuming that you have permission to push an update.  If not, please contact whayes@openbel.org.
+
+Select the semantic portion to update using the `npm version` command (e.g. is this a major, minor or patch level update).
 
     npm version {patch minor major}
     npm publish
-
-
-
-
-#### Example Installation
-
-With NodeJS and npm installed and in your System PATH variable, install NodeJS package module dependencies.
-
-From the Bash
-# Change directory to plugin
-cd (BEL Manager directory)\plugin
-
-# With NodeJS installed globally, run the command
-npm install
-
-# With JSPM installed globally run the command
-jspm install -y
-
-
-### Building
-
-With Gulp installed globally, run the command
-gulp build
 
 
 [OpenBEL API]:      https://github.com/OpenBEL/openbel-api
