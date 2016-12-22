@@ -1,6 +1,7 @@
 import {LogManager} from 'aurelia-framework';
 // import Config from '../AppConfig';
 import {Configure} from 'aurelia-configuration';
+import {AuthService} from 'aurelia-keycloak';
 
 let logger = LogManager.getLogger('Authentication');
 // let loginUrl = Config.loginUrl;
@@ -9,11 +10,22 @@ export class Authentication {
 
   loginUrl;
 
-  static inject = [Configure];
-  constructor (config) {
+  static inject = [Configure, AuthService];
+  constructor (config, authservice) {
     this.config = config;
+    logger.debug(authservice);
+    this.keycloak = authservice.keycloak;
+    // logger.debug(this.keycloak.createLoginUrl());
     this.loginUrl = this.config.get('loginUrl');
     logger.debug('LoginUrl: ', this.loginUrl);
+
+  }
+
+  showResults(data) {
+    if (typeof data === 'object') {
+        data = JSON.stringify(data, null, '  ');
+    }
+    this.result = data;
   }
 
   /*
@@ -23,7 +35,13 @@ export class Authentication {
     let cleanHash = hash.replace('#/', '');
     if (!cleanHash) {cleanHash = 'home';}
     logger.debug('Protocol: ', protocol, ' Host: ', host, ' Pathname: ', pathname, ' State: ', cleanHash);
-    window.location.href = `${this.loginUrl}&redirect_uri=${protocol}//${host}${pathname}?state=${cleanHash}`;
+    // logger.debug('LoginUrl ', this.showResults(this.keycloak.createLoginUrl()));
+    let redirectUri = '${protocol}//${host}${pathname}?state=${cleanHash}';
+    logger.debug('redirectUri: ', redirectUri);
+    this.keycloak.login(redirectUri=redirectUri);
+
+    // window.location.href = `${this.loginUrl}&redirect_uri=${protocol}//${host}${pathname}?state=${cleanHash}`;
+
   }
 
   setToken(token) {
