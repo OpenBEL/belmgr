@@ -1,3 +1,4 @@
+import {inject} from 'aurelia-framework';
 import {LogManager} from 'aurelia-framework';
 import {HttpClient} from 'aurelia-fetch-client';
 import 'fetch';
@@ -7,13 +8,13 @@ import {EventAggregator} from 'aurelia-event-aggregator';
 
 let logger = LogManager.getLogger('openbelApi');
 
+@inject(OpenbelApiClient, Authentication, EventAggregator)
 export class OpenbelapiService {
-  static inject = [OpenbelApiClient, Authentication, EventAggregator];
-  constructor(openbelApiClient, authentication, ea) {
-    this.openbelApiClient = openbelApiClient;
+  constructor(OpenbelApiClient, Authentication, EventAggregator) {
+    this.openbelApiClient = OpenbelApiClient;
     this.apiClient = this.openbelApiClient.client;
-    this.auth = authentication;
-    this.ea = ea;
+    this.auth = Authentication;
+    this.ea = EventAggregator;
     this.ea.subscribe('selectedOpenbelApiUrl', obj => {
         this.updateClient(obj)
         this.ea.publish('updatedAPIClient');
