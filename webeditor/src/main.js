@@ -11,6 +11,7 @@ export function configure(aurelia) {
     .plugin('aurelia-gravatar')
     .plugin('aurelia-animator-css')
     .plugin('belmgr-plugin')
+    .plugin('aurelia-keycloak', {initOptions:{  }})
     .plugin('aurelia-configuration');
 
   aurelia.start().then(a => a.setRoot());

@@ -3,6 +3,7 @@ import {EventAggregator} from 'aurelia-event-aggregator';
 import {Authentication} from 'belmgr-plugin/resources/authentication';
 import {User} from 'belmgr-plugin/User';
 import {OpenbelapiService} from 'belmgr-plugin/resources/openbelapi-service';
+import {AuthService} from 'aurelia-keycloak';
 
 let logger = LogManager.getLogger('nav-bar');
 
@@ -22,6 +23,7 @@ export class NavBar {
     this.auth = auth;
     this.ea = ea;
 
+    this.keycloak = AuthService.keycloak;
     this.authEnabled = this.userData.authEnabled;
 
     logger.debug('NavBar AuthEnabled: ', this.authEnabled);
@@ -59,7 +61,7 @@ export class NavBar {
 
   navbarAction() {
     if (this.action === 'Logout') {
-      this.auth.removeToken();
+      this.auth.logout();
       logger.info('Logged out.');
       window.location.href = window.location.origin;
     } else if (this.action === 'Login') {
