@@ -1,4 +1,9 @@
 
+### Initial setup
+
+Run the following command to do the initial setup and make sure requirements are met:
+
+    bash <(curl -s https://raw.githubusercontent.com/OpenBEL/belmgr/master/bin/initial-setup.sh)
 
 ### Building production image
 
