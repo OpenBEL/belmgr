@@ -9,8 +9,16 @@ hash npm 2>/dev/null || { echo >&2 "I require npm. Please install, e.g. 'sudo ap
 hash jspm 2>/dev/null || { echo >&2 "I require jspm.   Please install 'npm install jspm -g'.  Aborting."; exit 1; }
 hash gulp 2>/dev/null || { echo >&2 "I require gulp.   Please install 'npm install gulp -g'.  Aborting."; exit 1; }
 
+ssh_status=$(ssh -o BatchMode=yes -o ConnectTimeout=5 git@github.com 2>&1)
+
+if [[ $ssh_status == *"successfully authenticated"* ]] ; then
+  clone_cmd="git clone git@github.com:OpenBEL/belmgr.git";
+else
+  clone_cmd="git clone https://github.com/OpenBEL/belmgr.git";
+fi
+
 if [ ! -d "belmgr" ]; then
-    git clone https://github.com/OpenBEL/belmgr.git
+    $clone_cmd
 else
     cd belmgr;
     git pull;
