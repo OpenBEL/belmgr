@@ -9,10 +9,16 @@ if [ ! -d "webeditor" ]; then
     exit;
 fi
 
-mkdir -p deploy-webeditor
+HOME=$(pwd)
+cd $HOME/webeditor
+gulp build
 
-cp -r webeditor/index.html webeditor/styles webeditor/media webeditor/config.js webeditor/favicon.ico deploy-webeditor
-cp -r webeditor/dist webeditor/jspm_packages deploy-webeditor
+cd $HOME
 
-docker build -t whayes/belmgr .
+mkdir -p deploy/webeditor
+
+cp -r webeditor/keycloak.json webeditor/index.html webeditor/styles webeditor/media webeditor/config.js webeditor/favicon.ico deploy/webeditor
+cp -r webeditor/dist webeditor/jspm_packages deploy/webeditor
+
+docker build -t openbel/belmgr ./deploy
 

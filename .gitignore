@@ -8,7 +8,7 @@
 .idea
 .DS_STORE
 archive
-deploy-webeditor
+deploy/webeditor
 
 webeditor/export
 webeditor/src/config/config.json
