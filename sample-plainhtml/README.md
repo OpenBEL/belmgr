@@ -6,29 +6,29 @@ included in the index.html to pre-load the BEL plugin form elements with data.
 ## Run example
 
 After cloning belmgr code repository - go to belmgr top directory (has webeditor
-as a subdirectory). Then run the following commands:
+as a subdirectory).
 
-    # Build plugin
-    cd ${BELHOME}/plugin
-    npm install
-    jspm install -y
-    gulp build
+# Setup the plugin and Web Editor by following the steps in the read me:
+- (BEL Manager directory)\webeditor\README.md
+- (BEL Manager directory)\plugin\README.md
 
-    # Build webeditor
-    cd ${BELHOME}/webeditor
-    npm install;
-    jspm install -y;
-    gulp build
 
-    # Setup plugin plain web page example
-    cd ${BELHOME}/sample-plainhtml
-    ln -s ${BELHOME}/webeditor/jspm_packages aurelia-cdn
-    ln -s ${BELHOME}/plugin/dist/amd plugin-cdn
+# Setup plugin plain web page example
+cd (BEL Manager directory)/sample-plainhtml
 
-    cd sample-plainhtml
-    # Use one of the following commands
-    # python -m http.server 4001   # python option
-    # http-server -o -p 4001   # node option
+## Mac and Linux Symlinks
+ln -s (BEL Manager directory)/webeditor/jspm_packages aurelia-cdn
+ln -s (BEL Manager directory)/plugin/dist/amd plugin-cdn
+
+## Windows Symlinks
+mklink /D "aurelia-cdn" "C:\Development\BELmanager\webeditor\jspm_packages"
+mklink /D "plugin-cdn" "C:\Development\BELmanager\plugin\dist\amd"
+
+
+cd (BEL Manager directory)/sample-plainhtml
+# Use one of the following commands
+# python -m http.server 4001   # python option
+# http-server -o -p 4001   # node option
 
 Go to http://localhost:4001
 

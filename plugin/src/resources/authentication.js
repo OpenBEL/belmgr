@@ -1,19 +1,20 @@
+import {inject} from 'aurelia-framework';
 import {LogManager} from 'aurelia-framework';
 // import Config from '../AppConfig';
 import {Configure} from 'aurelia-configuration';
+import {AuthService} from 'aurelia-keycloak';
 
 let logger = LogManager.getLogger('Authentication');
-// let loginUrl = Config.loginUrl;
 
+@inject(Configure)
 export class Authentication {
 
-  loginUrl;
+  constructor (Configure) {
+    this.config = Configure;
+    this.keycloak = AuthService.keycloak;
+    self = this;
+    logger.debug('KC1: ', self.keycloak);
 
-  static inject = [Configure];
-  constructor (config) {
-    this.config = config;
-    this.loginUrl = this.config.get('loginUrl');
-    logger.debug('LoginUrl: ', this.loginUrl);
   }
 
   /*
@@ -23,82 +24,36 @@ export class Authentication {
     let cleanHash = hash.replace('#/', '');
     if (!cleanHash) {cleanHash = 'home';}
     logger.debug('Protocol: ', protocol, ' Host: ', host, ' Pathname: ', pathname, ' State: ', cleanHash);
-    window.location.href = `${this.loginUrl}&redirect_uri=${protocol}//${host}${pathname}?state=${cleanHash}`;
-  }
+    // logger.debug('LoginUrl ', this.showResults(this.keycloak.createLoginUrl()));
+    let redirectUri = '${protocol}//${host}${pathname}?state=${cleanHash}';
 
-  setToken(token) {
-    localStorage.setItem('BELMgrToken', token);
+    this.keycloak.login(redirectUri=redirectUri);
+
+    // window.location.href = `${this.loginUrl}&redirect_uri=${protocol}//${host}${pathname}?state=${cleanHash}`;
+
   }
 
   getToken() {
-    return localStorage.getItem('BELMgrToken');
+    return this.keycloak.token;
   }
 
-  removeToken() {
-    localStorage.removeItem('BELMgrToken');
+  logout(redirect) {
+    this.keycloak.logout(redirectUri=redirect);
   }
 
   checkToken() {
-    let token = this.getToken();
-    if (!token) {
+    if (!this.keycloak.tokenParsed) {
       return false;
     }
     return true;
   }
 
   getPayload() {
-    let token = this.getToken();
-
-    if (token && token.split('.').length === 3) {
-      let base64Url = token.split('.')[1];
-      let base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
-      return JSON.parse(decodeURIComponent(escape(window.atob(base64))));
-    }
-    else {return false;}
+    return this.keycloak.loadProfile();
   }
 
   // Will return true if token exists even though it is checking format and expiration
   isAuthenticated() {
-    let token = this.getToken();
-
-    if (token) {return true;}
-
-    return false;
-
-    // if (token) {
-    //   if (token.split('.').length === 3) {
-    //     let base64Url = token.split('.')[1];
-    //     let base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
-    //     let exp = JSON.parse(window.atob(base64)).exp;
-    //     if (exp) {
-    //       return Math.round(new Date().getTime() / 1000) <= exp;
-    //     }
-    //     return true;
-    //   }
-    //   return true;
-    // }
-    // return false;
-  }
-
-  isString(value) {
-    return typeof value === 'string';
-  }
-
-  logout(redirect) {
-    let tokenName = this.tokenName;
-    return new Promise((resolve, reject)=>{
-      this.storage.remove(tokenName);
-
-      if (this.Config.logoutRedirect && !redirect) {
-        window.location.href = this.Config.logoutRedirect;
-      }
-      else if (this.isString(redirect)) {
-        // window.location.href =redirect;
-        // this.router.navigate(redirect);
-        window.location.href = redirect;
-      }
-
-      resolve();
-    });
+    this.keycloak.authenticated;
   }
 }

@@ -1,3 +1,4 @@
+import {inject} from 'aurelia-framework';
 import {LogManager} from 'aurelia-framework';
 import {OpenbelapiService} from 'belmgr-plugin/resources/openbelapi-service';
 import {User} from 'belmgr-plugin/User';
@@ -5,18 +6,19 @@ import {Router} from 'aurelia-router';
 
 let logger = LogManager.getLogger('app');
 
+@inject(OpenbelapiService, User, Router)
 export class App {
 
-  static inject=[OpenbelapiService, User, Router];
-  constructor(api, user, router) {
-    this.api = api;
-    this.userData = user;
-    logger.debug('Router: ', router);
-
-    // router.addRoute({ route: 'test', moduleId: './test', name: 'access_token', nav:false, title: 'testing'});
+  // static inject=[OpenbelapiService, User, Router, AuthService];
+  // constructor(api, user, router, authservice) {
+  constructor(OpenbelapiService, User, Router) {
+    self = this;
+    this.api = OpenbelapiService;
+    this.userData = User;
+    logger.debug('Router: ', Router);
   }
 
-  configureRouter(config, router) {
+  configureRouter(config, Router) {
     logger.debug("Configuring router");
     config.title = 'BEL Manager';
     config.map([
@@ -29,14 +31,13 @@ export class App {
       // { route: 'about',           moduleId: './pages/about',           name: 'about',     nav: true,  title: 'About' },
       // { route: 'help',            moduleId: './pages/help',            name: 'help',      nav: true,  title: 'Help' }
     ]);
-
     config.mapUnknownRoutes(instruction => {
       // logger.debug('mapUnknownRoutes instruction: ', instruction);
       // TODO would be good to figure out how to handle redirects for authentication flow
       router.navigateToRoute('home');
     });
 
-    this.router = router;
+    this.router = Router;
   }
 
   activate(params, routeConfig, navigationInstruction) {

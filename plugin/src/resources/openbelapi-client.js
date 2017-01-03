@@ -7,7 +7,6 @@ import {Configure} from 'aurelia-configuration';
 import 'fetch';
 import {Authentication} from './authentication';
 
-
 let logger = LogManager.getLogger('openbelapi-client');
 
 export class OpenbelApiClient {
@@ -19,8 +18,8 @@ export class OpenbelApiClient {
   constructor(auth, router, config) {
     this.auth = auth;
     this.router = router;
-
     this.config = config;
+
     this.selectedOpenbelApiUrl = this.getApiUrl();
     this.client = this.configureClient(this.selectedOpenbelApiUrl);
   }
@@ -51,17 +50,6 @@ export class OpenbelApiClient {
                 obj[pairArray[0]] = pairArray[1];
                 return obj;
               }, {});
-
-            if (urlParams.id_token) {
-              self.auth.setToken(urlParams.id_token);
-
-              // logger.debug('Navigate to: ', urlParams.state);
-              // //TODO test if we still need the setTimeout wrapper
-              // // setTimeout(() => {
-              //   let link = self.router.navigateToRoute(urlParams.state, {}, {replace: true});
-              //   logger.debug('Link: ', link);
-              // // }, 200);
-            }
 
             let token = self.auth.getToken();
             req.headers.append('Authorization', 'Bearer ' + token);
