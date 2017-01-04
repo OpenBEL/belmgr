@@ -27,10 +27,10 @@ export class BelTerm {
     logger.debug('BEL Term changing ', this.bel);
 
     // Do not process change if change is due to selectTerm()
-    if (this.selectedTerm) {
-      this.selectedTerm = false;
-      return;
-    }
+    // if (this.selectedTerm) {
+    //  this.selectedTerm = false;
+    //  return;
+    //}
 
     if (this.focused && this.bel && this.bel.length > 0) {
       this.cursor = this.belinput.selectionEnd;
@@ -59,14 +59,14 @@ export class BelTerm {
   selectTerm(item) {
     logger.debug('Item: ', item);
 
-    this.bel = item.term;
-    this.cursor = this.bel.length;
+    this.bel = item.value;
+    this.cursor = item.cursor;
     logger.debug('BEL: ', this.bel, ' Cursor: ', this.cursor);
 
     this.showTerms = false;
     this.selectedTerm = true;
-    this.belinput.setSelectionRange(this.cursor, this.cursor);
     this.belinput.focus();
+    this.belinput.setSelectionRange(this.cursor, this.cursor);
   }
 
 }
