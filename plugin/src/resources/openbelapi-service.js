@@ -269,53 +269,21 @@ export class OpenbelapiService {
       // logger.debug('d: ', d);
       let bel = query.slice(0);
       let cursor = 0;
-      if (d.completion.actions) {
-        for (let action of d.completion.actions) {
-          // logger.debug('Action: ', action);
-          let len = bel.length;
-          let front = '';
-          let back = '';
-          if (action.delete) {
-            if (action.delete.start_position > 0) {
-              front = bel.slice(0, action.delete.start_position);
-            }
-            if (action.delete.end_position < len) {
-              back = bel.slice(action.delete.end_position + 1);
-            }
-            bel = front + back;
-          }
+	  cursor = d.completion.caret_position;
 
-          if (action.insert) {
-            if (action.insert.position > 0) {
-              front = bel.slice(0, action.insert.position);
-            }
-            if (action.insert.position < len) {
-              back = bel.slice(action.insert.position);
-            }
-            bel = front + d.completion.value + back;
-          }
+      let classType = '';
+      if (d.completion.type === 'namespace_value') {
+        classType = 'nsval';
+      } else if (d.completion.type === 'namespace_identifier') {
+        classType = 'nsid';
+      } else if (d.completion.type === 'function') {
+        classType = 'function';
+      }
 
-          if (action.move_cursor) {
-            cursor = action.move_cursor.position;
-          }
-
-          // logger.debug('F: ', front, ' B: ', back, ' BEL: ', bel, ' T: ', d.completion.type, ' Label: ', d.completion.label, ' Val: ', d.completion.value);
-        }
-
-        let classType = '';
-        if (d.completion.type === 'namespace_value') {
-          classType = 'nsval';
-        } else if (d.completion.type === 'namespace_identifier') {
-          classType = 'nsid';
-        } else if (d.completion.type === 'function') {
-          classType = 'function';
-        }
-
-        if (d.completion.label !== d.completion.value) {
-          results.push({term: bel, type: classType, label: d.completion.label, value: d.completion.value, cursor: cursor});
-        } else {
-          results.push({term: bel, type: classType, value: d.completion.value, cursor: cursor});
-        }
+      if (d.completion.label !== d.completion.value) {
+        results.push({term: bel, type: classType, label: d.completion.label, value: d.completion.value, cursor: cursor});
+      } else {
+        results.push({term: bel, type: classType, value: d.completion.value, cursor: cursor});
       }
     }
     return results;
