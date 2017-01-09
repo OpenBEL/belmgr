@@ -27,10 +27,10 @@ export class BelTerm {
     logger.debug('BEL Term changing ', this.bel);
 
     // Do not process change if change is due to selectTerm()
-    // if (this.selectedTerm) {
-    //  this.selectedTerm = false;
-    //  return;
-    //}
+    if (this.selectedTerm) {
+      this.selectedTerm = false;
+      return;
+    }
 
     if (this.focused && this.bel && this.bel.length > 0) {
       this.cursor = this.belinput.selectionEnd;
