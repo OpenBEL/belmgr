@@ -267,11 +267,11 @@ export class OpenbelapiService {
     // logger.debug('Data: ', data);
     for (let d of data) {
       // logger.debug('d: ', d);
-      let bel       = query.slice(0);
-      let cursor    = 0;
-      cursor        = d.completion.caret_position;
-      let semantics = d.completion.semantics;
-      let warnings  = d.completion.semantic_warnings;
+      let bel     = query.slice(0);
+      let cursor  = 0;
+      cursor      = d.completion.caret_position;
+      let valid   = d.completion.validation.valid_semantics;
+      let message = d.completion.validation.message;
 
       let classType = '';
       if (d.completion.type === 'namespace_value') {
@@ -283,9 +283,9 @@ export class OpenbelapiService {
       }
 
       if (d.completion.label !== d.completion.value) {
-        results.push({term: bel, type: classType, label: d.completion.label, value: d.completion.value, cursor: cursor, semantics: semantics, warnings: warnings});
+        results.push({term: bel, type: classType, label: d.completion.label, value: d.completion.value, cursor: cursor, valid: valid, message: message});
       } else {
-        results.push({term: bel, type: classType, value: d.completion.value, cursor: cursor, semantics: semantics, warnings: warnings});
+        results.push({term: bel, type: classType, value: d.completion.value, cursor: cursor, valid: valid, message: message});
       }
     }
     return results;

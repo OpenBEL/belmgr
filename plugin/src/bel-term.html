@@ -13,8 +13,8 @@
 
     <ul class="et-termUl row" show.bind="showTerms">
       <li class="et-termLi" repeat.for="item of filteredTerms">
-        <a title="${item.warnings}" click.trigger="selectTerm(item)" mousedown.trigger="selectTerm(item)">
-          <span class="et-termlisting et-${item.type} et-semantics-${item.semantics}">${item.term}
+        <a title="${item.message}" click.trigger="selectTerm(item)" mousedown.trigger="selectTerm(item)">
+          <span class="et-termlisting et-${item.type} et-semantics-${item.valid ? 'valid' : 'invalid'}">${item.term}
             <span class="et-termlabel">${item.label}</span>
           </span>
         </a>
