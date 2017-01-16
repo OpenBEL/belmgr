@@ -1,26 +1,23 @@
-import {customElement, bindable, bindingMode, LogManager} from 'aurelia-framework';
+import {inject, customElement, bindable, bindingMode, LogManager} from 'aurelia-framework';
 import {CompositionTransaction} from 'aurelia-framework';
 import {OpenbelapiService} from './resources/openbelapi-service';
 
-let logger = LogManager.getLogger('statement');
+let logger = LogManager.getLogger('bel-statement');
 
-@bindable({
-  name:'nanopub', //name of the property on the class
-  attribute:'nanopub', //name of the attribute in HTML e.g. x.bind=""
-  changeHandler:'nanopubChanged', //name of the method to invoke when the property changes
-  defaultBindingMode: bindingMode.twoWay, //default binding mode used with the .bind command
-  defaultValue: undefined //default value of the property, if not bound or set in HTML
-})
-@bindable({name:"belSubject", attribute:"bel-subject", defaultBindingMode: bindingMode.twoWay})
-@bindable({name:"belRelationship", attribute:"bel-relationship", defaultBindingMode: bindingMode.twoWay})
-@bindable({name:"belObject", attribute:"bel-object", defaultBindingMode: bindingMode.twoWay})
+
 @customElement('bel-statement')
+@inject(OpenbelapiService, CompositionTransaction)
 export class BelStatement {
 
-  @bindable nanopub;
-  relationships = [];
+  @bindable({ defaultBindingMode: bindingMode.twoWay }) statement;
+  @bindable debounceTime = 400;  // TODO using a constant in the View template - change to use this value
+  @bindable hasTermFocus = false;
+  @bindable hasAnnotationFocus = false;
+  @bindable showResults = false;
+  cursor;
+  loading = false;
+  focused = false;
 
-  static inject=[OpenbelapiService, CompositionTransaction];
   constructor(openbelapiService, compositionTransaction) {
     this.api = openbelapiService;
     this.compositionTransaction = compositionTransaction;
@@ -28,15 +25,6 @@ export class BelStatement {
 
   created() {
     this.compositionTransactionNotifier = this.compositionTransaction.enlist();
-    this.api.getRelationships()
-      .then(relationships => {
-        this.relationships = relationships;
-        logger.debug('Relationships: ', this.relationships);
-        this.compositionTransactionNotifier.done();
-      })
-      .catch(function(reason) {
-        logger.error('GET Relationships Error: ', reason);
-      });
   }
 
   // Pulling parent's context into scope
@@ -44,12 +32,63 @@ export class BelStatement {
     this.$parent = context;
   }
 
-  belSubjectChanged(value) {
-    logger.debug('BELsubject changed: ', this.belsubject);
+  hasFocus() {
+    this.focused = true;
   }
 
+  // statement(value) {
+  //   logger.debug('BEL Stmt changed: ', this.statement);
+  // }
+
   nanopubChanged(value) {
-    logger.debug('StatementChanged: ', this.nanopub);
+    logger.debug('Nanopub changed: ', this.nanopub);
   }
+
+  statementChanged() {
+    logger.debug('BEL Stmt changing ', this.statement);
+
+    // Do not process change if change is due to selectTerm()
+    if (this.selectedTerm) {
+      this.selectedTerm = false;
+      return;
+    }
+
+    if (this.focused && this.statement && this.statement.length > 0) {
+      this.cursor = this.belinput.selectionEnd;
+      this.loading = true;
+      this.api.getBelCompletions(this.statement, this.cursor)
+      .then(results => {
+        logger.debug("Completions: ", results);
+        this.filteredTerms = results;
+        this.showTerms = true;
+        this.loading = false;
+      })
+      .catch(reason => {
+        logger.error('Filter BEL Completions error ', reason);
+      });
+    }
+  }
+
+  blurred() {
+    // logger.debug("Blurred ");
+    this.showTerms = false;
+    this.loading = false;
+    this.focused = false;
+  }
+
+  // Update the BEL Term input field and set the cursor
+  selectTerm(item) {
+    logger.debug('Item: ', item);
+
+    this.statement = item.value;
+    this.cursor = item.cursor;
+    logger.debug('BEL: ', this.statement, ' Cursor: ', this.cursor);
+
+    this.showTerms = false;
+    this.selectedTerm = true;
+    this.belinput.focus();
+    this.belinput.setSelectionRange(this.cursor, this.cursor);
+  }
+
 
 }

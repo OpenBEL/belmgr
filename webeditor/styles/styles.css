@@ -1828,6 +1828,14 @@ p.text-warning {
     color: #00A5BF;
 }
 
+.et-semantics-valid {
+    background-color: #57FF5F;
+}
+
+.et-semantics-invalid {
+    background-color: #F0FF65;
+}
+
 .input-group .form-control.et-statementfield {
     width: 100%;
 }

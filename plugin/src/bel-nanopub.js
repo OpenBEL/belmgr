@@ -11,13 +11,14 @@ let logger = LogManager.getLogger('bel-nanopub');
 @inject(OpenbelapiService, Router, EventAggregator)
 export class BelNanopub {
 
-    nanopub;
-    metadata = {
-      'nanopub_notes': '', 'nanopub_status': '', 'author': '',
-      'creation_date': '', 'reviewer': '', 'review_date': '',
-      'nanopub_source': ''};
-    submitNanopub = {};  // add back the top-level 'nanopub' key, value prior to submission
-    annotations = [];
+  nanopub;
+  statement;
+  metadata = {
+    'nanopub_notes': '', 'nanopub_status': '', 'author': '',
+    'creation_date': '', 'reviewer': '', 'review_date': '',
+    'nanopub_source': ''};
+  submitNanopub = {};  // add back the top-level 'nanopub' key, value prior to submission
+  annotations = [];
 
   // Needed to allow New BEL menu item to refresh the form
   determineActivationStrategy() {
@@ -57,15 +58,9 @@ export class BelNanopub {
         .then(nanopub => {
           this.nanopub = nanopub;
           logger.debug('Nanopub: ', this.nanopub);
+          this.statement = nanopub.bel_statement;
+          // logger.debug('Statement: ', this.statement);
           this.extractFormMetadata(); // depends on this.metadata and this.nanopub
-          return this.api.getBelComponents(this.nanopub.bel_statement);
-        })
-        .then(comp => {
-          this.belSubject = comp.subject;
-          this.belObject = comp.object;
-          this.belRelationship = comp.relationship;
-          logger.debug('Subj: ', this.belSubject);
-
         })
         .catch(reason => {
           logger.error('Process BEL Nanopub Error: ', reason);
@@ -98,7 +93,7 @@ export class BelNanopub {
   prepareNanopub() {
     let submitNanopub = {};
     // Prepare BEL Statement
-    this.nanopub.bel_statement = `${this.belSubject} ${this.belRelationship} ${this.belObject}`;
+    this.nanopub.bel_statement = this.statement;
 
     // Remove blank entries in nanopub.experiment_context
     logger.debug('Cleaning nanopub -- context items');

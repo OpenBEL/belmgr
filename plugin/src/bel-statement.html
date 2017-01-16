@@ -6,12 +6,32 @@
     </div>
     <!-- .col-xs-12 -->
     <div class="row">
-      <div id="bel-source-div" class="edit-belStatementDivs col-xs-5">
+
+      <div id="bel-source-div" class="edit-belStatementDivs col-xs-12">
         <div class="form-group">
-          <label class="sr-only" for="belSubject">BEL Source</label>
+          <label class="sr-only" for="belStmt">BEL Statement</label>
+            <div class="et-termdiv">
+              <div class="input-group et-input-group">
 
-          <bel-term bel.two-way="belSubject"></bel-term>
+                <span show.bind="loading" class="input-group-addon et-spinner">
+                  <i class="fa fa-refresh fa-spin"></i>
+                </span>
+                <input id="bel-statement" ref='belinput' type="text"
+                  class="form-control et-statementfield"
+                  focus.trigger="hasFocus()" name="bel-statement"
+                  value.two-way="statement & debounce:600" blur.trigger="blurred()"/>
+              </div>
 
+              <ul class="et-termUl row" show.bind="showTerms">
+                <li class="et-termLi" repeat.for="item of filteredTerms">
+                  <a title="${item.message}" click.trigger="selectTerm(item)" mousedown.trigger="selectTerm(item)">
+                    <span class="et-termlisting et-${item.type} et-semantics-${item.valid ? 'valid' : 'invalid'}">
+                      <span class="et-termlabel">${item.label}</span>
+                    </span>
+                  </a>
+                </li>
+              </ul>
+            </div>
         </div>
 
         <div id="source-searchbox" class="search-box" style="display: none;">
@@ -19,20 +39,6 @@
         </div>
       </div>
 
-      <div id="bel-relation-div" class="edit-belStatementDivs col-xs-2">
-        <label class="sr-only" for="belRelation">BEL Relation</label>
-        <select class="form-control selectDrop selectDrop-relation" id="bel-relation" value.bind="belRelationship">
-          <option>--Relation--</option>
-          <option repeat.for="relation of relationships" model.bind="relation.relation.long_form">${relation.relation.long_form}</option>
-        </select>
-      </div>
-
-      <div id="bel-target-div" class="edit-belStatementDivs col-xs-5">
-        <div class="form-group input-block-level">
-          <label class="sr-only" for="belObject">BEL Object</label>
-          <bel-term bel.two-way="belObject"></bel-term>
-        </div>
-      </div>
     </div>
   </div>
 </template>
