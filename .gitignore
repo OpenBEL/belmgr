@@ -16,3 +16,7 @@ webeditor/src/config/config.json
 sample-plainhtml/aurelia-cdn
 sample-plainhtml/plugin-cdn
 
+/.jspm
+/.node-gyp
+/.npm
+/.v8flags.4.6.85.31.william.json
