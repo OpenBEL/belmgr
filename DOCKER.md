@@ -6,10 +6,12 @@ Run the following command to do the initial setup and make sure requirements are
 
     bash <(curl -s https://raw.githubusercontent.com/OpenBEL/belmgr/master/bin/initial-setup.sh)
 
-### Building production image
+### Building and deploying production image
 
     # Create deploy directory, copy files into it
     bin/build-webeditor-image.sh
+
+    docker deploy openbel/belmgr
 
 ### Running BELMgr
 You can override the `keycloak.json` file and the configuration file defining the default OpenBEL API endpoints by using the following:
