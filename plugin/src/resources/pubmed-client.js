@@ -9,7 +9,7 @@ export class PubmedClient {
   pubmedBaseUrl;
 
   constructor () {
-    this.pubmedBaseUrl = "http://www.ebi.ac.uk/europepmc/webservices/rest/search";
+    this.pubmedBaseUrl = "https://www.ebi.ac.uk/europepmc/webservices/rest/search";
 
     this.client = new HttpClient();
     this.client.configure(config => {
