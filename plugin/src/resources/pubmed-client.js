@@ -1,21 +1,15 @@
 import {HttpClient} from 'aurelia-fetch-client';
 import {LogManager} from 'aurelia-framework';
 import 'fetch';
-// import Config from '../AppConfig';
-import {Configure} from 'aurelia-configuration';
 
 let logger = LogManager.getLogger('pubmed-client');
-
-// let pubmedBaseUrl = Config.pubmedBaseUrl;
 
 export class PubmedClient {
   client;
   pubmedBaseUrl;
 
-  static inject = [Configure];
-  constructor (config) {
-    this.config = config;
-    this.pubmedBaseUrl = this.config.get('pubmedBaseUrl');
+  constructor () {
+    this.pubmedBaseUrl = "http://www.ebi.ac.uk/europepmc/webservices/rest/search";
 
     this.client = new HttpClient();
     this.client.configure(config => {

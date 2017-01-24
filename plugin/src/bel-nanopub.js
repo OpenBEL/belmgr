@@ -13,6 +13,7 @@ export class BelNanopub {
 
   nanopub;
   statement;
+  annotationTypes;
   metadata = {
     'nanopub_notes': '', 'nanopub_status': '', 'author': '',
     'creation_date': '', 'reviewer': '', 'review_date': '',
@@ -29,6 +30,17 @@ export class BelNanopub {
     this.api = openbelapiService;
     this.router = router;
     this.ea = eventAggregator;
+
+    this.nanopub = new Nanopub();
+
+    this.api.getBelAnnotationTypes()
+      .then(types => {
+        this.annotationTypes = types;
+        logger.debug('AnnotationTypes: ', this.annotationTypes);
+      })
+      .catch(function(reason) {
+        logger.error(`GET Annotation Types: ${reason}`);
+      });
   }
 
   bind() {
@@ -46,7 +58,6 @@ export class BelNanopub {
   detached() {
     this.subscription.dispose();
   }
-
 
   loadFormData() {
     logger.debug('In load form data');
@@ -68,15 +79,9 @@ export class BelNanopub {
     }
     else {
       this.nanopub = new Nanopub();
-      // this.nanopub = {};
-      return this.api.getBelAnnotationTypes()
-            .then(types => {
-              this.types = types;
-              logger.debug('AnnotationTypes: ', this.types);
-            })
-            .catch(function(reason) {
-              logger.error(`GET Annotation Types: ${reason}`);
-            });
+      this.statement = this.nanopub.bel_statement;
+      this.pubmed = null;
+      this.showPubmed = false;
     }
   }
 
@@ -183,7 +188,11 @@ export class BelNanopub {
 
 // this.nanopub = new Nanopub(data);   // data = nanopub from ApI call
 class Nanopub {
-  citation;
+  citation={};
+  bel_statement="";
+  experiment_context=[];
+  support="";
+  metadata=[];
   constructor(data) { // { citation: 'blue', red: 'gray' }
     Object.assign(this, data);
   }

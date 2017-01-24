@@ -2,6 +2,7 @@
 
 define deploy_commands
 	# Build Webeditor and Plugin
+	cd webeditor && jspm update belmgr-plugin
 	cd webeditor && gulp build
 
 	# Deploy plugin to NPM
@@ -9,6 +10,7 @@ define deploy_commands
 	@echo Publishing npm from $(shell pwd)
 
 	# Build and Deploy Webeditor docker image
+	rm -r deploy/webeditor
 	mkdir -p deploy/webeditor
 
 	cp -r webeditor/keycloak.json webeditor/index.html webeditor/styles webeditor/media webeditor/config.js webeditor/favicon.ico deploy/webeditor

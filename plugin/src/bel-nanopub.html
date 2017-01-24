@@ -21,7 +21,7 @@
           <bel-citation nanopub.bind="nanopub"> </bel-citation>
 
           <!-- BEL Statement -->
-          <bel-statement statement.bind="statement"></bel-statement>
+          <bel-statement ref="belinput" statement.bind="statement"></bel-statement>
 
           <!-- BEL Support -->
           <div id="bel-support" class="row edit-belForm">
@@ -58,7 +58,7 @@
           <!-- End BEL Nanopub Notes -->
 
           <!-- Experiment Context -->
-          <bel-context nanopub.two-way="nanopub"> </bel-context>
+          <bel-context annotation-types.bind="annotationTypes" nanopub.two-way="nanopub"> </bel-context>
 
           <!--Metadata-->
           <bel-metadata nanopub.two-way="nanopub" metadata.two-way='metadata'> </bel-metadata>

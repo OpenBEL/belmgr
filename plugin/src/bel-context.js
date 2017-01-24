@@ -6,6 +6,7 @@ let logger = LogManager.getLogger('context');
 // custom element named:  bel-context
 export class BelContext {
   @bindable nanopub;
+  @bindable annotationTypes;
 
   static inject = [EventAggregator];
   constructor(eventAggregator) {

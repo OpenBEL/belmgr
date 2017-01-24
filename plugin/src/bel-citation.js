@@ -40,11 +40,9 @@ export class BelCitation {
   }
 
   attached() {
-    logger.debug('Nanopub: ', this.nanopub);
-    if (this.nanopub.citation) {
-      if (this.nanopub.citation.id) {
-        this.citationId = this.nanopub.citation.id;
-      }
+    logger.debug('Attached Nanopub: ', this.nanopub);
+    if (this.nanopub.citation.id) {
+      this.citationId = this.nanopub.citation.id;
     }
     else {
       this.nanopub.citation = {};
@@ -52,6 +50,7 @@ export class BelCitation {
     }
 
     if (this.citationId && this.nanopub.citation.type === 'PubMed') {
+      logger.debug('Here', this.nanopub.citation.type);
       this.collectPubmed();
     }
   }
@@ -94,8 +93,8 @@ export class BelCitation {
         });
     }
     else {
+      logger.debug('Else collectPubmed');
       this.pubmed = {};
-      this.$parent.pubmed = {};
     }
 
   }

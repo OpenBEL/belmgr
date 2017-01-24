@@ -19,7 +19,7 @@
       <!--List Context-->
       <template repeat.for="context of nanopub.experiment_context">
         <div class="row col-xs-12">
-          <bel-context-item type.two-way="context.name" annotation.two-way="context.value" types.bind="types" index.bind="$index" last.bind="$last">
+          <bel-context-item type.two-way="context.name" annotation.two-way="context.value" annotation-types.bind="annotationTypes" index.bind="$index" last.bind="$last">
           </bel-context-item>
         </div>
 

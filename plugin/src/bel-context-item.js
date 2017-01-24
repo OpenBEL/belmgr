@@ -1,14 +1,14 @@
 import {bindable, LogManager, customElement} from 'aurelia-framework';
-import {CompositionTransaction} from 'aurelia-framework';
 import {OpenbelapiService} from './resources/openbelapi-service';
 import {EventAggregator} from 'aurelia-event-aggregator';
 
-let logger = LogManager.getLogger('contextitem');
+let logger = LogManager.getLogger('context-item');
 
 @customElement('bel-context-item')
 export class BelContextItem {
   @bindable type;
   @bindable annotation;
+  @bindable annotationTypes;
   @bindable index;
   @bindable last;
   @bindable debounceTime = 100;
@@ -16,36 +16,10 @@ export class BelContextItem {
   @bindable hasAnnotationFocus = false;
   @bindable showResults = false;
 
-  types;
-
-  static inject = [OpenbelapiService, CompositionTransaction, EventAggregator];
-  constructor(openbelapiService, compositionTransaction, eventAggregator){
+  static inject = [OpenbelapiService, EventAggregator];
+  constructor(openbelapiService, eventAggregator){
     this.api = openbelapiService;
-    this.compositionTransaction = compositionTransaction;
     this.ea = eventAggregator;
-    this.compositionTransactionNotifier = null;
-  }
-
-  created() {
-    this.compositionTransactionNotifier = this.compositionTransaction.enlist();
-
-    this.api.getBelAnnotationTypes()
-      .then(types => {
-        this.types = types;
-        logger.debug('AnnotationTypes: ', this.types);
-        this.compositionTransactionNotifier.done();
-      })
-      .catch(function(reason) {
-        logger.error('GET AnnotationTypes Error: ', reason);
-      });
-  }
-
-  attached() {
-    logger.debug('Index: ', this.index);
-    logger.debug('Last: ', this.last);
-    logger.debug('Type ', this.type);
-    logger.debug('Anno ', this.annotation);
-    logger.debug('Types: ', this.types);
   }
 
   notifyAddBlank() {
@@ -57,23 +31,25 @@ export class BelContextItem {
    */
   hasTypeFocusChanged(newValue){
     this.filterTypes();
-    logger.debug('Type focus changed: ', newValue);
-    logger.debug('Types: ', this.types);
+    // logger.debug('Annotation Type focus changed: ', newValue);
+    // logger.debug('Annotation Types: ', this.annotationTypes);
     this.showTypes = newValue;
   }
 
   typeChanged(){
-    if (this.type && this.types) {
+    // logger.debug('annotation Type changed');
+    if (this.type && this.annotationTypes) {
       this.filterTypes();
     }
   }
 
   filterTypes(){
-    if (this.types) {
-      this.filteredTypes = this.types.filter(item => {
+    // logger.debug('Filtering types');
+    if (this.annotationTypes) {
+      this.filteredTypes = this.annotationTypes.filter(item => {
         return item.annotation.name.toLowerCase().indexOf(this.type.toLowerCase()) > -1;
       });
-      logger.debug('FT: ', this.filteredTypes);
+      // logger.debug('FT: ', this.filteredTypes);
     }
   }
 
@@ -93,12 +69,11 @@ export class BelContextItem {
    */
   hasAnnotationFocusChanged(newValue){
     this.filterAnnotations();
-    logger.debug('Annotation focus changed: ', newValue);
     this.showAnnotations = newValue;
   }
 
   annotationChanged(){
-    logger.debug('Annotation changing');
+    // logger.debug('Annotation changing');
     if (this.hasAnnotationFocus && this.annotation && this.annotation.length > 1) {
       this.filterAnnotations();
     }
@@ -109,7 +84,6 @@ export class BelContextItem {
       this.api.getBELAnnotationValues(this.annotation, this.type)
         .then(data => {
           this.filteredAnnotations = data;
-          this.compositionTransactionNotifier.done();
         })
         .catch(function(reason) {
           logger.error('Filter annotations error: ', reason);

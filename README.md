@@ -39,7 +39,6 @@ Configuration - this goes into src/config/config.json when building or /config/c
 
 ```javascript
 {
-    "pubmedBaseUrl": "http://www.ebi.ac.uk/europepmc/webservices/rest/search",
     "openbelApiUrls": [
       {"api": "http://bel2.demo.openbel.org/api", "name": "Demo BEL 2.0 API"},
       {"api": "http://bel1.demo.openbel.org/api", "name": "Demo BEL 1.0 API"},

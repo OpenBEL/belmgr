@@ -1,12 +1,11 @@
 import {inject, customElement, bindable, bindingMode, LogManager} from 'aurelia-framework';
-import {CompositionTransaction} from 'aurelia-framework';
 import {OpenbelapiService} from './resources/openbelapi-service';
 
 let logger = LogManager.getLogger('bel-statement');
 
 
 @customElement('bel-statement')
-@inject(OpenbelapiService, CompositionTransaction)
+@inject(OpenbelapiService)
 export class BelStatement {
 
   @bindable({ defaultBindingMode: bindingMode.twoWay }) statement;
@@ -18,13 +17,10 @@ export class BelStatement {
   loading = false;
   focused = false;
 
-  constructor(openbelapiService, compositionTransaction) {
+  constructor(openbelapiService) {
+    logger.debug('Here 1');
     this.api = openbelapiService;
-    this.compositionTransaction = compositionTransaction;
-  }
-
-  created() {
-    this.compositionTransactionNotifier = this.compositionTransaction.enlist();
+    logger.debug('Here 2');
   }
 
   // Pulling parent's context into scope
