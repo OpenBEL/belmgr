@@ -12,7 +12,7 @@ export class Authentication {
   constructor (Configure) {
     this.config = Configure;
     this.keycloak = AuthService.keycloak;
-    self = this;
+    var self = this;
     logger.debug('KC1: ', self.keycloak);
 
   }
