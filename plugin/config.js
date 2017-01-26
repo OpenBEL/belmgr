@@ -28,6 +28,7 @@ System.config({
     "aurelia-templating-router": "npm:aurelia-templating-router@1.0.1",
     "babel": "npm:babel-core@5.8.38",
     "babel-runtime": "npm:babel-runtime@5.8.38",
+    "bluebird": "npm:bluebird@3.4.1",
     "bootstrap": "github:twbs/bootstrap@3.3.7",
     "clean-css": "npm:clean-css@3.4.24",
     "core-js": "npm:core-js@2.4.1",
@@ -238,6 +239,9 @@ System.config({
       "aurelia-task-queue": "npm:aurelia-task-queue@1.1.0"
     },
     "npm:babel-runtime@5.8.38": {
+      "process": "github:jspm/nodelibs-process@0.1.2"
+    },
+    "npm:bluebird@3.4.1": {
       "process": "github:jspm/nodelibs-process@0.1.2"
     },
     "npm:buffer@3.6.0": {

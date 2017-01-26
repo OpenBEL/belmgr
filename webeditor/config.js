@@ -17,7 +17,6 @@ System.config({
     "resources/*": "dist/resources/*",
     "value-converters/*": "dist/value-converters/*"
   },
-
   map: {
     "aurelia-animator-css": "npm:aurelia-animator-css@1.0.1",
     "aurelia-bootstrapper": "npm:aurelia-bootstrapper@1.0.1",
@@ -38,7 +37,8 @@ System.config({
     "aurelia-templating-router": "npm:aurelia-templating-router@1.0.1",
     "babel": "npm:babel-core@5.8.38",
     "babel-runtime": "npm:babel-runtime@5.8.38",
-    "belmgr-plugin": "npm:belmgr-plugin@0.6.6",
+    "belmgr-plugin": "npm:belmgr-plugin@0.6.8",
+    "bluebird": "npm:bluebird@3.4.1",
     "bootstrap": "github:twbs/bootstrap@3.3.7",
     "clean-css": "npm:clean-css@3.4.24",
     "core-js": "npm:core-js@2.4.1",
@@ -257,7 +257,7 @@ System.config({
     "npm:babel-runtime@5.8.38": {
       "process": "github:jspm/nodelibs-process@0.1.2"
     },
-    "npm:belmgr-plugin@0.6.6": {
+    "npm:belmgr-plugin@0.6.8": {
       "aurelia-animator-css": "npm:aurelia-animator-css@1.0.1",
       "aurelia-binding": "npm:aurelia-binding@1.1.1",
       "aurelia-bootstrapper": "npm:aurelia-bootstrapper@1.0.1",
@@ -282,6 +282,9 @@ System.config({
       "jquery": "github:components/jquery@2.2.4",
       "text": "github:systemjs/plugin-text@0.0.7",
       "toastr": "github:CodeSeven/toastr@2.1.2"
+    },
+    "npm:bluebird@3.4.1": {
+      "process": "github:jspm/nodelibs-process@0.1.2"
     },
     "npm:buffer@3.6.0": {
       "base64-js": "npm:base64-js@0.0.8",

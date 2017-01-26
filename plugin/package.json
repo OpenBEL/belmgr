@@ -69,6 +69,7 @@
       "aurelia-templating-binding": "^1.0.0-beta.1.1.0",
       "aurelia-templating-resources": "^1.0.0-beta.1.1.0",
       "aurelia-templating-router": "^1.0.0-beta.1.1.0",
+      "bluebird": "3.4.1",
       "bootstrap": "github:twbs/bootstrap@^3.3.5",
       "fetch": "github:github/fetch@^0.10.1",
       "font-awesome": "^4.5.0",
