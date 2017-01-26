@@ -12,7 +12,6 @@ export class App {
   // static inject=[OpenbelapiService, User, Router, AuthService];
   // constructor(api, user, router, authservice) {
   constructor(OpenbelapiService, User, Router) {
-    self = this;
     this.api = OpenbelapiService;
     this.userData = User;
     logger.debug('Router: ', Router);
