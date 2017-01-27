@@ -1,13 +1,15 @@
 # Run make help to find out what the commands are
 
 define deploy_commands
+
+	# Deploy plugin to NPM
+	cd plugin && gulp build
+	cd plugin && npm publish
+	@echo Publishing npm from $(shell pwd)
+
 	# Build Webeditor and Plugin
 	cd webeditor && jspm update belmgr-plugin
 	cd webeditor && gulp build
-
-	# Deploy plugin to NPM
-	cd plugin && npm publish
-	@echo Publishing npm from $(shell pwd)
 
 	# Build and Deploy Webeditor docker image
 	rm -r deploy/webeditor
