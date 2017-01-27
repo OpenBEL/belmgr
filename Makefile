@@ -7,6 +7,8 @@ define deploy_commands
 	cd plugin && npm publish
 	@echo Publishing npm from $(shell pwd)
 
+	sleep 10
+
 	# Build Webeditor and Plugin
 	cd webeditor && jspm update belmgr-plugin
 	cd webeditor && gulp build
