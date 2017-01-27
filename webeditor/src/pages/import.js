@@ -30,7 +30,7 @@ export class Import {
     activate() {
         let token = null;
         if (this.auth) {
-          token = this.auth.getToken();
+            token = this.auth.getToken();
         }
 
         if (token) {
@@ -38,10 +38,10 @@ export class Import {
         }
 
         return this.api.getDatasets().then(data => {
-                this.datasets = data;
-                logger.debug('Datasets: ', this.datasets);
+            this.datasets = data;
+            logger.debug('Datasets: ', this.datasets);
 
-            })
+        })
             .catch(function(reason) {
                 logger.error(`GET import datasets Error: ${reason}`)
             });
@@ -53,18 +53,18 @@ export class Import {
 
         // logger.debug('File blob: ', this.belFiles);
         this.api.uploadDataset(this.belFiles[0]).then(response => {
-                let data = { "location": null, "msg": '' };
-                if (response.ok) {
-                    data.location = response.headers.get("Location");
-                    // logger.debug("Import location ", data.location);
-                    toastr.success('', 'Dataset Loaded');
+            let data = { "location": null, "msg": '' };
+            if (response.ok) {
+                data.location = response.headers.get("Location");
+                // logger.debug("Import location ", data.location);
+                toastr.success('', 'Dataset Loaded');
 
-                    this.api.getDatasets().then(data => {
-                        this.datasets = data;
-                    });
-                }
-                this.loading = false;
-            })
+                this.api.getDatasets().then(data => {
+                    this.datasets = data;
+                });
+            }
+            this.loading = false;
+        })
             .catch(response => {
                 if (response.status === 409) {
                     let json = response.json();

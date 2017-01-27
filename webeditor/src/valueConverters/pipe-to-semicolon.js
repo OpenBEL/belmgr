@@ -11,13 +11,15 @@ export class SemiToPipeValueConverter {
     if (text) {
       text = text.replace(/\|/g, ';');
     }
-    return text;
 
+    return text;
   }
+
   fromView(text) {
     if (text) {
       text = text.replace(/\;/g, '|');
     }
+
     return text;
   }
 }
