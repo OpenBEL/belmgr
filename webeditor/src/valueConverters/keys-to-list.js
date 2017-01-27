@@ -15,7 +15,7 @@ export class KeysValueConverter {
    * @param {Object} object to extract keys from
    * @return {array} list of keys
    */
-  toView(object){
+  toView(object) {
     return Object.keys(object).sort();
   }
 }
