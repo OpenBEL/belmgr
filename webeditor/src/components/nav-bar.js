@@ -22,18 +22,15 @@ export class NavBar {
     this.userData = user;
     this.auth = auth;
     this.ea = ea;
+    this.login_status = false;
 
     this.keycloak = AuthService.keycloak;
     this.authEnabled = this.userData.authEnabled;
 
     logger.debug('NavBar AuthEnabled: ', this.authEnabled);
 
-    if (this.authEnabled && this.auth.checkToken()) {
-      this.action = 'Logout';
-    }
-    else {
-      this.action = 'Login';
-    }
+    this.login_status = this.keycloak.tokenParsed;
+
     this.getSelectedOpenbelApiUrl();
     this.api.getBelVersion().then(version => {
         this.belVersion = version;

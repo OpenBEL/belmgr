@@ -30,7 +30,8 @@
             <div class="navbar-user-box">
                 <div class="col-xs-12 col-md-12 navbar-ub-item ub-auth">
                     <div if.bind='authEnabled' class="navbar-userdiv">
-                        <a class="pointer" click.delegate="navbarAction()">${action}</a>
+                        <div if.bind='login_status'><button click.trigger ="keycloak.logout()">Logout</button></div>
+                        <div if.bind='!login_status'><button click.trigger ="keycloak.login()">Login</button></div>
                     </div>
                 </div>
                 <div class="col-xs-12 col-md-12 navbar-ub-item ub-version">
