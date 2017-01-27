@@ -38,6 +38,8 @@ export class Authentication {
     }
 
     logout(redirect) {
+        this.keycloak.token = null;
+        this.keycloak.authenticated = false;
         this.keycloak.logout(redirectUri=redirect);
     }
 
