@@ -61,6 +61,17 @@ export class BelCitation {
 
     nanopubChanged(value) {
         logger.debug('CitationChanged: ', this.nanopub);
+        if (this.nanopub.citation.id) {
+            this.citationId = this.nanopub.citation.id;
+        } else {
+            this.nanopub.citation = {};
+            this.nanopub.citation.type = 'PubMed';
+        }
+
+        if (this.citationId && this.nanopub.citation.type === 'PubMed') {
+            logger.debug('Here', this.nanopub.citation.type);
+            this.collectPubmed();
+        }
     }
 
     collectPubmed() {
