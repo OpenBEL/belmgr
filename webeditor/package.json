@@ -1,6 +1,6 @@
 {
   "name": "belmgr",
-  "version": "0.6.26",
+  "version": "0.6.27",
   "description": "Web-based editor and management tool for BEL Nanopubs.",
   "keywords": [
     "aurelia",
