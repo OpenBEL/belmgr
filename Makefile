@@ -13,6 +13,9 @@ define deploy_commands
 	cd webeditor && jspm update belmgr-plugin
 	cd webeditor && gulp build
 
+	# Link plugin into webeditor for development purposes
+	# bin/relink_plugin.sh
+
 	# Build and Deploy Webeditor docker image
 	rm -r deploy/webeditor
 	mkdir -p deploy/webeditor

@@ -14,7 +14,6 @@ let logger = LogManager.getLogger('bel-citation');
 })
 @customElement('bel-citation')
 export class BelCitation {
-    citationId;
     lastCitationId;
 
     static inject = [OpenbelapiService, PubmedService, EventAggregator];
@@ -41,58 +40,34 @@ export class BelCitation {
 
     attached() {
         logger.debug('Attached Nanopub: ', this.nanopub);
-        if (this.nanopub.citation.id) {
-            this.citationId = this.nanopub.citation.id;
-        } else {
-            this.nanopub.citation = {};
-            this.nanopub.citation.type = 'PubMed';
-        }
-
-        if (this.citationId && this.nanopub.citation.type === 'PubMed') {
-            logger.debug('Here', this.nanopub.citation.type);
-            this.collectPubmed();
-        }
-    }
-
-    copyCitationId() {
-        this.lastCitationId = JSON.parse(JSON.stringify(this.citationId));
-        logger.debug('Copying CitationId to Last', this.lastCitationId);
     }
 
     nanopubChanged(value) {
         logger.debug('CitationChanged: ', this.nanopub);
-        if (this.nanopub.citation.id) {
-            this.citationId = this.nanopub.citation.id;
-        } else {
-            this.nanopub.citation = {};
-            this.nanopub.citation.type = 'PubMed';
-        }
-
-        if (this.citationId && this.nanopub.citation.type === 'PubMed') {
-            logger.debug('Here', this.nanopub.citation.type);
-            this.collectPubmed();
+        if ((this.nanopub.citation.type == 'PubMed'  ||
+            this.nanopub.citation.type == null) &&
+            this.nanopub.citation.id != this.lastCitationId) {
+          this.nanopub.citation.type = 'Pubmed';
+          this.lastCitationId = this.nanopub.citation.id;
+          this.collectPubmed();
         }
     }
 
     collectPubmed() {
-        this.nanopub.citation.id = this.citationId;
-
-        logger.debug('Id: ', this.citationId, 'Last', this.lastCitationId, ' Type: ', this.nanopub.citation.type);
 
         // Collect Pubmed data from service
-        if (this.citationId && this.nanopub.citation.type === 'PubMed') {
-            logger.debug('Id2: ', this.citationId, 'Last2', this.lastCitationId, ' Type: ', this.nanopub.citation.type);
-            this.pubmedService.getPubmed(this.citationId)
+        if (this.nanopub.citation.id && (this.nanopub.citation.type === 'PubMed' || this.nanopub.citation.type == null)) {
+
+            this.pubmedService.getPubmed(this.nanopub.citation.id)
               .then(pubmed => {
                   this.pubmed = pubmed;
-                  if (this.citationId === this.lastCitationId) {
+                  if (this.nanopub.citation.id === this.lastCitationId) {
                       this.citationPubmedChecks();
                   } else {  // replace citation data if new CitationId
                       this.nanopub.citation.date = this.pubmed.journalInfo.printPublicationDate;
                       this.nanopub.citation.authors = this.pubmed.bel.authors;
                       this.nanopub.citation.name = this.pubmed.bel.refString;
                   }
-                  this.copyCitationId();  // Track if the CitationId has changed
                   this.refreshNanopubObjBinding();
                   this.publish(pubmed);
               })
@@ -148,7 +123,7 @@ export class BelCitation {
     }
 
     /**
-     * Replace nanopub citation date with newval
+     * Replace nanopub citation name with newval
      * @param newval
      */
     replaceCitationName(newval) {
@@ -158,7 +133,7 @@ export class BelCitation {
     }
 
     /**
-     * Replace nanopub citation date with newval
+     * Replace nanopub citation authors with newval
      * @param newval
      */
     replaceCitationAuthors(newval) {

@@ -23,7 +23,7 @@
       <div class="col-xs-7">
         <div class="form-group">
           <label for="citation_ref">Reference ID</label>
-          <input type="text" class="form-control fc-normal" id="citation_ref" value.bind="citationId"
+          <input type="text" class="form-control fc-normal" id="citation_ref" value.bind="nanopub.citation.id"
                  blur.trigger="collectPubmed()" placeholder="Citation Reference - e.g. PubmedID, ISBN, or URL">
         </div>
         <!-- .form-group -->
@@ -42,11 +42,11 @@
     </div>
   </div>
   <!-- col-xs-2 -->
-  <div class="panel-group accordion-group" id="accordion" role="tablist" aria-multiselectable="true">
+  <!-- <div class="panel-group accordion-group" id="accordion" role="tablist" aria-multiselectable="true"> -->
     <div class="panel acForm">
       <div class="panel-heading" role="tab" id="headingOne">
         <h5 class="panel-title edit-acTitle">
-          <a class="accordionAnchor collapsed col-xs-12" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+          <a class="collapsed col-xs-12" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
             <div>
                       <span class="accordionTitle col-xs-11 floatLeft">Reference Name
                       </span>
@@ -72,7 +72,7 @@
     <div class="panel acForm">
       <div class="panel-heading" role="tab" id="headingTwo">
         <h5 class="panel-title edit-acTitle">
-          <a class="accordionAnchor collapsed col-xs-12" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+          <a class="collapsed col-xs-12" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
             <div>
               <span class="accordionTitle col-xs-11 floatLeft">Authors</span>
               <i class="accordionArrow col-xs-1 floatRight fa fa-caret-down"></i>
@@ -80,7 +80,7 @@
           </a>
         </h5>
       </div>
-      <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+      <div id="collapseTwo" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingTwo">
         <div class="panel-body edit-acPanelBody">
 
           <div class="form-group edit-acFormGroup">
@@ -95,5 +95,5 @@
         </div>
       </div>
     </div>
-  </div>
+  <!-- </div> -->
 </template>
