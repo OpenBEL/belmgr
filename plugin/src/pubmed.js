@@ -18,12 +18,12 @@ export class Pubmed {
   }
 
   attached() {
-      this.subscription = this.ea.subscribe('pubmed', payload => {
+      this.subscription = this.ea.subscribe('pubmed', pubmed => {
       // logger.debug('Received Payload: ', payload);
-      this.pubmed = payload;
-      if (!this.pubmed.title) {
-        this.pubmed = this.pubmedService.getPubMed(this.pubmed.id);
-      }
+      this.pubmed = pubmed;
+      // if (!this.pubmed.title) {
+      //   this.pubmed = this.pubmedService.getPubMed(this.pubmed.id);
+      // }
     });
   }
 

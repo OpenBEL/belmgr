@@ -39,17 +39,32 @@ export class PubmedService {
     enhancePubmed(pubmed) {
         pubmed.bel = {'mismatch': {'date': false, 'refString': false, 'authors': false, 'comment': false}};
         // Add reference string - e.g. J Lipid Res 2002 Jan 43(1) 2-12
-        pubmed.bel.refString = pubmed.journalInfo.journal.isoabbreviation;
-        pubmed.bel.refString += `, ${pubmed.journalInfo.dateOfPublication},`;
-        pubmed.bel.refString += ` ${pubmed.journalInfo.volume}`;
-        if (pubmed.journalInfo.issue) {
-            pubmed.bel.refString += `(${pubmed.journalInfo.issue})`;
+        // logger.debug('isoabbreviation: ', pubmed.journalInfo.journal.isoabbreviation);
+        if (pubmed.journalInfo && pubmed.journalInfo.journal && pubmed.journalInfo.journal.isoabbreviation) {
+          pubmed.bel.refString = pubmed.journalInfo.journal.isoabbreviation;
+
+          pubmed.bel.refString += `, ${pubmed.journalInfo.dateOfPublication},`;
+          pubmed.bel.refString += ` ${pubmed.journalInfo.volume}`;
+          if (pubmed.journalInfo.issue) {
+              pubmed.bel.refString += `(${pubmed.journalInfo.issue})`;
+          }
+          pubmed.bel.refString += ` p:${pubmed.pageInfo}`;
         }
-        pubmed.bel.refString += ` p:${pubmed.pageInfo}`;
+        else {
+          pubmed.bel.refString = null;
+        }
 
         // Adjust authors string to the BEL Nanopub format - convert ',' to '|'
         // pubmed.bel.authors = pubmed.authorString.replace(/,/g , '|').replace(/\.$/, '');  old version - authors in BEL Nanopub is now an array
-        pubmed.bel.authors = pubmed.authorList.author.map(obj => {return obj.fullName;});
+        if (pubmed.authorList) {
+          pubmed.bel.authors = pubmed.authorList.author.map(obj => {return obj.fullName;});
+        }
+        else if (pubmed.authorString) {
+          pubmed.bel.authors = [pubmed.authorString];
+        }
+        else {
+          pubmed.bel.authors = null;
+        }
 
         return pubmed;
 

@@ -43,30 +43,40 @@ export class BelCitation {
     }
 
     nanopubChanged(value) {
+        // if (this.nanopub.citation.id && !this.nanopub.citation.type) {
+        //   this.nanopub.citation.type === 'PubMed';
+        // }
         logger.debug('CitationChanged: ', this.nanopub);
-        if ((this.nanopub.citation.type == 'PubMed'  ||
-            this.nanopub.citation.type == null) &&
-            this.nanopub.citation.id != this.lastCitationId) {
-          this.nanopub.citation.type = 'Pubmed';
+
+        if (this.nanopub.citation.type &&
+            this.nanopub.citation.type.toUpperCase() === 'PubMed'.toUpperCase()) {
+          this.nanopub.citation.type = 'PubMed';
+          // logger.debug('Is type pubmed? ', this.nanopub.citation.type );
+        }
+        if (!this.nanopub.citation.type) {
+          this.nanopub.citation.type = 'PubMed';
+          // logger.debug('Is type set? ', this.nanopub.citation.type );
+        }
+        if (this.nanopub.citation.id != this.lastCitationId) {
           this.lastCitationId = this.nanopub.citation.id;
           this.collectPubmed();
         }
     }
 
     collectPubmed() {
-
         // Collect Pubmed data from service
-        if (this.nanopub.citation.id && (this.nanopub.citation.type === 'PubMed' || this.nanopub.citation.type == null)) {
-
+        if (this.nanopub.citation.id && this.nanopub.citation.type === 'PubMed') {
             this.pubmedService.getPubmed(this.nanopub.citation.id)
               .then(pubmed => {
                   this.pubmed = pubmed;
                   if (this.nanopub.citation.id === this.lastCitationId) {
                       this.citationPubmedChecks();
                   } else {  // replace citation data if new CitationId
+                    if (this.pubmed.journalInfo && this.pubmed.journalInfo.printPublicationDate) {
                       this.nanopub.citation.date = this.pubmed.journalInfo.printPublicationDate;
-                      this.nanopub.citation.authors = this.pubmed.bel.authors;
-                      this.nanopub.citation.name = this.pubmed.bel.refString;
+                    }
+                    this.nanopub.citation.authors = this.pubmed.bel.authors;
+                    this.nanopub.citation.name = this.pubmed.bel.refString;
                   }
                   this.refreshNanopubObjBinding();
                   this.publish(pubmed);
@@ -90,9 +100,13 @@ export class BelCitation {
     citationPubmedChecks() {
         if (this.nanopub.citation.type === 'PubMed') {
             // Check date
+            let printdate = null;
+            if (this.pubmed.journalInfo && this.pubmed.journalInfo.printPublicationDate) {
+              printdate = this.pubmed.journalInfo.printPublicationDate;
+            }
             if (!this.nanopub.citation.date) {
-                this.nanopub.citation.date = this.pubmed.journalInfo.printPublicationDate;
-            } else if (this.nanopub.citation.date !== this.pubmed.journalInfo.printPublicationDate) {
+                  this.nanopub.citation.date = printdate;}
+            else if (this.nanopub.citation.date !== printdate) {
                 this.pubmed.bel.mismatch.date = true;
             }
             // Check authors
