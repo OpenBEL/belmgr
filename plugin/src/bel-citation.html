@@ -8,7 +8,8 @@
 
       <div class="col-xs-2">
         <div class="form-group">
-          <label for="citation_type">Type</label>
+          <!-- TODO Get rid of text-danger in favor of required_field -->
+          <label class="text-danger ${required_field}" for="citation_type">Type (Required)</label>
           <select class="form-control fc-normal selectDrop" id="citation_type" value.bind="nanopub.citation.type">
             <option value="PubMed">PubMed</option>
             <option value="Journal">Journal</option>
@@ -22,7 +23,8 @@
       <!-- .col-xs-2 -->
       <div class="col-xs-7">
         <div class="form-group">
-          <label for="citation_ref">Reference ID</label>
+          <!-- TODO Get rid of text-danger in favor of required_field -->
+          <label class="text-danger ${required_field}" for="citation_ref">Reference ID (Required)</label>
           <input type="text" class="form-control fc-normal" id="citation_ref" value.bind="nanopub.citation.id"
                  blur.trigger="collectPubmed()" placeholder="Citation Reference - e.g. PubmedID, ISBN, or URL">
         </div>

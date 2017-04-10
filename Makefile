@@ -14,7 +14,7 @@ define deploy_commands
 	cd webeditor && gulp build
 
 	# Link plugin into webeditor for development purposes
-	# bin/relink_plugin.sh
+	bin/relink_plugin.sh
 
 	# Build and Deploy Webeditor docker image
 	rm -r deploy/webeditor

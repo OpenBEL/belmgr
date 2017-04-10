@@ -3,6 +3,7 @@ import {OpenbelapiService} from './resources/openbelapi-service';
 
 let logger = LogManager.getLogger('bel-statement');
 
+// TODO - required_field doesn't change when BEL Statement (or Citation Type|ID) is missing
 
 @customElement('bel-statement')
 @inject(OpenbelapiService)

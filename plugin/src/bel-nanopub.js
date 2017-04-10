@@ -20,6 +20,7 @@ export class BelNanopub {
     'nanopub_source': ''};
   submitNanopub = {};  // add back the top-level 'nanopub' key, value prior to submission
   annotations = [];
+  required_field = '';
 
   // Needed to allow New BEL menu item to refresh the form
   determineActivationStrategy() {
@@ -32,6 +33,8 @@ export class BelNanopub {
     this.ea = eventAggregator;
 
     this.nanopub = new Nanopub();
+
+    this.nanopubId = this.api.getIdFromUrl(window.location.href);
 
     this.api.getBelAnnotationTypes()
       .then(types => {
@@ -62,15 +65,12 @@ export class BelNanopub {
   loadFormData() {
     logger.debug('In load form data');
     if (this.nanopubId) {
-      logger.debug('Inside loadFormData -- NanopubID: ', this.nanopubId);
       // Return Promise in activate to wait until all data is collected before building
       //   the page
       return this.api.getBelNanopub(this.nanopubId)
         .then(nanopub => {
           this.nanopub = nanopub;
-          logger.debug('Nanopub: ', this.nanopub);
-          this.statement = nanopub.bel_statement;
-          // logger.debug('Statement: ', this.statement);
+          this.statement = this.nanopub.bel_statement;
           this.extractFormMetadata(); // depends on this.metadata and this.nanopub
         })
         .catch(reason => {
@@ -79,7 +79,6 @@ export class BelNanopub {
     }
     else {
       this.nanopub = new Nanopub();
-      this.statement = this.nanopub.bel_statement;
       this.pubmed = null;
       this.showPubmed = false;
     }
@@ -98,6 +97,7 @@ export class BelNanopub {
   prepareNanopub() {
     let submitNanopub = {};
     // Prepare BEL Statement
+    logger.debug('Preparing Nanopub Stmt:', this.statement);
     this.nanopub.bel_statement = this.statement;
 
     // Remove blank entries in nanopub.experiment_context
@@ -114,39 +114,76 @@ export class BelNanopub {
   // Add to nanopub Metadata
   //   Note - this is only for adding strings
   //   TODO - support adding objects as values
+  //
+  //   Extract and Add Form Metadata should be completely refactored.
   addFormMetadata() {
     if (this.nanopub.metadata) {
+      // logger.debug('Metadata', this.metadata);
       for (let key in this.metadata) {
+        if (key === 'key') {continue;}
         let idx = this.nanopub.metadata.findIndex(obj => obj.name === key);
+
         if (idx >= 0) {
-          this.nanopub.metadata[idx].value += this.metadata.key;
+          // logger.debug('Add Metadata Data Key', key, 'Val', this.metadata[key], 'Idx', idx);
+          this.nanopub.metadata[idx].value = this.metadata[key];
         } else {
-          this.nanopub.metadata.push(
-            {
-              'name' : key,
-              'value': this.metadata[key]
-            });
+
+          // logger.debug('Add Metadata Key', key, 'Val', this.metadata[key]);
+
+          let val = "";
+          if (this.metadata[key] === undefined) {
+            val = "";
+          }
+          else {val = this.metadata[key];}
+
+          this.nanopub.metadata.push({'name' : key, 'value': val});
         }
       }
     }
   }
 
+  // Copy Nanopub Metadata into form object
   extractFormMetadata() {
-    for (let k in this.metadata) {
-      let idx = this.nanopub.metadata.findIndex(obj => obj.name === k);
+    for (let key in this.metadata) {
+      if (key === 'key') {continue;}
+      let idx = this.nanopub.metadata.findIndex(obj => obj.name === key);
       if (idx >= 0) {
-        this.metadata[k] = this.nanopub.metadata[idx].value;
+        // logger.debug('Extract Metadata Key', idx, 'Val', this.nanopub.metadata[idx]['value']);
+        if (this.nanopub.metadata[idx] !== undefined) {
+          this.metadata[key] = this.nanopub.metadata[idx]['value'];
+          // logger.debug('Loading Metadata Key', key, 'Val', this.metadata[key]);
+        }
       }
+    }
+    // logger.debug('Created Metadata', this.metadata);
+  }
+
+  checkNanopub(nanopub) {
+    if (nanopub.nanopub.citation.type && nanopub.nanopub.citation.id && nanopub.nanopub.bel_statement) {
+      this.required_field = '';
+      return true;
+    }
+    else {
+      this.required_field = 'text-danger';
+      return false;
     }
   }
 
   submitUpdate() {
-    logger.debug('Prior to prepare update nanopub', JSON.stringify(this.nanopub, null, 2));
+    // logger.debug('Prior to prepare update nanopub', JSON.stringify(this.nanopub, null, 2));
     let submitNanopub = this.prepareNanopub();
-    logger.debug('Update nanopub', JSON.stringify(submitNanopub, null, 2));
+    if (! this.checkNanopub(submitNanopub)) {
+      toastr.options = {"timeOut": "15000"};
+      toastr.error("Must fill out required form fields: Citation Type, Citation ID and BEL Statement");
+      return true;
+    }
+
+    // logger.debug('Update nanopub', JSON.stringify(submitNanopub, null, 2));
+
     this.api.loadBelNanopub(submitNanopub, this.nanopubId)
     .then(response => {
       toastr.success('', 'Updated Nanopub');
+      // logger.debug('After update nanopub', submitNanopub);
     })
     .catch(function(reason) {
       toastr.options = {"timeOut": "15000"};
@@ -159,9 +196,15 @@ export class BelNanopub {
   }
 
   submitNew() {
-    logger.debug('Prior to prepare new nanopub', JSON.stringify(this.nanopub, null, 2));
+    // logger.debug('Prior to prepare new nanopub', JSON.stringify(this.nanopub, null, 2));
     let submitNanopub = this.prepareNanopub();
-    logger.debug('Submit new nanopub', JSON.stringify(submitNanopub, null, 2));
+    if (! this.checkNanopub(submitNanopub)) {
+      toastr.options = {"timeOut": "15000"};
+      toastr.error("Must fill out required form fields: Citation Type, Citation ID and BEL Statement");
+      logger.debug('Required_field', this.required_field);
+      return true;
+    }
+    // logger.debug('Submit new nanopub', JSON.stringify(submitNanopub, null, 2));
 
     this.api.loadBelNanopub(submitNanopub)
     .then(response => {
@@ -169,7 +212,7 @@ export class BelNanopub {
     })
     .then(location => {
       logger.debug('Loc: ', location);
-      let nanopubId = this.api.getIdFromUrl(location);
+      this.nanopubId = this.api.getIdFromUrl(location);
       logger.debug('Router: ', this.router);
       toastr.success('', 'Created New Nanopub');
       this.router.navigateToRoute('edit', { id: nanopubId });

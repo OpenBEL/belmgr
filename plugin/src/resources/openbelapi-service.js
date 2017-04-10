@@ -329,7 +329,7 @@ export class OpenbelapiService {
    */
     getIdFromUrl(url) {
         // logger.debug('U: ', url);
-        let matches = url.match(/\/([\-\w]*)$/);
+        let matches = url.match(/edit\/([\-\w]*)$/);
         // logger.debug('Matches: ', matches);
         return matches[1];
     }
