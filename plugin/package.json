@@ -1,6 +1,6 @@
 {
   "name": "belmgr-plugin",
-  "version": "0.6.33",
+  "version": "0.6.34",
   "description": "Plugin for building a BEL Nanopubs Editor",
   "keywords": [
     "aurelia",
