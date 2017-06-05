@@ -41,7 +41,7 @@ System.config({
     "belmgr-plugin": "npm:belmgr-plugin@0.6.35",
     "bluebird": "npm:bluebird@3.4.1",
     "bootstrap": "github:twbs/bootstrap@3.3.7",
-    "clean-css": "npm:clean-css@3.4.24",
+    "clean-css": "npm:clean-css@3.4.26",
     "core-js": "npm:core-js@2.4.1",
     "fetch": "github:github/fetch@0.10.1",
     "font-awesome": "npm:font-awesome@4.7.0",
@@ -292,7 +292,7 @@ System.config({
       "base64-js": "npm:base64-js@1.2.0",
       "ieee754": "npm:ieee754@1.1.8"
     },
-    "npm:clean-css@3.4.24": {
+    "npm:clean-css@3.4.26": {
       "buffer": "github:jspm/nodelibs-buffer@0.1.1",
       "commander": "npm:commander@2.8.1",
       "fs": "github:jspm/nodelibs-fs@0.1.2",
