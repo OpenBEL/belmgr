@@ -331,7 +331,8 @@ export class OpenbelapiService {
         // logger.debug('U: ', url);
         let matches = url.match(/edit\/([\-\w]*)$/);
         // logger.debug('Matches: ', matches);
-        return matches[1];
+        if (!matches) {return matches[1];}
+        return null;
     }
 
     getDatasets() {
